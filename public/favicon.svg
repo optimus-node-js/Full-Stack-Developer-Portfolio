@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" /> <!-- Secondary -->
+      <stop offset="100%" stop-color="#22C55E" /> <!-- Primary -->
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="100" height="100" rx="24" fill="url(#grad)" />
+  <text x="50" y="65" font-family="'Space Grotesk', sans-serif, system-ui" font-weight="800" font-size="48" fill="white" text-anchor="middle" letter-spacing="-2" filter="url(#shadow)">RV</text>
+</svg>
