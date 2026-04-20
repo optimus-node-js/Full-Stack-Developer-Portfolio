@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Eye, MousePointer, Clock, Globe, TrendingUp, Users } from 'lucide-react';
+import { Eye, MousePointer, Clock, Globe, TrendingUp, Users, ArrowUpRight } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
 
 interface AnalyticsData {
   totalViews: number;
@@ -27,14 +28,10 @@ const Analytics = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call
     const fetchAnalytics = async () => {
       setIsLoading(true);
-      
-      // Simulate loading delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Mock data - in real implementation, this would come from your analytics service
       setAnalytics({
         totalViews: 15420,
         uniqueVisitors: 8930,
@@ -48,10 +45,10 @@ const Analytics = () => {
         ],
         topPages: [
           { page: '/', views: 5420 },
-          { page: '/project/spacex-launch-explorer', views: 1890 },
-          { page: '/project/crowdsource-platform', views: 1560 },
+          { page: '/project/spacex-launch', views: 1890 },
+          { page: '/project/crowdsource', views: 1560 },
           { page: '/contact', views: 980 },
-          { page: '/project/dividend-roi-calculator', views: 760 }
+          { page: '/project/roi-calculator', views: 760 }
         ],
         deviceTypes: [
           { type: 'Desktop', percentage: 65 },
@@ -76,183 +73,188 @@ const Analytics = () => {
     return new Intl.NumberFormat().format(num);
   };
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+  };
+
   if (isLoading) {
     return (
-      <section id="analytics" className="py-20 bg-section-bg relative">
-        <div className="container mx-auto px-6">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Portfolio <span className="text-gradient-primary">Analytics</span>
-            </h2>
-            <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Real-time insights into portfolio performance and visitor engagement.
-            </p>
-          </div>
-          
-          {/* Loading State */}
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-4 text-muted-foreground">Loading analytics...</p>
-          </div>
+      <section id="analytics" className="py-24 bg-background relative border-t border-border/50">
+        <div className="container mx-auto px-6 flex flex-col items-center justify-center min-h-[500px]">
+          <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
+          <p className="mt-6 text-xl text-muted-foreground font-medium animate-pulse">Loading analytics dashboard...</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section id="analytics" className="py-20 bg-section-bg relative">
-      <div className="container mx-auto px-6">
+    <section id="analytics" className="py-24 bg-background relative border-t border-border/50">
+      {/* Background Decor */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 scroll-animate">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Portfolio <span className="text-gradient-primary">Analytics</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+            Performance <span className="text-primary">Metrics</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Real-time insights into portfolio performance and visitor engagement.
+          <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
+            Real-time dashboard tracking portfolio engagement and reach.
           </p>
         </div>
 
-        {/* Key Metrics */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 scroll-animate">
-          <div className="glass p-6 rounded-2xl text-center">
-            <Eye className="h-8 w-8 text-primary mx-auto mb-4" />
-            <div className="text-3xl font-bold text-primary mb-2">
-              <AnimatedCounter end={analytics.totalViews} />
-            </div>
-            <div className="text-muted-foreground">Total Views</div>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="max-w-7xl mx-auto space-y-6 lg:space-y-8"
+        >
+          {/* Key Metrics Bento */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {[
+              { icon: Eye, label: "Total Views", value: analytics.totalViews, type: "number", color: "text-primary", bg: "bg-primary/10" },
+              { icon: Users, label: "Unique Visitors", value: analytics.uniqueVisitors, type: "number", color: "text-secondary", bg: "bg-secondary/10" },
+              { icon: Clock, label: "Avg. Session", value: analytics.averageTime, type: "text", color: "text-accent", bg: "bg-accent/10" },
+              { icon: TrendingUp, label: "MoM Growth", value: 24, type: "percent", color: "text-primary", bg: "bg-primary/10" }
+            ].map((metric, i) => (
+              <motion.div key={i} variants={itemVariants} className="glass p-6 rounded-3xl border border-border/50 flex flex-col items-center text-center justify-center relative overflow-hidden group hover:border-primary/50 transition-colors">
+                <div className={`w-12 h-12 rounded-2xl ${metric.bg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <metric.icon className={`h-6 w-6 ${metric.color}`} />
+                </div>
+                <div className={`text-3xl lg:text-4xl font-bold font-heading mb-1 ${metric.color}`}>
+                  {metric.type === 'number' && <AnimatedCounter end={metric.value as number} />}
+                  {metric.type === 'text' && metric.value}
+                  {metric.type === 'percent' && <AnimatedCounter end={metric.value as number} prefix="+" suffix="%" />}
+                </div>
+                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{metric.label}</div>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="glass p-6 rounded-2xl text-center">
-            <Users className="h-8 w-8 text-secondary mx-auto mb-4" />
-            <div className="text-3xl font-bold text-secondary mb-2">
-              <AnimatedCounter end={analytics.uniqueVisitors} />
-            </div>
-            <div className="text-muted-foreground">Unique Visitors</div>
-          </div>
-
-          <div className="glass p-6 rounded-2xl text-center">
-            <Clock className="h-8 w-8 text-accent mx-auto mb-4" />
-            <div className="text-3xl font-bold text-accent mb-2">
-              {analytics.averageTime}
-            </div>
-            <div className="text-muted-foreground">Avg. Time</div>
-          </div>
-
-          <div className="glass p-6 rounded-2xl text-center">
-            <TrendingUp className="h-8 w-8 text-primary mx-auto mb-4" />
-            <div className="text-3xl font-bold text-primary mb-2">
-              <AnimatedCounter end={24} prefix="+" suffix="%" />
-            </div>
-            <div className="text-muted-foreground">Growth</div>
-          </div>
-        </div>
-
-        {/* Charts and Data */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Top Countries */}
-          <div className="glass p-6 rounded-2xl scroll-animate">
-            <h3 className="text-xl font-semibold mb-6 flex items-center">
-              <Globe className="h-5 w-5 mr-2 text-primary" />
-              Top Countries
-            </h3>
-            <div className="space-y-4">
-              {analytics.topCountries.map((country, index) => (
-                <div key={country.country} className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm font-semibold">
-                      {index + 1}
+          {/* Detailed Analytics Grid */}
+          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+            
+            {/* Left Column: Top Pages & Traffic Sources */}
+            <div className="lg:col-span-2 space-y-6 lg:space-y-8">
+              <motion.div variants={itemVariants} className="glass p-8 rounded-[2.5rem] border border-border/50 h-[calc(50%-1rem)]">
+                <div className="flex items-center justify-between mb-8">
+                  <h3 className="text-xl font-bold font-heading flex items-center">
+                    <MousePointer className="h-5 w-5 mr-3 text-primary" />
+                    Top Performing Pages
+                  </h3>
+                  <Button variant="ghost" size="sm" className="text-xs text-muted-foreground hover:text-primary">
+                    View All <ArrowUpRight className="ml-1 h-3 w-3" />
+                  </Button>
+                </div>
+                <div className="space-y-5">
+                  {analytics.topPages.map((page, index) => (
+                    <div key={page.page} className="flex items-center justify-between group">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-8 h-8 rounded-xl bg-muted flex items-center justify-center text-xs font-bold text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary transition-colors">
+                          {index + 1}
+                        </div>
+                        <span className="font-medium text-foreground/80 group-hover:text-foreground transition-colors">{page.page}</span>
+                      </div>
+                      <div className="text-sm font-semibold bg-muted/50 px-3 py-1 rounded-lg">
+                        {formatNumber(page.views)} <span className="text-muted-foreground text-xs font-normal">views</span>
+                      </div>
                     </div>
-                    <span className="font-medium">{country.country}</span>
-                  </div>
-                  <div className="text-muted-foreground">
-                    {formatNumber(country.visitors)} visitors
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </motion.div>
 
-          {/* Top Pages */}
-          <div className="glass p-6 rounded-2xl scroll-animate">
-            <h3 className="text-xl font-semibold mb-6 flex items-center">
-              <MousePointer className="h-5 w-5 mr-2 text-secondary" />
-              Top Pages
-            </h3>
-            <div className="space-y-4">
-              {analytics.topPages.map((page, index) => (
-                <div key={page.page} className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-secondary/10 rounded-full flex items-center justify-center text-sm font-semibold">
-                      {index + 1}
+              <motion.div variants={itemVariants} className="glass p-8 rounded-[2.5rem] border border-border/50 h-[calc(50%-1rem)]">
+                <h3 className="text-xl font-bold font-heading mb-8 flex items-center">
+                  <Globe className="h-5 w-5 mr-3 text-secondary" />
+                  Traffic Sources
+                </h3>
+                <div className="space-y-6">
+                  {analytics.trafficSources.map((source) => (
+                    <div key={source.source}>
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-medium">{source.source}</span>
+                        <span className="text-sm font-bold">{source.percentage}%</span>
+                      </div>
+                      <div className="w-full bg-muted/50 rounded-full h-3 overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${source.percentage}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                          className="bg-gradient-to-r from-secondary to-primary h-full rounded-full"
+                        />
+                      </div>
                     </div>
-                    <span className="font-medium text-sm">{page.page}</span>
-                  </div>
-                  <div className="text-muted-foreground">
-                    {formatNumber(page.views)} views
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </motion.div>
             </div>
-          </div>
 
-          {/* Device Types */}
-          <div className="glass p-6 rounded-2xl scroll-animate">
-            <h3 className="text-xl font-semibold mb-6">Device Types</h3>
-            <div className="space-y-4">
-              {analytics.deviceTypes.map((device) => (
-                <div key={device.type}>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium">{device.type}</span>
-                    <span className="text-muted-foreground">{device.percentage}%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div
-                      className="bg-primary h-2 rounded-full transition-all duration-1000"
-                      style={{ width: `${device.percentage}%` }}
-                    />
-                  </div>
+            {/* Right Column: Global Reach & Devices */}
+            <div className="space-y-6 lg:space-y-8">
+              <motion.div variants={itemVariants} className="glass p-8 rounded-[2.5rem] border border-border/50 bg-gradient-to-br from-primary/5 to-transparent">
+                <h3 className="text-xl font-bold font-heading mb-8 flex items-center">
+                  <Globe className="h-5 w-5 mr-3 text-primary" />
+                  Global Reach
+                </h3>
+                <div className="space-y-5">
+                  {analytics.topCountries.map((country, index) => (
+                    <div key={country.country} className="flex flex-col gap-2">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-sm">{country.country}</span>
+                        <span className="text-xs font-bold bg-primary/10 text-primary px-2 py-0.5 rounded-md">{formatNumber(country.visitors)}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </motion.div>
 
-          {/* Traffic Sources */}
-          <div className="glass p-6 rounded-2xl scroll-animate">
-            <h3 className="text-xl font-semibold mb-6">Traffic Sources</h3>
-            <div className="space-y-4">
-              {analytics.trafficSources.map((source) => (
-                <div key={source.source}>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium">{source.source}</span>
-                    <span className="text-muted-foreground">{source.percentage}%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div
-                      className="bg-secondary h-2 rounded-full transition-all duration-1000"
-                      style={{ width: `${source.percentage}%` }}
-                    />
-                  </div>
+              <motion.div variants={itemVariants} className="glass p-8 rounded-[2.5rem] border border-border/50">
+                <h3 className="text-xl font-bold font-heading mb-8">Device Split</h3>
+                <div className="space-y-6">
+                  {analytics.deviceTypes.map((device, index) => (
+                    <div key={device.type}>
+                      <div className="flex justify-between items-center mb-2 text-sm">
+                        <span className="font-medium flex items-center gap-2">
+                          <span className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-secondary' : 'bg-accent'}`}></span>
+                          {device.type}
+                        </span>
+                        <span className="font-bold">{device.percentage}%</span>
+                      </div>
+                      <div className="w-full bg-muted/50 rounded-full h-2 overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${device.percentage}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                          className={`h-full rounded-full ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-secondary' : 'bg-accent'}`}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </motion.div>
             </div>
-          </div>
-        </div>
 
-        {/* CTA */}
-        <div className="text-center mt-16 scroll-animate">
-          <p className="text-muted-foreground mb-6">
-            Interested in working together? Let's discuss your project.
-          </p>
-          <Button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-primary hover:bg-primary/90"
-          >
-            Get In Touch
-          </Button>
-        </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

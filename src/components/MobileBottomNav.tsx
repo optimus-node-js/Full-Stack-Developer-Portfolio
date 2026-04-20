@@ -77,33 +77,33 @@ const MobileBottomNav = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="md:hidden fixed bottom-4 left-4 right-4 z-50"
+          className="md:hidden fixed bottom-6 left-4 right-4 z-50"
         >
-          <div className="relative">
+          <div className="relative max-w-sm mx-auto">
             <AnimatePresence>
               {isExpanded && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
-                  className="absolute bottom-full mb-3 left-0 right-0"
+                  className="absolute bottom-full mb-4 left-0 right-0"
                 >
-                  <div className="bg-background/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl">
-                    <div className="grid grid-cols-3 gap-3">
-                      {['experience', 'blog', 'testimonials', 'analytics', 'education', 'involvement'].map((item) => (
+                  <div className="bg-background/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 shadow-2xl">
+                    <div className="grid grid-cols-2 gap-3">
+                      {['experience', 'education', 'analytics', 'testimonials'].map((item) => (
                         <button
                           key={item}
                           onClick={() => scrollToSection(item)}
                           className={`
-                            p-3 rounded-xl text-center transition-all duration-300
+                            p-3 rounded-2xl text-center transition-all duration-300 font-medium
                             ${activeSection === item 
-                              ? 'bg-gradient-to-br from-secondary/30 to-accent/30 text-foreground' 
-                              : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
+                              ? 'bg-primary/20 text-primary border border-primary/30' 
+                              : 'bg-muted/50 text-muted-foreground hover:bg-muted/80 border border-transparent'
                             }
                           `}
                           data-testid={`button-nav-${item}`}
                         >
-                          <span className="text-xs font-medium capitalize">{item}</span>
+                          <span className="text-sm capitalize">{item}</span>
                         </button>
                       ))}
                     </div>
@@ -112,8 +112,8 @@ const MobileBottomNav = () => {
               )}
             </AnimatePresence>
 
-            <div className="bg-background/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
-              <div className="flex items-center justify-around p-2">
+            <div className="bg-background/80 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_8px_32px_hsla(0,0%,0%,0.3)] overflow-hidden p-2">
+              <div className="flex items-center justify-between px-2">
                 {mainNavItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = activeSection === item.id;
@@ -124,10 +124,9 @@ const MobileBottomNav = () => {
                       onClick={() => scrollToSection(item.id)}
                       className={`
                         relative flex flex-col items-center justify-center
-                        p-3 rounded-xl transition-all duration-300
-                        min-w-[56px]
+                        p-3 rounded-full transition-all duration-300
                         ${isActive 
-                          ? 'text-foreground' 
+                          ? 'text-primary' 
                           : 'text-muted-foreground hover:text-foreground'
                         }
                       `}
@@ -136,15 +135,13 @@ const MobileBottomNav = () => {
                     >
                       {isActive && (
                         <motion.div
-                          layoutId="activeTab"
-                          className="absolute inset-0 bg-gradient-to-br from-secondary/30 to-accent/30 rounded-xl"
+                          layoutId="activeTabMobile"
+                          className="absolute inset-0 bg-primary/10 rounded-full"
                           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
                         />
                       )}
-                      <Icon className={`w-5 h-5 relative z-10 ${isActive ? 'text-secondary' : ''}`} />
-                      <span className={`text-[10px] mt-1 relative z-10 font-medium ${isActive ? 'text-secondary' : ''}`}>
-                        {item.label}
-                      </span>
+                      <Icon className={`w-6 h-6 relative z-10 ${isActive ? 'scale-110 transition-transform' : ''}`} />
+                      <span className="sr-only">{item.label}</span>
                     </motion.button>
                   );
                 })}
@@ -153,8 +150,8 @@ const MobileBottomNav = () => {
                   onClick={() => setIsExpanded(!isExpanded)}
                   className={`
                     relative flex flex-col items-center justify-center
-                    p-3 rounded-xl transition-all duration-300
-                    min-w-[56px] text-muted-foreground hover:text-foreground
+                    p-3 rounded-full transition-all duration-300
+                    ${isExpanded ? 'text-secondary bg-secondary/10' : 'text-muted-foreground hover:text-foreground'}
                   `}
                   whileTap={{ scale: 0.9 }}
                   data-testid="button-expand-nav"
@@ -164,18 +161,14 @@ const MobileBottomNav = () => {
                     transition={{ duration: 0.3 }}
                   >
                     {isExpanded ? (
-                      <X className="w-5 h-5" />
+                      <X className="w-6 h-6" />
                     ) : (
-                      <Menu className="w-5 h-5" />
+                      <Menu className="w-6 h-6" />
                     )}
                   </motion.div>
-                  <span className="text-[10px] mt-1 font-medium">
-                    {isExpanded ? 'Close' : 'More'}
-                  </span>
+                  <span className="sr-only">More</span>
                 </motion.button>
               </div>
-              
-              <div className="h-1 w-full bg-gradient-to-r from-secondary via-accent to-secondary opacity-50" />
             </div>
           </div>
         </motion.div>

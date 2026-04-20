@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'],
+        heading: ['Archivo', 'sans-serif'],
+        body: ['"Space Grotesk"', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
       },
       colors: {
@@ -103,5 +104,5 @@ export default {
       },
     },
   },
-  plugins: [import("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;

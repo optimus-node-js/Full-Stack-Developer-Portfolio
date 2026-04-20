@@ -1,4 +1,5 @@
 import { GraduationCap, Award, MapPin, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Education = () => {
   const education = [
@@ -63,118 +64,140 @@ const Education = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+  };
+
   return (
-    <section id="education" className="py-20 bg-section-bg relative">
-      <div className="container mx-auto px-6">
+    <section id="education" className="py-24 bg-background relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-[20%] right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[20%] left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 scroll-animate">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Education & <span className="text-gradient-primary">Certifications</span>
+        <div className="text-center mb-20 scroll-animate">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+            Education & <span className="text-primary">Certifications</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
             My academic background and professional certifications that have shaped my expertise 
             in technology and software development.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
+          
           {/* Education Section */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-semibold mb-12 text-center text-gradient-secondary flex items-center justify-center">
-              <GraduationCap className="h-8 w-8 mr-3" />
+          <div className="mb-24">
+            <h3 className="text-3xl font-bold mb-12 text-center font-heading flex items-center justify-center text-foreground">
+              <GraduationCap className="h-8 w-8 mr-4 text-primary" />
               Academic Background
             </h3>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              className="grid md:grid-cols-2 gap-6 lg:gap-8"
+            >
               {education.map((edu, index) => (
-                <div 
+                <motion.div 
                   key={index}
-                  className="relative group glass p-6 rounded-2xl glow-on-hover scroll-animate overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  variants={itemVariants}
+                  className="group glass p-8 rounded-[2rem] border border-border/50 hover:border-primary/30 transition-all duration-300 relative overflow-hidden flex flex-col hover:-translate-y-1 hover:shadow-2xl"
                 >
-                  {/* Animated gradient background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-accent/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1200"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex-1">
-                        <h4 className="text-lg font-bold text-gradient-primary mb-2">
-                          {edu.degree}
-                        </h4>
-                        <div className="font-semibold text-foreground mb-1">{edu.institution}</div>
-                        <div className="flex items-center text-sm text-muted-foreground mb-2">
-                          <MapPin className="h-4 w-4 mr-1" />
-                          {edu.location}
-                        </div>
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          {edu.period}
-                        </div>
+                  <div className="relative z-10 flex-1 flex flex-col">
+                    <h4 className="text-xl lg:text-2xl font-bold text-foreground mb-3 font-heading group-hover:text-primary transition-colors">
+                      {edu.degree}
+                    </h4>
+                    <div className="font-semibold text-muted-foreground mb-4 text-sm lg:text-base">{edu.institution}</div>
+                    
+                    <div className="space-y-2 mb-6 mt-auto">
+                      <div className="flex items-center text-sm font-medium text-muted-foreground/80">
+                        <MapPin className="h-4 w-4 mr-2 text-primary/70" />
+                        {edu.location}
                       </div>
-                      <div className="flex flex-col items-end gap-2 ml-4">
-                        <div className="relative group">
-                          <div className="absolute inset-0 bg-gradient-to-r from-secondary to-accent rounded-full blur-md opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                          <div className="relative text-sm font-bold text-white bg-gradient-to-r from-secondary via-accent to-secondary px-6 py-2.5 rounded-full shadow-xl transform group-hover:scale-110 transition-all duration-300 animate-gradient bg-300%">
-                            {edu.period}
-                          </div>
-                        </div>
-                        <div className="text-sm font-semibold text-accent bg-accent/20 px-3 py-1 rounded-full">
-                          {edu.grade}
-                        </div>
+                      <div className="flex items-center text-sm font-medium text-muted-foreground/80">
+                        <Calendar className="h-4 w-4 mr-2 text-secondary/70" />
+                        {edu.period}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between pt-6 border-t border-border/50">
+                      <div className="text-sm font-bold text-primary bg-primary/10 px-4 py-2 rounded-full">
+                        {edu.grade}
+                      </div>
+                      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        {edu.type}
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Certifications Section */}
           <div>
-            <h3 className="text-2xl font-semibold mb-12 text-center text-gradient-secondary flex items-center justify-center">
-              <Award className="h-8 w-8 mr-3" />
+            <h3 className="text-3xl font-bold mb-12 text-center font-heading flex items-center justify-center text-foreground">
+              <Award className="h-8 w-8 mr-4 text-secondary" />
               Professional Certifications
             </h3>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              className="grid md:grid-cols-2 gap-6 lg:gap-8"
+            >
               {certifications.map((cert, index) => (
-                <div 
+                <motion.div 
                   key={index}
-                  className="relative group glass p-6 rounded-2xl glow-on-hover scroll-animate overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  variants={itemVariants}
+                  className="group glass p-8 rounded-[2rem] border border-border/50 hover:border-secondary/30 transition-all duration-300 relative overflow-hidden flex flex-col hover:-translate-y-1 hover:shadow-2xl"
                 >
-                  {/* Animated gradient background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1200"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex-1 flex flex-col">
                     <div className="flex justify-between items-start mb-4">
-                      <div className="flex-1">
-                        <h4 className="text-lg font-bold text-gradient-primary mb-2">
-                          {cert.title}
-                        </h4>
-                        <div className="font-semibold text-foreground mb-1">{cert.issuer}</div>
-                        <div className="flex items-center text-sm text-muted-foreground mb-3">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          {cert.year}
-                        </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {cert.description}
-                        </p>
-                      </div>
-                      <div className="ml-4">
-                        <div className="text-sm font-semibold text-secondary bg-secondary/20 px-3 py-1 rounded-full">
-                          {cert.year}
-                        </div>
+                      <h4 className="text-xl font-bold text-foreground font-heading group-hover:text-secondary transition-colors pr-4">
+                        {cert.title}
+                      </h4>
+                      <div className="text-xs font-bold text-secondary bg-secondary/10 px-3 py-1.5 rounded-full whitespace-nowrap">
+                        {cert.year}
                       </div>
                     </div>
+                    
+                    <div className="font-semibold text-muted-foreground mb-4 text-sm">{cert.issuer}</div>
+                    
+                    <p className="text-muted-foreground/90 leading-relaxed text-sm mt-auto border-t border-border/50 pt-6">
+                      {cert.description}
+                    </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
+          
         </div>
       </div>
     </section>

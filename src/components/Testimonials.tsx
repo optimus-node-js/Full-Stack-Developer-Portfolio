@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Testimonial {
   id: number;
@@ -56,7 +57,7 @@ const Testimonials = () => {
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, testimonials.length]);
@@ -80,74 +81,96 @@ const Testimonials = () => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`h-4 w-4 ${
-          i < rating ? 'text-yellow-400 fill-current' : 'text-muted-foreground'
+        className={`h-5 w-5 ${
+          i < rating ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground/30'
         }`}
       />
     ));
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-background relative">
-      <div className="container mx-auto px-6">
+    <section id="testimonials" className="py-24 bg-background relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 scroll-animate">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Client <span className="text-gradient-primary">Testimonials</span>
+        <div className="text-center mb-20 scroll-animate">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+            Client <span className="text-primary">Testimonials</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
             Don't just take my word for it. Here's what clients and colleagues say about working with me.
           </p>
         </div>
 
         {/* Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="relative">
-            {/* Main Testimonial */}
-            <div className="glass p-8 rounded-2xl text-center relative overflow-hidden">
-              <Quote className="absolute top-4 left-4 h-8 w-8 text-primary/20" />
-              <Quote className="absolute bottom-4 right-4 h-8 w-8 text-primary/20 rotate-180" />
+            {/* Main Testimonial Card */}
+            <div className="glass p-10 md:p-14 rounded-[3rem] text-center relative overflow-hidden border border-border/50 shadow-2xl bg-card/50">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-50"></div>
               
-              <div className="mb-6">
-                <div className="flex justify-center mb-4">
-                  {renderStars(testimonials[currentIndex].rating)}
-                </div>
-                <p className="text-lg text-muted-foreground leading-relaxed italic">
-                  "{testimonials[currentIndex].content}"
-                </p>
-              </div>
+              <Quote className="absolute top-8 left-8 md:top-12 md:left-12 h-12 w-12 text-primary/20" />
+              <Quote className="absolute bottom-8 right-8 md:bottom-12 md:right-12 h-12 w-12 text-secondary/20 rotate-180" />
+              
+              <div className="relative z-10 max-w-3xl mx-auto min-h-[250px] flex flex-col justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <div className="flex justify-center mb-8 gap-1">
+                      {renderStars(testimonials[currentIndex].rating)}
+                    </div>
+                    
+                    <p className="text-xl md:text-3xl text-foreground font-heading font-medium leading-relaxed italic mb-10">
+                      "{testimonials[currentIndex].content}"
+                    </p>
 
-              <div className="border-t border-muted pt-6">
-                <div className="font-semibold text-lg">{testimonials[currentIndex].name}</div>
-                <div className="text-muted-foreground">
-                  {testimonials[currentIndex].role} at {testimonials[currentIndex].company}
-                </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-primary to-secondary p-1 mb-4">
+                        <div className="w-full h-full rounded-full bg-background flex items-center justify-center text-xl font-bold">
+                          {testimonials[currentIndex].name.charAt(0)}
+                        </div>
+                      </div>
+                      <div className="font-bold text-xl font-heading mb-1">{testimonials[currentIndex].name}</div>
+                      <div className="text-muted-foreground font-medium">
+                        <span className="text-primary">{testimonials[currentIndex].role}</span> at {testimonials[currentIndex].company}
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
 
-            {/* Navigation */}
-            <div className="flex justify-center items-center mt-8 space-x-4">
+            {/* Navigation Controls */}
+            <div className="flex justify-center items-center mt-12 gap-6">
               <Button
                 variant="outline"
                 size="icon"
                 onClick={prevTestimonial}
-                className="w-10 h-10"
+                className="w-12 h-12 rounded-full border-border/50 hover:bg-primary/10 hover:text-primary transition-colors"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-6 w-6" />
               </Button>
 
-              {/* Dots */}
-              <div className="flex space-x-2">
+              {/* Progress Dots */}
+              <div className="flex gap-3">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`h-2 rounded-full transition-all duration-500 ${
                       index === currentIndex
-                        ? 'bg-primary scale-125'
-                        : 'bg-muted hover:bg-muted-foreground'
+                        ? 'bg-primary w-8'
+                        : 'bg-border hover:bg-muted-foreground w-2'
                     }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
                   />
                 ))}
               </div>
@@ -156,9 +179,9 @@ const Testimonials = () => {
                 variant="outline"
                 size="icon"
                 onClick={nextTestimonial}
-                className="w-10 h-10"
+                className="w-12 h-12 rounded-full border-border/50 hover:bg-primary/10 hover:text-primary transition-colors"
               >
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-6 w-6" />
               </Button>
             </div>
           </div>

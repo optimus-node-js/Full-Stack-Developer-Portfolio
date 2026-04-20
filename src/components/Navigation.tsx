@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
 import CircularThemeToggle from './CircularThemeToggle';
 import ScrollProgress from './ScrollProgress';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [hoveredNav, setHoveredNav] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
       
       const sections = ['hero', 'about', 'projects', 'skills', 'experience', 'blog', 'testimonials', 'analytics', 'contact'];
       
@@ -20,7 +18,7 @@ const Navigation = () => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
+          if (rect.top <= 150 && rect.bottom >= 150) {
             setActiveSection(section);
             break;
           }
@@ -28,7 +26,8 @@ const Navigation = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -36,7 +35,6 @@ const Navigation = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
     }
   };
 
@@ -46,9 +44,6 @@ const Navigation = () => {
     { label: 'Projects', id: 'projects' },
     { label: 'Skills', id: 'skills' },
     { label: 'Experience', id: 'experience' },
-    { label: 'Blog', id: 'blog' },
-    { label: 'Testimonials', id: 'testimonials' },
-    { label: 'Analytics', id: 'analytics' },
     { label: 'Contact', id: 'contact' },
   ];
 
@@ -56,33 +51,35 @@ const Navigation = () => {
     <>
       <ScrollProgress />
       <motion.nav 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 hidden md:block ${
-          isScrolled 
-            ? 'bg-background/80 backdrop-blur-xl border-b border-white/5 py-2' 
-            : 'bg-transparent py-4'
-        }`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 hidden md:flex justify-center mt-6 pointer-events-none"
       >
-        <div className="container mx-auto px-6 flex items-center justify-between">
+        <div 
+          className={`pointer-events-auto flex items-center gap-4 transition-all duration-500 ${
+            isScrolled 
+              ? 'bg-background/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_hsla(0,0%,0%,0.2)] rounded-full py-2 px-4' 
+              : 'bg-transparent py-2 px-4 border border-transparent'
+          }`}
+        >
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="font-bold text-2xl bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent cursor-pointer" 
+            whileTap={{ scale: 0.95 }}
+            className="font-bold text-xl font-heading bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent cursor-pointer mr-2 pr-4 border-r border-border" 
             onClick={() => scrollToSection('hero')}
             data-testid="link-logo"
           >
             RV
           </motion.div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 relative" onMouseLeave={() => setHoveredNav(null)}>
             {navItems.map((item) => (
-              <motion.button
+              <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
+                onMouseEnter={() => setHoveredNav(item.id)}
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-full font-body ${
                   activeSection === item.id
                     ? 'text-foreground'
                     : 'text-muted-foreground hover:text-foreground'
@@ -92,58 +89,36 @@ const Navigation = () => {
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeNavBg"
-                    className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-lg"
+                    className="absolute inset-0 bg-primary/10 rounded-full"
                     transition={{ type: 'spring', damping: 25, stiffness: 300 }}
                   />
                 )}
+                <AnimatePresence>
+                  {hoveredNav === item.id && activeSection !== item.id && (
+                    <motion.div
+                      layoutId="hoverNavBg"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 bg-white/5 rounded-full"
+                      transition={{ duration: 0.2 }}
+                    />
+                  )}
+                </AnimatePresence>
                 <span className="relative z-10">{item.label}</span>
-              </motion.button>
+              </button>
             ))}
           </div>
 
-          <CircularThemeToggle />
+          <div className="pl-4 border-l border-border flex items-center">
+            <CircularThemeToggle />
+          </div>
         </div>
       </motion.nav>
 
       <div className="md:hidden fixed top-4 right-4 z-50 flex items-center gap-2">
         <CircularThemeToggle />
       </div>
-
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="md:hidden fixed inset-0 z-40 bg-background/95 backdrop-blur-xl"
-          >
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              className="flex flex-col items-center justify-center h-full gap-6"
-            >
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`text-2xl font-medium transition-all duration-300 ${
-                    activeSection === item.id
-                      ? 'text-secondary'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                  data-testid={`link-mobile-menu-${item.id}`}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 };

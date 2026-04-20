@@ -1,4 +1,5 @@
 import { Users, Medal, HandHeart } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
 
 const Involvement = () => {
   const involvement = [
@@ -25,88 +26,112 @@ const Involvement = () => {
     }
   ];
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+  };
+
   return (
-    <section id="involvement" className="py-20 bg-background relative">
-      <div className="container mx-auto px-6">
+    <section id="involvement" className="py-24 bg-background relative border-t border-border/50 overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-[30%] left-[10%] w-[300px] h-[300px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 scroll-animate">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Achievements & <span className="text-gradient-secondary">Involvement</span>
+        <div className="text-center mb-20 scroll-animate">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+            Achievements & <span className="text-secondary">Involvement</span>
           </h2>
-          <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="w-24 h-1.5 bg-gradient-to-r from-secondary to-primary mx-auto rounded-full mb-8"></div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
             My activities and achievements beyond professional work, showcasing leadership, 
             community involvement, and recognition in various domains.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-20"
+          >
             {involvement.map((item, index) => {
               const Icon = item.icon;
               return (
-                <div 
+                <motion.div 
                   key={index}
-                  className="relative group glass p-8 rounded-2xl glow-on-hover scroll-animate overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  variants={itemVariants}
+                  className="group glass p-8 md:p-10 rounded-[2.5rem] border border-border/50 hover:border-secondary/30 transition-all duration-300 relative overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-2xl"
                 >
-                  {/* Animated gradient background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-accent/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1200"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  <div className="relative z-10 text-center">
-                    {/* Icon */}
-                    <div className="flex justify-center mb-6">
-                      <div className="relative group/icon">
-                        <div className="absolute inset-0 bg-gradient-to-r from-secondary to-accent rounded-full blur-lg opacity-0 group-hover/icon:opacity-100 transition-all duration-500"></div>
-                        <div className="relative p-4 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full border border-secondary/30">
-                          <Icon className="h-8 w-8 text-secondary group-hover/icon:text-accent transition-colors duration-300" />
-                        </div>
-                      </div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-secondary transition-all duration-500">
+                      <Icon className="h-8 w-8 text-secondary group-hover:text-secondary-foreground transition-colors duration-500" />
                     </div>
 
-                    {/* Content */}
-                    <h3 className="text-xl font-bold text-gradient-primary mb-3 group-hover:text-gradient-secondary transition-all duration-500">
+                    <h3 className="text-2xl font-bold font-heading mb-4 text-foreground group-hover:text-secondary transition-colors">
                       {item.title}
                     </h3>
                     
-                    <div className="text-lg font-semibold text-foreground mb-2">
+                    <div className="font-bold text-foreground/80 mb-2">
                       {item.organization}
                     </div>
                     
-                    <div className="text-sm text-muted-foreground mb-4 font-medium">
+                    <div className="text-sm font-medium text-muted-foreground mb-6 uppercase tracking-wider bg-muted/50 inline-block px-3 py-1 rounded-full w-fit">
                       {item.period}
                     </div>
                     
-                    <p className="text-muted-foreground leading-relaxed text-sm">
+                    <p className="text-muted-foreground/90 leading-relaxed text-sm mt-auto">
                       {item.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Additional Highlights */}
-        <div className="mt-20 text-center scroll-animate">
-          <h3 className="text-2xl font-semibold mb-8 text-gradient-primary">
-            Key Highlights
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="glass p-6 rounded-2xl">
-              <div className="text-3xl font-bold text-gradient-secondary mb-2">30+</div>
-              <div className="text-sm text-muted-foreground">NGOs Database Management</div>
+          {/* Additional Highlights */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-center"
+          >
+            <h3 className="text-2xl font-bold mb-10 font-heading text-foreground">
+              Key Highlights
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="glass p-8 rounded-[2rem] border border-border/50 hover:border-secondary/20 transition-colors group">
+                <div className="text-4xl lg:text-5xl font-bold font-heading text-secondary mb-3 group-hover:scale-110 transition-transform">30+</div>
+                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">NGOs Database Management</div>
+              </div>
+              <div className="glass p-8 rounded-[2rem] border border-border/50 hover:border-primary/20 transition-colors group">
+                <div className="text-4xl lg:text-5xl font-bold font-heading text-primary mb-3 group-hover:scale-110 transition-transform">2+</div>
+                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Years Community Leadership</div>
+              </div>
+              <div className="glass p-8 rounded-[2rem] border border-border/50 hover:border-accent/20 transition-colors group">
+                <div className="text-4xl lg:text-5xl font-bold font-heading text-accent mb-3 group-hover:scale-110 transition-transform">1</div>
+                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">National Championship Medal</div>
+              </div>
             </div>
-            <div className="glass p-6 rounded-2xl">
-              <div className="text-3xl font-bold text-gradient-primary mb-2">2+</div>
-              <div className="text-sm text-muted-foreground">Years Community Leadership</div>
-            </div>
-            <div className="glass p-6 rounded-2xl">
-              <div className="text-3xl font-bold text-gradient-accent mb-2">1</div>
-              <div className="text-sm text-muted-foreground">National Championship Medal</div>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

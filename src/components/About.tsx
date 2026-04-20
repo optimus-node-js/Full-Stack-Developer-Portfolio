@@ -1,11 +1,13 @@
 import AnimatedCounter from './AnimatedCounter';
+import { Layers, Database, TrendingUp, Users } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const About = () => {
   const highlights = [
     {
       title: "Full-Stack Expertise",
       description: "Proficient in MERN stack, Python, and modern web technologies with a focus on scalable solutions.",
-      icon: "🔧",
+      icon: Layers,
       count: 15,
       suffix: "+",
       label: "Projects"
@@ -13,7 +15,7 @@ const About = () => {
     {
       title: "AI & Data Science",
       description: "Experienced in machine learning, data analysis, and building intelligent systems for real-world applications.",
-      icon: "🤖",
+      icon: Database,
       count: 8,
       suffix: "+",
       label: "ML Models"
@@ -21,7 +23,7 @@ const About = () => {
     {
       title: "Algorithmic Trading",
       description: "Specialized in developing automated trading systems and financial data analysis tools.",
-      icon: "📈",
+      icon: TrendingUp,
       count: 5,
       suffix: "+",
       label: "Trading Systems"
@@ -29,7 +31,7 @@ const About = () => {
     {
       title: "Leadership",
       description: "Proven track record in team management and community building with strong collaborative skills.",
-      icon: "👥",
+      icon: Users,
       count: 3,
       suffix: "+",
       label: "Years Leading"
@@ -37,25 +39,41 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-section-bg relative">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
+    <section id="about" className="py-24 bg-background relative overflow-hidden">
+      {/* Dynamic Background Elements */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="text-gradient-primary">About</span> Me
+          <div className="text-center mb-20 scroll-animate">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+              Behind the <span className="text-primary">Code</span>
             </h2>
-            <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
+              A blend of technical precision and creative problem-solving.
+            </p>
           </div>
 
-          {/* Main Content */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="scroll-animate space-y-6">
-              <h3 className="text-2xl font-semibold text-gradient-secondary">
-                Passionate Developer & Problem Solver
+          {/* Main Content - Bento Grid */}
+          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-16 lg:mb-20">
+            {/* Bio Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-2 glass p-8 md:p-12 rounded-[2.5rem] border border-border/50 group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              
+              <h3 className="text-3xl md:text-4xl font-bold mb-8 font-heading text-foreground relative z-10">
+                Passionate Developer & <span className="text-secondary">Problem Solver</span>
               </h3>
               
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-6 text-muted-foreground leading-relaxed text-lg relative z-10">
                 <p>
                   As a versatile full-stack developer, I bring a unique blend of technical expertise 
                   and creative problem-solving to every project. My journey spans across diverse 
@@ -76,66 +94,83 @@ const About = () => {
                   innovation and growth.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="scroll-animate">
-              <div className="glass p-8 rounded-2xl">
-                <h4 className="text-xl font-semibold mb-6 text-center">Quick Stats</h4>
-                <div className="grid grid-cols-2 gap-6 text-center">
-                  <div>
-                    <div className="text-3xl font-bold text-gradient-primary">
-                      <AnimatedCounter end={3} suffix="+" />
-                    </div>
-                    <div className="text-sm text-muted-foreground">Years Experience</div>
+            {/* Impact Metrics Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="glass p-8 md:p-10 rounded-[2.5rem] border border-border/50 flex flex-col justify-center relative overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-primary/5 opacity-50 mix-blend-overlay"></div>
+              
+              <h4 className="text-2xl font-bold mb-10 text-center font-heading relative z-10">Impact By Numbers</h4>
+              
+              <div className="grid grid-cols-2 gap-x-6 gap-y-10 text-center relative z-10">
+                <div>
+                  <div className="text-5xl font-bold text-primary mb-2 font-heading">
+                    <AnimatedCounter end={3} suffix="+" />
                   </div>
-                  <div>
-                    <div className="text-3xl font-bold text-gradient-secondary">
-                      <AnimatedCounter end={15} suffix="+" />
-                    </div>
-                    <div className="text-sm text-muted-foreground">Projects Completed</div>
+                  <div className="text-sm text-muted-foreground font-semibold uppercase tracking-wider">Years Exp.</div>
+                </div>
+                <div>
+                  <div className="text-5xl font-bold text-secondary mb-2 font-heading">
+                    <AnimatedCounter end={15} suffix="+" />
                   </div>
-                  <div>
-                    <div className="text-3xl font-bold text-gradient-primary">
-                      <AnimatedCounter end={10} suffix="+" />
-                    </div>
-                    <div className="text-sm text-muted-foreground">Technologies</div>
+                  <div className="text-sm text-muted-foreground font-semibold uppercase tracking-wider">Projects</div>
+                </div>
+                <div>
+                  <div className="text-5xl font-bold text-primary mb-2 font-heading">
+                    <AnimatedCounter end={10} suffix="+" />
                   </div>
-                  <div>
-                    <div className="text-3xl font-bold text-gradient-secondary">
-                      <AnimatedCounter end={5} suffix="+" />
-                    </div>
-                    <div className="text-sm text-muted-foreground">Certifications</div>
+                  <div className="text-sm text-muted-foreground font-semibold uppercase tracking-wider">Tech Stack</div>
+                </div>
+                <div>
+                  <div className="text-5xl font-bold text-secondary mb-2 font-heading">
+                    <AnimatedCounter end={5} suffix="+" />
                   </div>
+                  <div className="text-sm text-muted-foreground font-semibold uppercase tracking-wider">Certs</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Highlights Grid */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {highlights.map((highlight, index) => (
-              <div 
-                key={index}
-                className="project-card scroll-animate"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="text-4xl flex-shrink-0">{highlight.icon}</div>
-                  <div className="flex-1">
-                    <h4 className="text-xl font-semibold mb-3 text-gradient-primary">
-                      {highlight.title}
-                    </h4>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      {highlight.description}
-                    </p>
-                    <div className="text-2xl font-bold text-gradient-secondary">
-                      <AnimatedCounter end={highlight.count} suffix={highlight.suffix} />
-                      <span className="text-sm text-muted-foreground ml-2">{highlight.label}</span>
-                    </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {highlights.map((highlight, index) => {
+              const Icon = highlight.icon;
+              return (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  key={index}
+                  className="glass p-8 rounded-[2rem] border border-border/50 hover:border-primary/30 transition-all duration-300 group flex flex-col hover:-translate-y-2 hover:shadow-2xl"
+                >
+                  <div className="h-14 w-14 rounded-2xl bg-muted flex items-center justify-center mb-8 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <Icon className="h-7 w-7 text-muted-foreground group-hover:text-primary transition-colors" />
                   </div>
-                </div>
-              </div>
-            ))}
+                  
+                  <h4 className="text-xl font-bold mb-4 font-heading group-hover:text-primary transition-colors duration-300">
+                    {highlight.title}
+                  </h4>
+                  
+                  <p className="text-muted-foreground leading-relaxed mb-8 text-sm flex-1">
+                    {highlight.description}
+                  </p>
+                  
+                  <div className="mt-auto border-t border-border/50 pt-6">
+                    <div className="text-4xl font-bold font-heading text-foreground mb-1">
+                      <AnimatedCounter end={highlight.count} suffix={highlight.suffix} />
+                    </div>
+                    <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">{highlight.label}</span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>

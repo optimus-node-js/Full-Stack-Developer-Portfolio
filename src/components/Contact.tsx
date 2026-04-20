@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { saveContactForm, ContactFormData } from '@/lib/firebase';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -70,7 +71,6 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simple validation
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       toast({
         title: "Error",
@@ -82,7 +82,6 @@ const Contact = () => {
     }
     
     try {
-      // Save to Firebase
       await saveContactForm(formData);
       
       toast({
@@ -90,7 +89,6 @@ const Contact = () => {
         description: "Your message has been sent. I'll get back to you soon.",
       });
       
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -110,34 +108,44 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-section-bg relative">
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16 scroll-animate">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let's <span className="text-gradient-primary">Connect</span>
+    <section id="contact" className="py-24 bg-background relative border-t border-border/50">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[30%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[150px]"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-20 scroll-animate">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+            Let's <span className="text-primary">Connect</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to collaborate on your next project? I'd love to hear from you. 
-            Let's discuss how we can bring your ideas to life.
+          <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
+            Ready to collaborate on your next project? Let's discuss how we can bring your ideas to life.
           </p>
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            
             {/* Contact Form */}
-            <div className="scroll-animate">
-              <div className="glass p-8 rounded-2xl">
-                <h3 className="text-2xl font-semibold mb-6 text-gradient-secondary">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="glass p-8 md:p-10 rounded-[2rem] border border-border/50 shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50"></div>
+                
+                <h3 className="text-2xl font-bold mb-8 font-heading relative z-10">
                   Send Me a Message
                 </h3>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Name *
+                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="block text-sm font-semibold text-muted-foreground">
+                        Name <span className="text-primary">*</span>
                       </label>
                       <Input
                         id="name"
@@ -146,13 +154,13 @@ const Contact = () => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="glass border-glass-border"
+                        className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 rounded-xl h-12"
                         placeholder="Your full name"
                       />
                     </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email *
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="block text-sm font-semibold text-muted-foreground">
+                        Email <span className="text-primary">*</span>
                       </label>
                       <Input
                         id="email"
@@ -161,15 +169,15 @@ const Contact = () => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="glass border-glass-border"
+                        className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 rounded-xl h-12"
                         placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
                   
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject *
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="block text-sm font-semibold text-muted-foreground">
+                      Subject <span className="text-primary">*</span>
                     </label>
                     <Input
                       id="subject"
@@ -178,14 +186,14 @@ const Contact = () => {
                       required
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="glass border-glass-border"
+                      className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 rounded-xl h-12"
                       placeholder="What's this about?"
                     />
                   </div>
                   
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message *
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block text-sm font-semibold text-muted-foreground">
+                      Message <span className="text-primary">*</span>
                     </label>
                     <Textarea
                       id="message"
@@ -193,7 +201,7 @@ const Contact = () => {
                       required
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="glass border-glass-border min-h-32"
+                      className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 rounded-xl min-h-[150px] resize-y"
                       placeholder="Tell me about your project, ideas, or just say hello..."
                     />
                   </div>
@@ -201,12 +209,12 @@ const Contact = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-on-hover py-6 text-lg"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-14 rounded-xl text-lg font-semibold shadow-glow transition-all duration-300 hover:scale-[1.02]"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                        Sending...
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3"></div>
+                        Sending Message...
                       </>
                     ) : (
                       <>
@@ -217,13 +225,19 @@ const Contact = () => {
                   </Button>
                 </form>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Contact Information */}
-            <div className="space-y-8 scroll-animate">
-              {/* Contact Details */}
-              <div className="glass p-8 rounded-2xl">
-                <h3 className="text-2xl font-semibold mb-6 text-gradient-secondary">
+            {/* Contact Information Sidebar */}
+            <div className="space-y-6">
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="glass p-8 rounded-[2rem] border border-border/50"
+              >
+                <h3 className="text-2xl font-bold mb-8 font-heading">
                   Contact Information
                 </h3>
                 
@@ -231,15 +245,15 @@ const Contact = () => {
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
                     return (
-                      <div key={index} className="flex items-center space-x-4">
-                        <div className="glass p-3 rounded-full">
-                          <Icon className="h-5 w-5 text-primary" />
+                      <div key={index} className="flex items-center space-x-5 group">
+                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                          <Icon className="h-5 w-5" />
                         </div>
                         <div>
-                          <div className="font-medium">{info.label}</div>
+                          <div className="font-semibold text-sm text-muted-foreground">{info.label}</div>
                           <a
                             href={info.href}
-                            className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                            className="font-medium hover:text-primary transition-colors duration-200"
                           >
                             {info.value}
                           </a>
@@ -248,15 +262,20 @@ const Contact = () => {
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Social Links */}
-              <div className="glass p-8 rounded-2xl">
-                <h3 className="text-xl font-semibold mb-6 text-gradient-primary">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="glass p-8 rounded-[2rem] border border-border/50"
+              >
+                <h3 className="text-xl font-bold mb-6 font-heading">
                   Let's Connect Online
                 </h3>
                 
-                <div className="space-y-4">
+                <div className="flex flex-col space-y-4">
                   {socialLinks.map((social, index) => {
                     const Icon = social.icon;
                     return (
@@ -265,36 +284,36 @@ const Contact = () => {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-4 p-3 rounded-lg hover:bg-muted/50 transition-all duration-200 glow-on-hover"
+                        className="flex items-center p-4 rounded-xl bg-muted/30 border border-border/50 hover:bg-muted/80 hover:border-primary/30 transition-all duration-300 group"
                       >
-                        <div className="glass p-2 rounded-full">
-                          <Icon className="h-4 w-4 text-primary" />
-                        </div>
-                        <div>
-                          <div className="font-medium">{social.label}</div>
-                          <div className="text-sm text-muted-foreground">
-                            {social.username}
-                          </div>
+                        <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors mr-4" />
+                        <div className="flex-1">
+                          <div className="font-semibold text-sm">{social.label}</div>
+                          <div className="text-xs text-muted-foreground">{social.username}</div>
                         </div>
                       </a>
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Availability */}
-              <div className="glass p-6 rounded-2xl">
-                <h4 className="font-semibold mb-3 text-gradient-secondary">
-                  Current Status
-                </h4>
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-accent rounded-full animate-pulse-glow"></div>
-                  <span className="text-sm">Available for new opportunities</span>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="glass p-6 rounded-[2rem] border border-primary/20 bg-primary/5 flex items-center gap-4"
+              >
+                <div className="relative flex h-4 w-4">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-primary"></span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2">
-                  I typically respond within 24 hours. Looking forward to hearing from you!
-                </p>
-              </div>
+                <div>
+                  <h4 className="font-bold text-sm">Available for new opportunities</h4>
+                  <p className="text-xs text-muted-foreground mt-1">I typically respond within 24 hours.</p>
+                </div>
+              </motion.div>
+
             </div>
           </div>
         </div>

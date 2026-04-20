@@ -2,7 +2,6 @@ import {
   Code2, 
   Database, 
   Globe, 
-  Smartphone, 
   Brain,
   GitBranch,
   Server,
@@ -21,204 +20,152 @@ const SkillsModern = () => {
       color: "text-blue-400",
       bgColor: "bg-blue-400/10",
       skills: [
-        { name: "React.js", icon: Code2, level: "Expert" },
-        { name: "Next.js", icon: Layers, level: "Advanced" },
-        { name: "TypeScript", icon: Code2, level: "Expert" },
-        { name: "Vue.js", icon: Code2, level: "Advanced" },
-        { name: "HTML/CSS", icon: Globe, level: "Expert" },
-        { name: "JavaScript", icon: Code2, level: "Expert" }
+        { name: "React.js", level: "Expert" },
+        { name: "Next.js", level: "Advanced" },
+        { name: "TypeScript", level: "Expert" },
+        { name: "HTML/CSS", level: "Expert" },
+        { name: "Tailwind CSS", level: "Expert" }
       ]
     },
     {
-      title: "Backend Development",
+      title: "Backend & Systems",
       icon: Server,
-      color: "text-green-400",
-      bgColor: "bg-green-400/10",
+      color: "text-emerald-400",
+      bgColor: "bg-emerald-400/10",
       skills: [
-        { name: "Node.js", icon: Server, level: "Expert" },
-        { name: "Python", icon: Code2, level: "Expert" },
-        { name: "Django", icon: Layers, level: "Advanced" },
-        { name: "Flask", icon: Zap, level: "Advanced" },
-        { name: "PHP", icon: Code2, level: "Intermediate" },
-        { name: "C++", icon: Cpu, level: "Advanced" }
+        { name: "Node.js", level: "Expert" },
+        { name: "Python", level: "Expert" },
+        { name: "Django/Flask", level: "Advanced" },
+        { name: "C++", level: "Advanced" },
+        { name: "REST APIs", level: "Expert" }
       ]
     },
     {
-      title: "Database & DevOps",
+      title: "Data & DevOps",
       icon: Database,
       color: "text-purple-400",
       bgColor: "bg-purple-400/10",
       skills: [
-        { name: "MongoDB", icon: Database, level: "Expert" },
-        { name: "MySQL", icon: Database, level: "Advanced" },
-        { name: "Redis", icon: Zap, level: "Advanced" },
-        { name: "Git", icon: GitBranch, level: "Expert" },
-        { name: "Docker", icon: Layers, level: "Intermediate" },
-        { name: "SQLite", icon: Database, level: "Advanced" }
+        { name: "MongoDB", level: "Expert" },
+        { name: "PostgreSQL", level: "Advanced" },
+        { name: "Redis", level: "Advanced" },
+        { name: "Docker", level: "Intermediate" },
+        { name: "Git Workflow", level: "Expert" }
       ]
     },
     {
-      title: "AI/ML & Data Science",
+      title: "AI & Analytics",
       icon: Brain,
-      color: "text-orange-400",
-      bgColor: "bg-orange-400/10",
+      color: "text-amber-400",
+      bgColor: "bg-amber-400/10",
       skills: [
-        { name: "TensorFlow", icon: Brain, level: "Advanced" },
-        { name: "Scikit-learn", icon: BarChart3, level: "Expert" },
-        { name: "Pandas", icon: BarChart3, level: "Expert" },
-        { name: "NumPy", icon: BarChart3, level: "Expert" },
-        { name: "Data Analysis", icon: BarChart3, level: "Advanced" },
-        { name: "Machine Learning", icon: Brain, level: "Advanced" }
+        { name: "TensorFlow", level: "Advanced" },
+        { name: "Scikit-learn", level: "Expert" },
+        { name: "Pandas/NumPy", level: "Expert" },
+        { name: "Algorithmic Trading", level: "Expert" },
+        { name: "Machine Learning", level: "Advanced" }
       ]
     }
   ];
 
-  const specializations = [
-    { name: "Algorithmic Trading", icon: BarChart3, color: "text-green-400" },
-    { name: "Cybersecurity", icon: Shield, color: "text-red-400" },
-    { name: "Team Leadership", icon: Code2, color: "text-blue-400" },
-    { name: "Full-Stack Development", icon: Layers, color: "text-purple-400" },
-    { name: "API Development", icon: Server, color: "text-orange-400" },
-    { name: "Cloud Computing", icon: Globe, color: "text-cyan-400" },
-  ];
-
-  const certifications = [
-    "Learn Ethical Hacking from Scratch - zSecurity | Udemy (2023)",
-    "Geoprocessing Using Python - Indian Institute of Remote Sensing (2023)",
-    "Data Mining and Business Analytics - Infosys | Springboard (2023)",
-    "Advance Computer Application - Global Computer Training Academy (2019)"
-  ];
-
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case 'Expert': return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'Advanced': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      case 'Intermediate': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
-    }
-  };
-
   return (
-    <section id="skills" className="py-20 bg-section-bg relative">
-      <div className="container mx-auto px-6">
+    <section id="skills" className="py-24 bg-section-bg relative border-t border-border/50">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-[1]" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 scroll-animate">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Technical <span className="text-gradient-secondary">Arsenal</span>
+        <div className="text-center mb-20 scroll-animate">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+            Technical <span className="text-primary">Arsenal</span>
           </h2>
-          <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A comprehensive toolkit spanning modern technologies, frameworks, 
-            and methodologies for building next-generation applications.
+          <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
+            A comprehensive toolkit spanning modern technologies and methodologies for building next-generation applications.
           </p>
         </div>
 
-        {/* Skills Categories */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16 max-w-7xl mx-auto">
+        {/* Skills Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-20">
           {skillCategories.map((category, categoryIndex) => {
             const CategoryIcon = category.icon;
             return (
               <div 
                 key={categoryIndex}
-                className="glass p-8 rounded-2xl scroll-animate glow-on-hover"
+                className="glass p-8 rounded-[2rem] scroll-animate group hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden"
                 style={{ animationDelay: `${categoryIndex * 0.1}s` }}
               >
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className={`p-3 rounded-xl ${category.bgColor}`}>
-                    <CategoryIcon className={`h-6 w-6 ${category.color}`} />
+                <div className={`absolute -right-10 -top-10 w-40 h-40 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 ${category.bgColor.replace('/10', '')}`}></div>
+                
+                <div className="relative z-10">
+                  <div className={`w-14 h-14 rounded-2xl ${category.bgColor} flex items-center justify-center mb-8 border border-white/5`}>
+                    <CategoryIcon className={`h-7 w-7 ${category.color}`} />
                   </div>
-                  <h3 className="text-xl font-semibold text-gradient-primary">
+                  
+                  <h3 className="text-xl font-bold font-heading mb-6">
                     {category.title}
                   </h3>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-3">
-                  {category.skills.map((skill, skillIndex) => {
-                    const SkillIcon = skill.icon;
-                    return (
-                      <div 
-                        key={skillIndex}
-                        className="flex items-center justify-between p-3 bg-muted/30 rounded-lg hover:bg-muted/50 transition-all duration-200 group"
-                      >
-                        <div className="flex items-center space-x-2">
-                          <SkillIcon className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                          <span className="text-sm font-medium group-hover:text-foreground transition-colors">
-                            {skill.name}
-                          </span>
+                  
+                  <div className="space-y-4">
+                    {category.skills.map((skill, skillIndex) => (
+                      <div key={skillIndex} className="space-y-2">
+                        <div className="flex justify-between items-center text-sm">
+                          <span className="font-medium text-muted-foreground group-hover:text-foreground transition-colors">{skill.name}</span>
+                          <span className="text-xs text-muted-foreground/70">{skill.level}</span>
                         </div>
-                        <span className={`text-xs px-2 py-1 rounded-full border ${getLevelColor(skill.level)}`}>
-                          {skill.level}
-                        </span>
+                        <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+                          <div 
+                            className={`h-full rounded-full ${category.bgColor.replace('bg-', 'bg-').replace('/10', '')}`}
+                            style={{ 
+                              width: skill.level === 'Expert' ? '95%' : 
+                                     skill.level === 'Advanced' ? '80%' : '65%' 
+                            }}
+                          ></div>
+                        </div>
                       </div>
-                    );
-                  })}
+                    ))}
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
-
-        {/* Specializations */}
-        <div className="mb-16 scroll-animate">
-          <h3 className="text-2xl font-semibold mb-8 text-center text-gradient-secondary">
-            Core Specializations
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-            {specializations.map((spec, index) => {
-              const SpecIcon = spec.icon;
-              return (
-                <div
-                  key={index}
-                  className="flex items-center space-x-2 glass px-4 py-3 rounded-full glow-on-hover"
-                >
-                  <SpecIcon className={`h-4 w-4 ${spec.color}`} />
-                  <span className="text-sm font-medium">{spec.name}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Certifications & Languages */}
-        <div className="glass p-8 rounded-2xl scroll-animate glow-on-hover max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Certifications */}
-            <div className="md:col-span-2">
-              <h3 className="text-xl font-semibold text-gradient-primary mb-6 flex items-center">
-                <Shield className="h-5 w-5 mr-3 text-orange-400" />
-                Certifications & Training
-              </h3>
-              <div className="space-y-3">
-                {certifications.map((cert, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-3 hover:bg-muted/30 rounded-lg transition-colors group">
-                    <div className="w-2 h-2 bg-gradient-to-r from-secondary to-accent rounded-full mt-2 flex-shrink-0 group-hover:animate-pulse"></div>
-                    <span className="text-sm text-muted-foreground group-hover:text-foreground leading-relaxed transition-colors">
-                      {cert}
-                    </span>
-                  </div>
-                ))}
+        
+        {/* Languages & Certs */}
+        <div className="grid lg:grid-cols-3 gap-6 max-w-7xl mx-auto scroll-animate">
+          <div className="lg:col-span-2 glass p-8 md:p-10 rounded-[2rem] flex flex-col justify-center">
+            <h3 className="text-2xl font-bold font-heading mb-6 flex items-center">
+              <Shield className="h-6 w-6 mr-3 text-primary" />
+              Certifications & Training
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50">
+                <div className="font-semibold mb-1">Ethical Hacking from Scratch</div>
+                <div className="text-sm text-muted-foreground">zSecurity | Udemy</div>
+              </div>
+              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50">
+                <div className="font-semibold mb-1">Geoprocessing Using Python</div>
+                <div className="text-sm text-muted-foreground">Indian Institute of Remote Sensing</div>
+              </div>
+              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50">
+                <div className="font-semibold mb-1">Data Mining & Business Analytics</div>
+                <div className="text-sm text-muted-foreground">Infosys Springboard</div>
               </div>
             </div>
-
-            {/* Languages */}
-            <div>
-              <h3 className="text-xl font-semibold text-gradient-primary mb-6 flex items-center">
-                <Globe className="h-5 w-5 mr-3 text-cyan-400" />
-                Languages
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <span className="font-medium">Hindi</span>
-                  <span className="text-xs px-3 py-1 bg-gradient-to-r from-green-500/20 to-green-400/20 text-green-400 border border-green-500/30 rounded-full">
-                    Native
-                  </span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <span className="font-medium">English</span>
-                  <span className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500/20 to-blue-400/20 text-blue-400 border border-blue-500/30 rounded-full">
-                    Fluent
-                  </span>
-                </div>
+          </div>
+          
+          <div className="glass p-8 md:p-10 rounded-[2rem] flex flex-col justify-center">
+            <h3 className="text-2xl font-bold font-heading mb-6 flex items-center">
+              <Globe className="h-6 w-6 mr-3 text-secondary" />
+              Languages
+            </h3>
+            <div className="space-y-4">
+              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50 flex justify-between items-center">
+                <span className="font-semibold">English</span>
+                <span className="text-sm text-muted-foreground">Fluent</span>
+              </div>
+              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50 flex justify-between items-center">
+                <span className="font-semibold">Hindi</span>
+                <span className="text-sm text-muted-foreground">Native</span>
               </div>
             </div>
           </div>
