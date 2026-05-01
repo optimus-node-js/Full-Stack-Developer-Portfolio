@@ -25,6 +25,7 @@ export interface Experience {
   location?: string;
   period: string;
   description: string[];
+  stack?: string[];
 }
 
 export interface Education {
@@ -59,66 +60,130 @@ export interface ContactInfo {
   github: string;
 }
 
-// Skills Data
+// Skills Data — reflects latest resume stack (Senior Full Stack Dev, SaaS)
 export const skillsData: SkillCategory[] = [
   {
-    title: "Programming Languages",
+    title: "Languages",
     icon: "fas fa-code",
     skills: [
-      { name: "HTML/CSS" },
+      { name: "TypeScript" },
       { name: "JavaScript" },
-      { name: "Python" },
-      { name: "C++" },
       { name: "PHP" },
-      { name: "Kotlin" },
-      { name: "C#" }
+      { name: "SQL" },
+      { name: "HTML5" },
+      { name: "CSS3" }
     ]
   },
   {
-    title: "Frameworks & Libraries",
+    title: "Frontend",
     icon: "fas fa-layer-group",
     skills: [
       { name: "React.js" },
+      { name: "Zustand" },
+      { name: "TailwindCSS" },
+      { name: "Redux" },
+      { name: "RJSF" },
+      { name: "CapacitorJS" }
+    ]
+  },
+  {
+    title: "Backend",
+    icon: "fas fa-server",
+    skills: [
       { name: "Node.js" },
-      { name: "Django" },
-      { name: "Flask" },
-      { name: "jQuery" },
-      { name: "Pandas" },
-      { name: "Numpy" }
+      { name: "Nest.js" },
+      { name: "Laravel" },
+      { name: "Express" },
+      { name: "REST APIs" },
+      { name: "JWT / OAuth" }
     ]
   },
   {
     title: "Databases",
     icon: "fas fa-database",
     skills: [
+      { name: "PostgreSQL" },
       { name: "MongoDB" },
-      { name: "MySQL" },
-      { name: "SQLite" }
+      { name: "Redis" },
+      { name: "MySQL" }
     ]
   },
   {
-    title: "Tools & Others",
+    title: "Cloud & DevOps",
+    icon: "fas fa-cloud",
+    skills: [
+      { name: "Google Cloud Platform" },
+      { name: "Cron Workflows" },
+      { name: "DB Migrations" },
+      { name: "ACL / RBAC" },
+      { name: "Android / iOS Builds" }
+    ]
+  },
+  {
+    title: "Tools & Practices",
     icon: "fas fa-tools",
     skills: [
       { name: "Git" },
-      { name: "Data Structures" },
-      { name: "Algorithms" },
-      { name: "Handlebars" },
-      { name: "EJS" },
-      { name: "Pug" }
+      { name: "Eloquent ORM" },
+      { name: "Multi-Tenant Architecture" },
+      { name: "Scalable SaaS" },
+      { name: "Agile" }
     ]
   }
 ];
 
-// Projects Data
+// Projects — real work showcases + notable side projects
 export const projectsData: Project[] = [
   {
+    title: "Multi-Tenant Healthcare SaaS",
+    description: "Architected and scaled a multi-tenant healthcare platform serving 20+ clinics & pharmacies and 5,000+ patient users. Strict cross-organization data isolation, ACL-based security, and 99.9% uptime on GCP.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    technologies: [
+      { name: "TypeScript" },
+      { name: "Node.js" },
+      { name: "React.js" },
+      { name: "PostgreSQL" },
+      { name: "Zustand" },
+      { name: "GCP" }
+    ],
+    period: "Nov 2024 – Present",
+    category: ["All", "Work", "SaaS"]
+  },
+  {
+    title: "Patient Mobile Apps (Android & iOS)",
+    description: "Built and deployed cross-platform patient applications using CapacitorJS on a shared web-mobile architecture, enabling a seamless care experience for 5,000+ users across live clinical environments.",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    technologies: [
+      { name: "CapacitorJS" },
+      { name: "React.js" },
+      { name: "TypeScript" },
+      { name: "iOS" },
+      { name: "Android" }
+    ],
+    period: "2025",
+    category: ["All", "Work", "Mobile"]
+  },
+  {
+    title: "School Management SaaS",
+    description: "Developed and deployed a scalable multi-tenant school management system serving multiple institutions — role-based access for students, teachers, and admins with attendance, fees, academics, and administrative workflows.",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    technologies: [
+      { name: "Node.js" },
+      { name: "React.js" },
+      { name: "MongoDB" },
+      { name: "REST APIs" },
+      { name: "RBAC" }
+    ],
+    period: "May 2024 – Feb 2025",
+    category: ["All", "Work", "SaaS"]
+  },
+  {
     title: "SpaceX Launch Explorer",
-    description: "A comprehensive web application providing detailed information on past and upcoming SpaceX rocket launches with responsive design.",
-    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+    description: "Comprehensive web application surfacing detailed information on past and upcoming SpaceX launches with a responsive, performant UI.",
+    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
     technologies: [
       { name: "React.js" },
-      { name: "JavaScript" },
+      { name: "TypeScript" },
       { name: "REST APIs" },
       { name: "Mantine UI" },
       { name: "Zustand" }
@@ -126,29 +191,27 @@ export const projectsData: Project[] = [
     github: "https://github.com/Rahul-gif-asus/SpaceX-Launch-Explorer",
     link: "https://github.com/Rahul-gif-asus/SpaceX-Launch-Explorer",
     period: "Sep 2024",
-    category: ["All", "Web"]
+    category: ["All", "Open Source"]
   },
   {
     title: "CrowdSource Platform",
-    description: "A dynamic web application designed to foster collaborative problem-solving by allowing users to post challenges, propose solutions, and engage in meaningful discussions.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+    description: "A collaborative problem-solving platform where users post challenges, propose solutions, and engage in discussions — with secure JWT auth and a clean component architecture.",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
     technologies: [
       { name: "React.js" },
-      { name: "Redux" },
       { name: "Node.js" },
       { name: "Express" },
       { name: "MongoDB" },
-      { name: "Material-UI" },
       { name: "JWT" }
     ],
     github: "https://github.com/Rahul-gif-asus/CrowdSourcePlatform",
     period: "Aug 2024",
-    category: ["All", "Web"]
+    category: ["All", "Open Source"]
   },
   {
     title: "Dividend ROI Calculator",
-    description: "A robust tool designed to empower investors by providing detailed insights into potential dividend earnings from stocks listed on the National Stock Exchange (NSE) of India.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+    description: "A robust research tool helping investors compute dividend earnings on NSE-listed stocks — integrates the Angel One API for real-time data and applies statistical analysis.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
     technologies: [
       { name: "Python" },
       { name: "MongoDB" },
@@ -156,149 +219,86 @@ export const projectsData: Project[] = [
       { name: "Data Analysis" }
     ],
     github: "https://github.com/Rahul-gif-asus/DividendROI-Calculator",
-    period: "Mar 2023 - Jul 2023",
-    category: ["All", "Trading", "Web"]
-  },
-  {
-    title: "Vega - Copy Trading Platform",
-    description: "A powerful tool designed to revolutionize stock trading by enabling users to replicate trades from top-performing strategies with real-time data analysis.",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-    technologies: [
-      { name: "Python" },
-      { name: "MongoDB" },
-      { name: "REST APIs" },
-      { name: "Web Scraping" },
-      { name: "Statistical Analysis" }
-    ],
-    github: "https://github.com/Rahul-gif-asus/Vega_CopyTrading_Platform",
-    period: "Jul 2022 - Nov 2022",
-    category: ["All", "Trading"]
-  },
-  {
-    title: "Smart Translator",
-    description: "A cutting-edge language translation tool that delivers real-time, high-precision translations across multiple languages, enabling smooth cross-cultural communication.",
-    image: "https://images.unsplash.com/photo-1553484771-047a44eee27a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-    technologies: [
-      { name: "HTML/CSS" },
-      { name: "JavaScript" },
-      { name: "Node.js" },
-      { name: "MongoDB" },
-      { name: "REST APIs" },
-      { name: "React.js" },
-      { name: "Git" }
-    ],
-    github: "https://github.com/Rahul-gif-asus/smartTranslator",
-    link: "https://github.com/Rahul-gif-asus/smartTranslator",
-    period: "Aug 2021 - Sep 2021",
-    category: ["All", "Web", "AI"]
+    period: "Mar – Jul 2023",
+    category: ["All", "Open Source"]
   }
 ];
 
-// Experience Data
+// Experience Data — matches latest resume
 export const experienceData: Experience[] = [
   {
     title: "Full Stack Developer",
-    company: "Script Assist",
-    location: "London, United Kingdom",
-    period: "Feb 2024 - Present",
+    company: "Script Assist UK",
+    location: "Remote",
+    period: "Nov 2024 – Present",
     description: [
-      "Developed a scalable State Management System using NodeJS, TypeScript, PostgreSQL, and React.js.",
-      "Implemented secure authentication and role-based access control for different user types.",
-      "Designed responsive UI components with Redux for efficient state management.",
-      "Created RESTful APIs for seamless communication between frontend and backend services."
-    ]
+      "Architected and scaled a multi-tenant healthcare SaaS platform supporting 20+ clinics and pharmacies with strict cross-organization data isolation.",
+      "Built and deployed Android & iOS patient applications using CapacitorJS on a shared web-mobile architecture serving 5,000+ patient users.",
+      "Owned production systems on Google Cloud Platform — deployments, PostgreSQL migrations, ACL-based security, and critical cron workflows (prescriptions, inventory allocation, appointments).",
+      "Optimized legacy codebase, database queries, and an RJSF-based dynamic form builder — reducing production issues while maintaining 99.9% uptime and zero critical data breaches."
+    ],
+    stack: ["TypeScript", "Node.js", "React", "PostgreSQL", "Zustand", "GCP", "CapacitorJS"]
   },
   {
     title: "Full Stack Developer",
     company: "Student Diwan",
-    location: "Qatar",
-    period: "May 2023 - Feb 2024",
+    period: "May 2024 – Feb 2025",
     description: [
-      "Built a comprehensive school management system catering to multiple institutions.",
-      "Implemented MongoDB for database management and React.js for responsive frontend interfaces.",
-      "Developed REST APIs for secure data exchange between various system components.",
-      "Created an intuitive admin dashboard for school administrators to manage operations efficiently."
-    ]
+      "Developed and deployed a scalable multi-tenant school management system for multiple institutions.",
+      "Implemented role-based access (students, teachers, admins) with secure authentication.",
+      "Built core modules: attendance, fees, academics, and administrative workflows.",
+      "Designed a scalable backend architecture supporting concurrent multi-school operations."
+    ],
+    stack: ["Node.js", "React", "MongoDB", "REST APIs", "RBAC"]
   },
   {
-    title: "Coordinator of Volunteers",
-    company: "Had-Anhad NGO",
-    location: "Indore, Madhya Pradesh, India",
-    period: "Mar 2023 - Apr 2023",
+    title: "Freelance Backend Developer",
+    company: "Self-Employed",
+    period: "Aug 2023 – Feb 2024",
     description: [
-      "Led a team of volunteers in coordinating community development initiatives.",
-      "Managed database systems for tracking volunteer participation and project outcomes.",
-      "Organized training sessions for new volunteers to ensure effective community engagement.",
-      "Successfully coordinated multiple concurrent projects across diverse communities."
-    ]
+      "Developed backend modules using Laravel (PHP) for client and academic projects.",
+      "Built RESTful APIs, implemented JWT/session authentication, and managed MySQL databases.",
+      "Worked with routing, middleware, Eloquent ORM, and deployed on shared hosting platforms.",
+      "Collaborated directly with clients to gather requirements and deliver solutions on time."
+    ],
+    stack: ["Laravel", "PHP", "MySQL", "JWT", "Eloquent"]
   },
   {
     title: "Space Launch Vehicle Intern",
-    company: "Omspace Rocket & Exploration Private Limited",
-    location: "Ahmedabad, Gujarat",
-    period: "Dec 2022 - Jan 2023",
+    company: "Omspace Rocket & Exploration Pvt Ltd.",
+    period: "Dec 2022 – Jan 2023",
     description: [
-      "Contributed to statistical data analysis for rocket engine performance optimization.",
-      "Participated in design and analysis of launch vehicle components using CAD software.",
-      "Conducted programming tasks for systems monitoring and performance tracking.",
-      "Collaborated in trajectory analysis and mission planning for rocket launches."
-    ]
-  },
-  {
-    title: "Cohort Tech Lead",
-    company: "Commutiny - The Youth Collective",
-    location: "Delhi, India",
-    period: "Dec 2021 - Feb 2022",
-    description: [
-      "Led database administration for a network of 30+ NGOs, streamlining data management processes.",
-      "Provided technical support for statistical data analysis related to social impact projects.",
-      "Coordinated team projects and implemented systems for tracking program effectiveness.",
-      "Applied data science techniques to generate insights for community development initiatives."
-    ]
-  },
-  {
-    title: "Co-Founder",
-    company: "Express Yourself Community",
-    location: "Indore, Madhya Pradesh, India",
-    period: "May 2020 - Feb 2022",
-    description: [
-      "Co-founded and led a community dedicated to fostering personal growth and self-expression.",
-      "Built an online platform connecting diverse members across multiple regions.",
-      "Developed and implemented community engagement strategies that increased active participation.",
-      "Created and managed digital content to strengthen community bonds during the pandemic."
-    ]
+      "Contributed to rocket engine design optimization for improved efficiency and thrust performance.",
+      "Worked with industry-standard rocket design software for simulation and analysis.",
+      "Assisted in trajectory analysis and orbital mission planning.",
+      "Researched rocket fuels and supported fuel-efficiency improvements."
+    ],
+    stack: ["Simulation", "Trajectory Analysis", "Research"]
   }
 ];
 
-// Education Data
+// Education Data — aligned with resume
 export const educationData: Education[] = [
   {
-    title: "Bachelor of Technology - BTech, Computer Science",
-    institution: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)",
-    location: "Bhopal, Madhya Pradesh",
-    year: "Aug 2019 - May 2023",
+    title: "B.Tech in Computer Science & Engineering",
+    institution: "Bansal Institute of Research Technology and Science",
+    location: "Bhopal, M.P.",
+    year: "2019 – 2023",
     grade: "7.91 CGPA"
   },
   {
-    title: "Bachelor of Technology - BTech, Computer Software Engineering",
-    institution: "Bansal Institute of Science & Technology",
-    location: "Raisen Road, Kokta, Anand Nagar, Bhopal - 462021",
-    year: "Aug 2019 - May 2023",
-    grade: "7.91 (First Division with Honours)"
-  },
-  {
-    title: "Science",
+    title: "Class 12 — Science",
     institution: "Seva Sadan Higher Secondary School",
-    location: "Burhanpur, Madhya Pradesh",
-    year: "Aug 2019",
-    grade: "86%"
+    location: "Burhanpur, M.P.",
+    year: "2019",
+    grade: "First Division"
   },
   {
-    title: "Advance Computer Application",
-    institution: "Global Computer Training Academy",
-    location: "Burhanpur, Madhya Pradesh",
-    year: "Apr 2019 - Aug 2019",
-    grade: "A+"
+    title: "Class 10",
+    institution: "Seva Sadan Higher Secondary School",
+    location: "Burhanpur, M.P.",
+    year: "2017",
+    grade: "First Division"
   }
 ];
 
@@ -308,56 +308,50 @@ export const certificationData: Certification[] = [
     title: "Learn Ethical Hacking from Scratch",
     issuer: "zSecurity | Udemy",
     year: "2023",
-    description: "Certified in WiFi hacking, creating Trojans, gaining access to computers, finding website vulnerabilities, SQL injection, and social engineering attacks."
+    description: "Coverage of WiFi hacking, vulnerability assessment, SQL injection, and social engineering."
   },
   {
     title: "Geoprocessing Using Python",
     issuer: "Indian Institute of Remote Sensing",
     year: "2023",
-    description: "Certified in analyzing geo and spatial data, raster and vector data processing, using Numpy and Pandas libraries in Python."
+    description: "Analysis of geo & spatial data — raster/vector processing with NumPy and Pandas."
   },
   {
-    title: "Data Mining and Business Analytics",
+    title: "Data Mining & Business Analytics",
     issuer: "Infosys | Springboard",
     year: "2023",
-    description: "Certified in data mining for answering business questions and overview of business analytics using WEKA."
-  },
-  {
-    title: "Advance Computer Application",
-    issuer: "Global Computer Training Academy",
-    year: "2019",
-    description: "Certified in Computer Hardware Specification, Computer Basics, Internet Working, MS-Office."
+    description: "Data mining for business questions and an applied overview of business analytics using WEKA."
   }
 ];
 
-// Involvement Data
+// Involvement Data — aligned with resume
 export const involvementData: Involvement[] = [
   {
-    title: "Co-Founder and Head",
+    title: "Tech Lead — Database Management",
+    organization: "Commutiny — The Youth Collective",
+    period: "Nov 2021 – Feb 2022",
+    description: "Led database administration for a network of 30+ NGOs; streamlined data management and supported statistical analysis for social impact projects.",
+    icon: "fas fa-hands-helping"
+  },
+  {
+    title: "Co-Founder & Head",
     organization: "Express Yourself Community",
-    period: "May 2020 - February 2022",
-    description: "Founded an NGO-dedicated community that connects people across diverse communities worldwide, focusing on social challenges and mental health.",
+    period: "Apr 2020 – Feb 2022",
+    description: "Founded a community focused on mental health and self-expression, connecting diverse members across multiple regions during the pandemic.",
     icon: "fas fa-users"
   },
   {
-    title: "Bronze Medallist",
-    organization: "Commutiny - The Youth Collective",
-    period: "Q-ki National Championship | June - August 2021",
-    description: "Received bronze medal in national competition focused on youth development and leadership skills.",
+    title: "Bronze Medalist",
+    organization: "Q-ki National Championship — Commutiny",
+    period: "Jun – Aug 2021",
+    description: "Secured a Bronze Medal at the Q-ki National Championship focused on youth development and leadership.",
     icon: "fas fa-medal"
-  },
-  {
-    title: "Database Management Volunteer",
-    organization: "Commutiny - The Youth Collective",
-    period: "November 2021 - February 2022",
-    description: "Led volunteer team managing databases for 30 NGOs while contributing to social causes and community development.",
-    icon: "fas fa-hands-helping"
   }
 ];
 
-// Contact Information
+// Contact Information — from resume
 export const contactInfo: ContactInfo = {
-  location: "Ahmedabad, Gujarat, India",
+  location: "Burhanpur, Madhya Pradesh, India",
   email: "karmarahul67@gmail.com",
   phone: "+91 9131114837",
   degree: "B.Tech in CSE",
@@ -365,14 +359,21 @@ export const contactInfo: ContactInfo = {
   github: "https://github.com/Rahul-gif-asus"
 };
 
-// Bio Information
+// Bio Information — senior narrative
 export const bioData = {
   name: "Rahul Vishwakarma",
-  title: "Full Stack Developer & Problem Solver",
-  summary: "Versatile full-stack developer with a successful track record in diverse, real-world projects across various technologies. Specialized in algorithmic trading, concurrent analysis of extensive datasets, and cybersecurity.",
+  title: "Senior Full Stack Developer",
+  summary: "Senior Full Stack Developer architecting multi-tenant SaaS platforms in healthcare and education. I ship production systems on TypeScript, Node.js, React, PostgreSQL and GCP — with full ownership of backend architecture, mobile apps, migrations, and cloud reliability.",
   profileImage: "/profile.jpeg",
   longBio: [
-    "I'm a versatile full-stack developer with a successful track record in diverse, real-world projects across various technologies. I specialize in algorithmic trading, concurrent analysis of extensive datasets, and cybersecurity.",
-    "With robust leadership and team management skills, I'm eager to contribute my expertise to drive company success. My passion for technology extends beyond work into personal projects that push the boundaries of what's possible."
+    "I'm a Senior Full Stack Developer with hands-on experience architecting and scaling multi-tenant SaaS platforms across healthcare and education. I work end-to-end — backend architecture, database migrations, mobile apps, cloud deployments and high-priority production systems.",
+    "At Script Assist UK, I lead engineering on a healthcare platform serving 20+ clinics and 5,000+ patient users, with strict cross-organization isolation, ACL-based security and 99.9% uptime on GCP.",
+    "I care deeply about correctness, reliability and developer experience. I enjoy turning legacy systems into dependable products and shipping cross-platform experiences (web + native) from a single shared architecture."
+  ],
+  stats: [
+    { value: "20+", label: "Clinics & Pharmacies" },
+    { value: "5,000+", label: "Patient Users" },
+    { value: "99.9%", label: "Production Uptime" },
+    { value: "3+", label: "Years Engineering" }
   ]
 };

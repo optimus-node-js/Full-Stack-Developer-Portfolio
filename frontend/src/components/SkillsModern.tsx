@@ -1,174 +1,99 @@
-import { 
-  Code2, 
-  Database, 
-  Globe, 
-  Brain,
-  GitBranch,
-  Server,
-  Layers,
-  Zap,
-  Shield,
-  BarChart3,
-  Cpu
-} from 'lucide-react';
+import { skillsData } from '@/data/resume-data';
+import { Code2, Layers, Server, Database, Cloud, Wrench } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const iconMap: Record<string, any> = {
+  'Languages': Code2,
+  'Frontend': Layers,
+  'Backend': Server,
+  'Databases': Database,
+  'Cloud & DevOps': Cloud,
+  'Tools & Practices': Wrench,
+};
 
 const SkillsModern = () => {
-  const skillCategories = [
-    {
-      title: "Frontend Development",
-      icon: Globe,
-      color: "text-blue-400",
-      bgColor: "bg-blue-400/10",
-      skills: [
-        { name: "React.js", level: "Expert" },
-        { name: "Next.js", level: "Advanced" },
-        { name: "TypeScript", level: "Expert" },
-        { name: "HTML/CSS", level: "Expert" },
-        { name: "Tailwind CSS", level: "Expert" }
-      ]
-    },
-    {
-      title: "Backend & Systems",
-      icon: Server,
-      color: "text-emerald-400",
-      bgColor: "bg-emerald-400/10",
-      skills: [
-        { name: "Node.js", level: "Expert" },
-        { name: "Python", level: "Expert" },
-        { name: "Django/Flask", level: "Advanced" },
-        { name: "C++", level: "Advanced" },
-        { name: "REST APIs", level: "Expert" }
-      ]
-    },
-    {
-      title: "Data & DevOps",
-      icon: Database,
-      color: "text-purple-400",
-      bgColor: "bg-purple-400/10",
-      skills: [
-        { name: "MongoDB", level: "Expert" },
-        { name: "PostgreSQL", level: "Advanced" },
-        { name: "Redis", level: "Advanced" },
-        { name: "Docker", level: "Intermediate" },
-        { name: "Git Workflow", level: "Expert" }
-      ]
-    },
-    {
-      title: "AI & Analytics",
-      icon: Brain,
-      color: "text-amber-400",
-      bgColor: "bg-amber-400/10",
-      skills: [
-        { name: "TensorFlow", level: "Advanced" },
-        { name: "Scikit-learn", level: "Expert" },
-        { name: "Pandas/NumPy", level: "Expert" },
-        { name: "Algorithmic Trading", level: "Expert" },
-        { name: "Machine Learning", level: "Advanced" }
-      ]
-    }
+  const marqueeTech = [
+    'TypeScript', 'Node.js', 'React', 'Nest.js', 'PostgreSQL', 'MongoDB', 'GCP', 'Redis',
+    'Zustand', 'Laravel', 'CapacitorJS', 'JWT', 'REST', 'Docker', 'Git', 'TailwindCSS'
   ];
 
   return (
-    <section id="skills" className="py-24 bg-section-bg relative border-t border-border/50">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-[1]" />
-      
+    <section id="skills" className="relative py-28 overflow-hidden">
+      <div className="absolute inset-0 grid-overlay pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary/10 rounded-full blur-[130px] pointer-events-none" />
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-20 scroll-animate">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
-            Technical <span className="text-primary">Arsenal</span>
+        <div className="max-w-4xl mx-auto text-center scroll-animate">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border/70 bg-muted/30 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="w-1 h-1 rounded-full bg-primary" /> Skills
+          </div>
+          <h2 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+            The <span className="text-gradient-primary">stack</span> I ship with.
           </h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
-            A comprehensive toolkit spanning modern technologies and methodologies for building next-generation applications.
+          <p className="mt-5 text-lg text-muted-foreground">
+            Tools and technologies I use to design, build and operate production systems.
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-20">
-          {skillCategories.map((category, categoryIndex) => {
-            const CategoryIcon = category.icon;
-            return (
-              <div 
-                key={categoryIndex}
-                className="glass p-8 rounded-[2rem] scroll-animate group hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden"
-                style={{ animationDelay: `${categoryIndex * 0.1}s` }}
+        {/* Marquee */}
+        <div className="mt-14 relative marquee-wrapper overflow-hidden py-4 border-y border-border/60">
+          <div
+            className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 z-10"
+            style={{ background: 'linear-gradient(to right, hsl(var(--background)), transparent)' }}
+          />
+          <div
+            className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10"
+            style={{ background: 'linear-gradient(to left, hsl(var(--background)), transparent)' }}
+          />
+          <div className="marquee">
+            {[...marqueeTech, ...marqueeTech].map((t, i) => (
+              <span
+                key={i}
+                className="font-mono text-sm text-muted-foreground uppercase tracking-wider flex items-center gap-2 whitespace-nowrap"
               >
-                <div className={`absolute -right-10 -top-10 w-40 h-40 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 ${category.bgColor.replace('/10', '')}`}></div>
-                
-                <div className="relative z-10">
-                  <div className={`w-14 h-14 rounded-2xl ${category.bgColor} flex items-center justify-center mb-8 border border-white/5`}>
-                    <CategoryIcon className={`h-7 w-7 ${category.color}`} />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Category grid */}
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {skillsData.map((cat, i) => {
+            const Icon = iconMap[cat.title] ?? Code2;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="group relative glass rounded-2xl p-6 border border-border/60 hover:border-primary/30 transition-all hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="h-10 w-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-heading font-semibold text-lg">{cat.title}</h3>
                   </div>
-                  
-                  <h3 className="text-xl font-bold font-heading mb-6">
-                    {category.title}
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex} className="space-y-2">
-                        <div className="flex justify-between items-center text-sm">
-                          <span className="font-medium text-muted-foreground group-hover:text-foreground transition-colors">{skill.name}</span>
-                          <span className="text-xs text-muted-foreground/70">{skill.level}</span>
-                        </div>
-                        <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-                          <div 
-                            className={`h-full rounded-full ${category.bgColor.replace('bg-', 'bg-').replace('/10', '')}`}
-                            style={{ 
-                              width: skill.level === 'Expert' ? '95%' : 
-                                     skill.level === 'Advanced' ? '80%' : '65%' 
-                            }}
-                          ></div>
-                        </div>
-                      </div>
+                  <div className="flex flex-wrap gap-2">
+                    {cat.skills.map((s, si) => (
+                      <span
+                        key={si}
+                        className="px-3 py-1.5 rounded-lg bg-muted/40 border border-border/60 text-sm text-foreground/90 font-medium hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-colors"
+                      >
+                        {s.name}
+                      </span>
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
-        
-        {/* Languages & Certs */}
-        <div className="grid lg:grid-cols-3 gap-6 max-w-7xl mx-auto scroll-animate">
-          <div className="lg:col-span-2 glass p-8 md:p-10 rounded-[2rem] flex flex-col justify-center">
-            <h3 className="text-2xl font-bold font-heading mb-6 flex items-center">
-              <Shield className="h-6 w-6 mr-3 text-primary" />
-              Certifications & Training
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50">
-                <div className="font-semibold mb-1">Ethical Hacking from Scratch</div>
-                <div className="text-sm text-muted-foreground">zSecurity | Udemy</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50">
-                <div className="font-semibold mb-1">Geoprocessing Using Python</div>
-                <div className="text-sm text-muted-foreground">Indian Institute of Remote Sensing</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50">
-                <div className="font-semibold mb-1">Data Mining & Business Analytics</div>
-                <div className="text-sm text-muted-foreground">Infosys Springboard</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="glass p-8 md:p-10 rounded-[2rem] flex flex-col justify-center">
-            <h3 className="text-2xl font-bold font-heading mb-6 flex items-center">
-              <Globe className="h-6 w-6 mr-3 text-secondary" />
-              Languages
-            </h3>
-            <div className="space-y-4">
-              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50 flex justify-between items-center">
-                <span className="font-semibold">English</span>
-                <span className="text-sm text-muted-foreground">Fluent</span>
-              </div>
-              <div className="p-4 rounded-2xl bg-muted/30 border border-border/50 flex justify-between items-center">
-                <span className="font-semibold">Hindi</span>
-                <span className="text-sm text-muted-foreground">Native</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

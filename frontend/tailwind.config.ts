@@ -7,16 +7,17 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.5rem",
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
       fontFamily: {
-        heading: ['Archivo', 'sans-serif'],
-        body: ['"Space Grotesk"', 'sans-serif'],
-        mono: ['Fira Code', 'monospace'],
+        heading: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['Inter', '"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -33,6 +34,10 @@ export default {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
           glow: "hsl(var(--secondary-glow))",
+        },
+        tertiary: {
+          DEFAULT: "hsl(var(--tertiary))",
+          glow: "hsl(var(--tertiary-glow))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -68,41 +73,26 @@ export default {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 8px)",
       },
       keyframes: {
-        "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
-        },
-        "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
+        "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
+        "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "float": "float 6s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        "slide-up": "slide-up 0.6s ease-out forwards",
-        "fade-in": "fade-in 0.8s ease-out forwards",
-        "gradient": "gradient 15s ease infinite",
-        "bounce-soft": "bounce-soft 2s infinite",
       },
       backgroundSize: {
         "300%": "300%",
       },
+      boxShadow: {
+        glow: "0 0 40px hsla(var(--primary), 0.25)",
+        "glow-violet": "0 0 40px hsla(var(--secondary), 0.25)",
+        premium: "0 30px 80px hsla(0, 0%, 0%, 0.5)",
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
