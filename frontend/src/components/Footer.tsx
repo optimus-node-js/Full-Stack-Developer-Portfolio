@@ -1,8 +1,10 @@
+import { Link, useLocation } from 'react-router-dom';
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
 import { contactInfo } from '@/data/resume-data';
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const { pathname } = useLocation();
 
   const socialLinks = [
     { icon: Mail, href: `mailto:${contactInfo.email}`, label: 'Email' },
@@ -11,14 +13,17 @@ const Footer = () => {
   ];
 
   const navLinks = [
-    { label: 'About', id: 'about' },
-    { label: 'Experience', id: 'experience' },
-    { label: 'Work', id: 'projects' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Contact', id: 'contact' },
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
+    { label: 'Journey', to: '/journey' },
+    { label: 'Work', to: '/work' },
+    { label: 'Contact', to: '/contact' },
   ];
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Hide footer on home for cleaner landing? — keep it simple, always show
+  if (pathname === '/') return null;
 
   return (
     <footer className="relative pt-16 pb-8 border-t border-border/60 overflow-hidden">
@@ -29,10 +34,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-10 pb-10 border-b border-border/60">
           {/* Brand */}
           <div>
-            <button
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-3 group"
-            >
+            <Link to="/" className="inline-flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-sm font-bold text-primary-foreground shadow-glow">
                 RV
               </div>
@@ -40,7 +42,7 @@ const Footer = () => {
                 <div className="font-heading font-bold">Rahul Vishwakarma</div>
                 <div className="text-xs text-muted-foreground font-mono">Senior Full Stack Developer</div>
               </div>
-            </button>
+            </Link>
             <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-xs">
               Building reliable multi-tenant SaaS for healthcare & education — end-to-end.
             </p>
@@ -51,13 +53,9 @@ const Footer = () => {
             <div className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground mb-4">Navigate</div>
             <div className="grid grid-cols-2 gap-y-2 gap-x-6">
               {navLinks.map((l) => (
-                <button
-                  key={l.id}
-                  onClick={() => document.getElementById(l.id)?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors text-left"
-                >
+                <Link key={l.to} to={l.to} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   {l.label}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
@@ -95,12 +93,8 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div className="font-mono">
-            © {year} Rahul Vishwakarma · Crafted with attention to detail.
-          </div>
-          <div className="font-mono">
-            Built with React · TypeScript · Tailwind
-          </div>
+          <div className="font-mono">© {year} Rahul Vishwakarma · Crafted with attention to detail.</div>
+          <div className="font-mono">Built with React · TypeScript · Tailwind</div>
         </div>
       </div>
     </footer>

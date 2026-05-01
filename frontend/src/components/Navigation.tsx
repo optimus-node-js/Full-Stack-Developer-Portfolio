@@ -1,48 +1,28 @@
 import { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import CircularThemeToggle from './CircularThemeToggle';
 import ScrollProgress from './ScrollProgress';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
-  { label: 'Home', id: 'hero' },
-  { label: 'About', id: 'about' },
-  { label: 'Experience', id: 'experience' },
-  { label: 'Work', id: 'projects' },
-  { label: 'Skills', id: 'skills' },
-  { label: 'Contact', id: 'contact' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Journey', to: '/journey' },
+  { label: 'Work', to: '/work' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
-      const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'education', 'involvement', 'contact'];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 180 && rect.bottom >= 180) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <>
@@ -60,53 +40,50 @@ const Navigation = () => {
               : 'bg-background/30 backdrop-blur-lg border border-white/5 py-1.5 px-2'
           }`}
         >
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => scrollToSection('hero')}
-            className="flex items-center gap-2 pl-3 pr-4 py-1.5 rounded-full"
-            data-testid="link-logo"
-          >
+          <Link to="/" className="flex items-center gap-2 pl-3 pr-4 py-1.5 rounded-full" data-testid="link-logo">
             <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-[11px] font-bold text-primary-foreground">
               RV
             </span>
             <span className="font-heading text-sm font-semibold hidden lg:inline">Rahul Vishwakarma</span>
-          </motion.button>
+          </Link>
 
           <div className="h-6 w-px bg-border" />
 
           <div className="flex items-center gap-0.5 relative" onMouseLeave={() => setHoveredNav(null)}>
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                onMouseEnter={() => setHoveredNav(item.id)}
-                className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                  activeSection === item.id ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
-                }`}
-                data-testid={`link-nav-${item.id}`}
-              >
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeNavBg"
-                    className="absolute inset-0 bg-primary/15 border border-primary/20 rounded-full"
-                    transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-                  />
-                )}
-                <AnimatePresence>
-                  {hoveredNav === item.id && activeSection !== item.id && (
+            {navItems.map((item) => {
+              const isActive = pathname === item.to;
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  onMouseEnter={() => setHoveredNav(item.to)}
+                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                    isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  data-testid={`link-nav-${item.label.toLowerCase()}`}
+                >
+                  {isActive && (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="absolute inset-0 bg-white/5 rounded-full"
-                      transition={{ duration: 0.2 }}
+                      layoutId="activeNavBg"
+                      className="absolute inset-0 bg-primary/15 border border-primary/20 rounded-full"
+                      transition={{ type: 'spring', damping: 25, stiffness: 280 }}
                     />
                   )}
-                </AnimatePresence>
-                <span className="relative z-10">{item.label}</span>
-              </button>
-            ))}
+                  <AnimatePresence>
+                    {hoveredNav === item.to && !isActive && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-white/5 rounded-full"
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
+                  </AnimatePresence>
+                  <span className="relative z-10">{item.label}</span>
+                </NavLink>
+              );
+            })}
           </div>
 
           <div className="h-6 w-px bg-border" />
@@ -116,7 +93,12 @@ const Navigation = () => {
         </div>
       </motion.nav>
 
-      <div className="md:hidden fixed top-4 right-4 z-50 flex items-center gap-2">
+      {/* Mobile header */}
+      <div className="md:hidden fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-border/60">
+          <span className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-[9px] font-bold text-primary-foreground">RV</span>
+          <span className="font-heading text-xs font-semibold">Rahul</span>
+        </Link>
         <CircularThemeToggle />
       </div>
     </>
