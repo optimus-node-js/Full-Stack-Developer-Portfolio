@@ -18,11 +18,10 @@ const SkillsModern = () => {
   ];
 
   return (
-    <section id="skills" className="relative py-28 overflow-hidden">
-      <div className="absolute inset-0 grid-overlay pointer-events-none" />
+    <section id="skills" className="relative pt-2 pb-12 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary/10 rounded-full blur-[130px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto relative z-10">
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center scroll-animate">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border/70 bg-muted/30 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">

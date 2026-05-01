@@ -12,34 +12,20 @@ const Projects = () => {
   const visible = projectsData.filter((p) => p.category.includes(filter));
 
   return (
-    <section id="projects" className="relative py-28 overflow-hidden">
-      <div className="absolute inset-0 grid-overlay pointer-events-none" />
+    <section id="projects" className="relative pt-2 pb-12 overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
-        <div className="max-w-4xl mx-auto text-center scroll-animate">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border/70 bg-muted/30 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-            <span className="w-1 h-1 rounded-full bg-primary" /> Work
-          </div>
-          <h2 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
-            Selected <span className="text-gradient-primary">projects.</span>
-          </h2>
-          <p className="mt-5 text-lg text-muted-foreground">
-            A mix of real production systems and side-projects I care about.
-          </p>
-        </div>
-
-        {/* Filters */}
-        <div className="mt-12 flex flex-wrap justify-center gap-2">
+      <div className="container mx-auto relative z-10">
+        {/* Filters — horizontally scrollable on mobile */}
+        <div className="flex flex-nowrap sm:flex-wrap sm:justify-center gap-2 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           {FILTERS.map((f) => {
             const active = filter === f;
             return (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
+                className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all border whitespace-nowrap ${
                   active
                     ? 'bg-primary text-primary-foreground border-primary shadow-glow'
                     : 'bg-muted/30 text-muted-foreground border-border/60 hover:border-primary/30 hover:text-foreground'
@@ -53,7 +39,7 @@ const Projects = () => {
         </div>
 
         {/* Grid */}
-        <div className="mt-12 grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        <div className="mt-8 sm:mt-10 grid md:grid-cols-2 gap-5 sm:gap-6 max-w-6xl mx-auto">
           {visible.map((p, i) => (
             <motion.article
               key={`${p.title}-${i}`}

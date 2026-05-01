@@ -33,13 +33,22 @@ Update with latest details from uploaded resume.
 - **EducationCredentials**, **Involvement** sections on /journey.
 - **Vercel fix**: `/app/vercel.json` configures `frontend/` as build dir.
 - **Mobile polish (Feb 2026)**:
-  - All pages: 0px horizontal overflow on 412×915 viewport.
-  - PageShell: `overflow-x-hidden`, responsive padding, mobile h1 scaled down.
-  - HomePage hero: smaller h1 on mobile, floating badges repositioned.
-  - Footer: shown on home too, mobile bottom padding to clear floating nav.
-  - **MobileBottomNav redesigned**: 5 nav icons + expandable Quick Actions panel
-    (Email / LinkedIn / GitHub / Back to Top) with smooth spring animation,
-    pulse ring near page bottom, hides on scroll-down/reveals on scroll-up.
+  - All pages: 0px horizontal overflow on 390×844 iPhone viewport, full vertical scroll.
+  - Tailwind container: responsive padding `1rem → 1.5rem → 2rem`; added `xs` breakpoint at 400px.
+  - Global: `html { overflow-x: hidden; width: 100% }` + `body { max-width: 100vw }` to prevent any rogue overflow.
+  - PageShell: smaller mobile h1 (`text-[1.75rem] xs:text-[2rem]`), `overflow-x-hidden`,
+    `pb-32 md:pb-24` for floating nav clearance.
+  - HomePage hero: `text-[1.875rem] xs:text-[2.25rem] sm:text-6xl` h1, "Available for senior
+    roles" pill collapses to compact form on mobile, floating Uptime/Patient badges repositioned.
+  - Projects (Work page): removed nested `py-28`, filter row horizontally scrolls on mobile
+    via `overflow-x-auto` + `scrollbar-hide` utility, project cards stack 1-col mobile.
+  - SkillsModern, Involvement, Contact: removed redundant `py-28` and `px-6` since they're
+    nested inside PageShell's container which handles padding.
+  - About page stats: 2-col grid on mobile.
+  - **MobileBottomNav redesigned**: 5 nav icons (44×44 tap targets) + chevron toggle that
+    smoothly expands a Quick Actions panel (Email / LinkedIn / GitHub / Back to Top) using
+    Framer Motion `layout` spring, pulse ring near page bottom, hides on scroll-down,
+    reveals on scroll-up.
 
 ## Architecture
 ```
