@@ -26,7 +26,7 @@ const AboutPage = () => {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative glass rounded-3xl p-8 lg:p-10 border border-border/60 overflow-hidden"
+          className="relative glass rounded-3xl p-6 sm:p-8 lg:p-10 border border-border/60 overflow-hidden"
         >
           <div className="absolute -top-16 -right-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative">

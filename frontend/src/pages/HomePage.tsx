@@ -36,7 +36,7 @@ const HomePage = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-32 md:pb-16"
     >
       {/* Ambient */}
       <div className="absolute inset-0 bg-background" />
@@ -45,8 +45,8 @@ const HomePage = () => {
       <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px] animate-aurora" style={{ animationDelay: '3s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-tertiary/10 rounded-full blur-[120px]" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 sm:gap-12 lg:gap-16 items-center">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -66,7 +66,7 @@ const HomePage = () => {
               <span className="text-muted-foreground">Remote / Hybrid</span>
             </motion.div>
 
-            <h1 className="mt-7 font-heading font-bold leading-[1.02] tracking-tight text-5xl sm:text-6xl lg:text-[4.5rem]">
+            <h1 className="mt-7 font-heading font-bold leading-[1.04] tracking-tight text-[2.5rem] sm:text-6xl lg:text-[4.5rem]">
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -176,7 +176,7 @@ const HomePage = () => {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-4 -right-3 sm:-right-6 glass px-3 py-2 rounded-xl shadow-xl border border-primary/25"
+              className="absolute -top-3 right-2 sm:-right-6 glass px-3 py-2 rounded-xl shadow-xl border border-primary/25"
             >
               <div className="text-[9px] text-muted-foreground font-mono uppercase tracking-wider">Uptime</div>
               <div className="text-base font-heading font-bold text-primary">99.9%</div>
@@ -184,7 +184,7 @@ const HomePage = () => {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
-              className="absolute -bottom-4 -left-3 sm:-left-6 glass px-3 py-2 rounded-xl shadow-xl border border-secondary/25"
+              className="absolute -bottom-3 left-2 sm:-left-6 glass px-3 py-2 rounded-xl shadow-xl border border-secondary/25"
             >
               <div className="text-[9px] text-muted-foreground font-mono uppercase tracking-wider">Patient Users</div>
               <div className="text-base font-heading font-bold text-secondary">5,000+</div>

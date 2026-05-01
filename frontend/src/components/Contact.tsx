@@ -57,12 +57,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative py-28 overflow-hidden border-t border-border/60">
+    <section id="contact" className="relative pt-2 pb-12 overflow-hidden">
       <div className="absolute inset-0 grid-overlay pointer-events-none" />
       <div className="absolute top-1/3 -right-20 w-[500px] h-[500px] bg-primary/15 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center scroll-animate">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border/70 bg-muted/30 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
@@ -85,7 +85,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6 }}
-            className="glass rounded-3xl p-8 lg:p-10 border border-border/60 relative overflow-hidden"
+            className="glass rounded-3xl p-6 sm:p-8 lg:p-10 border border-border/60 relative overflow-hidden"
           >
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
             <div className="relative">
