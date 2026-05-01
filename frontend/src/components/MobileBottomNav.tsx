@@ -56,13 +56,13 @@ const MobileBottomNav = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-          className="md:hidden fixed bottom-4 left-3 right-3 z-50"
+          className="md:hidden fixed bottom-3 left-2 right-2 z-50"
           data-testid="mobile-bottom-nav"
         >
           <motion.div
             layout
             transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-            className="max-w-md mx-auto bg-background/85 backdrop-blur-2xl border border-white/10 rounded-[28px] shadow-[0_18px_55px_rgba(0,0,0,0.55)] overflow-hidden"
+            className="max-w-md mx-auto bg-background/85 backdrop-blur-2xl border border-white/10 rounded-[26px] shadow-[0_18px_55px_rgba(0,0,0,0.55)] overflow-hidden"
           >
             {/* Expandable quick-actions panel */}
             <AnimatePresence initial={false}>
@@ -126,7 +126,7 @@ const MobileBottomNav = () => {
             </AnimatePresence>
 
             {/* Main nav row */}
-            <div className="flex items-center justify-between px-1.5 py-1.5">
+            <div className="flex items-center justify-between px-1 py-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.to;
@@ -136,7 +136,7 @@ const MobileBottomNav = () => {
                     to={item.to}
                     aria-label={item.label}
                     data-testid={`mobile-nav-${item.label.toLowerCase()}`}
-                    className={`relative flex items-center justify-center p-3 rounded-full transition-all active:scale-90 ${
+                    className={`relative flex items-center justify-center h-11 w-11 rounded-full transition-all active:scale-90 ${
                       isActive ? 'text-primary' : 'text-muted-foreground'
                     }`}
                   >
@@ -147,7 +147,7 @@ const MobileBottomNav = () => {
                         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
                       />
                     )}
-                    <Icon className="w-5 h-5 relative z-10" />
+                    <Icon className="w-[22px] h-[22px] relative z-10" />
                     <span className="sr-only">{item.label}</span>
                   </Link>
                 );
@@ -158,7 +158,7 @@ const MobileBottomNav = () => {
                 onClick={() => setIsExpanded((v) => !v)}
                 aria-label={isExpanded ? 'Collapse quick actions' : 'Expand quick actions'}
                 data-testid="mobile-nav-expand"
-                className={`relative flex items-center justify-center p-3 rounded-full transition-all active:scale-90 ${
+                className={`relative flex items-center justify-center h-11 w-11 rounded-full transition-all active:scale-90 ${
                   isExpanded ? 'text-primary' : 'text-muted-foreground'
                 }`}
               >
@@ -176,7 +176,7 @@ const MobileBottomNav = () => {
                   transition={{ type: 'spring', damping: 20, stiffness: 240 }}
                   className="relative z-10"
                 >
-                  <ChevronUp className="w-5 h-5" />
+                  <ChevronUp className="w-[22px] h-[22px]" />
                 </motion.span>
               </button>
             </div>

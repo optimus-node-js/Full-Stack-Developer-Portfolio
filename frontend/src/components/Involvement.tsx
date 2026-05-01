@@ -10,11 +10,11 @@ const iconFor = (title: string) => {
 
 const Involvement = () => {
   return (
-    <section id="involvement" className="relative py-28 overflow-hidden">
+    <section id="involvement" className="relative pt-2 pb-8 overflow-hidden">
       <div className="absolute inset-0 grid-overlay pointer-events-none" />
       <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center scroll-animate">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border/70 bg-muted/30 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
             <span className="w-1 h-1 rounded-full bg-primary" /> Beyond Code

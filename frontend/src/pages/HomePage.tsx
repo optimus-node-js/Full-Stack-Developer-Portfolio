@@ -45,7 +45,7 @@ const HomePage = () => {
       <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px] animate-aurora" style={{ animationDelay: '3s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-tertiary/10 rounded-full blur-[120px]" />
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 sm:gap-12 lg:gap-16 items-center">
           {/* Left */}
           <motion.div
@@ -58,15 +58,15 @@ const HomePage = () => {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-tertiary/30 text-sm"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-tertiary/30 text-[11px] sm:text-sm max-w-full"
             >
-              <span className="pulse-dot" />
-              <span className="font-medium text-foreground/90">Available for senior roles</span>
-              <span className="text-muted-foreground">·</span>
-              <span className="text-muted-foreground">Remote / Hybrid</span>
+              <span className="pulse-dot shrink-0" />
+              <span className="font-medium text-foreground/90 truncate">Available for senior roles</span>
+              <span className="text-muted-foreground hidden sm:inline">·</span>
+              <span className="text-muted-foreground hidden sm:inline">Remote / Hybrid</span>
             </motion.div>
 
-            <h1 className="mt-7 font-heading font-bold leading-[1.04] tracking-tight text-[2.5rem] sm:text-6xl lg:text-[4.5rem]">
+            <h1 className="mt-7 font-heading font-bold leading-[1.05] tracking-tight text-[1.875rem] xs:text-[2.25rem] sm:text-6xl lg:text-[4.5rem]">
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}

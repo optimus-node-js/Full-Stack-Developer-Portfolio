@@ -31,7 +31,7 @@ export default function PageShell({
       <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-primary/15 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-secondary/12 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto relative z-10">
         {(label || title || subtitle || eyebrow) && (
           <header className="max-w-5xl mx-auto mb-10 sm:mb-14">
             {label && (
@@ -44,7 +44,7 @@ export default function PageShell({
               <div className="mt-3 text-xs font-mono uppercase tracking-[0.3em] text-primary">{eyebrow}</div>
             )}
             {title && (
-              <h1 className="mt-3 font-heading font-bold text-[2.25rem] sm:text-5xl lg:text-6xl tracking-tight leading-[1.05]">
+              <h1 className="mt-3 font-heading font-bold text-[1.75rem] xs:text-[2rem] sm:text-5xl lg:text-6xl tracking-tight leading-[1.08]">
                 {title}
               </h1>
             )}

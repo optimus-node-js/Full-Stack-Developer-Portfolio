@@ -26,7 +26,7 @@ const Footer = () => {
       <div className="absolute inset-0 grid-overlay pointer-events-none mask-fade-bottom" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto relative z-10">
         <div className="grid md:grid-cols-3 gap-10 pb-10 border-b border-border/60">
           {/* Brand */}
           <div>

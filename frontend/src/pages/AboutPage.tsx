@@ -35,7 +35,7 @@ const AboutPage = () => {
                 <p key={i} className={i === 0 ? 'text-foreground/90' : ''}>{p}</p>
               ))}
             </div>
-            <div className="mt-8 pt-6 border-t border-border/60 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="mt-8 pt-6 border-t border-border/60 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               {bioData.stats.map((s, i) => (
                 <div key={i}>
                   <div className="text-2xl font-heading font-bold text-foreground">{s.value}</div>
