@@ -209,6 +209,58 @@
     display: none;
   }
 
+  /* Theme-aware terminal */
+  .terminal-frame {
+    /* Light mode: soft white with a gentle purple wash */
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(250,247,255,0.98) 100%);
+    border: 1px solid hsla(260, 40%, 85%, 0.7);
+    box-shadow:
+      0 30px 80px -25px hsla(260, 60%, 55%, 0.28),
+      0 8px 24px -12px hsla(260, 60%, 55%, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
+  .terminal-chrome {
+    background: linear-gradient(180deg, hsla(260, 35%, 96%, 0.95), hsla(260, 35%, 94%, 0.85));
+    border-color: hsla(260, 30%, 85%, 0.6);
+  }
+  .terminal-chrome-title {
+    color: hsl(260, 20%, 45%);
+  }
+  .terminal-body {
+    background:
+      radial-gradient(1200px 400px at 10% 0%, hsla(260, 80%, 85%, 0.18), transparent 60%),
+      radial-gradient(900px 300px at 100% 100%, hsla(290, 80%, 85%, 0.14), transparent 60%),
+      #ffffff;
+    color: hsl(260, 25%, 18%);
+  }
+
+  /* Dark mode terminal — keeps the deep, inky look */
+  .dark .terminal-frame {
+    background: rgba(11, 13, 18, 0.98);
+    border: 1px solid hsla(240, 20%, 30%, 0.5);
+    box-shadow:
+      0 30px 80px -10px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  .dark .terminal-chrome {
+    background: rgba(0, 0, 0, 0.35);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .dark .terminal-chrome-title {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .dark .terminal-body {
+    background:
+      radial-gradient(1200px 400px at 10% 0%, hsla(260, 90%, 55%, 0.08), transparent 60%),
+      radial-gradient(900px 300px at 100% 100%, hsla(200, 90%, 55%, 0.06), transparent 60%),
+      #0b0d12;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
   /* Glass morphism — refined */
   .glass {
     background: var(--gradient-glass);

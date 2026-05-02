@@ -18,14 +18,14 @@ const uid = () => Math.random().toString(36).slice(2, 10);
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
 const kindClass: Record<NonNullable<Line['kind']>, string> = {
-  text: 'text-white/90',
-  prompt: 'text-white',
-  error: 'text-red-400',
-  info: 'text-sky-400',
-  success: 'text-emerald-400',
-  muted: 'text-white/50',
-  accent: 'text-fuchsia-400',
-  ascii: 'text-sky-400',
+  text: 'text-foreground/90',
+  prompt: 'text-foreground',
+  error: 'text-red-500 dark:text-red-400',
+  info: 'text-sky-600 dark:text-sky-400',
+  success: 'text-emerald-600 dark:text-emerald-400',
+  muted: 'text-muted-foreground',
+  accent: 'text-fuchsia-600 dark:text-fuchsia-400',
+  ascii: 'text-primary dark:text-sky-400',
 };
 
 export default function InteractiveTerminal({ className = '' }: { className?: string }) {
@@ -188,20 +188,20 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       onClick={focusInput}
-      className={`relative rounded-2xl overflow-hidden border border-border/60 shadow-[0_30px_80px_rgba(0,0,0,0.35)] font-mono bg-[#0b0d12]/98 dark:bg-[#0b0d12]/95 ${className}`}
+      className={`terminal-frame relative rounded-2xl overflow-hidden font-mono ${className}`}
       role="region"
       aria-label="Interactive terminal"
     >
       {/* Chrome */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 bg-black/30">
+      <div className="terminal-chrome flex items-center justify-between px-4 py-2.5 border-b">
         <div className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-full bg-red-500/90" />
-          <span className="w-3 h-3 rounded-full bg-yellow-500/90" />
-          <span className="w-3 h-3 rounded-full bg-green-500/90" />
+          <span className="w-3 h-3 rounded-full bg-red-500/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]" />
+          <span className="w-3 h-3 rounded-full bg-yellow-500/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]" />
+          <span className="w-3 h-3 rounded-full bg-green-500/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]" />
         </div>
-        <span className="text-[11px] text-white/60 tracking-wide">rahul@portfolio — zsh — 80×24</span>
-        <span className="flex items-center gap-1.5 text-[10px] text-tertiary">
-          <span className="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse" />
+        <span className="terminal-chrome-title text-[11px] tracking-wide">rahul@portfolio — zsh — 80×24</span>
+        <span className="flex items-center gap-1.5 text-[10px] text-emerald-600 dark:text-emerald-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           online
         </span>
       </div>
@@ -209,17 +209,17 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
       {/* Body */}
       <div
         ref={bodyRef}
-        className="p-4 sm:p-5 text-[13px] sm:text-sm leading-6 h-[380px] sm:h-[420px] overflow-y-auto scroll-smooth text-white/90"
+        className="terminal-body p-4 sm:p-5 text-[13px] sm:text-sm leading-6 h-[380px] sm:h-[420px] overflow-y-auto scroll-smooth"
       >
         {entries.map((entry) => (
           <div key={entry.id} className="mb-3">
             {entry.input && (
               <div className="flex items-start gap-2 mb-1">
-                <span className="text-emerald-400 shrink-0">rahul@portfolio</span>
-                <span className="text-white/50 shrink-0">:</span>
-                <span className="text-sky-400 shrink-0">~</span>
-                <span className="text-white/50 shrink-0">$</span>
-                <span className="text-white break-all">{entry.input}</span>
+                <span className="text-emerald-600 dark:text-emerald-400 shrink-0">rahul@portfolio</span>
+                <span className="text-muted-foreground shrink-0">:</span>
+                <span className="text-primary dark:text-sky-400 shrink-0">~</span>
+                <span className="text-muted-foreground shrink-0">$</span>
+                <span className="text-foreground break-all">{entry.input}</span>
               </div>
             )}
             {entry.output.map((line, idx) => (
@@ -233,7 +233,7 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
             {entry.pending !== undefined && (
               <div className={`whitespace-pre-wrap ${kindClass[entry.pendingKind || 'text']}`}>
                 {entry.pending}
-                <span className="inline-block w-2 h-[1em] -mb-[2px] bg-sky-400 ml-0.5 align-middle animate-blink" />
+                <span className="inline-block w-2 h-[1em] -mb-[2px] bg-primary dark:bg-sky-400 ml-0.5 align-middle animate-blink" />
               </div>
             )}
           </div>
@@ -242,10 +242,10 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
         {/* Input */}
         {!isTyping && (
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
-            <span className="text-emerald-400">rahul@portfolio</span>
-            <span className="text-white/50">:</span>
-            <span className="text-sky-400">~</span>
-            <span className="text-white/50">$</span>
+            <span className="text-emerald-600 dark:text-emerald-400">rahul@portfolio</span>
+            <span className="text-muted-foreground">:</span>
+            <span className="text-primary dark:text-sky-400">~</span>
+            <span className="text-muted-foreground">$</span>
             <div className="relative flex-1 flex items-center">
               <input
                 ref={inputRef}
@@ -256,7 +256,7 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
                 spellCheck={false}
                 autoCapitalize="off"
                 autoComplete="off"
-                className="flex-1 bg-transparent border-none outline-none text-white caret-sky-400 font-mono placeholder:text-white/35"
+                className="flex-1 bg-transparent border-none outline-none text-foreground caret-primary dark:caret-sky-400 font-mono placeholder:text-muted-foreground/60"
                 placeholder={entries.length <= 1 ? "try 'help' or ask me anything..." : ''}
               />
             </div>
