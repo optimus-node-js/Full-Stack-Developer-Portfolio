@@ -24,7 +24,7 @@ export default function PageShell({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -16 }}
       transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative min-h-screen pt-28 pb-32 md:pb-24 overflow-x-hidden ${className}`}
+      className={`relative min-h-screen pt-28 pb-32 md:pb-24 clip-x ${className}`}
     >
       {/* Ambient bg */}
       <div className="absolute inset-0 dot-overlay pointer-events-none" />
