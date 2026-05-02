@@ -56,7 +56,8 @@ const MobileBottomNav = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-          className="md:hidden fixed bottom-3 left-2 right-2 z-50"
+          className="md:hidden fixed left-2 right-2 z-50"
+          style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 0.75rem)' }}
           data-testid="mobile-bottom-nav"
         >
           <motion.div
