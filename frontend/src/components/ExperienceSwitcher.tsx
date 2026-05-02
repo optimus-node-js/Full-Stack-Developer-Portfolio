@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import { experienceData } from '@/data/resume-data';
-import { Briefcase, MapPin, Calendar, ArrowRight } from 'lucide-react';
+import { Briefcase, MapPin, Calendar, ArrowRight, Stethoscope, GraduationCap, Code2, Rocket } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const iconMap = {
+  Stethoscope,
+  GraduationCap,
+  Code2,
+  Rocket,
+  Briefcase,
+} as const;
 
 const ExperienceSwitcher = () => {
   const [active, setActive] = useState(0);
@@ -10,9 +18,11 @@ const ExperienceSwitcher = () => {
   return (
     <div className="grid lg:grid-cols-[280px_1fr] gap-6">
       {/* Company tabs */}
-      <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 -mx-1 px-1">
+      <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 -mx-1 px-1 scrollbar-hide">
         {experienceData.map((exp, i) => {
           const isActive = i === active;
+          const IconName = (exp.icon || 'Briefcase') as keyof typeof iconMap;
+          const Icon = iconMap[IconName] || Briefcase;
           return (
             <button
               key={i}
@@ -33,13 +43,13 @@ const ExperienceSwitcher = () => {
               )}
               <div className="flex items-center gap-3">
                 <div
-                  className={`h-10 w-10 rounded-xl flex items-center justify-center font-bold text-sm shrink-0 ${
+                  className={`h-10 w-10 rounded-xl flex items-center justify-center shrink-0 ${
                     isActive
                       ? 'bg-gradient-to-br from-primary to-secondary text-primary-foreground'
                       : 'bg-muted text-muted-foreground group-hover:text-foreground'
                   }`}
                 >
-                  {exp.company.slice(0, 2).toUpperCase()}
+                  <Icon className="h-[18px] w-[18px]" />
                 </div>
                 <div className="min-w-0">
                   <div className={`font-heading font-semibold text-sm truncate ${isActive ? 'text-foreground' : 'text-foreground/80'}`}>

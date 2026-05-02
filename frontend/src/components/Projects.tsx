@@ -3,6 +3,7 @@ import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { projectsData } from '@/data/resume-data';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const FILTERS = ['All', 'Work', 'SaaS', 'Mobile', 'Open Source'] as const;
 
@@ -48,9 +49,14 @@ const Projects = () => {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.55, delay: i * 0.05 }}
               className="group relative rounded-3xl overflow-hidden border border-border/60 bg-card hover:-translate-y-1 transition-transform"
+              data-testid={`project-card-${p.slug}`}
             >
-              {/* Image */}
-              <div className="relative aspect-[16/10] overflow-hidden">
+              {/* Clickable cover */}
+              <Link
+                to={`/project/${p.slug}`}
+                className="block relative aspect-[16/10] overflow-hidden"
+                aria-label={`Open ${p.title} case study`}
+              >
                 <img
                   src={p.image}
                   alt={p.title}
@@ -90,11 +96,14 @@ const Projects = () => {
                     </a>
                   )}
                 </div>
-              </div>
+              </Link>
 
               {/* Body */}
-              <div className="p-6 lg:p-7 relative">
-                <div className="text-xs font-mono text-muted-foreground">{p.period}</div>
+              <Link to={`/project/${p.slug}`} className="block p-6 lg:p-7 relative">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="text-xs font-mono text-muted-foreground">{p.period}</div>
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+                </div>
                 <h3 className="mt-2 font-heading font-bold text-xl sm:text-2xl group-hover:text-primary transition-colors">
                   {p.title}
                 </h3>
@@ -108,7 +117,7 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-              </div>
+              </Link>
             </motion.article>
           ))}
         </div>

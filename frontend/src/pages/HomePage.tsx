@@ -93,7 +93,8 @@ const HomePage = () => {
               className="mt-6 max-w-xl mx-auto lg:mx-0 text-lg text-muted-foreground leading-relaxed"
             >
               Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I architect and scale
-              {' '}multi-tenant SaaS platforms for <span className="text-foreground">healthcare</span> and <span className="text-foreground">education</span>—owning backend, mobile and cloud end-to-end.
+              {' '}<span className="text-foreground">multi-tenant SaaS</span> platforms — owning backend, mobile and cloud end-to-end, with a bias toward
+              {' '}<span className="text-foreground">reliability</span>, <span className="text-foreground">performance</span> and production quality.
             </motion.p>
 
             <motion.div
@@ -186,8 +187,8 @@ const HomePage = () => {
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
               className="absolute -bottom-3 left-2 sm:-left-6 glass px-3 py-2 rounded-xl shadow-xl border border-secondary/25"
             >
-              <div className="text-[9px] text-muted-foreground font-mono uppercase tracking-wider">Patient Users</div>
-              <div className="text-base font-heading font-bold text-secondary">5,000+</div>
+              <div className="text-[9px] text-muted-foreground font-mono uppercase tracking-wider">Critical Breaches</div>
+              <div className="text-base font-heading font-bold text-secondary">0</div>
             </motion.div>
           </motion.div>
         </div>

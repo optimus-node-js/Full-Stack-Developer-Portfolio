@@ -1,95 +1,110 @@
-# Product Requirements — Rahul Vishwakarma Portfolio
+# PRD — Rahul Vishwakarma Senior Full Stack Portfolio
 
 ## Original Problem Statement
-Redesign full-stack developer portfolio with smooth aesthetic and great look & feel.
-Update with latest details from uploaded resume.
+Redesign full-stack developer portfolio with smooth aesthetic. Multi-page architecture,
+creative experience layout, interactive hardcoded terminal, iPhone-native mobile polish.
 
-### Subsequent User Requests
-1. Fix Vercel deployment (`npm error ENOENT package.json` at root).
-2. Split into multi-page architecture with smooth page transitions.
-3. Replace Experience/Education timeline with a more creative, unique layout.
-4. Make the Hero terminal interactive — type Linux commands, get hardcoded responses
-   (NO real LLM), realistic typing animations.
-5. Mobile responsive: ensure every section fits perfectly on mobile + smooth floated
-   footer interactions.
+### Subsequent User Requests (Feb 2026)
+1. Fix Vercel deployment (root vercel.json).
+2. Multi-page with Framer Motion transitions.
+3. Replace timeline with creative Experience layout.
+4. Interactive terminal with hardcoded Linux commands (NO real LLM).
+5. Mobile perfection — content fits on small screens, smooth floated footer interaction.
+6. Polished light + dark modes, beautiful theme transitions.
+7. iPhone 17-style glassmorphism footer.
+8. Dedicated per-project detail pages.
+9. Remove "5,000+ patients" from overall stats — use "40,000+ UK patients" only in
+   Script Assist UK context. Rewrite portfolio to reflect senior full stack framing.
+10. Proper contextual icons for Experience tabs.
 
 ## Stack
-- Vite + React 18 + TypeScript
-- Tailwind CSS + shadcn/ui
-- Framer Motion (page transitions, micro-interactions)
-- React Router v6
-- Static frontend only (no backend, no DB)
+Vite + React 18 + TypeScript, Tailwind CSS + shadcn/ui, Framer Motion, React Router v6.
+Static frontend only — no backend.
 
 ## Implemented (Feb 2026)
-- **Multi-page routing**: `/`, `/about`, `/journey`, `/work`, `/contact`, `/project/:id`,
-  404 with Framer Motion `AnimatePresence` page transitions.
-- **Interactive Terminal** (`InteractiveTerminal.tsx` + `terminal-knowledge.ts`):
-  hardcoded responses for `help`, `whoami`, `about`, `skills`, `experience`,
-  `projects`, `education`, `contact`, `ls`, `pwd`, `date`, `socials`, `clear`,
-  `joke`, `hire`, `history`, `resume/cv` (triggers download), unknown → error.
-  Keyboard: ArrowUp/Down history, Tab autocomplete, Ctrl+L clears.
-- **ExperienceSwitcher** (`/journey`): Sidebar list of companies + animated detail
-  panel — replaces traditional timeline. Mobile: horizontal scrollable tabs.
-- **EducationCredentials**, **Involvement** sections on /journey.
-- **Vercel fix**: `/app/vercel.json` configures `frontend/` as build dir.
-- **Mobile polish (Feb 2026)**:
-  - All pages: 0px horizontal overflow on 390×844 iPhone viewport, full vertical scroll.
-  - Tailwind container: responsive padding `1rem → 1.5rem → 2rem`; added `xs` breakpoint at 400px.
-  - Global: `html { overflow-x: hidden; width: 100% }` + `body { max-width: 100vw }` to prevent any rogue overflow.
-  - PageShell: smaller mobile h1 (`text-[1.75rem] xs:text-[2rem]`), `overflow-x-hidden`,
-    `pb-32 md:pb-24` for floating nav clearance.
-  - HomePage hero: `text-[1.875rem] xs:text-[2.25rem] sm:text-6xl` h1, "Available for senior
-    roles" pill collapses to compact form on mobile, floating Uptime/Patient badges repositioned.
-  - Projects (Work page): removed nested `py-28`, filter row horizontally scrolls on mobile
-    via `overflow-x-auto` + `scrollbar-hide` utility, project cards stack 1-col mobile.
-  - SkillsModern, Involvement, Contact: removed redundant `py-28` and `px-6` since they're
-    nested inside PageShell's container which handles padding.
-  - About page stats: 2-col grid on mobile.
-  - **MobileBottomNav redesigned**: 5 nav icons (44×44 tap targets) + chevron toggle that
-    smoothly expands a Quick Actions panel (Email / LinkedIn / GitHub / Back to Top) using
-    Framer Motion `layout` spring, pulse ring near page bottom, hides on scroll-down,
-    reveals on scroll-up.
 
-## Architecture
-```
-/app
-├── vercel.json
-└── frontend
-    ├── package.json (framer-motion, react-router-dom)
-    ├── vite.config.ts (port 3000)
-    └── src
-        ├── App.tsx — Router + AnimatePresence
-        ├── components
-        │   ├── Navigation.tsx (desktop pill nav)
-        │   ├── MobileBottomNav.tsx (floating + expandable footer panel)
-        │   ├── Footer.tsx (always visible, mobile-safe padding)
-        │   ├── InteractiveTerminal.tsx
-        │   ├── PageShell.tsx (page wrapper, transitions)
-        │   ├── ExperienceSwitcher.tsx (creative non-timeline)
-        │   └── ui/ (shadcn)
-        ├── lib/terminal-knowledge.ts (hardcoded command logic)
-        ├── pages/{HomePage,AboutPage,JourneyPage,WorkPage,ContactPage,...}.tsx
-        └── data/resume-data.ts
-```
+### Architecture
+- Multi-page routing: `/`, `/about`, `/journey`, `/work`, `/contact`,
+  `/project/:slug`, 404 — with AnimatePresence transitions.
+- `PageShell` wrapper: consistent headers, page transitions, responsive typography,
+  mobile floating-nav clearance.
 
-## Testing Status
-- ✅ `testing_agent_v3_fork` ran full frontend regression — all routes, terminal,
-  ExperienceSwitcher, filters, theme toggle, mobile responsive: PASSED, 0 console errors.
-- ✅ Manual mobile audit at 412×915: 0 horizontal overflow on all 5 routes.
+### Content / Resume Rewrite
+- Stats reframed to senior-dev metrics: `5+ Years Engineering`, `7+ Production Systems
+  Shipped`, `99.9% Uptime`, `0 Critical Data Breaches`.
+- "5,000+ patients" removed from global stats; "40,000+ UK patients" used only in
+  Script Assist UK experience and that specific project.
+- Long-form bio reframed around multi-tenant SaaS, production reliability, performance,
+  legacy stabilisation.
+- Projects carry `slug`, `subtitle`, `longDescription`, `highlights`, `challenges`,
+  `outcomes`, `role`, `status`, `duration`.
+
+### Interactive Terminal (hardcoded, no LLM)
+- Commands: help, whoami, about, skills, experience, projects, education, contact,
+  ls, pwd, date, socials, history, clear, hire, joke, resume/cv.
+- Keyboard: ArrowUp/Down history, Tab autocomplete, Ctrl+L clear.
+- Theme-resilient: terminal always renders on its own dark chrome (beautiful in
+  both light and dark modes).
+
+### Creative Experience Layout
+- `ExperienceSwitcher` with icon-per-company (lucide Stethoscope, GraduationCap,
+  Code2, Rocket) — horizontal scroll on mobile, vertical list on lg+.
+
+### Project Detail Page (`/project/:slug`)
+- Rendered from `projectsData`: category/status badges, hero image, meta row (period,
+  duration, role, status), long overview, highlights, challenges, outcomes, stack
+  side rail, "other projects" grid at bottom.
+- Projects list on Work page now links each card to its detail page.
+
+### iPhone 17-style Footer
+- Glass "island" with rounded 28–36px corners, specular highlight, ambient aurora
+  glow behind, layered backdrop blur.
+- Social pills with per-service gradient hover states, animated Back-to-top button.
+- Motion: gentle scale/opacity on aurora orbs; staggered hover micro-interactions.
+
+### Theme System
+- Global smooth theme transition (0.5s cubic-bezier) on bg, color, borders.
+- Circular theme toggle uses View Transitions API for iPhone-style circle reveal.
+- Terminal pinned to dark chrome for readability in either theme.
+
+### Mobile Perfection
+- `html { overflow-x: hidden; width: 100% }`, `body { max-width: 100vw; overflow-x: clip }`,
+  `#root { max-width: 100vw; overflow-x: clip }` — hard-locked to viewport.
+- `viewport-fit=cover` + `maximum-scale=1` meta tag for iOS safe-area handling.
+- Tailwind container: responsive padding `1rem → 1.5rem → 2rem`; `xs: 400px` breakpoint.
+- PageShell h1 scaled `text-[1.75rem] xs:text-[2rem] sm:text-5xl lg:text-6xl`.
+- HomePage h1 `text-[1.875rem] xs:text-[2.25rem] sm:text-6xl`.
+- "Available for senior roles" pill collapses compactly on mobile.
+- Floating Uptime/Critical-Breaches badges repositioned to stay in-viewport.
+- Nested `py-28`/`px-6` removed from Projects, SkillsModern, Involvement, Contact
+  (now inside PageShell's responsive container).
+- About stats: 2-col on mobile.
+- Work filters: horizontal-scroll on mobile (`scrollbar-hide` utility).
+- Contact page: PageShell now owns label/eyebrow/title/subtitle — extra top spacing
+  issue resolved.
+
+### MobileBottomNav
+- Floating glass pill with 5 nav icons (44×44 tap targets) + expandable chevron
+  that reveals Quick Actions: Email / LinkedIn / GitHub / Back-to-Top.
+- Pulse ring near page bottom, hides on scroll-down, reveals on scroll-up.
+
+### Vercel Deploy
+- `/app/vercel.json` points build to `frontend/`.
+
+## Testing
+- `testing_agent_v3_fork` baseline regression: all routes, terminal commands,
+  filters, theme toggle, mobile responsive → PASSED.
+- Manual mobile audit at 375×667 and 390×844: 0 horizontal overflow on every route.
 
 ## Backlog / P1
-- Push to GitHub & verify Vercel deployment lands correctly.
-- Cosmetic: ASCII border in welcome banner has slight monospace alignment
-  drift (low priority).
-- Theme toggle button could use a `data-testid` for E2E robustness.
+- Verify Vercel deployment after user pushes to GitHub.
 
 ## Backlog / P2
-- Code-split the bundle (currently 1MB → suggest dynamic imports for heavy
-  components, e.g., InteractiveTerminal lazy-loaded).
-- Add contact form backend (currently form is static, no submission flow).
+- Code-split the 1MB bundle (lazy-load InteractiveTerminal).
+- Wire Contact form to a real mail/webhook backend.
+- Add `data-testid` on theme toggle for E2E robustness.
 
 ## Notes for Future Agents
-- **NO real LLM** for terminal — explicit user requirement, all logic in
-  `terminal-knowledge.ts`.
-- Static frontend only — no backend integration was added or needed.
-- Frontend serves on port 3000 via `vite build && vite preview --strictPort`.
+- **No real LLM** in terminal — hardcoded logic in `terminal-knowledge.ts` only.
+- `5,000+` patients is out of general framing — only `40,000+` in Script Assist UK context.
+- Terminal keeps its own dark chrome (intentional — reads better in both themes).

@@ -265,7 +265,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     response: () => ({
       lines: [
         { text: 'the healthcare SaaS at Script Assist is the one I’m most proud of.', kind: 'accent' },
-        { text: '20+ clinics · 5,000+ patients · 99.9% uptime · full ownership end-to-end.', kind: 'muted' },
+        { text: '20+ UK clinics · 40,000+ real patients · 99.9% uptime · full ownership end-to-end.', kind: 'muted' },
       ],
     }),
   },
@@ -365,7 +365,7 @@ export const welcomeResponse: Response = {
   lines: [
     { text: '┌─ rahul-os · senior full stack edition (v3.0.0) ─┐', kind: 'accent', instant: true },
     { text: '│ system: online                                    │', kind: 'accent', instant: true },
-    { text: '│ uptime: 99.9%   patients: 5,000+   clinics: 20+  │', kind: 'accent', instant: true },
+    { text: '│ uptime: 99.9%   UK patients: 40k+   clinics: 20+ │', kind: 'accent', instant: true },
     { text: '└────────────────────────────────────────────────┘', kind: 'accent', instant: true },
     { text: '' },
     { text: "hi, I'm Rahul — a senior full-stack dev." },
