@@ -63,22 +63,8 @@ const Contact = () => {
       <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="container mx-auto relative z-10">
-        {/* Header */}
-        <div className="max-w-4xl mx-auto text-center scroll-animate">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border/70 bg-muted/30 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-            <span className="pulse-dot" /> Let's talk
-          </div>
-          <h2 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
-            Have a project in mind?{' '}
-            <span className="text-gradient-primary">Say hello.</span>
-          </h2>
-          <p className="mt-5 text-lg text-muted-foreground">
-            I typically respond within 24 hours. Open to senior FS roles, consulting and interesting collaborations.
-          </p>
-        </div>
-
         {/* Grid */}
-        <div className="mt-14 grid lg:grid-cols-[1.2fr_0.8fr] gap-6 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-6 max-w-6xl mx-auto">
           {/* Form */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
