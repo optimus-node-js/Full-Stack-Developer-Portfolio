@@ -36,7 +36,7 @@ const HomePage = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-32 md:pb-16"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 pb-36 md:pb-16"
     >
       {/* Ambient */}
       <div className="absolute inset-0 bg-background" />
@@ -45,8 +45,8 @@ const HomePage = () => {
       <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px] animate-aurora" style={{ animationDelay: '3s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-tertiary/10 rounded-full blur-[120px]" />
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 overflow-hidden">
-        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 sm:gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -58,7 +58,7 @@ const HomePage = () => {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-tertiary/30 text-[11px] sm:text-sm max-w-full"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full glass border border-tertiary/30 text-[10px] sm:text-sm max-w-full"
             >
               <span className="pulse-dot shrink-0" />
               <span className="font-medium text-foreground/90 truncate">Available for senior roles</span>
@@ -66,7 +66,7 @@ const HomePage = () => {
               <span className="text-muted-foreground hidden sm:inline">Remote / Hybrid</span>
             </motion.div>
 
-            <h1 className="mt-7 font-heading font-bold leading-[1.05] tracking-tight text-[1.875rem] xs:text-[2.25rem] sm:text-6xl lg:text-[4.5rem]">
+            <h1 className="mt-6 font-heading font-bold leading-[1.05] tracking-tight text-[1.6rem] sm:text-5xl lg:text-[4.5rem]">
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.8 }}
-              className="mt-6 max-w-xl mx-auto lg:mx-0 text-lg text-muted-foreground leading-relaxed"
+              className="mt-5 max-w-xl mx-auto lg:mx-0 text-[15px] sm:text-lg text-muted-foreground leading-relaxed"
             >
               Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I build across
               {' '}<span className="text-foreground">full-stack</span>, <span className="text-foreground">AI</span>, <span className="text-foreground">security</span>, and <span className="text-foreground">platform architecture</span> — shipping scalable products end-to-end, from database design to production deployment.
@@ -168,17 +168,15 @@ const HomePage = () => {
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative mx-auto max-w-full lg:max-w-none"
+            className="relative w-full max-w-md mx-auto lg:max-w-none"
           >
-            <div className="px-2 sm:px-0">
-              <InteractiveTerminal />
-            </div>
+            <InteractiveTerminal />
 
-            {/* Floating badges */}
+            {/* Floating badges — hidden on very small screens to prevent overlap */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-3 right-0 sm:-right-6 glass px-3 py-2 rounded-xl shadow-xl border border-primary/25"
+              className="hidden sm:block absolute -top-3 -right-6 glass px-3 py-2 rounded-xl shadow-xl border border-primary/25"
             >
               <div className="text-[9px] text-muted-foreground font-mono uppercase tracking-wider">Uptime</div>
               <div className="text-base font-heading font-bold text-primary">99.9%</div>
@@ -186,7 +184,7 @@ const HomePage = () => {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
-              className="absolute -bottom-3 left-0 sm:-left-6 glass px-3 py-2 rounded-xl shadow-xl border border-secondary/25"
+              className="hidden sm:block absolute -bottom-3 -left-6 glass px-3 py-2 rounded-xl shadow-xl border border-secondary/25"
             >
               <div className="text-[9px] text-muted-foreground font-mono uppercase tracking-wider">Critical Breaches</div>
               <div className="text-base font-heading font-bold text-secondary">0</div>
