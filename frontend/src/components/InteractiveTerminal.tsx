@@ -188,7 +188,7 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       onClick={focusInput}
-      className={`terminal-frame relative rounded-2xl overflow-hidden font-mono ${className}`}
+      className={`terminal-frame relative rounded-2xl overflow-hidden font-mono max-w-full ${className}`}
       role="region"
       aria-label="Interactive terminal"
     >
@@ -199,7 +199,7 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
           <span className="w-3 h-3 rounded-full bg-yellow-500/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]" />
           <span className="w-3 h-3 rounded-full bg-green-500/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]" />
         </div>
-        <span className="terminal-chrome-title text-[11px] tracking-wide">rahul@portfolio — zsh — 80×24</span>
+        <span className="terminal-chrome-title text-[10px] sm:text-[11px] tracking-wide truncate max-w-[45%]">rahul@portfolio — zsh — 80×24</span>
         <span className="flex items-center gap-1.5 text-[10px] text-emerald-600 dark:text-emerald-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           online
@@ -209,13 +209,13 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
       {/* Body */}
       <div
         ref={bodyRef}
-        className="terminal-body p-4 sm:p-5 text-[13px] sm:text-sm leading-6 h-[380px] sm:h-[420px] overflow-y-auto scroll-smooth"
+        className="terminal-body p-3 sm:p-5 text-[12px] sm:text-sm leading-6 h-[340px] sm:h-[420px] overflow-y-auto overflow-x-hidden scroll-smooth"
       >
         {entries.map((entry) => (
           <div key={entry.id} className="mb-3">
             {entry.input && (
-              <div className="flex items-start gap-2 mb-1">
-                <span className="text-emerald-600 dark:text-emerald-400 shrink-0">rahul@portfolio</span>
+              <div className="flex items-start gap-1 sm:gap-2 mb-1 flex-wrap">
+                <span className="text-emerald-600 dark:text-emerald-400 shrink-0 text-[11px] sm:text-sm">rahul@portfolio</span>
                 <span className="text-muted-foreground shrink-0">:</span>
                 <span className="text-primary dark:text-sky-400 shrink-0">~</span>
                 <span className="text-muted-foreground shrink-0">$</span>
@@ -241,8 +241,8 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
 
         {/* Input */}
         {!isTyping && (
-          <form onSubmit={handleSubmit} className="flex items-center gap-2">
-            <span className="text-emerald-600 dark:text-emerald-400">rahul@portfolio</span>
+          <form onSubmit={handleSubmit} className="flex items-center gap-1 sm:gap-2">
+            <span className="text-emerald-600 dark:text-emerald-400 text-[11px] sm:text-sm">rahul@portfolio</span>
             <span className="text-muted-foreground">:</span>
             <span className="text-primary dark:text-sky-400">~</span>
             <span className="text-muted-foreground">$</span>
