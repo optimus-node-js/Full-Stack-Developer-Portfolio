@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import SEO from '@/components/SEO';
 import SpotlightOverlay, { useSpotlight } from '@/components/SpotlightSearch';
+import AIChatbot from '@/components/AIChatbot';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
@@ -76,6 +77,7 @@ function AppShell() {
       <Footer />
       <MobileBottomNav />
       <SpotlightOverlay isOpen={isOpen} onClose={close} />
+      <AIChatbot />
     </>
   );
 }

@@ -45,7 +45,7 @@ const HomePage = () => {
       <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px] animate-aurora" style={{ animationDelay: '3s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-tertiary/10 rounded-full blur-[120px]" />
 
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 overflow-hidden">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 sm:gap-12 lg:gap-16 items-center">
           {/* Left */}
           <motion.div
@@ -168,15 +168,17 @@ const HomePage = () => {
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+            className="relative mx-auto max-w-full lg:max-w-none"
           >
-            <InteractiveTerminal />
+            <div className="px-2 sm:px-0">
+              <InteractiveTerminal />
+            </div>
 
             {/* Floating badges */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-3 right-2 sm:-right-6 glass px-3 py-2 rounded-xl shadow-xl border border-primary/25"
+              className="absolute -top-3 right-0 sm:-right-6 glass px-3 py-2 rounded-xl shadow-xl border border-primary/25"
             >
               <div className="text-[9px] text-muted-foreground font-mono uppercase tracking-wider">Uptime</div>
               <div className="text-base font-heading font-bold text-primary">99.9%</div>
@@ -184,7 +186,7 @@ const HomePage = () => {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
-              className="absolute -bottom-3 left-2 sm:-left-6 glass px-3 py-2 rounded-xl shadow-xl border border-secondary/25"
+              className="absolute -bottom-3 left-0 sm:-left-6 glass px-3 py-2 rounded-xl shadow-xl border border-secondary/25"
             >
               <div className="text-[9px] text-muted-foreground font-mono uppercase tracking-wider">Critical Breaches</div>
               <div className="text-base font-heading font-bold text-secondary">0</div>
