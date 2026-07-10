@@ -155,7 +155,7 @@ function ContextualPrompt({ pathname, onOpen, isOpen }: ContextualPromptProps) {
             setShow(false);
             onOpen();
           }}
-          className="fixed bottom-20 right-4 md:bottom-8 md:right-24 z-[90] max-w-[260px] px-4 py-3 rounded-2xl bg-card/95 backdrop-blur-xl border border-primary/30 shadow-[0_8px_30px_rgba(0,0,0,0.4)] text-left group hover:border-primary/50 transition-colors"
+          className="fixed bottom-[7.5rem] right-4 md:bottom-8 md:right-24 z-[90] max-w-[240px] md:max-w-[260px] px-3.5 py-2.5 md:px-4 md:py-3 rounded-2xl bg-card/95 backdrop-blur-xl border border-primary/30 shadow-[0_8px_30px_rgba(0,0,0,0.4)] text-left group hover:border-primary/50 transition-colors"
         >
           <div className="flex items-start gap-2">
             <Sparkles className="w-4 h-4 text-primary mt-0.5 shrink-0 animate-pulse" />
@@ -335,10 +335,10 @@ export default function AIChatbot() {
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', damping: 15, stiffness: 200 }}
             onClick={handleOpen}
-            className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-[91] w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary shadow-[0_8px_30px_rgba(0,0,0,0.4)] flex items-center justify-center text-primary-foreground hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-shadow active:scale-95"
+            className="fixed bottom-[5.5rem] right-4 md:bottom-8 md:right-8 z-[91] w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-secondary shadow-[0_8px_30px_rgba(0,0,0,0.4)] flex items-center justify-center text-primary-foreground hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-shadow active:scale-95"
             aria-label="Chat with AI"
           >
-            <MessageSquare className="w-6 h-6" />
+            <MessageSquare className="w-5 h-5 md:w-6 md:h-6" />
             {messages.length === 0 && (
               <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-400 border-2 border-background animate-pulse" />
             )}
