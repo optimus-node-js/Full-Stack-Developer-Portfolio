@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import CircularThemeToggle from './CircularThemeToggle';
 import ScrollProgress from './ScrollProgress';
+import { SpotlightTriggerDesktop, SpotlightTriggerMobile } from './SpotlightSearch';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
@@ -12,7 +13,12 @@ const navItems = [
   { label: 'Contact', to: '/contact' },
 ];
 
-const Navigation = () => {
+interface NavigationProps {
+  onSearchOpen: () => void;
+  platform: 'mac' | 'ios' | 'windows' | 'android' | 'linux';
+}
+
+const Navigation = ({ onSearchOpen, platform }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const { pathname } = useLocation();
@@ -87,6 +93,8 @@ const Navigation = () => {
           </div>
 
           <div className="h-6 w-px bg-border" />
+          <SpotlightTriggerDesktop onClick={onSearchOpen} platform={platform} />
+          <div className="h-6 w-px bg-border" />
           <div className="pr-2 flex items-center">
             <CircularThemeToggle />
           </div>
@@ -99,7 +107,10 @@ const Navigation = () => {
           <span className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-[9px] font-bold text-primary-foreground">RV</span>
           <span className="font-heading text-xs font-semibold">Rahul</span>
         </Link>
-        <CircularThemeToggle />
+        <div className="flex items-center gap-2">
+          <SpotlightTriggerMobile onClick={onSearchOpen} platform={platform} />
+          <CircularThemeToggle />
+        </div>
       </div>
     </>
   );

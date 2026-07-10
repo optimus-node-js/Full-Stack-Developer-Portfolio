@@ -11,6 +11,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import SEO from '@/components/SEO';
+import SpotlightOverlay, { useSpotlight } from '@/components/SpotlightSearch';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
@@ -63,6 +64,22 @@ function ThemeBootstrap() {
   return null;
 }
 
+function AppShell() {
+  const { isOpen, open, close, platform } = useSpotlight();
+
+  return (
+    <>
+      <ThemeBootstrap />
+      <SEO />
+      <Navigation onSearchOpen={open} platform={platform} />
+      <AnimatedRoutes />
+      <Footer />
+      <MobileBottomNav />
+      <SpotlightOverlay isOpen={isOpen} onClose={close} />
+    </>
+  );
+}
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -70,12 +87,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <ThemeBootstrap />
-          <SEO />
-          <Navigation />
-          <AnimatedRoutes />
-          <Footer />
-          <MobileBottomNav />
+          <AppShell />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
