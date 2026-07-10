@@ -121,6 +121,11 @@ export function getMessagesForApi(): { role: 'user' | 'assistant'; content: stri
   return session.messages.map((m) => ({ role: m.role, content: m.content }));
 }
 
+export function clearAllData() {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(USER_KEY);
+}
+
 export function needsSummarization(): boolean {
   const session = getActiveSession();
   return session.messages.length > 30;
