@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "groq-sdk": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
   }
 }
