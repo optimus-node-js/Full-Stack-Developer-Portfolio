@@ -305,9 +305,9 @@ function SpotlightOverlay({ isOpen, onClose }: SpotlightSearchProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed z-[101] top-[15vh] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[560px]"
+            className="fixed z-[101] inset-0 flex items-start sm:items-center justify-center pt-[env(safe-area-inset-top,12px)] sm:pt-0 px-3 sm:px-4 pointer-events-none"
           >
-            <div className="bg-card/95 backdrop-blur-2xl border border-border/80 rounded-2xl shadow-[0_25px_80px_-12px_rgba(0,0,0,0.6)] overflow-hidden">
+            <div className="pointer-events-auto w-full max-w-[560px] mt-3 sm:mt-0 bg-card/95 backdrop-blur-2xl border border-border/80 rounded-2xl shadow-[0_25px_80px_-12px_rgba(0,0,0,0.6)] overflow-hidden">
               {/* Search input */}
               <div className="flex items-center gap-3 px-5 py-4 border-b border-border/60">
                 <Search className="w-5 h-5 text-muted-foreground shrink-0" />
@@ -333,7 +333,7 @@ function SpotlightOverlay({ isOpen, onClose }: SpotlightSearchProps) {
               </div>
 
               {/* Results */}
-              <div ref={listRef} className="max-h-[50vh] overflow-y-auto overscroll-contain py-2">
+              <div ref={listRef} className="max-h-[40vh] sm:max-h-[50vh] overflow-y-auto overscroll-contain py-2">
                 {grouped.length === 0 ? (
                   <div className="px-5 py-8 text-center">
                     <p className="text-sm text-muted-foreground">No results for "{query}"</p>
@@ -442,10 +442,19 @@ export function SpotlightTriggerDesktop({ onClick, platform }: { onClick: () => 
       aria-label="Search"
     >
       <Search className="w-3.5 h-3.5" />
-      <kbd className="hidden lg:flex items-center gap-0.5 text-[10px] font-mono">
-        {isMac ? <Command className="w-2.5 h-2.5" /> : <span>Ctrl</span>}
-        <span>K</span>
-      </kbd>
+      <div className="flex items-center gap-0.5 text-[10px] font-mono">
+        {isMac ? (
+          <>
+            <Command className="w-2.5 h-2.5" />
+            <span>K</span>
+          </>
+        ) : (
+          <>
+            <PlatformIcon platform={platform} />
+            <span className="ml-0.5">Ctrl K</span>
+          </>
+        )}
+      </div>
     </button>
   );
 }
