@@ -1,6 +1,4 @@
-import Groq from 'groq-sdk';
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const SYSTEM_PROMPT = `You are Rahul Vishwakarma's portfolio AI assistant. You speak naturally, like a friendly human — warm, confident, and conversational. Use occasional natural expressions like "hmm", "yeah", "absolutely", "oh nice" to feel real. Keep responses concise but helpful (2-4 sentences usually, longer only when asked for detail).
 
@@ -71,7 +69,7 @@ Architecture: System Design, Multi-Tenant SaaS, Product Engineering, Notificatio
 - Remember previous conversation context and reference it naturally ("as we talked about earlier...")
 - Stats: 3+ years product engineering, 8+ production systems shipped, 99.9% uptime, 0 critical data breaches`;
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -85,6 +83,11 @@ export default async function handler(req: any, res: any) {
 
   res.setHeader('Access-Control-Allow-Origin', '*');
 
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: 'GROQ_API_KEY not configured' });
+  }
+
   try {
     const { messages, contextSummary } = req.body;
 
@@ -92,7 +95,9 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: 'messages array is required' });
     }
 
-    const systemMessages: any[] = [{ role: 'system', content: SYSTEM_PROMPT }];
+    const systemMessages: { role: string; content: string }[] = [
+      { role: 'system', content: SYSTEM_PROMPT },
+    ];
 
     if (contextSummary) {
       systemMessages.push({
@@ -101,19 +106,32 @@ export default async function handler(req: any, res: any) {
       });
     }
 
-    const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
-      messages: [...systemMessages, ...messages.slice(-20)],
-      temperature: 0.7,
-      max_tokens: 512,
-      stream: false,
+    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [...systemMessages, ...messages.slice(-20)],
+        temperature: 0.7,
+        max_tokens: 512,
+      }),
     });
 
-    const reply = completion.choices[0]?.message?.content || "Sorry, I couldn't generate a response.";
+    if (!groqRes.ok) {
+      const errText = await groqRes.text();
+      console.error('Groq API error:', groqRes.status, errText);
+      return res.status(502).json({ error: 'AI service error' });
+    }
+
+    const data = await groqRes.json();
+    const reply = data.choices?.[0]?.message?.content || "Sorry, I couldn't generate a response.";
 
     return res.status(200).json({ reply });
   } catch (error: any) {
-    console.error('Groq API error:', error);
+    console.error('Chat handler error:', error?.message || error);
     return res.status(500).json({ error: 'Failed to get AI response' });
   }
 }
