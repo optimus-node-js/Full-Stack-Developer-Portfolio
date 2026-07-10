@@ -19,7 +19,7 @@ const Hero = () => {
     { icon: Github, href: contactInfo.github, label: 'GitHub' },
   ];
 
-  const techChips = ['TypeScript', 'Node.js', 'React', 'PostgreSQL', 'GCP', 'Nest.js'];
+  const techChips = ['TypeScript', 'Node.js', 'React', 'Next.js', 'PostgreSQL', 'OpenAI', 'GCP'];
 
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -62,7 +62,7 @@ const Hero = () => {
                 transition={{ delay: 0.25, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-foreground"
               >
-                Senior Full Stack
+                Product
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
@@ -71,7 +71,7 @@ const Hero = () => {
                 className="block text-gradient-primary animate-gradient-x"
                 style={{ backgroundSize: '200% 200%' }}
               >
-                Developer.
+                Engineer.
               </motion.span>
             </h1>
 
@@ -82,8 +82,8 @@ const Hero = () => {
               transition={{ delay: 0.55, duration: 0.8 }}
               className="mt-6 max-w-xl mx-auto lg:mx-0 text-lg sm:text-xl text-muted-foreground leading-relaxed"
             >
-              Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I architect and scale
-              {' '}multi-tenant SaaS platforms for <span className="text-foreground">healthcare</span> and <span className="text-foreground">education</span> — owning backend, mobile and cloud end-to-end.
+              Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I build across
+              {' '}<span className="text-foreground">full-stack</span>, <span className="text-foreground">AI</span>, <span className="text-foreground">security</span>, and <span className="text-foreground">platform architecture</span> — shipping scalable products end-to-end.
             </motion.p>
 
             {/* Tech chips */}
@@ -185,11 +185,11 @@ const Hero = () => {
                   <div><span className="text-tertiary">$</span> <span className="text-muted-foreground">whoami</span></div>
                   <div className="text-foreground">rahul.vishwakarma</div>
                   <div><span className="text-tertiary">$</span> <span className="text-muted-foreground">role</span></div>
-                  <div className="text-primary">Senior Full Stack Developer</div>
+                  <div className="text-primary">Product Engineer</div>
                   <div><span className="text-tertiary">$</span> <span className="text-muted-foreground">stack</span></div>
-                  <div className="text-secondary">TypeScript · Node · React · PostgreSQL · GCP</div>
+                  <div className="text-secondary">TypeScript · Node · React · Next.js · PostgreSQL · OpenAI</div>
                   <div><span className="text-tertiary">$</span> <span className="text-muted-foreground">focus</span></div>
-                  <div className="text-foreground/90">Multi-tenant SaaS · Healthcare · Education</div>
+                  <div className="text-foreground/90">Full Stack · AI · Security · Platform Architecture</div>
                   <div><span className="text-tertiary">$</span> <span className="text-muted-foreground">status</span></div>
                   <div className="flex items-center gap-2 text-foreground">
                     <span className="pulse-dot" />

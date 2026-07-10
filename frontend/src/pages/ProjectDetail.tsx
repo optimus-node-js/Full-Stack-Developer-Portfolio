@@ -102,7 +102,7 @@ const ProjectDetail = () => {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="relative rounded-3xl overflow-hidden border border-border/60 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] aspect-[4/3] lg:aspect-auto"
         >
-          <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+          <img src={project.image} alt={project.title} loading="lazy" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         </motion.div>
       </motion.section>
@@ -270,7 +270,7 @@ const ProjectDetail = () => {
                 className="group glass rounded-2xl overflow-hidden border border-border/60 hover:border-primary/30 transition-all hover:-translate-y-1"
               >
                 <div className="aspect-[16/10] overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={p.image} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-4">
                   <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground">{p.period}</div>

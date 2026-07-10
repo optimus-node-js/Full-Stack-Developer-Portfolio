@@ -5,7 +5,15 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Send, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { saveContactForm, ContactFormData } from '@/lib/firebase';
+import { saveContact } from '@/lib/instantdb';
+import { sendEmailNotification } from '@/lib/emailjs';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 interface ContactModalProps {
   projectTitle?: string;
@@ -64,8 +72,10 @@ const ContactModal = ({
         type: (projectTitle ? 'project_inquiry' : 'general_contact') as 'project_inquiry' | 'general_contact'
       };
 
-      // Save to Firebase
-      await saveContactForm(formDataWithContext);
+      await saveContact(formDataWithContext);
+      sendEmailNotification(formDataWithContext).catch((err) =>
+        console.error('Email notification failed:', err)
+      );
       
       toast({
         title: "Success!",
