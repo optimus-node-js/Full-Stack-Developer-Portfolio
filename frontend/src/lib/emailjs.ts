@@ -1,7 +1,8 @@
 import emailjs from '@emailjs/browser';
 
-const SERVICE_ID = '__EMAILJS_SERVICE_ID__';
-const TEMPLATE_ID = '__EMAILJS_TEMPLATE_ID__';
+const SERVICE_ID = 'service_bg7h3ud';
+const ADMIN_TEMPLATE_ID = 'template_k9mgt9b';
+const AUTOREPLY_TEMPLATE_ID = 'template_dnt3gxk';
 const PUBLIC_KEY = 'CwmmhoGWiL1tsVViV';
 
 export const sendEmailNotification = async (data: {
@@ -26,5 +27,8 @@ export const sendEmailNotification = async (data: {
     }),
   };
 
-  return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+  const adminEmail = emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams, PUBLIC_KEY);
+  const autoReply = emailjs.send(SERVICE_ID, AUTOREPLY_TEMPLATE_ID, templateParams, PUBLIC_KEY);
+
+  return Promise.all([adminEmail, autoReply]);
 };
