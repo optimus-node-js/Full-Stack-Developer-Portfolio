@@ -1,15 +1,15 @@
 import PageShell from '@/components/PageShell';
 import { bioData } from '@/data/resume-data';
 import SkillsModern from '@/components/SkillsModern';
-import { Shield, Gauge, Layers, Smartphone, ArrowRight } from 'lucide-react';
+import { Shield, Gauge, Layers, Bot, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const highlights = [
-  { icon: Shield, title: 'Zero Critical Breaches', copy: 'ACL-based architecture with strict cross-org isolation across 20+ tenants.' },
-  { icon: Gauge, title: '99.9% Uptime on GCP', copy: 'Owned production systems: deployments, Postgres migrations, critical cron workflows.' },
-  { icon: Layers, title: 'Multi-Tenant by Design', copy: 'Scaled healthcare & education SaaS with RBAC and tenant-aware data layers.' },
-  { icon: Smartphone, title: 'Web + Native, One Codebase', copy: 'Shipped Android & iOS patient apps with CapacitorJS on shared web-mobile architecture.' },
+  { icon: Bot, title: 'AI Agent Engineering', copy: 'Designed and shipped a production-ready AI Agent PoC with OpenAI, tool calling, and WhatsApp integration — in a single day.' },
+  { icon: Gauge, title: '99.9% Uptime on GCP', copy: 'Owned production systems across healthcare SaaS: deployments, Postgres migrations, critical cron workflows.' },
+  { icon: Layers, title: 'End-to-End Product Modules', copy: 'Built complete Services Module from scratch — bookings, scheduling, dashboards, RBAC, and API architecture.' },
+  { icon: Shield, title: 'Security & Platform Hardening', copy: 'Blue Team contributor: security assessments, OWASP recommendations, threat analysis, and vulnerability documentation.' },
 ];
 
 const AboutPage = () => {
@@ -17,8 +17,8 @@ const AboutPage = () => {
     <PageShell
       label="~/about"
       eyebrow="// who.am.i"
-      title={<>Production-grade engineering, <span className="text-gradient-primary">end-to-end.</span></> as unknown as string}
-      subtitle="I specialize in building reliable, scalable SaaS across healthcare and education — owning architecture, data, cloud and delivery."
+      title={<>Product engineering, <span className="text-gradient-primary">end-to-end.</span></> as unknown as string}
+      subtitle="Building across full-stack, AI, security, and platform architecture — owning products from database design to production deployment."
     >
       <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
         {/* Long bio card */}

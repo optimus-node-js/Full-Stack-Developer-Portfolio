@@ -7,50 +7,50 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Frontend Development",
-      icon: "💻",
+      icon: "code",
       skills: [
-        { name: "React.js", level: 90 },
-        { name: "Next.js", level: 85 },
-        { name: "TypeScript", level: 88 },
-        { name: "Vue.js", level: 80 },
-        { name: "HTML/CSS", level: 95 },
-        { name: "JavaScript", level: 92 }
+        { name: "React.js", level: 92 },
+        { name: "Next.js", level: 88 },
+        { name: "TypeScript", level: 90 },
+        { name: "TailwindCSS", level: 90 },
+        { name: "Zustand / Redux", level: 85 },
+        { name: "Capacitor", level: 82 }
       ]
     },
     {
       title: "Backend Development",
-      icon: "⚙️",
+      icon: "server",
       skills: [
-        { name: "Node.js", level: 90 },
-        { name: "Python", level: 95 },
-        { name: "Django", level: 85 },
-        { name: "Flask", level: 82 },
-        { name: "PHP", level: 75 },
-        { name: "C++", level: 80 }
+        { name: "Node.js", level: 92 },
+        { name: "Nest.js", level: 85 },
+        { name: "Express", level: 88 },
+        { name: "REST APIs", level: 92 },
+        { name: "Laravel / PHP", level: 78 },
+        { name: "JWT / OAuth", level: 85 }
       ]
     },
     {
-      title: "Database & Tools",
-      icon: "🗄️",
+      title: "Databases & Infrastructure",
+      icon: "database",
       skills: [
+        { name: "PostgreSQL", level: 90 },
         { name: "MongoDB", level: 88 },
-        { name: "MySQL", level: 85 },
         { name: "Redis", level: 80 },
-        { name: "Git", level: 90 },
-        { name: "Docker", level: 75 },
-        { name: "SQLite", level: 82 }
+        { name: "Google Cloud Platform", level: 82 },
+        { name: "System Design", level: 85 },
+        { name: "DB Migrations", level: 88 }
       ]
     },
     {
-      title: "AI/ML & Data Science",
-      icon: "🤖",
+      title: "AI, Security & Platform",
+      icon: "bot",
       skills: [
-        { name: "TensorFlow", level: 85 },
-        { name: "Scikit-learn", level: 88 },
-        { name: "Pandas", level: 92 },
-        { name: "NumPy", level: 90 },
-        { name: "Data Analysis", level: 85 },
-        { name: "Machine Learning", level: 82 }
+        { name: "OpenAI API / AI Agents", level: 82 },
+        { name: "Tool Calling / Prompt Eng.", level: 80 },
+        { name: "Security Assessment (OWASP)", level: 78 },
+        { name: "Notification Systems", level: 82 },
+        { name: "Workflow Automation", level: 80 },
+        { name: "Role Based Access", level: 88 }
       ]
     }
   ];
@@ -90,26 +90,25 @@ const Skills = () => {
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A comprehensive toolkit spanning full-stack development, AI/ML, 
-            data science, and modern web technologies.
+            A comprehensive toolkit spanning full-stack development, AI engineering,
+            security, and modern platform architecture.
           </p>
         </div>
 
         {/* Skills Grid */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
           {skillCategories.map((category, categoryIndex) => (
-            <div 
+            <div
               key={categoryIndex}
               className="glass p-8 rounded-2xl scroll-animate"
               style={{ animationDelay: `${categoryIndex * 0.1}s` }}
             >
               <div className="flex items-center space-x-3 mb-6">
-                <span className="text-3xl">{category.icon}</span>
                 <h3 className="text-xl font-semibold text-gradient-secondary">
                   {category.title}
                 </h3>
               </div>
-              
+
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
@@ -138,7 +137,6 @@ const Skills = () => {
           {/* Languages */}
           <div className="glass p-8 rounded-2xl scroll-animate">
             <h3 className="text-xl font-semibold text-gradient-primary mb-6 flex items-center">
-              <span className="text-2xl mr-3">🌐</span>
               Languages
             </h3>
             <div className="space-y-4">
@@ -156,7 +154,6 @@ const Skills = () => {
           {/* Certifications */}
           <div className="glass p-8 rounded-2xl scroll-animate">
             <h3 className="text-xl font-semibold text-gradient-primary mb-6 flex items-center">
-              <span className="text-2xl mr-3">🏆</span>
               Certifications
             </h3>
             <div className="space-y-3">
@@ -179,14 +176,14 @@ const Skills = () => {
           </h3>
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
             {[
-              "Algorithmic Trading",
-              "Data Analysis",
-              "Cybersecurity",
-              "Team Leadership",
+              "Product Engineering",
+              "AI Agents & Tool Calling",
+              "Security Assessment",
+              "System Design",
               "Full-Stack Development",
-              "Machine Learning",
-              "API Development",
-              "Database Design",
+              "API Architecture",
+              "Platform Development",
+              "Notification Systems",
               "Cloud Computing",
               "DevOps"
             ].map((specialization, index) => (

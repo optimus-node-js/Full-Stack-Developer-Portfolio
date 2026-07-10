@@ -5,20 +5,21 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import SEO from '@/components/SEO';
 
-import HomePage from '@/pages/HomePage';
-import AboutPage from '@/pages/AboutPage';
-import JourneyPage from '@/pages/JourneyPage';
-import WorkPage from '@/pages/WorkPage';
-import ContactPage from '@/pages/ContactPage';
-import NotFound from '@/pages/NotFound';
-import ProjectDetail from '@/pages/ProjectDetail';
+const HomePage = lazy(() => import('@/pages/HomePage'));
+const AboutPage = lazy(() => import('@/pages/AboutPage'));
+const JourneyPage = lazy(() => import('@/pages/JourneyPage'));
+const WorkPage = lazy(() => import('@/pages/WorkPage'));
+const ContactPage = lazy(() => import('@/pages/ContactPage'));
+const ContactedPage = lazy(() => import('@/pages/Contacted'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
+const ProjectDetail = lazy(() => import('@/pages/ProjectDetail'));
 
 const queryClient = new QueryClient();
 
@@ -32,15 +33,18 @@ function AnimatedRoutes() {
 
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/journey" element={<JourneyPage />} />
-        <Route path="/work" element={<WorkPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/project/:projectId" element={<ProjectDetail />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/journey" element={<JourneyPage />} />
+          <Route path="/work" element={<WorkPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contacted" element={<ContactedPage />} />
+          <Route path="/project/:projectId" element={<ProjectDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 }

@@ -1,20 +1,22 @@
 import { skillsData } from '@/data/resume-data';
-import { Code2, Layers, Server, Database, Cloud, Wrench } from 'lucide-react';
+import { Code2, Layers, Server, Database, Cloud, Wrench, Bot, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const iconMap: Record<string, any> = {
   'Languages': Code2,
   'Frontend': Layers,
   'Backend': Server,
+  'AI & Integrations': Bot,
   'Databases': Database,
   'Cloud & DevOps': Cloud,
-  'Tools & Practices': Wrench,
+  'Security': Shield,
+  'Architecture & Practice': Wrench,
 };
 
 const SkillsModern = () => {
   const marqueeTech = [
-    'TypeScript', 'Node.js', 'React', 'Nest.js', 'PostgreSQL', 'MongoDB', 'GCP', 'Redis',
-    'Zustand', 'Laravel', 'CapacitorJS', 'JWT', 'REST', 'Docker', 'Git', 'TailwindCSS'
+    'TypeScript', 'Node.js', 'React', 'Next.js', 'PostgreSQL', 'OpenAI', 'GCP', 'MongoDB',
+    'Nest.js', 'Redis', 'Capacitor', 'Twilio', 'Zustand', 'OWASP', 'REST', 'TailwindCSS'
   ];
 
   return (

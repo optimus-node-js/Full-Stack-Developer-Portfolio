@@ -4,13 +4,21 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Github, Linkedin, Send, ArrowUpRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { saveContactForm, ContactFormData } from '@/lib/firebase';
+import { saveContact } from '@/lib/instantdb';
+import { sendEmailNotification } from '@/lib/emailjs';
 import { contactInfo } from '@/data/resume-data';
 import { motion } from 'framer-motion';
 
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 const Contact = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState<ContactFormData>({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     subject: '',
@@ -45,7 +53,12 @@ const Contact = () => {
     }
 
     try {
-      await saveContactForm(formData);
+      await saveContact(formData);
+
+      sendEmailNotification(formData).catch((err) =>
+        console.error('Email notification failed:', err)
+      );
+
       toast({ title: 'Message sent!', description: "Thanks for reaching out — I'll reply within 24 hours." });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {

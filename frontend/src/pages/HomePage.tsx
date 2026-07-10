@@ -21,7 +21,7 @@ const HomePage = () => {
     { icon: Github, href: contactInfo.github, label: 'GitHub' },
   ];
 
-  const techChips = ['TypeScript', 'Node.js', 'React', 'PostgreSQL', 'GCP', 'Nest.js'];
+  const techChips = ['TypeScript', 'Node.js', 'React', 'Next.js', 'PostgreSQL', 'OpenAI', 'GCP'];
 
   const explorer = [
     { to: '/about', label: 'About', icon: User, hint: 'who I am & my stack' },
@@ -73,7 +73,7 @@ const HomePage = () => {
                 transition={{ delay: 0.25, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-foreground"
               >
-                Senior Full Stack
+                Product
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
@@ -82,7 +82,7 @@ const HomePage = () => {
                 className="block text-gradient-primary animate-gradient-x"
                 style={{ backgroundSize: '200% 200%' }}
               >
-                Developer.
+                Engineer.
               </motion.span>
             </h1>
 
@@ -92,9 +92,8 @@ const HomePage = () => {
               transition={{ delay: 0.55, duration: 0.8 }}
               className="mt-6 max-w-xl mx-auto lg:mx-0 text-lg text-muted-foreground leading-relaxed"
             >
-              Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I architect and scale
-              {' '}<span className="text-foreground">multi-tenant SaaS</span> platforms — owning backend, mobile and cloud end-to-end, with a bias toward
-              {' '}<span className="text-foreground">reliability</span>, <span className="text-foreground">performance</span> and production quality.
+              Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I build across
+              {' '}<span className="text-foreground">full-stack</span>, <span className="text-foreground">AI</span>, <span className="text-foreground">security</span>, and <span className="text-foreground">platform architecture</span> — shipping scalable products end-to-end, from database design to production deployment.
             </motion.p>
 
             <motion.div

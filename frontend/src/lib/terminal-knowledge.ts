@@ -5,7 +5,7 @@ export type LineKind = 'text' | 'prompt' | 'error' | 'info' | 'success' | 'muted
 export interface Line {
   text: string;
   kind?: LineKind;
-  instant?: boolean; // skip typing animation for this line
+  instant?: boolean;
 }
 
 export interface Response {
@@ -59,7 +59,7 @@ const cmdSkills = (): Response => ({
     { text: '# tech.stack', kind: 'accent' },
     { text: '' },
     ...skillsData.map((cat) => ({
-      text: `${pad(cat.title, 15)}: ${cat.skills.map((s) => s.name).join(', ')}`,
+      text: `${pad(cat.title, 22)}: ${cat.skills.map((s) => s.name).join(', ')}`,
     })),
   ],
 });
@@ -160,7 +160,7 @@ const cmdDate = (): Response => ({
 });
 
 const cmdUname = (): Response => ({
-  lines: [{ text: 'rahul-os 3.0.0 #senior-full-stack SMP x86_64 GNU/Linux-inspired', kind: 'accent' }],
+  lines: [{ text: 'rahul-os 4.0.0 #product-engineer SMP x86_64 GNU/Linux-inspired', kind: 'accent' }],
 });
 
 const cmdResume = (): Response => ({
@@ -182,9 +182,9 @@ const cmdHire = (): Response => ({
   lines: [
     { text: '✓ rahul is currently open to opportunities.', kind: 'success' },
     { text: '' },
-    { text: '  » Senior / Staff Full-Stack roles' },
-    { text: '  » Healthcare & Education SaaS' },
-    { text: '  » Remote (IST, flexible) · Hybrid · Short-term contracts' },
+    { text: '  » Product Engineer / Senior Full-Stack roles' },
+    { text: '  » AI Engineering · Platform Architecture · Security' },
+    { text: '  » Remote (IST, flexible) · Hybrid · On-site' },
     { text: '' },
     { text: "type 'contact' or 'email' to get in touch →", kind: 'muted' },
   ],
@@ -193,30 +193,30 @@ const cmdHire = (): Response => ({
 const cmdJoke = (): Response => {
   const jokes = [
     'Why did the dev go broke? — he used up all his cache.',
-    'There are 10 kinds of people: those who understand binary and those who don’t.',
-    '!false — it’s funny because it’s true.',
-    'A SQL query walks into a bar, walks up to two tables and asks: “may I JOIN you?”',
+    'There are 10 kinds of people: those who understand binary and those who don\'t.',
+    '!false — it\'s funny because it\'s true.',
+    'A SQL query walks into a bar, walks up to two tables and asks: "may I JOIN you?"',
     'I would tell you a UDP joke, but you might not get it.',
   ];
   return { lines: [{ text: jokes[Math.floor(Math.random() * jokes.length)], kind: 'accent' }] };
 };
 
 const easterEggs: Record<string, Response> = {
-  'rm -rf /': { lines: [{ text: "rm: refusing to remove '/' — this portfolio is sacred 🛡️", kind: 'error' }] },
-  'rm -rf /*': { lines: [{ text: "rm: refusing to remove '/' — this portfolio is sacred 🛡️", kind: 'error' }] },
+  'rm -rf /': { lines: [{ text: "rm: refusing to remove '/' — this portfolio is sacred", kind: 'error' }] },
+  'rm -rf /*': { lines: [{ text: "rm: refusing to remove '/' — this portfolio is sacred", kind: 'error' }] },
   vim: { lines: [{ text: 'E404: we ship production, we do not edit here. try "help".', kind: 'error' }] },
   nano: { lines: [{ text: 'nano: too comfy — try vim (j/k, also banned).', kind: 'error' }] },
   emacs: { lines: [{ text: 'emacs: operating system not found.', kind: 'error' }] },
-  exit: { lines: [{ text: "you can't escape the portfolio 😚 — try 'contact' instead.", kind: 'muted' }] },
+  exit: { lines: [{ text: "you can't escape the portfolio — try 'contact' instead.", kind: 'muted' }] },
   logout: { lines: [{ text: "rahul: session still active. try 'contact'.", kind: 'muted' }] },
-  quit: { lines: [{ text: "quitting is not senior-dev energy. try 'contact'.", kind: 'muted' }] },
+  quit: { lines: [{ text: "quitting is not product-engineer energy. try 'contact'.", kind: 'muted' }] },
   ':q': { lines: [{ text: 'E37: no write since last change (:q!) — still here.', kind: 'error' }] },
   ':wq': { lines: [{ text: 'saved. but still here.', kind: 'muted' }] },
   matrix: { lines: [{ text: 'wake up, Neo... the stack has you.', kind: 'accent' }] },
-  coffee: { lines: [{ text: '☕ coffee.service failed: resource “caffeine” depleted.', kind: 'error' }] },
-  'make coffee': { lines: [{ text: '☕ coffee.service failed: resource “caffeine” depleted.', kind: 'error' }] },
+  coffee: { lines: [{ text: 'coffee.service failed: resource "caffeine" depleted.', kind: 'error' }] },
+  'make coffee': { lines: [{ text: 'coffee.service failed: resource "caffeine" depleted.', kind: 'error' }] },
   'sudo hire rahul': { lines: [{ text: '✓ mission authorized. open /contact to finalize.', kind: 'success' }] },
-  'sudo make me a sandwich': { lines: [{ text: '🥪 okay.', kind: 'success' }] },
+  'sudo make me a sandwich': { lines: [{ text: 'okay.', kind: 'success' }] },
 };
 
 // ---------- NL intent matching ----------
@@ -235,7 +235,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     keywords: ['years', 'how long', 'experienced', 'seniority'],
     response: () => ({
       lines: [
-        { text: '3+ years full-stack engineering, 1+ year in senior SaaS ownership.', kind: 'accent' },
+        { text: '3+ years product engineering across full-stack, AI, and security.', kind: 'accent' },
         { text: "run 'experience' for the full breakdown.", kind: 'muted' },
       ],
     }),
@@ -245,27 +245,59 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     response: cmdHire,
   },
   {
-    keywords: ['healthcare', 'clinic', 'hospital', 'medical', 'script assist', 'scriptassist'],
+    keywords: ['hind social', 'hind', 'services module', 'current company'],
     response: () => cmdExperienceDetail(1),
   },
   {
-    keywords: ['school', 'student diwan', 'education platform', 'education saas', 'lms'],
+    keywords: ['healthcare', 'clinic', 'hospital', 'medical', 'script assist', 'scriptassist'],
     response: () => cmdExperienceDetail(2),
   },
   {
-    keywords: ['freelance', 'contract', 'laravel client', 'consulting'],
+    keywords: ['school', 'student diwan', 'education platform', 'education saas', 'lms'],
     response: () => cmdExperienceDetail(3),
   },
   {
-    keywords: ['space', 'rocket', 'omspace', 'aerospace'],
+    keywords: ['freelance', 'contract', 'laravel client', 'consulting'],
     response: () => cmdExperienceDetail(4),
+  },
+  {
+    keywords: ['space', 'rocket', 'omspace', 'aerospace'],
+    response: () => cmdExperienceDetail(5),
+  },
+  {
+    keywords: ['ai', 'agent', 'openai', 'whatsapp', 'chatbot', 'gpt', 'tool calling'],
+    response: () => ({
+      lines: [
+        { text: 'built a production-ready AI Agent PoC in a single day.', kind: 'accent' },
+        { text: 'stack: OpenAI GPT · Tool Calling · Twilio WhatsApp · Node.js · Next.js', kind: 'muted' },
+        { text: 'the agent handles intent detection, auth, CRUD, bookings, and event registration via WhatsApp.', kind: 'muted' },
+      ],
+    }),
+  },
+  {
+    keywords: ['security', 'owasp', 'blue team', 'vulnerability', 'threat'],
+    response: () => ({
+      lines: [
+        { text: 'active Blue Team contributor at Hind Social.', kind: 'accent' },
+        { text: 'security assessments · vulnerability identification · OWASP-based recommendations · threat analysis · platform hardening.', kind: 'muted' },
+      ],
+    }),
+  },
+  {
+    keywords: ['notification', 'noti', 'workflow'],
+    response: () => ({
+      lines: [
+        { text: 'worked on notification engineering with Noti.', kind: 'accent' },
+        { text: 'notification workflows · event notifications · trigger pipelines · workflow automation · notification orchestration.', kind: 'muted' },
+      ],
+    }),
   },
   {
     keywords: ['favorite', 'favourite', 'best project', 'proud', 'biggest'],
     response: () => ({
       lines: [
-        { text: 'the healthcare SaaS at Script Assist is the one I’m most proud of.', kind: 'accent' },
-        { text: '20+ UK clinics · 40,000+ real patients · 99.9% uptime · full ownership end-to-end.', kind: 'muted' },
+        { text: 'building the AI Agent PoC and the Services Module at Hind Social were recent highlights.', kind: 'accent' },
+        { text: 'previously: the healthcare SaaS at Script Assist — 20+ UK clinics · 40k+ patients · 99.9% uptime.', kind: 'muted' },
       ],
     }),
   },
@@ -274,7 +306,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     response: () => ({
       lines: [
         { text: 'remote-first. IST (UTC+5:30), but flexible for EU / US-east overlap.', kind: 'accent' },
-        { text: 'open to short-term relocation for the right team.', kind: 'muted' },
+        { text: 'open to on-site or hybrid for the right team.', kind: 'muted' },
       ],
     }),
   },
@@ -327,18 +359,18 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     keywords: ['hello', 'hi ', 'hey', 'hola', 'namaste', 'sup', 'yo'],
     response: () => ({
       lines: [
-        { text: '👋 hey there! I’m Rahul.', kind: 'accent' },
+        { text: "hey there! I'm Rahul.", kind: 'accent' },
         { text: "try 'help' to see commands, or just ask me anything.", kind: 'muted' },
       ],
     }),
   },
   {
     keywords: ['thanks', 'thank you', 'thx', 'ty'],
-    response: () => ({ lines: [{ text: 'anytime 🙌', kind: 'success' }] }),
+    response: () => ({ lines: [{ text: 'anytime', kind: 'success' }] }),
   },
   {
     keywords: ['bye', 'goodbye', 'see ya', 'see you', 'later'],
-    response: () => ({ lines: [{ text: "👋 till next time — drop an email via 'contact'.", kind: 'muted' }] }),
+    response: () => ({ lines: [{ text: "till next time — drop an email via 'contact'.", kind: 'muted' }] }),
   },
   {
     keywords: ['joke', 'funny', 'laugh'],
@@ -352,8 +384,8 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     keywords: ['future', 'goal', 'learn', 'next', 'planning', 'roadmap'],
     response: () => ({
       lines: [
-        { text: 'building reliable systems that quietly do a lot.', kind: 'accent' },
-        { text: 'deeper into: distributed systems · observability · developer-experience tooling.', kind: 'muted' },
+        { text: 'building intelligent systems that quietly do a lot.', kind: 'accent' },
+        { text: 'deeper into: distributed systems · AI agents · platform architecture · developer tooling.', kind: 'muted' },
       ],
     }),
   },
@@ -363,12 +395,12 @@ const intents: { keywords: string[]; response: () => Response }[] = [
 
 export const welcomeResponse: Response = {
   lines: [
-    { text: '┌─ rahul-os · senior full stack edition (v3.0.0) ─┐', kind: 'accent', instant: true },
+    { text: '┌─ rahul-os · product engineer edition (v4.0.0) ──┐', kind: 'accent', instant: true },
     { text: '│ system: online                                    │', kind: 'accent', instant: true },
-    { text: '│ uptime: 99.9%   UK patients: 40k+   clinics: 20+ │', kind: 'accent', instant: true },
+    { text: '│ domains: full-stack · AI · security · platform    │', kind: 'accent', instant: true },
     { text: '└────────────────────────────────────────────────┘', kind: 'accent', instant: true },
     { text: '' },
-    { text: "hi, I'm Rahul — a senior full-stack dev." },
+    { text: "hi, I'm Rahul — a product engineer." },
     { text: "ask me anything, or type 'help' to see what I can do here.", kind: 'muted' },
   ],
 };
@@ -392,7 +424,7 @@ export function processCommand(rawInput: string): Response {
     return {
       lines: [
         { text: `[sudo] password for rahul: ••••••••`, kind: 'muted' },
-        { text: 'Sorry, try again. (senior-developer permissions required)', kind: 'error' },
+        { text: 'Sorry, try again. (product-engineer permissions required)', kind: 'error' },
       ],
     };
   }
