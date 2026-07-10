@@ -1,27 +1,27 @@
 import { bioData } from '@/data/resume-data';
-import { Shield, Gauge, Layers, Smartphone } from 'lucide-react';
+import { Shield, Gauge, Layers, Bot } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const highlights = [
   {
-    icon: Shield,
-    title: 'Zero Critical Breaches',
-    copy: 'ACL-based architecture with strict cross-org isolation across 20+ tenants.'
+    icon: Bot,
+    title: 'AI Agent Engineering',
+    copy: 'Designed and shipped a production-ready AI Agent PoC with OpenAI, tool calling, and WhatsApp integration — in a single day.'
   },
   {
     icon: Gauge,
     title: '99.9% Uptime on GCP',
-    copy: 'Owned production systems: deployments, Postgres migrations, critical cron workflows.'
+    copy: 'Owned production systems across healthcare SaaS: deployments, Postgres migrations, critical cron workflows.'
   },
   {
     icon: Layers,
-    title: 'Multi-Tenant by Design',
-    copy: 'Scaled healthcare & education SaaS with RBAC and tenant-aware data layers.'
+    title: 'End-to-End Product Modules',
+    copy: 'Built complete Services Module from scratch — bookings, scheduling, dashboards, RBAC, and API architecture.'
   },
   {
-    icon: Smartphone,
-    title: 'Web + Native, One Codebase',
-    copy: 'Shipped Android & iOS patient apps with CapacitorJS on a shared web-mobile architecture.'
+    icon: Shield,
+    title: 'Security & Platform Hardening',
+    copy: 'Blue Team contributor: security assessments, OWASP recommendations, threat analysis, and vulnerability documentation.'
   }
 ];
 
@@ -41,12 +41,12 @@ const About = () => {
             About
           </div>
           <h2 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
-            Production-grade engineering,{' '}
+            Product engineering,{' '}
             <span className="text-gradient-primary">end-to-end.</span>
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            I specialize in building reliable, scalable SaaS across healthcare and education — owning
-            architecture, data, cloud and delivery.
+            Building across full-stack, AI, security, and platform architecture — owning products from
+            database design to production deployment.
           </p>
         </div>
 

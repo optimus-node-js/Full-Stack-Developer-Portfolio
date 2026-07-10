@@ -69,11 +69,11 @@ const Footer = () => {
                   </motion.div>
                   <div className="text-left">
                     <div className="font-heading font-bold text-base">Rahul Vishwakarma</div>
-                    <div className="text-[11px] text-muted-foreground font-mono tracking-wide">Senior Full Stack Developer</div>
+                    <div className="text-[11px] text-muted-foreground font-mono tracking-wide">Product Engineer</div>
                   </div>
                 </Link>
                 <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-xs">
-                  End-to-end SaaS — backend architecture, mobile, cloud and production reliability.
+                  Full-stack, AI, security, and platform architecture — shipping scalable products end-to-end.
                 </p>
 
                 <div className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-tertiary/25 bg-tertiary/10 text-[11px] font-mono">

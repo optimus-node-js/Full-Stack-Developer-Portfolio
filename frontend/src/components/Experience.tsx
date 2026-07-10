@@ -18,7 +18,7 @@ const Experience = () => {
             Building things that <span className="text-gradient-primary">matter.</span>
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">
-            Recent roles owning healthcare & education SaaS, mobile apps and freelance backend work.
+            Product engineering across full-stack, AI, security, and platform architecture.
           </p>
         </div>
 
