@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const FILTERS = ['All', 'Work', 'SaaS', 'Mobile', 'Open Source'] as const;
+const FILTERS = ['All', 'Work', 'SaaS', 'AI', 'Mobile', 'Open Source'] as const;
 
 const Projects = () => {
   const [filter, setFilter] = useState<string>('All');
@@ -60,6 +60,7 @@ const Projects = () => {
                 <img
                   src={p.image}
                   alt={p.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />

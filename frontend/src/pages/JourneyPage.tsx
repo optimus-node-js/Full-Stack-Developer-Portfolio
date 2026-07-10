@@ -11,7 +11,7 @@ const JourneyPage = () => {
       label="~/journey"
       eyebrow="// career.log"
       title={<>Building things that <span className="text-gradient-primary">matter.</span></> as unknown as string}
-      subtitle="Roles, milestones and credentials — arranged the way I actually think about them."
+      subtitle="Product engineering across full-stack, AI, security, and platform architecture — roles, milestones and credentials."
     >
       {/* Experience — Company Switcher */}
       <section className="max-w-6xl mx-auto">
