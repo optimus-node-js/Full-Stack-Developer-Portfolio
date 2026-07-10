@@ -130,6 +130,43 @@ function buildSearchIndex(): SearchResult[] {
   return results;
 }
 
+const SYNONYMS: Record<string, string[]> = {
+  ai: ['artificial intelligence', 'machine learning', 'ml', 'llm', 'large language model', 'gpt', 'openai', 'chatbot', 'agent', 'prompt', 'neural'],
+  llm: ['ai', 'artificial intelligence', 'gpt', 'openai', 'large language model', 'chatbot', 'prompt engineering'],
+  frontend: ['react', 'next.js', 'ui', 'ux', 'css', 'tailwind', 'html', 'web', 'client'],
+  backend: ['node', 'express', 'nest', 'api', 'server', 'database', 'rest'],
+  fullstack: ['full-stack', 'full stack', 'frontend', 'backend', 'web development'],
+  'full-stack': ['fullstack', 'full stack', 'frontend', 'backend'],
+  mobile: ['android', 'ios', 'capacitor', 'app', 'phone'],
+  security: ['owasp', 'blue team', 'hacking', 'vulnerability', 'threat', 'breach', 'ethical hacking'],
+  cloud: ['gcp', 'google cloud', 'aws', 'deployment', 'devops', 'infrastructure'],
+  database: ['postgresql', 'mongodb', 'mysql', 'redis', 'sql', 'db', 'data'],
+  saas: ['multi-tenant', 'platform', 'subscription', 'service'],
+  healthcare: ['clinic', 'pharmacy', 'patient', 'medical', 'health', 'script assist'],
+  education: ['school', 'student', 'university', 'college', 'degree', 'btech'],
+  whatsapp: ['messaging', 'twilio', 'chat', 'sms', 'communication'],
+  hire: ['job', 'work', 'career', 'role', 'position', 'opportunity', 'freelance', 'contract', 'available'],
+  contact: ['email', 'phone', 'message', 'reach', 'connect', 'hire'],
+  rocket: ['space', 'spacex', 'launch', 'omspace', 'aerospace', 'satellite'],
+  typescript: ['ts', 'javascript', 'js', 'programming', 'code'],
+  react: ['reactjs', 'react.js', 'jsx', 'component', 'hooks', 'frontend'],
+  node: ['nodejs', 'node.js', 'express', 'backend', 'server'],
+};
+
+function expandQuery(terms: string[]): string[] {
+  const expanded = new Set(terms);
+  for (const term of terms) {
+    const synonyms = SYNONYMS[term];
+    if (synonyms) {
+      for (const s of synonyms) expanded.add(s);
+    }
+    for (const [key, vals] of Object.entries(SYNONYMS)) {
+      if (vals.includes(term)) expanded.add(key);
+    }
+  }
+  return Array.from(expanded);
+}
+
 const CATEGORY_LABELS: Record<SearchResult['category'], string> = {
   page: 'Pages',
   project: 'Projects',
@@ -199,21 +236,31 @@ function SpotlightOverlay({ isOpen, onClose }: SpotlightSearchProps) {
     }
 
     const q = query.toLowerCase().trim();
-    const terms = q.split(/\s+/);
+    const rawTerms = q.split(/\s+/);
+    const expandedTerms = expandQuery(rawTerms);
 
     const scored = searchIndex.map((item) => {
       let score = 0;
       const titleLower = item.title.toLowerCase();
       const subtitleLower = item.subtitle.toLowerCase();
 
-      for (const term of terms) {
+      for (const term of rawTerms) {
         if (titleLower === term) score += 100;
         else if (titleLower.startsWith(term)) score += 80;
         else if (titleLower.includes(term)) score += 60;
         else if (subtitleLower.includes(term)) score += 40;
         else if (item.keywords.some((k) => k.includes(term))) score += 20;
-        else score -= 10;
       }
+
+      if (score === 0) {
+        for (const term of expandedTerms) {
+          if (titleLower.includes(term)) score += 35;
+          else if (subtitleLower.includes(term)) score += 25;
+          else if (item.keywords.some((k) => k.includes(term))) score += 15;
+        }
+      }
+
+      if (score === 0) score = -10;
 
       return { item, score };
     });
