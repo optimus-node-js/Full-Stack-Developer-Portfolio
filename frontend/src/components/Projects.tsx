@@ -4,6 +4,7 @@ import { projectsData } from '@/data/resume-data';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ProjectImage from '@/components/ProjectImage';
 
 const FILTERS = ['All', 'Work', 'SaaS', 'AI', 'Mobile', 'Open Source'] as const;
 
@@ -59,10 +60,10 @@ const Projects = () => {
                 className="block relative aspect-[16/10] overflow-hidden"
                 aria-label={`Open ${p.title} case study`}
               >
-                <img
+                <ProjectImage
                   src={p.image}
                   alt={p.title}
-                  loading="lazy"
+                  title={p.title}
                   className="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
