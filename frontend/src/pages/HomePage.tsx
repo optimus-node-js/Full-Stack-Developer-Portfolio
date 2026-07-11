@@ -3,9 +3,47 @@ import { Button } from '@/components/ui/button';
 import { Download, Mail, Github, Linkedin, ArrowUpRight, Sparkles, Briefcase, User, GraduationCap, Send } from 'lucide-react';
 import { bioData, contactInfo } from '@/data/resume-data';
 import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
 import InteractiveTerminal from '@/components/InteractiveTerminal';
+import AnimatedCounter from '@/components/AnimatedCounter';
+
+const ROLES = ['Full-Stack Developer', 'AI Engineer', 'Security Specialist', 'Platform Architect'];
+
+function useTypewriter(words: string[], typingMs = 80, pauseMs = 2000, deletingMs = 40) {
+  const [text, setText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const tick = useCallback(() => {
+    const current = words[wordIndex];
+    if (!isDeleting) {
+      setText(current.slice(0, text.length + 1));
+      if (text.length + 1 === current.length) {
+        setTimeout(() => setIsDeleting(true), pauseMs);
+        return;
+      }
+    } else {
+      setText(current.slice(0, text.length - 1));
+      if (text.length - 1 === 0) {
+        setIsDeleting(false);
+        setWordIndex((i) => (i + 1) % words.length);
+        return;
+      }
+    }
+  }, [words, wordIndex, text, isDeleting, pauseMs]);
+
+  useEffect(() => {
+    const delay = isDeleting ? deletingMs : typingMs;
+    const timer = setTimeout(tick, delay);
+    return () => clearTimeout(timer);
+  }, [tick, isDeleting, typingMs, deletingMs]);
+
+  return text;
+}
 
 const HomePage = () => {
+  const typed = useTypewriter(ROLES);
+
   const handleDownloadResume = () => {
     const link = document.createElement('a');
     link.href = '/resume.pdf';
@@ -86,11 +124,22 @@ const HomePage = () => {
               </motion.span>
             </h1>
 
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="mt-3 h-7 font-mono text-sm sm:text-base text-primary/80 text-center lg:text-left"
+            >
+              <span className="text-muted-foreground/60">&gt; </span>
+              {typed}
+              <span className="animate-blink text-primary">|</span>
+            </motion.div>
+
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.8 }}
-              className="mt-5 max-w-xl mx-auto lg:mx-0 text-[15px] sm:text-lg text-muted-foreground leading-relaxed"
+              className="mt-4 max-w-xl mx-auto lg:mx-0 text-[15px] sm:text-lg text-muted-foreground leading-relaxed"
             >
               Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I build across
               {' '}<span className="text-foreground">full-stack</span>, <span className="text-foreground">AI</span>, <span className="text-foreground">security</span>, and <span className="text-foreground">platform architecture</span> — shipping scalable products end-to-end, from database design to production deployment.
@@ -199,9 +248,18 @@ const HomePage = () => {
           transition={{ delay: 1.1, duration: 0.8 }}
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto"
         >
-          {bioData.stats.map((s, i) => (
+          {[
+            { end: 3, suffix: '+', label: 'Years Product Engineering' },
+            { end: 8, suffix: '+', label: 'Production Systems Shipped' },
+            { static: '99.9%', label: 'Uptime Maintained' },
+            { static: '0', label: 'Critical Data Breaches' },
+          ].map((s, i) => (
             <div key={i} className="glass rounded-2xl p-4 border border-border/60 text-center">
-              <div className="text-2xl sm:text-3xl font-heading font-bold text-foreground">{s.value}</div>
+              <div className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
+                {'static' in s ? s.static : (
+                  <AnimatedCounter end={s.end} suffix={s.suffix} duration={1800} />
+                )}
+              </div>
               <div className="text-[11px] sm:text-xs text-muted-foreground mt-1 uppercase tracking-wider">{s.label}</div>
             </div>
           ))}
