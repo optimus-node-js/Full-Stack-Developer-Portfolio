@@ -35,7 +35,13 @@ function AnimatedRoutes() {
 
   return (
     <AnimatePresence mode="wait">
-      <Suspense fallback={<div className="min-h-screen" />}>
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-sm font-bold text-primary-foreground animate-pulse">
+            RV
+          </div>
+        </div>
+      }>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { projectsData } from '@/data/resume-data';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -40,14 +40,16 @@ const Projects = () => {
         </div>
 
         {/* Grid */}
-        <div className="mt-8 sm:mt-10 grid md:grid-cols-2 gap-5 sm:gap-6 max-w-6xl mx-auto">
+        <motion.div layout className="mt-8 sm:mt-10 grid md:grid-cols-2 gap-5 sm:gap-6 max-w-6xl mx-auto">
+          <AnimatePresence mode="popLayout">
           {visible.map((p, i) => (
             <motion.article
-              key={`${p.title}-${i}`}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.55, delay: i * 0.05 }}
+              key={p.slug}
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.35, delay: i * 0.05 }}
               className="group relative rounded-3xl overflow-hidden border border-border/60 bg-card hover:-translate-y-1 transition-transform"
               data-testid={`project-card-${p.slug}`}
             >
@@ -121,7 +123,8 @@ const Projects = () => {
               </Link>
             </motion.article>
           ))}
-        </div>
+          </AnimatePresence>
+        </motion.div>
 
         {/* CTA */}
         <div className="mt-16 text-center">
