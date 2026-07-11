@@ -180,7 +180,7 @@ export const projectsData: Project[] = [
     subtitle: "Production platform powering UK clinics & pharmacies",
     description: "Architected and scaled a multi-tenant healthcare SaaS serving 20+ UK clinics and pharmacies with 40,000+ patients — strict cross-organization data isolation, ACL-based security, and 99.9% uptime on GCP.",
     longDescription: `A production-grade multi-tenant healthcare platform currently serving 20+ UK clinics, pharmacies and 40,000+ real patients across live clinical environments.\n\nI own the end-to-end engineering: multi-tenant data architecture with strict cross-organization isolation, RBAC/ACL security, GCP deployments, PostgreSQL migrations, critical cron workflows (prescriptions, inventory, appointments), and a dynamic RJSF-based form builder used by clinicians.\n\nMy work directly reduced production incidents, improved query performance on hot paths, and kept 99.9% uptime while the platform scaled from tens of thousands of patient records to its current footprint — all without a single critical data breach.`,
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    image: "https://image.pollinations.ai/prompt/modern%20healthcare%20dashboard%20with%20patient%20data%20charts%20multi-tenant%20architecture%20dark%20theme%20futuristic%20UI%20medical%20SaaS%20platform?width=1200&height=750&seed=101&model=flux&nologo=true",
     technologies: [
       { name: "TypeScript" },
       { name: "Node.js" },
@@ -220,7 +220,7 @@ export const projectsData: Project[] = [
     subtitle: "End-to-end services platform for a social network",
     description: "Built the complete Services Module from scratch for Hind Social Network — covering service management, bookings, scheduling, location management, admin dashboards, consumer flows, and role-based access across the entire stack.",
     longDescription: `Designed and built the complete Services Module from the ground up inside Hind Social Network — one of the platform's major product modules.\n\nThe module spans end-to-end functionality: service management, categories, collections, bookings, booking management, date scheduling, location management, places, service configuration, user booking flows, admin dashboards, consumer dashboards, role-based access control, full CRUD operations, API integrations, and database design.\n\nOwned everything from database schema design through API architecture to frontend consumer and admin experiences, delivering a production-ready module that serves as a core platform capability.`,
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    image: "https://image.pollinations.ai/prompt/service%20booking%20platform%20dashboard%20with%20scheduling%20calendar%20admin%20panels%20social%20network%20dark%20theme%20modern%20SaaS?width=1200&height=750&seed=202&model=flux&nologo=true",
     technologies: [
       { name: "Next.js" },
       { name: "Node.js" },
@@ -259,7 +259,7 @@ export const projectsData: Project[] = [
     subtitle: "Conversational AI backend for platform operations",
     description: "Independently designed and built a production-ready AI Agent PoC in a single day — enabling users to perform real platform operations through WhatsApp via intent detection, tool calling, and backend orchestration.",
     longDescription: `Independently researched, designed and built a production-ready AI Agent Proof of Concept that enables users to communicate with Hind Social directly through WhatsApp.\n\nThe AI Agent automatically detects user intent, authenticates users, queries backend databases, executes tool calls, performs CRUD operations, registers users into events and libraries, books services, answers platform queries, and retrieves personalized information.\n\nBuilt with OpenAI GPT, tool calling, Twilio WhatsApp API, Node.js, Next.js, and REST APIs. The architecture was designed to support future integrations with WhatsApp, Instagram, and Facebook Messenger — acting as a conversational backend capable of executing real platform operations.\n\nThe complete Proof of Concept was designed and implemented independently within a single day.`,
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    image: "https://image.pollinations.ai/prompt/AI%20chatbot%20WhatsApp%20interface%20with%20tool%20calling%20code%20visualization%20conversational%20AI%20agent%20dark%20futuristic%20theme?width=1200&height=750&seed=303&model=flux&nologo=true",
     technologies: [
       { name: "OpenAI GPT" },
       { name: "Tool Calling" },
@@ -298,7 +298,7 @@ export const projectsData: Project[] = [
     subtitle: "Native-feeling care experience from one shared codebase",
     description: "Built and deployed cross-platform patient apps using Capacitor on a shared web-mobile architecture — delivering a seamless care experience and achieving Google Play Store approval.",
     longDescription: `Designed and shipped Android + iOS patient applications on top of the healthcare SaaS. Using Capacitor, the apps share a single React/TypeScript codebase with the web platform — cutting duplicate work while delivering a native feel on both stores.\n\nI handled the full build pipeline — provisioning profiles, certificates, splash/app-icon generation, deep linking and OS-specific UX tuning — plus production release management on both stores.\n\nThe company had been trying to publish its Capacitor application for a long time. I successfully built and configured the application using Next.js WebView architecture and achieved Google Play Store approval — an important milestone for the team.`,
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    image: "https://image.pollinations.ai/prompt/mobile%20health%20app%20on%20smartphone%20screens%20iOS%20Android%20patient%20care%20medical%20UI%20dark%20background%20cross-platform?width=1200&height=750&seed=404&model=flux&nologo=true",
     technologies: [
       { name: "Capacitor" },
       { name: "React.js" },
@@ -336,7 +336,7 @@ export const projectsData: Project[] = [
     subtitle: "Scalable multi-tenant platform for educational institutions",
     description: "Developed and deployed a scalable multi-tenant school management system serving multiple institutions — RBAC for students, teachers, and admins across attendance, fees, academics, and administrative workflows.",
     longDescription: `A multi-tenant education SaaS used by multiple institutions to run day-to-day operations. I built the core backend architecture, authentication, RBAC, and the primary modules — attendance, fees, academics and administrative workflows.\n\nThe platform is designed around concurrency — multiple schools, thousands of students, teachers and admins interacting simultaneously without cross-school leakage.`,
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    image: "https://image.pollinations.ai/prompt/school%20management%20system%20dashboard%20attendance%20academics%20modules%20education%20platform%20dark%20theme%20modern%20UI?width=1200&height=750&seed=505&model=flux&nologo=true",
     technologies: [
       { name: "Node.js" },
       { name: "React.js" },
@@ -371,7 +371,7 @@ export const projectsData: Project[] = [
     subtitle: "Rich interface for past & upcoming SpaceX missions",
     description: "A responsive React + TypeScript application surfacing detailed SpaceX launch data with smart filtering, mission drill-downs, and a performant, accessible UI.",
     longDescription: `An open-source React + TypeScript app that consumes the SpaceX API and turns it into a pleasant browsing experience — filters by date, mission type, vehicle and status, plus detailed mission drill-downs.\n\nThe UI is built with Mantine + Zustand for state, focused on performance, clear typography and predictable interactions.`,
-    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: "https://image.pollinations.ai/prompt/SpaceX%20rocket%20launch%20data%20explorer%20React%20app%20space%20missions%20dark%20tech%20theme%20futuristic%20dashboard?width=1200&height=750&seed=606&model=flux&nologo=true",
     technologies: [
       { name: "React.js" },
       { name: "TypeScript" },
@@ -406,7 +406,7 @@ export const projectsData: Project[] = [
     subtitle: "Collaborative problem-solving for communities",
     description: "A MERN-stack platform enabling users to post challenges, propose solutions, and engage in threaded discussions — with JWT authentication and a clean component architecture.",
     longDescription: `A collaborative problem-solving app built on the MERN stack. Users can post challenges, submit structured solutions, and discuss in threaded conversations.\n\nSecurity is handled via JWT with server-side session validation, and the frontend uses a clean component architecture to keep the interface responsive as conversations grow.`,
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: "https://image.pollinations.ai/prompt/collaborative%20problem-solving%20platform%20MERN%20stack%20threaded%20discussions%20community%20dark%20modern%20UI?width=1200&height=750&seed=707&model=flux&nologo=true",
     technologies: [
       { name: "React.js" },
       { name: "Node.js" },
@@ -440,7 +440,7 @@ export const projectsData: Project[] = [
     subtitle: "NSE dividend research for Indian investors",
     description: "A research tool for computing dividend earnings on NSE-listed stocks — integrates the Angel One API for real-time data and applies statistical analysis for ROI estimation.",
     longDescription: `A personal-research tool for dividend investors in the Indian market. The backend pulls real-time NSE data via the Angel One API and applies statistical analysis to estimate dividend ROI, yield and historical performance.\n\nIt stores curated datasets in MongoDB, which dramatically reduces API chatter and gives fast, repeatable analysis for long-term investors.`,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: "https://image.pollinations.ai/prompt/stock%20market%20dividend%20calculator%20financial%20charts%20ROI%20metrics%20NSE%20Indian%20stocks%20dark%20fintech%20theme?width=1200&height=750&seed=808&model=flux&nologo=true",
     technologies: [
       { name: "Python" },
       { name: "MongoDB" },
