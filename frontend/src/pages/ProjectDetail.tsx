@@ -4,6 +4,7 @@ import { ArrowLeft, Github, ExternalLink, Calendar, User, CircleCheck, Lightbulb
 import { motion } from 'framer-motion';
 import { projectsData } from '@/data/resume-data';
 import PageShell from '@/components/PageShell';
+import ProjectImage from '@/components/ProjectImage';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -102,7 +103,7 @@ const ProjectDetail = () => {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="relative rounded-3xl overflow-hidden border border-border/60 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] aspect-[4/3] lg:aspect-auto"
         >
-          <img src={project.image} alt={project.title} loading="lazy" className="w-full h-full object-cover" />
+          <ProjectImage src={project.image} alt={project.title} title={project.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         </motion.div>
       </motion.section>
@@ -270,7 +271,7 @@ const ProjectDetail = () => {
                 className="group glass rounded-2xl overflow-hidden border border-border/60 hover:border-primary/30 transition-all hover:-translate-y-1"
               >
                 <div className="aspect-[16/10] overflow-hidden">
-                  <img src={p.image} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <ProjectImage src={p.image} alt={p.title} title={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-4">
                   <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground">{p.period}</div>
