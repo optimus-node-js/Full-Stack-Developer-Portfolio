@@ -125,7 +125,7 @@ const CaseStudyPage = () => {
           ))}
         </div>
 
-        <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div data-ai-section="metrics" className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
           {cs.metrics.map((m, i) => (
             <motion.div
               key={m.label}
