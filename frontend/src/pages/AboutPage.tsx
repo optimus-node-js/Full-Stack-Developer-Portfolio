@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const highlights = [
   { icon: Bot, title: 'AI Agent Engineering', copy: 'Designed and shipped a production-ready AI Agent PoC with OpenAI, tool calling, and WhatsApp integration — in a single day.' },
   { icon: Gauge, title: '99.9% Uptime on GCP', copy: 'Owned production systems across healthcare SaaS: deployments, Postgres migrations, critical cron workflows.' },
-  { icon: Layers, title: 'End-to-End Product Modules', copy: 'Built complete Services Module from scratch — bookings, scheduling, dashboards, RBAC, and API architecture.' },
+  { icon: Layers, title: 'End-to-End Product Modules', copy: 'Owned the entire Hind Social Services Module — 3 service types, bookings, collections, layered security and caching — shipped in 4 months, on deadline.' },
   { icon: Shield, title: 'Security & Platform Hardening', copy: 'Blue Team contributor: security assessments, OWASP recommendations, threat analysis, and vulnerability documentation.' },
 ];
 
@@ -17,7 +17,7 @@ const AboutPage = () => {
     <PageShell
       label="~/about"
       eyebrow="// who.am.i"
-      title={<>Product engineering, <span className="text-gradient-primary">end-to-end.</span></> as unknown as string}
+      title={<>Full stack engineering, <span className="text-gradient-primary">end-to-end.</span></> as unknown as string}
       subtitle="Building across full-stack, AI, security, and platform architecture — owning products from database design to production deployment."
     >
       <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6">

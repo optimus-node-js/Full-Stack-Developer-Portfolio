@@ -16,7 +16,7 @@ const highlights = [
   {
     icon: Layers,
     title: 'End-to-End Product Modules',
-    copy: 'Built complete Services Module from scratch — bookings, scheduling, dashboards, RBAC, and API architecture.'
+    copy: 'Owned the entire Hind Social Services Module — 3 service types, bookings, collections, layered security and caching — shipped in 4 months, on deadline.'
   },
   {
     icon: Shield,

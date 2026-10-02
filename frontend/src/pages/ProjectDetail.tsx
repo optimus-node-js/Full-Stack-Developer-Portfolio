@@ -129,6 +129,25 @@ const ProjectDetail = () => {
         })}
       </section>
 
+      {/* Headline metrics */}
+      {project.metrics && project.metrics.length > 0 && (
+        <section className="max-w-6xl mx-auto mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+          {project.metrics.map((m, i) => (
+            <motion.div
+              key={m.label}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="rounded-2xl p-4 border border-primary/20 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"
+            >
+              <div className="font-heading font-bold text-2xl sm:text-3xl text-gradient-primary">{m.value}</div>
+              <div className="mt-1 text-[11px] text-muted-foreground uppercase tracking-wider">{m.label}</div>
+            </motion.div>
+          ))}
+        </section>
+      )}
+
       {/* Content grid */}
       <section className="max-w-6xl mx-auto mt-14 grid lg:grid-cols-[1fr_320px] gap-8">
         {/* Main story */}
