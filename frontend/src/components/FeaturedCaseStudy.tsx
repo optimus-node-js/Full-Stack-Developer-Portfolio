@@ -59,7 +59,7 @@ const FeaturedCaseStudy = ({ compact = false }: FeaturedCaseStudyProps) => {
       <motion.div {...fade()} className="flex flex-wrap items-center justify-between gap-3 mb-5">
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-[0.2em] bg-tertiary/10 border border-tertiary/30 text-tertiary">
-            <span className="pulse-dot" /> Just shipped
+            <span className="pulse-dot mr-1" /> Just shipped
           </span>
           <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">featured case study</span>
         </div>

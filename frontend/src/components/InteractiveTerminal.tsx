@@ -128,13 +128,18 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
     }
   }, [entries]);
 
-  // autofocus when typing finishes
+  // Autofocus when typing finishes. On touch devices only after the visitor
+  // has used the terminal, so the page never jumps or pops the keyboard on load.
+  const interactedRef = useRef(false);
   useEffect(() => {
-    if (!isTyping) inputRef.current?.focus();
+    if (isTyping) return;
+    const touch = window.matchMedia('(pointer: coarse)').matches;
+    if (!touch || interactedRef.current) inputRef.current?.focus({ preventScroll: true });
   }, [isTyping]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    interactedRef.current = true;
     if (isTyping) return;
     const cmd = input.trim();
     if (!cmd) return;
@@ -180,7 +185,10 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
     }
   };
 
-  const focusInput = () => inputRef.current?.focus();
+  const focusInput = () => {
+    interactedRef.current = true;
+    inputRef.current?.focus({ preventScroll: true });
+  };
 
   return (
     <motion.div
@@ -256,7 +264,7 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
                 spellCheck={false}
                 autoCapitalize="off"
                 autoComplete="off"
-                className="flex-1 bg-transparent border-none outline-none text-foreground caret-primary dark:caret-sky-400 font-mono placeholder:text-muted-foreground/60"
+                className="terminal-input flex-1 min-w-0 bg-transparent border-none outline-none text-foreground caret-primary dark:caret-sky-400 font-mono placeholder:text-muted-foreground/60"
                 placeholder={entries.length <= 1 ? "try 'help' or ask me anything..." : ''}
               />
             </div>

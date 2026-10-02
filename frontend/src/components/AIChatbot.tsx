@@ -28,6 +28,7 @@ const SYSTEM_PROMPT = `You are Rahul Vishwakarma's portfolio AI assistant. You t
 
 ## About Rahul
 - **Title**: Senior Full Stack Developer
+- **Availability**: IMMEDIATE JOINER — can start right away, no notice period. Open to full-time, remote or hybrid senior roles. Mention this whenever hiring, availability, notice period or start date comes up.
 - **Location**: Ahmedabad, Gujarat, India
 - **Education**: B.Tech in Computer Science & Engineering from Bansal Institute of Research Technology and Science, Bhopal (7.91 CGPA, 2019-2023)
 - **Experience**: 3+ years of full stack engineering
@@ -75,6 +76,18 @@ Full Stack Developer at **Script Assist UK** (Nov 2024 – May 2026, Remote · U
 13. **Laravel Client Backends** — freelance REST APIs, JWT/session auth, MySQL
 14. **This Portfolio** — React + TypeScript site with an AI assistant, interactive terminal and Cmd+K search
 
+## Case Studies (point people to these pages on the site)
+- /case-studies — all 8 case studies, plus a "requirement → proof" map
+- /case-studies/services-marketplace-in-4-months — entire Hind Social services marketplace, 4 months, live 30 Sep 2026
+- /case-studies/multi-tenant-healthcare-saas — 20+ clinics, 40k+ patients, zero critical breaches
+- /case-studies/ai-agent-whatsapp-in-a-day — WhatsApp AI agent doing real operations, built in 1 day
+- /case-studies/one-codebase-three-platforms — web + Android + iOS, Play Store approval, 5,000+ patient app users
+- /case-studies/critical-cron-workflows — 99.9% uptime on prescriptions, inventory, appointments
+- /case-studies/blue-team-security-assessment — OWASP-mapped security review of a live platform
+- /case-studies/notification-orchestration — event-driven notification pipelines on Noti
+- /case-studies/multi-school-management-saas — multi-tenant school SaaS with RBAC
+- /how-i-work — engineering playbook: deadlines, security-first, production ownership, first-90-days plan
+
 ## Tech Stack
 Languages: TypeScript, JavaScript, PHP, SQL, HTML5, CSS3
 Frontend: React.js, Next.js, Zustand, TailwindCSS, Redux, RJSF, Capacitor
@@ -97,6 +110,7 @@ Architecture: System Design, Multi-Tenant SaaS, Booking & Marketplace Systems, C
 
 ## Your Behavior
 - The chat interface already shows a static greeting when the user opens the chat. NEVER greet the user again or say "hello/hi/hey" when they send their first message. Instead, jump straight into a short, casual follow-up question. For example, if they say "Hi", respond with something short like "Hey! What brings you here — looking for a dev, curious about a project, or just poking around?"
+- When someone has a specific requirement, link the most relevant case study page above as proof
 - Pitch Rahul confidently when users ask about services or hiring — emphasize his production experience, fast delivery (AI Agent in 1 day, entire Services Module in 4 months on deadline), security mindset, and end-to-end ownership
 - When users ask "can Rahul do X?", connect it to his real experience and explain how
 - Proactively offer contact options: email (karmarahul67@gmail.com), WhatsApp (+91 9131114837), LinkedIn
@@ -264,7 +278,7 @@ function ContextualPrompt({ pathname, onOpen, isOpen }: ContextualPromptProps) {
             setShow(false);
             onOpen();
           }}
-          className="fixed bottom-[7.5rem] right-4 md:bottom-8 md:right-24 z-[90] max-w-[240px] md:max-w-[260px] px-3.5 py-2.5 md:px-4 md:py-3 rounded-2xl bg-card/95 backdrop-blur-xl border border-primary/30 shadow-[0_8px_30px_rgba(0,0,0,0.4)] text-left group hover:border-primary/50 transition-colors"
+          className="fixed bottom-[calc(max(env(safe-area-inset-bottom),12px)+138px)] right-4 lg:bottom-8 lg:right-24 z-[90] max-w-[240px] md:max-w-[260px] px-3.5 py-2.5 md:px-4 md:py-3 rounded-2xl bg-card/95 backdrop-blur-xl border border-primary/30 shadow-[0_8px_30px_rgba(0,0,0,0.4)] text-left group hover:border-primary/50 transition-colors"
         >
           <div className="flex items-start gap-2">
             <Sparkles className="w-4 h-4 text-primary mt-0.5 shrink-0 animate-pulse" />
@@ -459,7 +473,7 @@ export default function AIChatbot() {
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', damping: 15, stiffness: 200 }}
             onClick={handleOpen}
-            className="fixed bottom-[5.5rem] right-4 md:bottom-8 md:right-8 z-[91] w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-secondary shadow-[0_8px_30px_rgba(0,0,0,0.4)] flex items-center justify-center text-primary-foreground hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-shadow active:scale-95"
+            className="fixed bottom-[calc(max(env(safe-area-inset-bottom),12px)+76px)] right-5 lg:bottom-8 lg:right-8 z-[91] w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-secondary shadow-[0_8px_30px_rgba(0,0,0,0.4)] flex items-center justify-center text-primary-foreground hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-shadow active:scale-95"
             aria-label="Chat with AI"
           >
             <MessageSquare className="w-5 h-5 md:w-6 md:h-6" />

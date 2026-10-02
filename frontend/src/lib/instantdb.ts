@@ -2,7 +2,7 @@ import { init, id } from '@instantdb/react';
 
 const APP_ID = 'b7edd58e-aebf-4b0c-a11d-955c9316c4c2';
 
-const db = init({ appId: APP_ID });
+const db = init({ appId: APP_ID, devtool: false });
 
 export interface ContactSubmission {
   id: string;
