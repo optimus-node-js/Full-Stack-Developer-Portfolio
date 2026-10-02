@@ -10,6 +10,7 @@
   :root {
     /* Dark theme (default) — deep slate, electric blue, violet */
     --background: 222 47% 6%;        /* #0A0F1E */
+    --ios-tint: 211 100% 58%;        /* iOS system blue (dark) */
     --foreground: 210 40% 98%;
 
     --card: 222 40% 10%;             /* #111827 */
@@ -69,6 +70,7 @@
 
   .light {
     --background: 210 40% 99%;       /* near white with blue tint */
+    --ios-tint: 211 100% 50%;        /* iOS system blue (light) */
     --foreground: 222 47% 8%;
 
     --card: 0 0% 100%;
@@ -614,5 +616,74 @@
     background-image:
       radial-gradient(circle at 20% 20%, hsla(var(--primary), 0.12), transparent 45%),
       radial-gradient(circle at 80% 80%, hsla(var(--secondary), 0.10), transparent 45%);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* iOS Liquid Glass tab bar & sheet                                    */
+/* ------------------------------------------------------------------ */
+.ios-tab-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+.ios-glass {
+  background: rgba(32, 32, 38, 0.62);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.ios-lens {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.ios-sheet {
+  background: rgba(30, 30, 34, 0.78);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 0.5px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 -10px 40px rgba(0, 0, 0, 0.4);
+}
+.light .ios-glass {
+  background: rgba(255, 255, 255, 0.76);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 10px 30px rgba(15, 23, 42, 0.14);
+}
+.light .ios-lens {
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: none;
+}
+.light .ios-sheet {
+  background: rgba(246, 246, 248, 0.86);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 -10px 40px rgba(15, 23, 42, 0.18);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .ios-glass, .ios-sheet { background: hsl(var(--card)); }
+}
+
+/* ------------------------------------------------------------------ */
+/* Mobile fit: no sideways scroll, no text inflation, real viewport    */
+/* ------------------------------------------------------------------ */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+/* iOS zooms into any focused field under 16px. */
+@media (hover: none) and (pointer: coarse) {
+  input:not(.terminal-input),
+  textarea,
+  select {
+    font-size: 16px !important;
   }
 }

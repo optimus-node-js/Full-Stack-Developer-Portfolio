@@ -2,80 +2,140 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/about</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/journey</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/work</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/contact</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/project/hind-social-services-module</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/project/ai-agent-whatsapp</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/project/multi-tenant-healthcare-saas</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/project/patient-mobile-apps</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/project/school-management-saas</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/project/spacex-launch-explorer</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/project/crowdsource-platform</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://rahul-vishwakarma-portfolio.vercel.app/project/dividend-roi-calculator</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/how-i-work</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies/services-marketplace-in-4-months</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies/multi-tenant-healthcare-saas</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies/ai-agent-whatsapp-in-a-day</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies/one-codebase-three-platforms</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies/critical-cron-workflows</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies/blue-team-security-assessment</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies/notification-orchestration</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rahul-vishwakarma-portfolio.vercel.app/case-studies/multi-school-management-saas</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

@@ -22,6 +22,9 @@ const ContactPage = lazy(() => import('@/pages/ContactPage'));
 const ContactedPage = lazy(() => import('@/pages/Contacted'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 const ProjectDetail = lazy(() => import('@/pages/ProjectDetail'));
+const CaseStudiesPage = lazy(() => import('@/pages/CaseStudiesPage'));
+const CaseStudyPage = lazy(() => import('@/pages/CaseStudyPage'));
+const HowIWorkPage = lazy(() => import('@/pages/HowIWorkPage'));
 
 const queryClient = new QueryClient();
 
@@ -50,6 +53,9 @@ function AnimatedRoutes() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/contacted" element={<ContactedPage />} />
           <Route path="/project/:projectId" element={<ProjectDetail />} />
+          <Route path="/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
+          <Route path="/how-i-work" element={<HowIWorkPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
@@ -81,7 +87,7 @@ function AppShell() {
       <Navigation onSearchOpen={open} platform={platform} />
       <AnimatedRoutes />
       <Footer />
-      <MobileBottomNav />
+      <MobileBottomNav onSearchOpen={open} />
       <SpotlightOverlay isOpen={isOpen} onClose={close} />
       <AIChatbot />
     </>

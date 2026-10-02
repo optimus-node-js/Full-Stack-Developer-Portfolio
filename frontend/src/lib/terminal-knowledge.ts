@@ -1,4 +1,5 @@
 import { bioData, contactInfo, experienceData, projectsData, skillsData, educationData } from '@/data/resume-data';
+import { caseStudies } from '@/data/case-studies';
 
 export type LineKind = 'text' | 'prompt' | 'error' | 'info' | 'success' | 'muted' | 'accent' | 'ascii';
 
@@ -26,6 +27,7 @@ const cmdHelp = (): Response => ({
     { text: `  ${pad('skills, stack')} — my tech stack` },
     { text: `  ${pad('experience')} — work history` },
     { text: `  ${pad('projects')} — selected projects` },
+    { text: `  ${pad('cases')} — production case studies` },
     { text: `  ${pad('education')} — education & certs` },
     { text: `  ${pad('contact')} — get in touch` },
     { text: `  ${pad('resume')} — download resume` },
@@ -180,13 +182,23 @@ const cmdSocials = (): Response => ({
 
 const cmdHire = (): Response => ({
   lines: [
-    { text: '✓ rahul is currently open to opportunities.', kind: 'success' },
+    { text: '✓ rahul is an immediate joiner — can start right away.', kind: 'success' },
     { text: '' },
     { text: '  » Senior Full Stack / Product Engineering roles' },
     { text: '  » AI Engineering · Platform Architecture · Security' },
     { text: '  » Remote (IST, flexible) · Hybrid · On-site' },
     { text: '' },
-    { text: "type 'contact' or 'email' to get in touch →", kind: 'muted' },
+    { text: "type 'cases' for proof, or 'contact' to get in touch →", kind: 'muted' },
+  ],
+});
+
+const cmdCases = (): Response => ({
+  lines: [
+    { text: 'Case studies (open /case-studies to read them):', kind: 'accent' },
+    { text: '' },
+    ...caseStudies.map((c, i) => ({ text: `  [${i + 1}] ${c.title}` })),
+    { text: '' },
+    { text: 'each covers problem → constraints → architecture → trade-offs → results.', kind: 'muted' },
   ],
 });
 
@@ -235,13 +247,13 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     keywords: ['years', 'how long', 'experienced', 'seniority'],
     response: () => ({
       lines: [
-        { text: '3+ years product engineering across full-stack, AI, and security.', kind: 'accent' },
+        { text: '3+ years of full stack engineering across SaaS, AI, and security.', kind: 'accent' },
         { text: "run 'experience' for the full breakdown.", kind: 'muted' },
       ],
     }),
   },
   {
-    keywords: ['hire', 'hiring', 'available', 'open to work', 'opportunity', 'opportunities', 'role', 'recruit', 'interview'],
+    keywords: ['hire', 'hiring', 'available', 'open to work', 'opportunity', 'opportunities', 'role', 'recruit', 'interview', 'notice period', 'immediate', 'join', 'joining', 'start date'],
     response: cmdHire,
   },
   {
@@ -483,6 +495,9 @@ export function processCommand(rawInput: string): Response {
     uname: cmdUname,
     'uname -a': cmdUname,
     hire: cmdHire,
+    cases: cmdCases,
+    'case-studies': cmdCases,
+    'case studies': cmdCases,
     joke: cmdJoke,
   };
 

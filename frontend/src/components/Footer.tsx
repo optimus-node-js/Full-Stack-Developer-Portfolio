@@ -17,13 +17,15 @@ const Footer = () => {
     { label: 'About', to: '/about' },
     { label: 'Journey', to: '/journey' },
     { label: 'Work', to: '/work' },
+    { label: 'Case Studies', to: '/case-studies' },
+    { label: 'How I Work', to: '/how-i-work' },
     { label: 'Contact', to: '/contact' },
   ];
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="relative pb-28 md:pb-10 pt-14 overflow-hidden">
+    <footer className="relative pb-32 lg:pb-10 pt-14 overflow-hidden">
       {/* Liquid background */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border/70 to-transparent" />
       <motion.div
@@ -77,7 +79,7 @@ const Footer = () => {
                 </p>
 
                 <div className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-tertiary/25 bg-tertiary/10 text-[11px] font-mono">
-                  <span className="pulse-dot" /> available for senior roles
+                  <span className="pulse-dot mr-1.5" /> immediate joiner · open to senior roles
                 </div>
               </div>
 
