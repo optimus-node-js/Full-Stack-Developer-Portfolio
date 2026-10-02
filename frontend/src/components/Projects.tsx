@@ -1,17 +1,25 @@
-import { Button } from '@/components/ui/button';
 import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { projectsData } from '@/data/resume-data';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, type PointerEvent } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectImage from '@/components/ProjectImage';
 
-const FILTERS = ['All', 'Work', 'SaaS', 'AI', 'Mobile', 'Open Source'] as const;
+const FILTERS = ['All', 'Work', 'SaaS', 'AI', 'Security', 'Mobile', 'Open Source'] as const;
 
 const Projects = () => {
   const [filter, setFilter] = useState<string>('All');
 
   const visible = projectsData.filter((p) => p.category.includes(filter));
+
+  // Cursor-following glow: write pointer position to CSS vars, no re-render.
+  const trackPointer = (e: PointerEvent<HTMLElement>) => {
+    if (e.pointerType !== 'mouse') return;
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
+  };
 
   return (
     <section id="projects" className="relative pt-2 pb-12 overflow-hidden">
@@ -51,13 +59,17 @@ const Projects = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.35, delay: i * 0.05 }}
-              className="group relative rounded-3xl overflow-hidden border border-border/60 bg-card hover:-translate-y-1 transition-transform"
+              onPointerMove={trackPointer}
+              className={`group relative rounded-3xl overflow-hidden border bg-card hover:-translate-y-1 transition-[transform,border-color,box-shadow] duration-300 hover:shadow-glow ${
+                p.featured ? 'border-primary/40 md:col-span-2' : 'border-border/60 hover:border-primary/30'
+              }`}
               data-testid={`project-card-${p.slug}`}
             >
+              <div className="spotlight-glow pointer-events-none absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               {/* Clickable cover */}
               <Link
                 to={`/project/${p.slug}`}
-                className="block relative aspect-[16/10] overflow-hidden"
+                className={`block relative overflow-hidden ${p.featured ? 'aspect-[16/10] md:aspect-[21/8]' : 'aspect-[16/10]'}`}
                 aria-label={`Open ${p.title} case study`}
               >
                 <ProjectImage
@@ -68,6 +80,11 @@ const Projects = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
                 <div className="absolute top-4 left-4 flex gap-1.5">
+                  {p.featured && (
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+                      Featured
+                    </span>
+                  )}
                   {p.category.filter((c) => c !== 'All').slice(0, 2).map((c) => (
                     <span key={c} className="px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-background/70 backdrop-blur border border-border/60 text-foreground/90">
                       {c}
@@ -105,7 +122,15 @@ const Projects = () => {
               {/* Body */}
               <Link to={`/project/${p.slug}`} className="block p-6 lg:p-7 relative">
                 <div className="flex items-start justify-between gap-2">
-                  <div className="text-xs font-mono text-muted-foreground">{p.period}</div>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-mono text-muted-foreground">
+                    <span>{p.period}</span>
+                    {p.status && (
+                      <>
+                        <span className="text-border">•</span>
+                        <span className="text-tertiary">{p.status}</span>
+                      </>
+                    )}
+                  </div>
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
                 </div>
                 <h3 className="mt-2 font-heading font-bold text-xl sm:text-2xl group-hover:text-primary transition-colors">
@@ -127,16 +152,6 @@ const Projects = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <Button
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-primary-premium h-12 px-7 rounded-full text-base"
-          >
-            Let's build something
-            <ArrowUpRight className="h-4 w-4" />
-          </Button>
-        </div>
       </div>
     </section>
   );

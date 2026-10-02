@@ -420,6 +420,46 @@
     left: 100%;
   }
 
+  /* Cursor-following glow used by SpotlightCard */
+  .spotlight-glow {
+    background: radial-gradient(
+      420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      hsla(var(--primary), 0.14),
+      transparent 45%
+    );
+  }
+
+  /* Animated gradient border (conic beam rotating behind a 1px gap) */
+  .border-beam {
+    padding: 1px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .border-beam::before {
+    content: '';
+    position: absolute;
+    inset: -150%;
+    z-index: -1;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg 250deg,
+      hsl(var(--primary)) 300deg,
+      hsl(var(--secondary)) 340deg,
+      transparent 360deg
+    );
+    animation: beam-spin 7s linear infinite;
+  }
+  .border-beam > div {
+    background: hsl(var(--card));
+    border-color: hsl(var(--border) / 0.4);
+  }
+  @keyframes beam-spin {
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .border-beam::before { animation: none; }
+  }
+
   /* Marquee animation for tech stack */
   .marquee {
     display: flex;
