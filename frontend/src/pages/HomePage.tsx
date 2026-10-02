@@ -6,8 +6,10 @@ import { motion } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
 import InteractiveTerminal from '@/components/InteractiveTerminal';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import FeaturedCaseStudy from '@/components/FeaturedCaseStudy';
+import TechMarquee from '@/components/TechMarquee';
 
-const ROLES = ['Full-Stack Developer', 'AI Engineer', 'Security Specialist', 'Platform Architect'];
+const ROLES = ['Product Engineer', 'Marketplace & SaaS Builder', 'AI Engineer', 'Security-minded Architect'];
 
 function useTypewriter(words: string[], typingMs = 80, pauseMs = 2000, deletingMs = 40) {
   const [text, setText] = useState('');
@@ -59,8 +61,6 @@ const HomePage = () => {
     { icon: Github, href: contactInfo.github, label: 'GitHub' },
   ];
 
-  const techChips = ['TypeScript', 'Node.js', 'React', 'Next.js', 'PostgreSQL', 'OpenAI', 'GCP'];
-
   const explorer = [
     { to: '/about', label: 'About', icon: User, hint: 'who I am & my stack' },
     { to: '/journey', label: 'Journey', icon: GraduationCap, hint: 'experience + education' },
@@ -83,8 +83,8 @@ const HomePage = () => {
       <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px] animate-aurora" style={{ animationDelay: '3s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-tertiary/10 rounded-full blur-[120px]" />
 
-      <div className="relative z-10 px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 sm:gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 w-full px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 sm:gap-12 lg:gap-16 items-center [&>*]:min-w-0">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -104,14 +104,14 @@ const HomePage = () => {
               <span className="text-muted-foreground hidden sm:inline">Remote / Hybrid</span>
             </motion.div>
 
-            <h1 className="mt-6 font-heading font-bold leading-[1.05] tracking-tight text-[1.6rem] sm:text-5xl lg:text-[4.5rem]">
+            <h1 className="mt-6 font-heading font-bold leading-[1.05] tracking-tight text-[1.75rem] sm:text-5xl lg:text-[3.9rem] xl:text-[4.25rem]">
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-foreground"
               >
-                Product
+                Senior Full Stack
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
@@ -120,7 +120,7 @@ const HomePage = () => {
                 className="block text-gradient-primary animate-gradient-x"
                 style={{ backgroundSize: '200% 200%' }}
               >
-                Engineer.
+                Developer.
               </motion.span>
             </h1>
 
@@ -141,25 +141,26 @@ const HomePage = () => {
               transition={{ delay: 0.55, duration: 0.8 }}
               className="mt-4 max-w-xl mx-auto lg:mx-0 text-[15px] sm:text-lg text-muted-foreground leading-relaxed"
             >
-              Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I build across
-              {' '}<span className="text-foreground">full-stack</span>, <span className="text-foreground">AI</span>, <span className="text-foreground">security</span>, and <span className="text-foreground">platform architecture</span> — shipping scalable products end-to-end, from database design to production deployment.
+              Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I ship scalable products end-to-end —
+              {' '}<span className="text-foreground">multi-tenant SaaS</span>, <span className="text-foreground">booking marketplaces</span>, <span className="text-foreground">AI agents</span> and <span className="text-foreground">secure APIs</span> — from database design to production.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
-              className="mt-7 flex flex-wrap justify-center lg:justify-start gap-2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 0.6 }}
+              className="mt-5 flex justify-center lg:justify-start"
             >
-              {techChips.map((t) => (
-                <span
-                  key={t}
-                  className="px-3 py-1 rounded-full glass text-xs font-mono text-muted-foreground border border-border/60"
-                >
-                  {t}
-                </span>
-              ))}
+              <Link
+                to="/project/hind-social-services-module"
+                className="group inline-flex items-center gap-2 max-w-full pl-1.5 pr-3 py-1.5 rounded-full border border-border/60 bg-muted/30 hover:border-primary/40 transition-colors text-xs sm:text-sm"
+              >
+                <span className="shrink-0 px-2 py-0.5 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground text-[10px] font-mono uppercase tracking-wider">New</span>
+                <span className="truncate text-muted-foreground group-hover:text-foreground transition-colors">Shipped Hind Social's Services Marketplace · 30 Sep 2026</span>
+                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
+              </Link>
             </motion.div>
+
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -249,7 +250,7 @@ const HomePage = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto"
         >
           {[
-            { end: 3, suffix: '+', label: 'Years Product Engineering' },
+            { end: 3, suffix: '+', label: 'Years Full Stack Engineering' },
             { end: 8, suffix: '+', label: 'Production Systems Shipped' },
             { static: '99.9%', label: 'Uptime Maintained' },
             { static: '0', label: 'Critical Data Breaches' },
@@ -265,12 +266,28 @@ const HomePage = () => {
           ))}
         </motion.div>
 
+        {/* Tech marquee */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="mt-10"
+        >
+          <TechMarquee />
+        </motion.div>
+
+        {/* Featured case study */}
+        <div className="mt-16 max-w-6xl mx-auto">
+          <FeaturedCaseStudy compact />
+        </div>
+
         {/* Page explorer CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.25, duration: 0.8 }}
-          className="mt-10 max-w-4xl mx-auto"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-16 max-w-4xl mx-auto"
         >
           <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground text-center">explore</div>
           <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">

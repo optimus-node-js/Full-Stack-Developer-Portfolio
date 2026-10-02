@@ -69,7 +69,7 @@ const Footer = () => {
                   </motion.div>
                   <div className="text-left">
                     <div className="font-heading font-bold text-base">Rahul Vishwakarma</div>
-                    <div className="text-[11px] text-muted-foreground font-mono tracking-wide">Product Engineer</div>
+                    <div className="text-[11px] text-muted-foreground font-mono tracking-wide">Senior Full Stack Developer</div>
                   </div>
                 </Link>
                 <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-xs">

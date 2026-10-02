@@ -26,6 +26,8 @@ export interface Project {
   highlights?: string[];
   challenges?: string[];
   outcomes?: string[];
+  featured?: boolean;
+  metrics?: { value: string; label: string }[];
 }
 
 export interface Experience {
@@ -163,6 +165,9 @@ export const skillsData: SkillCategory[] = [
       { name: "System Design" },
       { name: "Multi-Tenant SaaS" },
       { name: "Product Engineering" },
+      { name: "Booking & Marketplace Systems" },
+      { name: "Caching Strategies" },
+      { name: "Layered Security Architecture" },
       { name: "Notification Systems" },
       { name: "Workflow Automation" },
       { name: "Role Based Access" },
@@ -174,6 +179,55 @@ export const skillsData: SkillCategory[] = [
 
 // Projects
 export const projectsData: Project[] = [
+  {
+    slug: "hind-social-services-module",
+    title: "Hind Social — Services Marketplace",
+    subtitle: "A complete booking marketplace, built end-to-end in 4 months",
+    description: "Owned and built the entire Services Module of Hind Social — a full marketplace inside the platform where providers create and sell services and customers discover and book them. Three service types, collections, categories, banners, bookings and My Bookings, behind a layered security architecture. Shipped to production on schedule on 30 Sep 2026.",
+    longDescription: `The Services Module is a complete product inside Hind Social: service providers create and manage services, and customers browse, book and track them. I owned it end-to-end, from database schema and API design through the provider, customer and admin interfaces, and shipped it to production in about four months, on the committed deadline of 30 September 2026.\n\nThe catalogue supports three service types, each with its own booking rules: short-duration (slot-based), long-duration, and delivery-based services. Around them I built collections, categories, promotional banners, service detail and discovery pages, the booking flow, provider-side booking management, and a "My Bookings" area for customers.\n\nSecurity was designed in layers rather than added at the end: role-based permissions, hierarchy-level access rules (admin, provider, customer), ownership checks on every service and booking resource, and validation at each layer to block unauthorized access. On the performance side I added caching, tuned queries and indexes, and paginated heavy endpoints so the module can handle thousands of booking transactions without slowing down.\n\nThe whole module is fully mobile-responsive and tested for Safari and iOS, which matters for a consumer marketplace where much of the traffic comes from iPhones.`,
+    image: "https://image.pollinations.ai/prompt/service%20booking%20marketplace%20app%20with%20categories%20collections%20banners%20and%20booking%20calendar%20dark%20theme%20modern%20UI?width=1200&height=750&seed=212&model=flux&nologo=true",
+    technologies: [
+      { name: "Next.js" },
+      { name: "Node.js" },
+      { name: "TypeScript" },
+      { name: "PostgreSQL" },
+      { name: "REST APIs" },
+      { name: "RBAC" },
+      { name: "Caching" }
+    ],
+    period: "Jun 2026 – Sep 2026",
+    duration: "4 months · shipped 30 Sep 2026",
+    role: "Lead Developer (module owner)",
+    status: "Live in Production",
+    category: ["All", "Work", "SaaS"],
+    featured: true,
+    metrics: [
+      { value: "4 mo", label: "Concept to production" },
+      { value: "3", label: "Service types" },
+      { value: "30 Sep", label: "Shipped on deadline" },
+      { value: "1000s", label: "Bookings it's built to handle" }
+    ],
+    highlights: [
+      "Owned the entire module end-to-end: schema, APIs, provider, customer and admin UI",
+      "Three service types: short-duration (slot-based), long-duration and delivery-based",
+      "Collections, categories, banners, service discovery, bookings and My Bookings",
+      "Layered security: role and hierarchy-level access rules with ownership checks on every resource",
+      "Caching, query and index tuning so the module scales to thousands of booking transactions",
+      "Fully mobile-responsive and Safari / iOS compatible"
+    ],
+    challenges: [
+      "Modelling three very different service types (slot-based, long-duration, delivery) in one booking engine without special-casing everywhere",
+      "Enforcing hierarchy-level permissions so providers, customers and admins each see and change only what they own",
+      "Keeping booking and listing endpoints fast under load with caching and query tuning",
+      "Delivering a module this large to production on a fixed deadline without cutting corners on security"
+    ],
+    outcomes: [
+      "Shipped the full Services Module to production on the committed 30 September 2026 deadline",
+      "Production-grade module designed to handle thousands of booking transactions",
+      "No unauthorized-access paths: every API is protected by role, hierarchy and ownership checks",
+      "Consistent experience across mobile, desktop and Safari / iOS"
+    ]
+  },
   {
     slug: "multi-tenant-healthcare-saas",
     title: "Multi-Tenant Healthcare SaaS",
@@ -192,7 +246,7 @@ export const projectsData: Project[] = [
     ],
     period: "Nov 2024 – May 2026",
     duration: "1 year 7 months",
-    role: "Senior Full Stack Developer",
+    role: "Full Stack Developer",
     status: "In Production",
     category: ["All", "Work", "SaaS"],
     highlights: [
@@ -212,45 +266,6 @@ export const projectsData: Project[] = [
       "Zero critical data breaches since launch",
       "Shipped Android + iOS patient apps from a shared web-mobile architecture",
       "Improved engineering velocity by stabilising legacy code paths"
-    ]
-  },
-  {
-    slug: "hind-social-services-module",
-    title: "Hind Social — Services Module",
-    subtitle: "End-to-end services platform for a social network",
-    description: "Built the complete Services Module from scratch for Hind Social Network — covering service management, bookings, scheduling, location management, admin dashboards, consumer flows, and role-based access across the entire stack.",
-    longDescription: `Designed and built the complete Services Module from the ground up inside Hind Social Network — one of the platform's major product modules.\n\nThe module spans end-to-end functionality: service management, categories, collections, bookings, booking management, date scheduling, location management, places, service configuration, user booking flows, admin dashboards, consumer dashboards, role-based access control, full CRUD operations, API integrations, and database design.\n\nOwned everything from database schema design through API architecture to frontend consumer and admin experiences, delivering a production-ready module that serves as a core platform capability.`,
-    image: "https://image.pollinations.ai/prompt/service%20booking%20platform%20dashboard%20with%20scheduling%20calendar%20admin%20panels%20social%20network%20dark%20theme%20modern%20SaaS?width=1200&height=750&seed=202&model=flux&nologo=true",
-    technologies: [
-      { name: "Next.js" },
-      { name: "Node.js" },
-      { name: "TypeScript" },
-      { name: "REST APIs" },
-      { name: "RBAC" },
-      { name: "PostgreSQL" }
-    ],
-    period: "May 2026 – Present",
-    duration: "Ongoing",
-    role: "Full Stack Developer",
-    status: "In Production",
-    category: ["All", "Work", "SaaS"],
-    highlights: [
-      "Built end-to-end as a major product module from scratch",
-      "Covers bookings, scheduling, locations, admin & consumer dashboards",
-      "Role-based access across admin, service providers, and consumers",
-      "Complete API layer with full CRUD and database design"
-    ],
-    challenges: [
-      "Designing a flexible schema supporting varied service types and booking patterns",
-      "Building role-aware dashboards with distinct admin vs consumer experiences",
-      "Handling complex date scheduling with timezone and availability constraints",
-      "Integrating location management across the existing platform architecture"
-    ],
-    outcomes: [
-      "Delivered a core product module used across the platform",
-      "Clean separation between admin operations and consumer booking flows",
-      "Scalable booking engine supporting multiple service configurations",
-      "Established patterns for future module development within Hind Social"
     ]
   },
   {
@@ -366,6 +381,207 @@ export const projectsData: Project[] = [
     ]
   },
   {
+    slug: "hind-social-security-assessment",
+    title: "Platform Security Assessment",
+    subtitle: "Blue Team review of a live social platform",
+    description: "Part of Hind Social's Blue Team initiative: assessed the platform for vulnerabilities, mapped findings to OWASP categories, analysed threats and wrote the remediation and security documentation the team works from.",
+    longDescription: `As part of Hind Social's Blue Team initiative I reviewed the live platform from a defender's point of view: authentication and session handling, authorization on APIs, input validation, data exposure and configuration.\n\nFindings were mapped to OWASP categories, ranked by impact and turned into concrete recommendations. I also wrote the security documentation the team now uses as a reference, and fed the same thinking straight into the Services Module, which was designed with layered access control from day one.`,
+    image: "https://image.pollinations.ai/prompt/cybersecurity%20blue%20team%20dashboard%20vulnerability%20assessment%20shield%20network%20map%20dark%20theme?width=1200&height=750&seed=909&model=flux&nologo=true",
+    technologies: [
+      { name: "OWASP" },
+      { name: "Threat Modeling" },
+      { name: "API Security" },
+      { name: "Node.js" },
+      { name: "Documentation" }
+    ],
+    period: "2026",
+    duration: "Ongoing",
+    role: "Blue Team Contributor",
+    status: "Delivered",
+    category: ["All", "Work", "Security"],
+    highlights: [
+      "OWASP-mapped vulnerability findings with remediation steps",
+      "Authorization review across platform APIs",
+      "Threat analysis of user-facing and admin surfaces",
+      "Security documentation adopted by the team"
+    ],
+    challenges: [
+      "Reviewing a live platform without disrupting real users",
+      "Prioritising findings so fixes landed where the risk was highest"
+    ],
+    outcomes: [
+      "Clear, prioritised remediation backlog for the platform",
+      "Security patterns reused directly in the Services Module"
+    ]
+  },
+  {
+    slug: "noti-notification-orchestration",
+    title: "Noti — Notification Orchestration",
+    subtitle: "Event-driven notifications and workflow automation",
+    description: "Engineered notification workflows on Noti for Hind Social: event notifications, trigger pipelines and orchestration that deliver the right message to the right user when something happens on the platform.",
+    longDescription: `Built notification engineering on top of Noti for Hind Social. Platform events such as bookings, event registrations and activity updates feed trigger pipelines, which decide who should be notified, through which channel, and when.\n\nThe work covered notification workflows, event notifications, workflow automation and orchestration, so new notification types can be added without rewriting delivery logic.`,
+    image: "https://image.pollinations.ai/prompt/notification%20orchestration%20pipeline%20event%20triggers%20workflow%20automation%20diagram%20dark%20modern%20UI?width=1200&height=750&seed=919&model=flux&nologo=true",
+    technologies: [
+      { name: "Noti" },
+      { name: "Node.js" },
+      { name: "TypeScript" },
+      { name: "Event Pipelines" },
+      { name: "Workflow Automation" }
+    ],
+    period: "2026",
+    duration: "Ongoing",
+    role: "Full Stack Developer",
+    status: "In Production",
+    category: ["All", "Work"],
+    highlights: [
+      "Trigger pipelines driven by platform events",
+      "Reusable notification workflows",
+      "Orchestration across notification types"
+    ],
+    challenges: [
+      "Avoiding duplicate or noisy notifications as events multiply",
+      "Keeping delivery logic decoupled from the features that emit events"
+    ],
+    outcomes: [
+      "New notification types plug into existing pipelines",
+      "Users are notified about bookings and events at the right moment"
+    ]
+  },
+  {
+    slug: "dynamic-form-engine",
+    title: "Dynamic Clinical Form Engine",
+    subtitle: "RJSF-based form builder used by clinicians",
+    description: "Optimised and extended an RJSF-based dynamic form builder inside a multi-tenant healthcare platform, so each clinic can run its own consultation and intake forms without new code.",
+    longDescription: `Clinics and pharmacies each have their own consultation, intake and prescribing forms. The platform handles this with a JSON-schema-driven form builder on top of React JSON Schema Form (RJSF).\n\nI improved its performance on large forms, fixed long-standing rendering and validation issues in the legacy code, and extended it so clinicians could model more of their real workflows. Fewer form bugs meant fewer production incidents for the support team.`,
+    image: "https://image.pollinations.ai/prompt/dynamic%20form%20builder%20JSON%20schema%20medical%20consultation%20form%20editor%20dark%20modern%20SaaS%20UI?width=1200&height=750&seed=929&model=flux&nologo=true",
+    technologies: [
+      { name: "React.js" },
+      { name: "RJSF" },
+      { name: "JSON Schema" },
+      { name: "TypeScript" },
+      { name: "Zustand" }
+    ],
+    period: "2025",
+    duration: "Shipped",
+    role: "Full Stack Developer",
+    status: "In Production",
+    category: ["All", "Work", "SaaS"],
+    highlights: [
+      "Schema-driven forms configured per clinic",
+      "Faster rendering on large clinical forms",
+      "Legacy validation bugs fixed"
+    ],
+    challenges: [
+      "Keeping large, conditional forms responsive",
+      "Changing a shared engine without breaking existing clinic forms"
+    ],
+    outcomes: [
+      "Fewer form-related production issues",
+      "Clinics adapt forms without engineering changes"
+    ]
+  },
+  {
+    slug: "healthcare-cron-workflows",
+    title: "Healthcare Cron Workflow Engine",
+    subtitle: "Critical scheduled jobs for prescriptions, inventory and appointments",
+    description: "Owned the critical scheduled workflows of a UK healthcare platform on GCP: prescription processing, inventory allocation and appointment jobs, kept reliable across 20+ client environments at 99.9% uptime.",
+    longDescription: `Behind the healthcare SaaS sit scheduled jobs that cannot silently fail: prescription processing, inventory allocation across pharmacies, and appointment workflows.\n\nI owned these on Google Cloud Platform, hardening them against partial failures, making them safe to re-run, and adding the visibility needed to catch problems before clinics did. Together with careful PostgreSQL migrations, this kept 99.9% uptime across client environments.`,
+    image: "https://image.pollinations.ai/prompt/cloud%20scheduled%20jobs%20pipeline%20healthcare%20prescriptions%20inventory%20monitoring%20dashboard%20GCP%20dark%20theme?width=1200&height=750&seed=939&model=flux&nologo=true",
+    technologies: [
+      { name: "Node.js" },
+      { name: "PostgreSQL" },
+      { name: "GCP" },
+      { name: "Cron" },
+      { name: "TypeScript" }
+    ],
+    period: "Nov 2024 – May 2026",
+    duration: "1 year 7 months",
+    role: "Full Stack Developer",
+    status: "In Production",
+    category: ["All", "Work", "SaaS"],
+    highlights: [
+      "Prescription, inventory allocation and appointment jobs",
+      "Safe re-runs and partial-failure handling",
+      "99.9% uptime across client environments"
+    ],
+    challenges: [
+      "Jobs that touch patient care cannot double-run or silently skip",
+      "Running the same workflows across many tenants with different data"
+    ],
+    outcomes: [
+      "Reliable scheduled workflows for 20+ clinics and pharmacies",
+      "Problems surfaced to the team before they reached clinics"
+    ]
+  },
+  {
+    slug: "laravel-client-backends",
+    title: "Laravel Client Backends",
+    subtitle: "REST APIs and auth for client and academic projects",
+    description: "Freelance backend work in Laravel (PHP): REST APIs, JWT and session authentication, MySQL schema design and deployments for small businesses and academic projects.",
+    longDescription: `As a freelancer I built backends for small client and academic projects in Laravel. Each project started with requirements gathered directly from the client and ended with a deployed API.\n\nThe work covered routing and middleware, Eloquent models, JWT and session-based authentication, MySQL schema design and deployment on shared hosting.`,
+    image: "https://image.pollinations.ai/prompt/Laravel%20PHP%20REST%20API%20backend%20code%20editor%20database%20schema%20dark%20theme%20developer%20workspace?width=1200&height=750&seed=949&model=flux&nologo=true",
+    technologies: [
+      { name: "Laravel" },
+      { name: "PHP" },
+      { name: "MySQL" },
+      { name: "JWT" },
+      { name: "Eloquent" }
+    ],
+    period: "Aug 2023 – Feb 2024",
+    duration: "7 months",
+    role: "Freelance Backend Developer",
+    status: "Delivered",
+    category: ["All", "Work"],
+    highlights: [
+      "REST APIs with JWT and session auth",
+      "MySQL schema design with Eloquent ORM",
+      "Requirements gathered directly with clients"
+    ],
+    challenges: [
+      "Delivering on tight client timelines",
+      "Deploying to constrained shared-hosting environments"
+    ],
+    outcomes: [
+      "Multiple client backends delivered on schedule",
+      "Reusable Laravel starter patterns for later projects"
+    ]
+  },
+  {
+    slug: "ai-portfolio",
+    title: "This Portfolio — AI-Powered",
+    subtitle: "Multi-page portfolio with an AI assistant, terminal and Cmd+K search",
+    description: "The site you're on: a React + TypeScript portfolio with an AI chat assistant that answers questions about my work, an interactive terminal, Cmd+K spotlight search, Framer Motion page transitions and light/dark themes.",
+    longDescription: `I built this portfolio as a product, not a page. It's a multi-page React + TypeScript app with Framer Motion transitions, an interactive terminal with real commands, Cmd+K spotlight search across projects and pages, and an AI assistant that answers questions about my experience.\n\nThe assistant runs through a serverless function on Vercel with input limits and a constrained system prompt. Contact and newsletter flows use EmailJS and InstantDB, and the whole site is tuned for mobile and Safari.`,
+    image: "https://image.pollinations.ai/prompt/developer%20portfolio%20website%20with%20AI%20chatbot%20terminal%20and%20command%20palette%20glassmorphism%20dark%20theme?width=1200&height=750&seed=959&model=flux&nologo=true",
+    technologies: [
+      { name: "React.js" },
+      { name: "TypeScript" },
+      { name: "Framer Motion" },
+      { name: "Tailwind" },
+      { name: "Vercel" },
+      { name: "LLM API" }
+    ],
+    github: "https://github.com/optimus-node-js/full-stack-developer-portfolio",
+    period: "2026",
+    duration: "Ongoing",
+    role: "Solo Developer",
+    status: "Live",
+    category: ["All", "AI", "Open Source"],
+    highlights: [
+      "AI assistant grounded in my resume",
+      "Interactive terminal and Cmd+K search",
+      "Framer Motion transitions, light and dark themes"
+    ],
+    challenges: [
+      "Keeping animations smooth on mobile Safari",
+      "Keeping the AI assistant on-topic and safe"
+    ],
+    outcomes: [
+      "A portfolio visitors can explore, search and ask questions",
+      "Fast, responsive experience on every device"
+    ]
+  },
+  {
     slug: "spacex-launch-explorer",
     title: "SpaceX Launch Explorer",
     subtitle: "Rich interface for past & upcoming SpaceX missions",
@@ -478,16 +694,18 @@ export const experienceData: Experience[] = [
     period: "May 2026 – Present",
     icon: "Briefcase",
     description: [
-      "Built the complete Services Module from scratch — service management, bookings, scheduling, location management, admin & consumer dashboards, role-based access, and full API layer with database design.",
-      "Independently designed and shipped a production-ready AI Agent PoC in a single day — enabling real platform operations via WhatsApp using OpenAI GPT, tool calling, and Twilio integration.",
-      "Contributed to platform security as part of the Blue Team initiative — security assessments, vulnerability identification, OWASP-based recommendations, threat analysis, and comprehensive security documentation.",
-      "Worked on notification engineering with Noti — notification workflows, event notifications, workflow automation, trigger pipelines, and notification orchestration.",
-      "Successfully built and configured the Capacitor application using Next.js WebView architecture, achieving Google Play Store approval after prolonged team efforts."
+      "Owned and built the entire Services Module end-to-end in 4 months — a full marketplace where providers create and sell services and customers book them. Shipped to production on schedule on 30 Sep 2026.",
+      "Designed three service types (short-duration slot-based, long-duration, delivery-based) plus collections, categories, banners, bookings and My Bookings across provider, customer and admin surfaces.",
+      "Engineered a layered security architecture: role and hierarchy-level access rules with ownership checks on every service and booking API, closing off unauthorized access.",
+      "Built and optimised the module's APIs with caching, query and index tuning and pagination, making it production-grade and ready for thousands of booking transactions.",
+      "Delivered a fully mobile-responsive UI, tested and fixed for Safari and iOS.",
+      "Independently designed and shipped a production-ready AI Agent PoC in a single day — real platform operations via WhatsApp using OpenAI GPT, tool calling and Twilio.",
+      "Contributed to the Blue Team initiative (OWASP-based assessments, threat analysis, security docs) and notification engineering on Noti; got the Capacitor app approved on Google Play."
     ],
-    stack: ["Next.js", "Node.js", "TypeScript", "OpenAI", "Twilio", "Capacitor", "PostgreSQL"]
+    stack: ["Next.js", "Node.js", "TypeScript", "PostgreSQL", "RBAC", "Caching", "OpenAI", "Twilio", "Capacitor"]
   },
   {
-    title: "Senior Full Stack Developer",
+    title: "Full Stack Developer",
     company: "Script Assist UK",
     location: "Remote · United Kingdom",
     period: "Nov 2024 – May 2026",
@@ -495,7 +713,7 @@ export const experienceData: Experience[] = [
     description: [
       "Architected and scaled a multi-tenant healthcare SaaS platform serving 20+ UK clinics, pharmacies, and 40,000+ real patients — with strict cross-organization data isolation.",
       "Owned production reliability on Google Cloud — deployments, PostgreSQL migrations, ACL-based security and critical cron workflows (prescriptions, inventory allocation, appointments).",
-      "Shipped Android & iOS patient apps via Capacitor on a shared web-mobile architecture — one codebase, three platforms.",
+      "Shipped Android & iOS patient apps via Capacitor on a shared web-mobile architecture serving 5,000+ patient app users — one codebase, three platforms.",
       "Drove production-issue triage and optimisation: hot-path query tuning, RJSF form-engine improvements and legacy refactors — maintaining 99.9% uptime with zero critical data breaches."
     ],
     stack: ["TypeScript", "Node.js", "React", "PostgreSQL", "Zustand", "GCP", "Capacitor"]
@@ -622,16 +840,16 @@ export const contactInfo: ContactInfo = {
 
 export const bioData = {
   name: "Rahul Vishwakarma",
-  title: "Product Engineer",
-  summary: "Product Engineer building across full-stack development, AI engineering, security, and platform architecture — shipping scalable products with TypeScript, Node.js, React, Next.js, PostgreSQL, and OpenAI.",
+  title: "Senior Full Stack Developer",
+  summary: "Senior Full Stack Developer shipping scalable products end-to-end — multi-tenant SaaS, booking marketplaces, AI agents and secure APIs — with TypeScript, Node.js, React, Next.js, PostgreSQL and GCP.",
   profileImage: "/profile.jpeg",
   longBio: [
-    "I'm a Product Engineer who thrives at the intersection of architecture, AI, security, and product thinking. I design and ship end-to-end platforms — backend architecture, database design, AI agents, mobile apps, cloud deployments, notification systems, and high-priority production systems.",
-    "Currently at Hind Social Network, I built the complete Services Module from scratch and independently designed a production-ready AI Agent that enables real platform operations via WhatsApp. Previously at Script Assist UK, I led engineering on a healthcare platform serving 20+ UK clinics with 40,000+ patients, maintaining 99.9% uptime and zero critical data breaches on GCP.",
+    "I'm a Senior Full Stack Developer with a product engineer's mindset, and I thrive at the intersection of architecture, AI, security, and product thinking. I design and ship end-to-end platforms — backend architecture, database design, AI agents, mobile apps, cloud deployments, notification systems, and high-priority production systems.",
+    "At Hind Social I owned the entire Services Module — a full booking marketplace with three service types, collections, categories, banners and layered security — and shipped it to production in four months, on the 30 September 2026 deadline. I also designed a production-ready AI Agent that runs real platform operations over WhatsApp. Previously at Script Assist UK, I led engineering on a healthcare platform serving 20+ UK clinics with 40,000+ patients, maintaining 99.9% uptime and zero critical data breaches on GCP.",
     "My work spans product engineering, AI integration, security assessment, notification orchestration, and mobile deployment. I'm deeply invested in building reliable distributed systems, intelligent automation, and products that quietly do a lot behind clean interfaces."
   ],
   stats: [
-    { value: "3+", label: "Years Product Engineering" },
+    { value: "3+", label: "Years Full Stack Engineering" },
     { value: "8+", label: "Production Systems Shipped" },
     { value: "99.9%", label: "Uptime Maintained" },
     { value: "0", label: "Critical Data Breaches" }
