@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { experienceData } from '@/data/resume-data';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { experienceData, experienceSlug } from '@/data/resume-data';
 import { Briefcase, MapPin, Calendar, ArrowRight, Stethoscope, GraduationCap, Code2, Rocket } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -12,8 +13,16 @@ const iconMap = {
 } as const;
 
 const ExperienceSwitcher = () => {
-  const [active, setActive] = useState(0);
+  const [params] = useSearchParams();
+  const requested = params.get('exp');
+  const indexFor = (slug: string | null) => Math.max(0, experienceData.findIndex((e) => experienceSlug(e) === slug));
+  const [active, setActive] = useState(() => indexFor(requested));
   const current = experienceData[active];
+
+  // Deep link (?exp=<company-slug>) — used by the AI assistant to open a specific role.
+  useEffect(() => {
+    if (requested) setActive(indexFor(requested));
+  }, [requested]);
 
   return (
     <div className="grid lg:grid-cols-[280px_1fr] gap-6">

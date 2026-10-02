@@ -15,7 +15,7 @@ const CaseStudiesPage = () => {
       subtitle="Not screenshots — the problem, the constraints, the architecture, the trade-offs and what shipped. Each one is something running for real users."
     >
       {/* Requirement → proof */}
-      <section className="max-w-6xl mx-auto">
+      <section data-ai-section="capabilities" className="max-w-6xl mx-auto">
         <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">Got a requirement? Here’s the proof</div>
         <div className="mt-4 grid sm:grid-cols-2 gap-2.5">
           {capabilityMap.map((c, i) => (
@@ -43,7 +43,7 @@ const CaseStudiesPage = () => {
       </section>
 
       {/* Case study grid */}
-      <section className="max-w-6xl mx-auto mt-14">
+      <section data-ai-section="list" className="max-w-6xl mx-auto mt-14">
         <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">{caseStudies.length} case studies</div>
         <div className="mt-4 grid md:grid-cols-2 gap-4 sm:gap-5">
           {caseStudies.map((cs, i) => (

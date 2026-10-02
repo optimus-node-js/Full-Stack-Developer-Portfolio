@@ -685,6 +685,10 @@ export const projectsData: Project[] = [
   }
 ];
 
+/** URL-safe id for an experience entry, e.g. "hind-social-network-pvt-ltd". */
+export const experienceSlug = (e: Experience) =>
+  e.company.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
 // Experience Data
 export const experienceData: Experience[] = [
   {

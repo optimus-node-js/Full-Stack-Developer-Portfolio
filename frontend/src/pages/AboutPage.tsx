@@ -26,6 +26,7 @@ const AboutPage = () => {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
+          data-ai-section="bio"
           className="relative glass rounded-3xl p-6 sm:p-8 lg:p-10 border border-border/60 overflow-hidden"
         >
           <div className="absolute -top-16 -right-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
@@ -47,7 +48,7 @@ const AboutPage = () => {
         </motion.div>
 
         {/* Highlights */}
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div data-ai-section="strengths" className="grid sm:grid-cols-2 gap-4">
           {highlights.map((h, i) => {
             const Icon = h.icon;
             return (
