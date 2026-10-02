@@ -11,9 +11,9 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "Rahul Vishwakarma — Product Engineer | Full Stack, AI, Security & Platform Architecture",
-  description = "Product Engineer specializing in full-stack development, AI engineering, security assessment, and platform architecture. Building scalable products with TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, and GCP.",
-  keywords = "Product Engineer, Full Stack Developer, AI Engineer, Security Engineer, TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, AI Agents, Tool Calling, System Design, Multi-Tenant SaaS, Platform Architecture, Capacitor, OWASP, Blue Team, Notification Systems, Workflow Automation, GCP",
+  title = "Rahul Vishwakarma — Senior Full Stack Developer | SaaS, Marketplaces, AI & Security",
+  description = "Senior Full Stack Developer specializing in full-stack development, AI engineering, security assessment, and platform architecture. Building scalable products with TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, and GCP.",
+  keywords = "Senior Full Stack Developer, Product Engineer, Full Stack Developer, Booking Marketplace, AI Engineer, Security Engineer, TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, AI Agents, Tool Calling, System Design, Multi-Tenant SaaS, Platform Architecture, Capacitor, OWASP, Blue Team, Notification Systems, Workflow Automation, GCP",
   author = "Rahul Vishwakarma",
   url = "https://rahul-vishwakarma-portfolio.vercel.app",
   image = "https://rahul-vishwakarma-portfolio.vercel.app/profile.jpeg",
@@ -40,7 +40,7 @@ const SEO = ({
       <meta property="og:image" content={image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Rahul Vishwakarma — Product Engineer" />
+      <meta property="og:site_name" content="Rahul Vishwakarma — Senior Full Stack Developer" />
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
@@ -73,7 +73,7 @@ const SEO = ({
           "@context": "https://schema.org",
           "@type": "Person",
           "name": "Rahul Vishwakarma",
-          "jobTitle": "Product Engineer",
+          "jobTitle": "Senior Full Stack Developer",
           "description": description,
           "url": url,
           "image": image,
@@ -115,7 +115,7 @@ const SEO = ({
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          "name": "Rahul Vishwakarma — Product Engineer",
+          "name": "Rahul Vishwakarma — Senior Full Stack Developer",
           "url": url,
           "description": description,
           "author": {

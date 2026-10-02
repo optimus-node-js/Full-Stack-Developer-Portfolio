@@ -182,7 +182,7 @@ const cmdHire = (): Response => ({
   lines: [
     { text: '✓ rahul is currently open to opportunities.', kind: 'success' },
     { text: '' },
-    { text: '  » Product Engineer / Senior Full-Stack roles' },
+    { text: '  » Senior Full Stack / Product Engineering roles' },
     { text: '  » AI Engineering · Platform Architecture · Security' },
     { text: '  » Remote (IST, flexible) · Hybrid · On-site' },
     { text: '' },
@@ -296,7 +296,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     keywords: ['favorite', 'favourite', 'best project', 'proud', 'biggest'],
     response: () => ({
       lines: [
-        { text: 'building the AI Agent PoC and the Services Module at Hind Social were recent highlights.', kind: 'accent' },
+        { text: 'shipped the entire Services Module at Hind Social in 4 months (live 30 Sep 2026), plus a 1-day AI Agent PoC.', kind: 'accent' },
         { text: 'previously: the healthcare SaaS at Script Assist — 20+ UK clinics · 40k+ patients · 99.9% uptime.', kind: 'muted' },
       ],
     }),
