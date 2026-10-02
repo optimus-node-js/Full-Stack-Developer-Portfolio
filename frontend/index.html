@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      // iOS (Safari and Chrome on iPhone) zooms into focused inputs under 16px.
+      // maximum-scale=1 stops that auto-zoom while iOS still allows pinch-zoom.
+      // Applied only on iOS: Android browsers would disable pinch-zoom entirely.
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover');
+      }
+    </script>
     <meta name="theme-color" content="#0a0a0f" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,7 +18,7 @@
 
     <title>Rahul Vishwakarma | Senior Full Stack Developer — SaaS, Marketplaces, AI & Security</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content="Senior Full Stack Developer specializing in full-stack development, AI engineering, security assessment, and platform architecture. Building scalable products with TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, and GCP." />
+    <meta name="description" content="Senior Full Stack Developer and immediate joiner, specializing in full-stack development, AI engineering, security assessment, and platform architecture. Building scalable products with TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, and GCP." />
     <meta name="author" content="Rahul Vishwakarma" />
     <meta name="keywords" content="Senior Full Stack Developer, Product Engineer, Full Stack Developer, AI Engineer, Security Engineer, TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, AI Agents, System Design, Multi-Tenant SaaS, Platform Architecture, GCP, OWASP, Capacitor" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
