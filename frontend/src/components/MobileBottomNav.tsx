@@ -1,190 +1,260 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User, Briefcase, Compass, Mail, ChevronUp, Github, Linkedin, ArrowUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
+import {
+  Home,
+  Briefcase,
+  BookOpenText,
+  Mail,
+  Ellipsis,
+  Search,
+  User,
+  Compass,
+  Workflow,
+  Download,
+  Linkedin,
+  Github,
+  ArrowUp,
+  ChevronRight,
+  Zap,
+} from 'lucide-react';
 import { contactInfo } from '@/data/resume-data';
 
-const navItems = [
+const tabs = [
   { icon: Home, label: 'Home', to: '/' },
-  { icon: User, label: 'About', to: '/about' },
-  { icon: Compass, label: 'Journey', to: '/journey' },
   { icon: Briefcase, label: 'Work', to: '/work' },
+  { icon: BookOpenText, label: 'Cases', to: '/case-studies' },
   { icon: Mail, label: 'Contact', to: '/contact' },
 ];
 
-const MobileBottomNav = () => {
+const moreLinks = [
+  { icon: User, label: 'About', to: '/about' },
+  { icon: Compass, label: 'Journey', to: '/journey' },
+  { icon: Workflow, label: 'How I Work', to: '/how-i-work' },
+];
+
+const isActivePath = (pathname: string, to: string) => (to === '/' ? pathname === '/' : pathname.startsWith(to));
+
+interface MobileBottomNavProps {
+  onSearchOpen: () => void;
+}
+
+/**
+ * iOS "Liquid Glass"-style tab bar: a floating translucent capsule with a
+ * separate search button. Minimises to the active tab while scrolling down,
+ * like the system tab bar, and opens a bottom sheet for secondary pages.
+ */
+const MobileBottomNav = ({ onSearchOpen }: MobileBottomNavProps) => {
   const { pathname } = useLocation();
-  const [isVisible, setIsVisible] = useState(true);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [nearBottom, setNearBottom] = useState(false);
-  const lastScrollYRef = useRef(0);
+  const [minimized, setMinimized] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const lastY = useRef(0);
 
-  const handleScroll = useCallback(() => {
-    const y = window.scrollY;
-    const viewport = window.innerHeight;
-    const docH = document.documentElement.scrollHeight;
-    // hide on scroll down, show on scroll up
-    if (y > lastScrollYRef.current && y > 120) setIsVisible(false);
-    else setIsVisible(true);
-    lastScrollYRef.current = y;
-
-    // detect near-bottom (within 200px)
-    setNearBottom(y + viewport >= docH - 200);
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY.current;
+      if (Math.abs(delta) > 6) {
+        setMinimized(delta > 0 && y > 140);
+        lastY.current = y;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
-
-  // collapse expanded panel when navigating
-  useEffect(() => {
-    setIsExpanded(false);
+    setSheetOpen(false);
+    setMinimized(false);
   }, [pathname]);
 
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setIsExpanded(false);
-  };
+  // Lock background scroll while the sheet is open.
+  useEffect(() => {
+    if (!sheetOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [sheetOpen]);
+
+  const moreActive = moreLinks.some((l) => isActivePath(pathname, l.to));
+  const visibleTabs = minimized ? tabs.filter((t) => isActivePath(pathname, t.to)) : tabs;
+  const spring = { type: 'spring', damping: 30, stiffness: 380, mass: 0.8 } as const;
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-          className="md:hidden fixed left-2 right-2 z-50"
-          style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 0.75rem)' }}
-          data-testid="mobile-bottom-nav"
-        >
-          <motion.div
-            layout
-            transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-            className="max-w-md mx-auto bg-background/85 backdrop-blur-2xl border border-white/10 rounded-[26px] shadow-[0_18px_55px_rgba(0,0,0,0.55)] overflow-hidden"
-          >
-            {/* Expandable quick-actions panel */}
-            <AnimatePresence initial={false}>
-              {isExpanded && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                  className="overflow-hidden border-b border-white/5"
-                >
-                  <div className="px-4 pt-4 pb-3">
-                    <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground mb-3">
-                      quick actions
-                    </div>
-                    <div className="grid grid-cols-4 gap-2">
-                      <a
-                        href={`mailto:${contactInfo.email}`}
-                        className="flex flex-col items-center gap-1 py-2.5 rounded-2xl bg-muted/30 border border-border/40 active:scale-95 transition-transform"
-                        data-testid="mobile-action-email"
-                      >
-                        <Mail className="h-4 w-4 text-primary" />
-                        <span className="text-[10px] text-muted-foreground">Email</span>
-                      </a>
-                      <a
-                        href={contactInfo.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex flex-col items-center gap-1 py-2.5 rounded-2xl bg-muted/30 border border-border/40 active:scale-95 transition-transform"
-                        data-testid="mobile-action-linkedin"
-                      >
-                        <Linkedin className="h-4 w-4 text-secondary" />
-                        <span className="text-[10px] text-muted-foreground">LinkedIn</span>
-                      </a>
-                      <a
-                        href={contactInfo.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex flex-col items-center gap-1 py-2.5 rounded-2xl bg-muted/30 border border-border/40 active:scale-95 transition-transform"
-                        data-testid="mobile-action-github"
-                      >
-                        <Github className="h-4 w-4 text-tertiary" />
-                        <span className="text-[10px] text-muted-foreground">GitHub</span>
-                      </a>
-                      <button
-                        onClick={scrollTop}
-                        className="flex flex-col items-center gap-1 py-2.5 rounded-2xl bg-muted/30 border border-border/40 active:scale-95 transition-transform"
-                        data-testid="mobile-action-top"
-                      >
-                        <ArrowUp className="h-4 w-4 text-foreground/80" />
-                        <span className="text-[10px] text-muted-foreground">Top</span>
-                      </button>
-                    </div>
-                    <div className="mt-3 flex items-center justify-between text-[10px] font-mono text-muted-foreground/70 px-1">
-                      <span>© {new Date().getFullYear()} Rahul V.</span>
-                      <span>built with care</span>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Main nav row */}
-            <div className="flex items-center justify-between px-1 py-1">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const isActive = pathname === item.to;
+    <>
+      <div
+        className="lg:hidden fixed inset-x-0 z-50 px-4 pointer-events-none"
+        style={{ bottom: 'max(env(safe-area-inset-bottom, 0px), 12px)' }}
+        data-testid="mobile-bottom-nav"
+      >
+        <LayoutGroup>
+          <div className="mx-auto max-w-md flex items-end justify-between gap-2.5">
+            {/* Tab capsule */}
+            <motion.nav
+              layout
+              transition={spring}
+              aria-label="Primary"
+              className={`ios-glass pointer-events-auto rounded-full p-1 flex items-center ${minimized ? '' : 'flex-1'}`}
+            >
+              {visibleTabs.map((tab) => {
+                const Icon = tab.icon;
+                const active = isActivePath(pathname, tab.to);
                 return (
                   <Link
-                    key={item.to}
-                    to={item.to}
-                    aria-label={item.label}
-                    data-testid={`mobile-nav-${item.label.toLowerCase()}`}
-                    className={`relative flex items-center justify-center h-11 w-11 rounded-full transition-all active:scale-90 ${
-                      isActive ? 'text-primary' : 'text-muted-foreground'
+                    key={tab.to}
+                    to={tab.to}
+                    aria-label={tab.label}
+                    aria-current={active ? 'page' : undefined}
+                    data-testid={`mobile-nav-${tab.label.toLowerCase()}`}
+                    className={`relative flex-1 min-w-[58px] h-[54px] flex flex-col items-center justify-center gap-[3px] rounded-full ios-tab-label transition-colors active:scale-95 ${
+                      active ? 'text-[hsl(var(--ios-tint))]' : 'text-foreground/80'
                     }`}
                   >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTabMobile"
-                        className="absolute inset-0 bg-primary/15 border border-primary/25 rounded-full"
-                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                      />
-                    )}
-                    <Icon className="w-[22px] h-[22px] relative z-10" />
-                    <span className="sr-only">{item.label}</span>
+                    {active && <motion.span layoutId="ios-tab-lens" transition={spring} className="ios-lens absolute inset-0 rounded-full" />}
+                    <Icon className="relative h-[22px] w-[22px]" strokeWidth={active ? 2.3 : 1.9} />
+                    <AnimatePresence initial={false}>
+                      {!minimized && (
+                        <motion.span
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="relative text-[10px] font-semibold leading-none"
+                        >
+                          {tab.label}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
                   </Link>
                 );
               })}
 
-              {/* Expand toggle — pulses when near bottom */}
-              <button
-                onClick={() => setIsExpanded((v) => !v)}
-                aria-label={isExpanded ? 'Collapse quick actions' : 'Expand quick actions'}
-                data-testid="mobile-nav-expand"
-                className={`relative flex items-center justify-center h-11 w-11 rounded-full transition-all active:scale-90 ${
-                  isExpanded ? 'text-primary' : 'text-muted-foreground'
-                }`}
-              >
-                {/* gentle pulse ring when scrolled to end of page */}
-                {nearBottom && !isExpanded && (
-                  <motion.span
-                    initial={{ scale: 0.6, opacity: 0.6 }}
-                    animate={{ scale: 1.4, opacity: 0 }}
-                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
-                    className="absolute inset-0 rounded-full bg-primary/30"
-                  />
-                )}
-                <motion.span
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ type: 'spring', damping: 20, stiffness: 240 }}
-                  className="relative z-10"
+              {!minimized && (
+                <button
+                  onClick={() => setSheetOpen(true)}
+                  aria-label="More"
+                  aria-expanded={sheetOpen}
+                  data-testid="mobile-nav-more"
+                  className={`relative flex-1 min-w-[58px] h-[54px] flex flex-col items-center justify-center gap-[3px] rounded-full ios-tab-label active:scale-95 ${
+                    moreActive ? 'text-[hsl(var(--ios-tint))]' : 'text-foreground/80'
+                  }`}
                 >
-                  <ChevronUp className="w-[22px] h-[22px]" />
-                </motion.span>
+                  {moreActive && <motion.span layoutId="ios-tab-lens" transition={spring} className="ios-lens absolute inset-0 rounded-full" />}
+                  <Ellipsis className="relative h-[22px] w-[22px]" strokeWidth={moreActive ? 2.3 : 1.9} />
+                  <span className="relative text-[10px] font-semibold leading-none">More</span>
+                </button>
+              )}
+
+              {minimized && visibleTabs.length === 0 && (
+                <button
+                  onClick={() => setSheetOpen(true)}
+                  aria-label="More"
+                  className="relative min-w-[54px] h-[54px] flex items-center justify-center rounded-full text-[hsl(var(--ios-tint))]"
+                >
+                  <span className="ios-lens absolute inset-0 rounded-full" />
+                  <Ellipsis className="relative h-[22px] w-[22px]" strokeWidth={2.3} />
+                </button>
+              )}
+            </motion.nav>
+
+            {/* Separate search button, as on iOS */}
+            <motion.button
+              layout
+              transition={spring}
+              onClick={onSearchOpen}
+              aria-label="Search"
+              data-testid="mobile-nav-search"
+              className="ios-glass pointer-events-auto h-[62px] w-[62px] shrink-0 rounded-full flex items-center justify-center text-foreground/85 active:scale-95"
+            >
+              <Search className="h-[22px] w-[22px]" strokeWidth={2} />
+            </motion.button>
+          </div>
+        </LayoutGroup>
+      </div>
+
+      {/* Bottom sheet */}
+      <AnimatePresence>
+        {sheetOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSheetOpen(false)}
+              className="lg:hidden fixed inset-0 z-[95] bg-black/40"
+            />
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label="More"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 32, stiffness: 340 }}
+              drag="y"
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0, bottom: 0.6 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 90 || info.velocity.y > 500) setSheetOpen(false);
+              }}
+              className="ios-sheet lg:hidden fixed inset-x-2 z-[96] rounded-[34px] px-4 pt-2 pb-4"
+              style={{ bottom: 'max(env(safe-area-inset-bottom, 0px), 8px)' }}
+            >
+              <div className="mx-auto h-[5px] w-9 rounded-full bg-foreground/25" />
+              <div className="mt-4 flex items-center justify-between px-1">
+                <div className="ios-tab-label text-[17px] font-semibold">More</div>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-tertiary/15 text-tertiary">
+                  <Zap className="h-3 w-3 fill-current" /> Immediate joiner
+                </span>
+              </div>
+
+              <div className="mt-3 rounded-[20px] bg-foreground/[0.06] overflow-hidden divide-y divide-foreground/10">
+                {moreLinks.map(({ icon: Icon, label, to }) => (
+                  <Link key={to} to={to} className="ios-tab-label flex items-center gap-3 px-4 h-[52px] active:bg-foreground/10">
+                    <span className="h-7 w-7 rounded-[8px] bg-[hsl(var(--ios-tint))] text-white flex items-center justify-center">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="flex-1 text-[16px]">{label}</span>
+                    <ChevronRight className="h-4 w-4 text-foreground/35" />
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-3 grid grid-cols-4 gap-2">
+                {[
+                  { icon: Download, label: 'Resume', href: '/resume.pdf', download: true },
+                  { icon: Mail, label: 'Email', href: `mailto:${contactInfo.email}` },
+                  { icon: Linkedin, label: 'LinkedIn', href: contactInfo.linkedin, external: true },
+                  { icon: Github, label: 'GitHub', href: contactInfo.github, external: true },
+                ].map(({ icon: Icon, label, href, download, external }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    {...(download ? { download: 'Rahul_Vishwakarma_Resume.pdf' } : {})}
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="ios-tab-label flex flex-col items-center gap-1.5 py-3 rounded-[18px] bg-foreground/[0.06] active:bg-foreground/10"
+                  >
+                    <Icon className="h-5 w-5 text-[hsl(var(--ios-tint))]" />
+                    <span className="text-[11px] font-medium">{label}</span>
+                  </a>
+                ))}
+              </div>
+
+              <button
+                onClick={() => {
+                  setSheetOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="ios-tab-label mt-3 w-full h-[50px] rounded-[18px] bg-foreground/[0.06] flex items-center justify-center gap-2 text-[16px] text-[hsl(var(--ios-tint))] active:bg-foreground/10"
+              >
+                <ArrowUp className="h-4 w-4" /> Back to top
               </button>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

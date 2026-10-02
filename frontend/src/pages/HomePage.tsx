@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Download, Mail, Github, Linkedin, ArrowUpRight, Sparkles, Briefcase, User, GraduationCap, Send } from 'lucide-react';
+import { Download, Mail, Github, Linkedin, ArrowUpRight, Sparkles, Briefcase, User, GraduationCap, Send, BookOpenText, Workflow, CheckCircle2 } from 'lucide-react';
 import { bioData, contactInfo } from '@/data/resume-data';
 import { motion } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
@@ -8,6 +8,8 @@ import InteractiveTerminal from '@/components/InteractiveTerminal';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import FeaturedCaseStudy from '@/components/FeaturedCaseStudy';
 import TechMarquee from '@/components/TechMarquee';
+import HireCTA from '@/components/HireCTA';
+import { caseStudies, capabilityMap } from '@/data/case-studies';
 
 const ROLES = ['Product Engineer', 'Marketplace & SaaS Builder', 'AI Engineer', 'Security-minded Architect'];
 
@@ -65,6 +67,8 @@ const HomePage = () => {
     { to: '/about', label: 'About', icon: User, hint: 'who I am & my stack' },
     { to: '/journey', label: 'Journey', icon: GraduationCap, hint: 'experience + education' },
     { to: '/work', label: 'Work', icon: Briefcase, hint: 'selected projects' },
+    { to: '/case-studies', label: 'Case Studies', icon: BookOpenText, hint: 'how I shipped them' },
+    { to: '/how-i-work', label: 'How I Work', icon: Workflow, hint: 'my engineering playbook' },
     { to: '/contact', label: 'Contact', icon: Send, hint: "let's talk" },
   ];
 
@@ -74,7 +78,7 @@ const HomePage = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 pb-36 md:pb-16"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 pb-36 lg:pb-16"
     >
       {/* Ambient */}
       <div className="absolute inset-0 bg-background" />
@@ -98,8 +102,10 @@ const HomePage = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full glass border border-tertiary/30 text-[10px] sm:text-sm max-w-full"
             >
-              <span className="pulse-dot shrink-0" />
-              <span className="font-medium text-foreground/90 truncate">Available for senior roles</span>
+              <span className="pulse-dot shrink-0 mr-1" />
+              <span className="font-semibold text-tertiary truncate">Immediate joiner</span>
+              <span className="text-muted-foreground">·</span>
+              <span className="font-medium text-foreground/90 truncate">Open to senior roles</span>
               <span className="text-muted-foreground hidden sm:inline">·</span>
               <span className="text-muted-foreground hidden sm:inline">Remote / Hybrid</span>
             </motion.div>
@@ -281,6 +287,47 @@ const HomePage = () => {
           <FeaturedCaseStudy compact />
         </div>
 
+        {/* Requirement → proof */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7 }}
+          className="mt-20 max-w-6xl mx-auto"
+        >
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-primary">// any.requirement</div>
+              <h2 className="mt-2 font-heading font-bold text-2xl sm:text-4xl tracking-tight">
+                Whatever you need built, <span className="text-gradient-primary">I’ve shipped it before.</span>
+              </h2>
+            </div>
+            <Link to="/case-studies" className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+              All {caseStudies.length} case studies <ArrowUpRight className="h-4 w-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </div>
+          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {capabilityMap.map((c) => (
+              <Link
+                key={c.slug}
+                to={`/case-studies/${c.slug}`}
+                className="group rounded-2xl border border-border/60 bg-card/60 p-4 hover:border-primary/40 hover:-translate-y-0.5 transition-all"
+              >
+                <CheckCircle2 className="h-5 w-5 text-tertiary" />
+                <div className="mt-3 font-semibold text-sm leading-snug">{c.need}</div>
+                <div className="mt-1 text-xs text-muted-foreground leading-relaxed">{c.proof}</div>
+                <div className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary opacity-80 group-hover:opacity-100">
+                  Read case study <ArrowUpRight className="h-3.5 w-3.5" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </motion.section>
+
+        <div className="mt-16 max-w-6xl mx-auto">
+          <HireCTA />
+        </div>
+
         {/* Page explorer CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -290,7 +337,7 @@ const HomePage = () => {
           className="mt-16 max-w-4xl mx-auto"
         >
           <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground text-center">explore</div>
-          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3">
             {explorer.map((x) => {
               const Icon = x.icon;
               return (

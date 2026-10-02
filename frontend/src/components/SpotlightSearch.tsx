@@ -12,6 +12,7 @@ import {
   involvementData,
   contactInfo,
 } from '@/data/resume-data';
+import { caseStudies } from '@/data/case-studies';
 
 interface SearchResult {
   id: string;
@@ -25,10 +26,12 @@ interface SearchResult {
 
 const PAGES: SearchResult[] = [
   { id: 'page-home', title: 'Home', subtitle: 'Landing page', category: 'page', icon: User, path: '/', keywords: ['home', 'landing', 'main', 'start', 'portfolio'] },
-  { id: 'page-about', title: 'About', subtitle: bioData.title, category: 'page', icon: User, path: '/about', keywords: ['about', 'bio', 'profile', 'who', 'background', 'product engineer'] },
+  { id: 'page-about', title: 'About', subtitle: bioData.title, category: 'page', icon: User, path: '/about', keywords: ['about', 'bio', 'profile', 'who', 'background', 'senior full stack developer'] },
   { id: 'page-journey', title: 'Journey', subtitle: 'Career & Education', category: 'page', icon: Briefcase, path: '/journey', keywords: ['journey', 'career', 'experience', 'timeline', 'education'] },
   { id: 'page-work', title: 'Work', subtitle: 'Projects & Products', category: 'page', icon: FolderOpen, path: '/work', keywords: ['work', 'projects', 'products', 'portfolio', 'case study'] },
-  { id: 'page-contact', title: 'Contact', subtitle: 'Get in touch', category: 'page', icon: Mail, path: '/contact', keywords: ['contact', 'email', 'message', 'hire', 'reach'] },
+  { id: 'page-case-studies', title: 'Case Studies', subtitle: 'How I shipped real production systems', category: 'page', icon: FolderOpen, path: '/case-studies', keywords: ['case study', 'case studies', 'cases', 'proof', 'architecture', 'production'] },
+  { id: 'page-how-i-work', title: 'How I Work', subtitle: 'Engineering playbook · Immediate joiner', category: 'page', icon: Briefcase, path: '/how-i-work', keywords: ['how i work', 'playbook', 'process', 'deadline', 'immediate joiner', 'notice period', 'availability', 'join'] },
+  { id: 'page-contact', title: 'Contact', subtitle: 'Get in touch · Immediate joiner', category: 'page', icon: Mail, path: '/contact', keywords: ['contact', 'email', 'message', 'hire', 'reach', 'immediate joiner'] },
 ];
 
 function buildSearchIndex(): SearchResult[] {
@@ -48,6 +51,18 @@ function buildSearchIndex(): SearchResult[] {
         ...p.category,
         ...(p.highlights || []),
       ].map((k) => k.toLowerCase()),
+    });
+  });
+
+  caseStudies.forEach((c) => {
+    results.push({
+      id: `case-${c.slug}`,
+      title: c.title,
+      subtitle: `Case study · ${c.tagline}`,
+      category: 'project',
+      icon: FolderOpen,
+      path: `/case-studies/${c.slug}`,
+      keywords: [c.title, c.tagline, c.domain, c.summary, ...c.stack, 'case study'].map((k) => k.toLowerCase()),
     });
   });
 

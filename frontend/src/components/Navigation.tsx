@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import CircularThemeToggle from './CircularThemeToggle';
 import ScrollProgress from './ScrollProgress';
-import { SpotlightTriggerDesktop, SpotlightTriggerMobile } from './SpotlightSearch';
+import { SpotlightTriggerDesktop } from './SpotlightSearch';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
@@ -10,6 +10,8 @@ const navItems = [
   { label: 'About', to: '/about' },
   { label: 'Journey', to: '/journey' },
   { label: 'Work', to: '/work' },
+  { label: 'Case Studies', to: '/case-studies' },
+  { label: 'How I Work', to: '/how-i-work' },
   { label: 'Contact', to: '/contact' },
 ];
 
@@ -37,7 +39,7 @@ const Navigation = ({ onSearchOpen, platform }: NavigationProps) => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center mt-5 pointer-events-none"
+        className="fixed top-0 left-0 right-0 z-50 hidden lg:flex justify-center mt-5 pointer-events-none"
       >
         <div
           className={`pointer-events-auto flex items-center gap-3 transition-all duration-500 rounded-full ${
@@ -50,20 +52,20 @@ const Navigation = ({ onSearchOpen, platform }: NavigationProps) => {
             <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-[11px] font-bold text-primary-foreground">
               RV
             </span>
-            <span className="font-heading text-sm font-semibold hidden lg:inline">Rahul Vishwakarma</span>
+            <span className="font-heading text-sm font-semibold hidden xl:inline">Rahul Vishwakarma</span>
           </Link>
 
           <div className="h-6 w-px bg-border" />
 
           <div className="flex items-center gap-0.5 relative" onMouseLeave={() => setHoveredNav(null)}>
             {navItems.map((item) => {
-              const isActive = pathname === item.to;
+              const isActive = item.to === '/' ? pathname === '/' : pathname.startsWith(item.to);
               return (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   onMouseEnter={() => setHoveredNav(item.to)}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                  className={`relative px-3 xl:px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors ${
                     isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
                   }`}
                   data-testid={`link-nav-${item.label.toLowerCase()}`}
@@ -102,13 +104,12 @@ const Navigation = ({ onSearchOpen, platform }: NavigationProps) => {
       </motion.nav>
 
       {/* Mobile header */}
-      <div className="md:hidden fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
+      <div className="lg:hidden fixed left-4 right-4 z-50 flex items-center justify-between" style={{ top: "calc(env(safe-area-inset-top, 0px) + 0.75rem)" }}>
         <Link to="/" className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-border/60">
           <span className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-[9px] font-bold text-primary-foreground">RV</span>
           <span className="font-heading text-xs font-semibold">Rahul</span>
         </Link>
         <div className="flex items-center gap-2">
-          <SpotlightTriggerMobile onClick={onSearchOpen} platform={platform} />
           <CircularThemeToggle />
         </div>
       </div>

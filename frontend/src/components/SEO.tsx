@@ -12,7 +12,7 @@ interface SEOProps {
 
 const SEO = ({
   title = "Rahul Vishwakarma — Senior Full Stack Developer | SaaS, Marketplaces, AI & Security",
-  description = "Senior Full Stack Developer specializing in full-stack development, AI engineering, security assessment, and platform architecture. Building scalable products with TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, and GCP.",
+  description = "Senior Full Stack Developer and immediate joiner, specializing in full-stack development, AI engineering, security assessment, and platform architecture. Building scalable products with TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, and GCP.",
   keywords = "Senior Full Stack Developer, Product Engineer, Full Stack Developer, Booking Marketplace, AI Engineer, Security Engineer, TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, AI Agents, Tool Calling, System Design, Multi-Tenant SaaS, Platform Architecture, Capacitor, OWASP, Blue Team, Notification Systems, Workflow Automation, GCP",
   author = "Rahul Vishwakarma",
   url = "https://rahul-vishwakarma-portfolio.vercel.app",
