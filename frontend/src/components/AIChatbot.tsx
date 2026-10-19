@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MessageSquare, X, Send, MoreVertical, RotateCcw, Trash2, Mail, Phone,
-  ExternalLink, Sparkles, ChevronDown, MapPin, Download,
+  ExternalLink, Sparkles, ChevronDown, MapPin, FileText,
 } from 'lucide-react';
 import {
   getActiveSession, addMessage, startNewSession, clearAllData, getMessagesForApi,
@@ -85,14 +85,13 @@ function ContactCard() {
           <ExternalLink className="w-2.5 h-2.5" />
         </a>
       ))}
-      <a
-        href="/resume.pdf"
-        download="Rahul_Vishwakarma_Resume.pdf"
+      <Link
+        to="/resume"
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/30 border border-border/50 text-xs text-muted-foreground hover:text-foreground hover:border-border transition-colors"
       >
-        <Download className="w-3 h-3 text-primary" />
+        <FileText className="w-3 h-3 text-primary" />
         Resume
-      </a>
+      </Link>
     </div>
   );
 }

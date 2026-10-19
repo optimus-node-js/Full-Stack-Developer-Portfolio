@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Zap } from 'lucide-react';
+import { ArrowRight, FileText, Zap } from 'lucide-react';
 import { availability } from '@/data/case-studies';
 import { contactInfo } from '@/data/resume-data';
 
@@ -21,7 +21,7 @@ interface HireCTAProps {
 /** End-of-page call to action that always surfaces availability. */
 const HireCTA = ({
   title = 'Need this built — and shipped on time?',
-  copy = 'I take ownership from schema to production, and I can start right away.',
+  copy = 'I take ownership from schema to production — available now, no notice period.',
 }: HireCTAProps) => (
   <motion.section
     initial={{ opacity: 0, y: 20 }}
@@ -45,13 +45,12 @@ const HireCTA = ({
         <Link to="/contact" className="btn-primary-premium h-12 px-6 rounded-full inline-flex items-center justify-center gap-2 text-sm">
           Hire me <ArrowRight className="h-4 w-4" />
         </Link>
-        <a
-          href="/resume.pdf"
-          download="Rahul_Vishwakarma_Resume.pdf"
+        <Link
+          to="/resume"
           className="h-12 px-6 rounded-full inline-flex items-center justify-center gap-2 text-sm border border-border/70 bg-background/60 hover:bg-muted/50 transition-colors"
         >
-          <Download className="h-4 w-4" /> Resume
-        </a>
+          <FileText className="h-4 w-4" /> View resume
+        </Link>
         <a href={`mailto:${contactInfo.email}`} className="text-center text-xs font-mono text-muted-foreground hover:text-primary transition-colors">
           {contactInfo.email}
         </a>

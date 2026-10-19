@@ -19,6 +19,7 @@ const Footer = () => {
     { label: 'Work', to: '/work' },
     { label: 'Case Studies', to: '/case-studies' },
     { label: 'How I Work', to: '/how-i-work' },
+    { label: 'Resume', to: '/resume' },
     { label: 'Contact', to: '/contact' },
   ];
 
@@ -79,7 +80,7 @@ const Footer = () => {
                 </p>
 
                 <div className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-tertiary/25 bg-tertiary/10 text-[11px] font-mono">
-                  <span className="pulse-dot mr-1.5" /> immediate joiner · open to senior roles
+                  <span className="pulse-dot mr-1.5" /> immediate joiner · available now
                 </div>
               </div>
 
