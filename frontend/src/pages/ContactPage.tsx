@@ -10,7 +10,7 @@ const ContactPage = () => {
       label="~/contact"
       eyebrow="// say.hi"
       title={<>Let's build something <span className="text-gradient-primary">together.</span></>}
-      subtitle="Immediate joiner — happy to discuss senior roles, architecture problems or production-grade SaaS builds this week."
+      subtitle="Immediate joiner, available now with no notice period — happy to discuss senior roles, architecture problems or production-grade SaaS builds."
     >
       <section data-ai-section="availability" className="max-w-5xl mx-auto mb-10 grid sm:grid-cols-3 gap-3">
         <div className="rounded-2xl border border-tertiary/30 bg-tertiary/10 p-4">

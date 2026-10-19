@@ -31,7 +31,8 @@ const PAGES: SearchResult[] = [
   { id: 'page-work', title: 'Work', subtitle: 'Projects & Products', category: 'page', icon: FolderOpen, path: '/work', keywords: ['work', 'projects', 'products', 'portfolio', 'case study'] },
   { id: 'page-case-studies', title: 'Case Studies', subtitle: 'How I shipped real production systems', category: 'page', icon: FolderOpen, path: '/case-studies', keywords: ['case study', 'case studies', 'cases', 'proof', 'architecture', 'production'] },
   { id: 'page-how-i-work', title: 'How I Work', subtitle: 'Engineering playbook · Immediate joiner', category: 'page', icon: Briefcase, path: '/how-i-work', keywords: ['how i work', 'playbook', 'process', 'deadline', 'immediate joiner', 'notice period', 'availability', 'join'] },
-  { id: 'page-contact', title: 'Contact', subtitle: 'Get in touch · Immediate joiner', category: 'page', icon: Mail, path: '/contact', keywords: ['contact', 'email', 'message', 'hire', 'reach', 'immediate joiner'] },
+  { id: 'page-resume', title: 'Resume', subtitle: 'View the latest resume in the browser', category: 'page', icon: FolderOpen, path: '/resume', keywords: ['resume', 'cv', 'pdf', 'view resume', 'download'] },
+  { id: 'page-contact', title: 'Contact', subtitle: 'Get in touch · Available now', category: 'page', icon: Mail, path: '/contact', keywords: ['contact', 'email', 'message', 'hire', 'reach', 'immediate joiner'] },
 ];
 
 function buildSearchIndex(): SearchResult[] {

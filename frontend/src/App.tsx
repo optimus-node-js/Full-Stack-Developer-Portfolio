@@ -25,6 +25,7 @@ const ProjectDetail = lazy(() => import('@/pages/ProjectDetail'));
 const CaseStudiesPage = lazy(() => import('@/pages/CaseStudiesPage'));
 const CaseStudyPage = lazy(() => import('@/pages/CaseStudyPage'));
 const HowIWorkPage = lazy(() => import('@/pages/HowIWorkPage'));
+const ResumePage = lazy(() => import('@/pages/ResumePage'));
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ function AnimatedRoutes() {
           <Route path="/case-studies" element={<CaseStudiesPage />} />
           <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
           <Route path="/how-i-work" element={<HowIWorkPage />} />
+          <Route path="/resume" element={<ResumePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

@@ -17,6 +17,7 @@ import {
   ArrowUp,
   ChevronRight,
   Zap,
+  FileText,
 } from 'lucide-react';
 import { contactInfo } from '@/data/resume-data';
 
@@ -31,6 +32,7 @@ const moreLinks = [
   { icon: User, label: 'About', to: '/about' },
   { icon: Compass, label: 'Journey', to: '/journey' },
   { icon: Workflow, label: 'How I Work', to: '/how-i-work' },
+  { icon: FileText, label: 'Resume', to: '/resume' },
 ];
 
 const isActivePath = (pathname: string, to: string) => (to === '/' ? pathname === '/' : pathname.startsWith(to));
