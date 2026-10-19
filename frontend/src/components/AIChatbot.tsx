@@ -139,6 +139,7 @@ function ContextualPrompt({ pathname, onOpen, isOpen }: ContextualPromptProps) {
     }
     if (pathname === '/case-studies') return 'Tell me your requirement — I’ll show you where Rahul has done it.';
     if (pathname === '/how-i-work') return 'Ask me how Rahul would handle your project.';
+    if (pathname === '/resume') return 'Hiring? Ask me why Rahul fits your team — or about any line here.';
     if (pathname === '/work') return 'Want to explore how these projects were built?';
     if (pathname === '/about') return "Want to know what makes Rahul stand out?";
     if (pathname === '/contact') return 'Have questions before reaching out?';
