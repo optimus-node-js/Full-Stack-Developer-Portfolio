@@ -701,13 +701,11 @@ export const experienceData: Experience[] = [
     period: "May 2026 – Present",
     icon: "Briefcase",
     description: [
-      "Owned and delivered the entire Services Module end-to-end in 4 months, live in production on 30 Sep 2026: categories, collections, service CRUD and booking/scheduling across short, long-duration and delivery-based services.",
-      "Architected ACL/RBAC permissions for three user tiers (admin, vendor, customer), enforcing role, hierarchy and ownership checks on every service, collection, category and booking API.",
-      "Built the admin panel's earnings management and a strict vendor verification workflow, so only verified vendors can publish services and accept bookings.",
-      "Engineered advanced multi-step service creation flows with strict server-side validation and input sanitization; added caching and query tuning to sustain thousands of booking transactions.",
-      "Delivered full Safari/iOS (WebKit) compatibility and mobile-responsive UI across the module, eliminating Safari-specific layout and date-handling breakages.",
-      "Built a WhatsApp AI Agent POC (OpenAI tool calling, Twilio, Node.js/Next.js) in under 24 hours, and achieved Google Play approval for the Capacitor app after prior attempts had stalled.",
-      "Identified 50+ vulnerabilities through the Blue Team security initiative and built event notification workflows on Novu."
+      "Owned the Services Module end-to-end in 4 months (live 30 Sep 2026): categories, collections, bookings, 3 service types.",
+      "Architected 3-tier ACL/RBAC (admin, vendor, customer) with ownership checks; built admin earnings and vendor verification.",
+      "Enforced server-side validation, caching and query tuning for 1,000s of bookings, with full Safari/iOS (WebKit) compatibility.",
+      "Built a WhatsApp AI Agent (OpenAI tool-calling, Twilio) in under 24 hours; secured Google Play approval for the Capacitor app.",
+      "Identified 50+ vulnerabilities via the Blue Team initiative; built event notification workflows on Novu."
     ],
     stack: ["Next.js", "Node.js", "TypeScript", "PostgreSQL", "ACL / RBAC", "REST APIs", "Caching", "OpenAI", "Twilio", "Novu", "Capacitor"]
   },
