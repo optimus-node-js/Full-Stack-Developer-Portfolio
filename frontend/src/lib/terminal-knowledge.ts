@@ -257,7 +257,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     response: cmdHire,
   },
   {
-    keywords: ['hind social', 'hind', 'services module', 'current company'],
+    keywords: ['hind social', 'hind', 'services module', 'last company', 'previous company'],
     response: () => cmdExperienceDetail(1),
   },
   {
