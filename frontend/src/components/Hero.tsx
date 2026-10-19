@@ -83,7 +83,7 @@ const Hero = () => {
               className="mt-6 max-w-xl mx-auto lg:mx-0 text-lg sm:text-xl text-muted-foreground leading-relaxed"
             >
               Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I build across
-              {' '}<span className="text-foreground">full-stack</span>, <span className="text-foreground">AI</span>, <span className="text-foreground">security</span>, and <span className="text-foreground">platform architecture</span> — shipping scalable products end-to-end.
+              {' '}<span className="text-foreground">full-stack</span>, <span className="text-foreground">AI</span>, <span className="text-foreground">security</span>, and <span className="text-foreground">platform architecture</span>, shipping scalable products end-to-end.
             </motion.p>
 
             {/* Tech chips */}
@@ -161,7 +161,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right — stats + avatar card */}
+          {/* Right - stats + avatar card */}
           <motion.div
             initial={{ opacity: 0, x: 32 }}
             animate={{ opacity: 1, x: 0 }}

@@ -6,7 +6,7 @@ import { availability } from '@/data/case-studies';
 const RESUME_PDF = '/resume.pdf';
 const RESUME_DOC = '/resume-doc/resume.html';
 const DOWNLOAD_NAME = 'Rahul_Vishwakarma_Resume.pdf';
-const PAPER_WIDTH = 816; // 8.5in at 96dpi — the width the resume is laid out at
+const PAPER_WIDTH = 816; // 8.5in at 96dpi - the width the resume is laid out at
 
 /**
  * Shows the resume's HTML source (the same file the PDF is printed from):
@@ -54,7 +54,7 @@ const ResumePage = () => {
       label="~/resume"
       eyebrow="// resume"
       title={<>My resume, <span className="text-gradient-primary">right here.</span></>}
-      subtitle="Always the latest version — read it on the page, no download needed."
+      subtitle="Always the latest version. Read it right here, no download needed."
     >
       <div className="max-w-4xl mx-auto">
         {/* Toolbar */}
@@ -95,7 +95,7 @@ const ResumePage = () => {
             <iframe
               ref={frameRef}
               src={RESUME_DOC}
-              title="Rahul Vishwakarma — resume"
+              title="Rahul Vishwakarma resume"
               onLoad={handleLoad}
               scrolling="no"
               className="absolute top-0 left-0 border-0 bg-white"

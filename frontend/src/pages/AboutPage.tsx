@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const highlights = [
-  { icon: Bot, title: 'AI Agent Engineering', copy: 'Designed and shipped a production-ready AI Agent PoC with OpenAI, tool calling, and WhatsApp integration — in a single day.' },
+  { icon: Bot, title: 'AI Agent Engineering', copy: 'Designed and shipped a production-ready AI Agent PoC with OpenAI, tool calling, and WhatsApp integration in a single day.' },
   { icon: Gauge, title: '99.9% Uptime on GCP', copy: 'Owned production systems across healthcare SaaS: deployments, Postgres migrations, critical cron workflows.' },
-  { icon: Layers, title: 'End-to-End Product Modules', copy: 'Owned the entire Hind Social Services Module — 3 service types, bookings, collections, layered security and caching — shipped in 4 months, on deadline.' },
+  { icon: Layers, title: 'End-to-End Product Modules', copy: 'Owned the entire Hind Social Services Module (3 service types, bookings, collections, layered security, caching) and shipped it in 4 months, on deadline.' },
   { icon: Shield, title: 'Security & Platform Hardening', copy: 'Blue Team contributor: security assessments, OWASP recommendations, threat analysis, and vulnerability documentation.' },
 ];
 
@@ -18,7 +18,7 @@ const AboutPage = () => {
       label="~/about"
       eyebrow="// who.am.i"
       title={<>Full stack engineering, <span className="text-gradient-primary">end-to-end.</span></> as unknown as string}
-      subtitle="Building across full-stack, AI, security, and platform architecture — owning products from database design to production deployment."
+      subtitle="Building across full-stack, AI, security, and platform architecture, owning products from database design to production deployment."
     >
       <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
         {/* Long bio card */}
@@ -73,7 +73,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Skills section — reused */}
+      {/* Skills section - reused */}
       <div className="mt-20">
         <SkillsModern />
       </div>
@@ -82,7 +82,7 @@ const AboutPage = () => {
       <div className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-5xl mx-auto p-6 rounded-2xl border border-border/60 bg-muted/20">
         <div>
           <div className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">Next</div>
-          <div className="font-heading font-bold text-xl mt-1">The Journey — experience & education</div>
+          <div className="font-heading font-bold text-xl mt-1">The Journey: experience & education</div>
         </div>
         <Link to="/journey" className="btn-primary-premium h-11 px-6 rounded-full inline-flex items-center gap-2">
           Continue <ArrowRight className="h-4 w-4" />

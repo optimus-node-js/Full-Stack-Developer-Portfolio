@@ -12,7 +12,7 @@ const CaseStudiesPage = () => {
       label="~/case-studies"
       eyebrow="// how.i.ship"
       title={<>Case studies from <span className="text-gradient-primary">real production systems.</span></>}
-      subtitle="Not screenshots — the problem, the constraints, the architecture, the trade-offs and what shipped. Each one is something running for real users."
+      subtitle="Not screenshots. The problem, the constraints, the architecture, the trade-offs and what shipped. Each one is something running for real users."
     >
       {/* Requirement → proof */}
       <section data-ai-section="capabilities" className="max-w-6xl mx-auto">

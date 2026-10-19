@@ -23,7 +23,7 @@ const MODEL = 'openai/gpt-oss-120b';
 const MAX_TOOL_ROUNDS = 4;
 
 // ---------------------------------------------------------------------------
-// Site map — every place the assistant may send a visitor
+// Site map - every place the assistant may send a visitor
 // ---------------------------------------------------------------------------
 
 export interface SitePage {
@@ -37,23 +37,23 @@ const CASE_STUDY_SECTIONS = ['metrics', 'context', 'constraints', 'approach', 'a
 export const SITE_PAGES: SitePage[] = [
   { path: '/', title: 'Home', sections: ['stats', 'featured', 'capabilities', 'hire'] },
   { path: '/about', title: 'About', sections: ['bio', 'strengths'] },
-  { path: '/journey', title: 'Journey — experience & education', sections: ['experience', 'education', 'community'] },
+  { path: '/journey', title: 'Journey: experience & education', sections: ['experience', 'education', 'community'] },
   ...experienceData.map((e) => ({
     path: `/journey?exp=${experienceSlug(e)}`,
-    title: `Journey — ${e.title} at ${e.company}`,
+    title: `Journey: ${e.title} at ${e.company}`,
     sections: ['experience'],
   })),
-  { path: '/work', title: 'Work — all projects', sections: ['featured', 'projects'] },
+  { path: '/work', title: 'Work: all projects', sections: ['featured', 'projects'] },
   { path: '/case-studies', title: 'Case studies', sections: ['capabilities', 'list'] },
-  ...caseStudies.map((c) => ({ path: `/case-studies/${c.slug}`, title: `Case study — ${c.title}`, sections: CASE_STUDY_SECTIONS })),
+  ...caseStudies.map((c) => ({ path: `/case-studies/${c.slug}`, title: `Case study: ${c.title}`, sections: CASE_STUDY_SECTIONS })),
   ...projectsData.map((p) => ({
     path: `/project/${p.slug}`,
-    title: `Project — ${p.title}`,
+    title: `Project: ${p.title}`,
     sections: [...(p.metrics?.length ? ['metrics'] : []), 'overview', 'highlights', 'challenges', 'outcomes'],
   })),
-  { path: '/how-i-work', title: 'How I Work — engineering playbook', sections: ['availability', 'principles', 'checklist', 'first-90-days'] },
+  { path: '/how-i-work', title: 'How I Work: engineering playbook', sections: ['availability', 'principles', 'checklist', 'first-90-days'] },
   { path: '/contact', title: 'Contact', sections: ['availability', 'form'] },
-  { path: '/resume', title: 'Resume — view the latest resume in the browser', sections: ['viewer'] },
+  { path: '/resume', title: 'Resume: view the latest resume in the browser', sections: ['viewer'] },
 ];
 
 const ALL_SECTIONS = [...new Set(SITE_PAGES.flatMap((p) => p.sections))];
@@ -63,7 +63,7 @@ export function pageForPath(pathname: string, search = ''): SitePage | undefined
 }
 
 // ---------------------------------------------------------------------------
-// Knowledge — compact, generated from site data
+// Knowledge - compact, generated from site data
 // ---------------------------------------------------------------------------
 
 function buildKnowledge(): string {
@@ -71,7 +71,7 @@ function buildKnowledge(): string {
     .map((e) => `- ${e.title} @ ${e.company} (${e.period}${e.location ? `, ${e.location}` : ''}) [id: ${experienceSlug(e)}]: ${e.description.slice(0, 3).join(' ')}`)
     .join('\n');
   const cases = caseStudies
-    .map((c) => `- ${c.title} [${c.slug}] — ${c.tagline}; ${c.metrics.map((m) => `${m.value} ${m.label}`).join(', ')}`)
+    .map((c) => `- ${c.title} [${c.slug}]: ${c.tagline}; ${c.metrics.map((m) => `${m.value} ${m.label}`).join(', ')}`)
     .join('\n');
   const projects = projectsData.map((p) => `- ${p.title} [${p.slug}] (${p.period}, ${p.status ?? ''}): ${p.subtitle ?? ''}`).join('\n');
   const skills = skillsData.map((s) => `${s.title}: ${s.skills.map((k) => k.name).join(', ')}`).join('\n');
@@ -80,7 +80,7 @@ function buildKnowledge(): string {
   return `## Rahul Vishwakarma
 ${bioData.title}. ${bioData.summary}
 Stats: ${bioData.stats.map((s) => `${s.value} ${s.label}`).join(' · ')}
-Availability: ${availability.headline.toUpperCase()} — ${availability.detail} Open to ${availability.modes.join(', ')}. Based in ${availability.base}. ${availability.timezones}.
+Availability: ${availability.headline.toUpperCase()}: ${availability.detail} Open to ${availability.modes.join(', ')}. Based in ${availability.base}. ${availability.timezones}.
 Contact: ${contactInfo.email} · WhatsApp/phone ${contactInfo.phone} · LinkedIn ${contactInfo.linkedin} · GitHub ${contactInfo.github}
 
 ## Experience (newest first)
@@ -104,38 +104,39 @@ Certifications: ${certificationData.map((c) => `${c.title} (${c.issuer})`).join(
 Community: ${involvementData.map((i) => `${i.title}, ${i.organization}`).join('; ')}`;
 }
 
-const SITE_MAP_TEXT = SITE_PAGES.map((p) => `${p.path} — ${p.title} [sections: ${p.sections.join(', ')}]`).join('\n');
+const SITE_MAP_TEXT = SITE_PAGES.map((p) => `${p.path}: ${p.title} [sections: ${p.sections.join(', ')}]`).join('\n');
 
 export const SYSTEM_PROMPT = `You are the AI assistant on Rahul Vishwakarma's portfolio website. You know everything on the site and you can move the visitor around it.
 
 ## How you talk
-- Short, warm, human — like texting a sharp colleague. Usually 1–3 sentences, never more than ~60 words unless they ask for detail.
+- Short, warm, human: like texting a sharp colleague. Usually 1–3 sentences, never more than ~60 words unless they ask for detail.
 - Lead with the strongest concrete proof: a number, a deadline met, a result.
 - Plain sentences. No headings, no bullet lists. You may **bold** one key fact.
-- The chat already greeted them — never say hi/hello again.
+- Never use em dashes (—) or en dashes (–) in replies. Use commas, colons or full stops, like a person typing.
+- The chat already greeted them, never say hi/hello again.
 
 ## Your tools
-- show_on_site: navigate to a page and spotlight the exact section that proves your answer. Use it whenever the answer lives on the site — a project, case study, role, skills, availability, contact — and for "show me", "where", "what has he built", "can he do X" and hiring questions. Pick the most specific page + section, with a punchy label of max 6 words (e.g. "Entire module shipped in 4 months"). One navigation per reply. Skip it for small talk, or if they're already looking at that section.
+- show_on_site: navigate to a page and spotlight the exact section that proves your answer. Use it whenever the answer lives on the site (a project, case study, role, skills, availability, contact) and for "show me", "where", "what has he built", "can he do X" and hiring questions. Pick the most specific page + section, with a punchy label of max 6 words (e.g. "Entire module shipped in 4 months"). One navigation per reply. Skip it for small talk, or if they're already looking at that section.
 - get_details: fetch the full write-up of a case study, project or role before answering detailed or follow-up questions. Never invent facts beyond the knowledge below and tool results.
 - show_contact_options: when they want to hire, contact, schedule or talk to Rahul.
 - To show his resume, use show_on_site with path /resume (it opens in the browser, no download needed).
 
-After navigating, say in one line what you opened and the single fact that proves the point, e.g. "I've opened the Services Marketplace case study — he built the entire module in 4 months and shipped it on deadline."
+After navigating, say in one line what you opened and the single fact that proves the point, e.g. "I've opened the Services Marketplace case study: he built the entire module in 4 months and shipped it on deadline."
 
 ## Hiring
-Rahul left Hind Social on 9 Oct 2026 and is available now: an IMMEDIATE JOINER with no notice period — mention it whenever hiring, availability, notice period or start dates come up. Pitch him confidently with real proof, link a matching case study for any requirement, and offer contact options.
+Rahul left Hind Social on 9 Oct 2026 and is available now: an IMMEDIATE JOINER with no notice period: mention it whenever hiring, availability, notice period or start dates come up. Pitch him confidently with real proof, link a matching case study for any requirement, and offer contact options.
 
-## Pitching Rahul — be his best advocate, never dishonest
+## Pitching Rahul: be his best advocate, never dishonest
 When asked "why Rahul?", "is he a fit?" or "why should we hire him?", give a confident pitch (up to ~80 words) built from real proof:
 - Ships big things fast: an entire services marketplace module in 4 months, on the deadline; a working WhatsApp AI agent in under 24 hours.
 - Production-grade: 99.9% uptime on GCP, zero critical data breaches, 20+ UK clinics and 40k+ patients on a platform he scaled.
 - Security-first: 3-tier ACL/RBAC, vendor verification, 50+ vulnerabilities found in a Blue Team review.
-- End-to-end owner: schema, APIs, web, Android/iOS, cloud — he unblocked a Play Store approval others had stalled on.
+- End-to-end owner: schema, APIs, web, Android/iOS, cloud: he unblocked a Play Store approval others had stalled on.
 - Available now as an immediate joiner.
 
 ## Skills he hasn't listed (e.g. .NET, Java, Go, AWS, Angular)
 Never claim experience he doesn't have. Say plainly that it isn't on his resume yet, then make the case for him:
-- Map transferable skills (e.g. for .NET/C#: hands-on strongly-typed TypeScript, REST API design, SQL/PostgreSQL, auth and RBAC, clean layered backends — the same concepts).
+- Map transferable skills (e.g. for .NET/C#: hands-on strongly-typed TypeScript, REST API design, SQL/PostgreSQL, auth and RBAC, clean layered backends: the same concepts).
 - Prove he learns fast with evidence: moved across PHP/Laravel, Node.js/NestJS, React/Next.js, Capacitor mobile and LLM tool-calling; delivered the AI agent in under a day; picked up a new mobile stack to win Play Store approval.
 - Close with what he'd bring from day one (ownership, security, production reliability) and offer to connect them with Rahul.
 Keep it warm and persuasive, not pushy, and never invent projects, employers or numbers.
@@ -306,11 +307,11 @@ async function callModel(apiKey: string, messages: ApiMessage[], withTools: bool
 function currentPageNote(env: AgentEnv): string {
   const page = pageForPath(env.pathname, env.search);
   const base = page
-    ? `[Visitor is currently on ${page.path} — ${page.title}. Sections here: ${page.sections.join(', ')}.`
+    ? `[Visitor is currently on ${page.path}: ${page.title}. Sections here: ${page.sections.join(', ')}.`
     : `[Visitor is currently on ${env.pathname}.`;
   // On the resume page the visitor is usually evaluating him: act as his advocate.
   const resume = env.pathname === '/resume'
-    ? ' They are reading his resume right now — they are likely a recruiter or hiring manager. Answer questions about any line of it, back each point with the matching case study (use show_on_site), and pitch him using the "Pitching Rahul" guidance.'
+    ? ' They are reading his resume right now: they are likely a recruiter or hiring manager. Answer questions about any line of it, back each point with the matching case study (use show_on_site), and pitch him using the "Pitching Rahul" guidance.'
     : '';
   return `${base}${resume}]`;
 }
@@ -354,13 +355,14 @@ export async function runAgent(
       continue;
     }
 
-    result.text = (msg.content ?? '').trim();
+    // Keep replies typed-by-a-person: no em dashes, even if the model slips.
+    result.text = (msg.content ?? '').trim().replace(/\s*—\s*/g, ', ');
     break;
   }
 
   if (!result.text) {
     result.text = result.actions.length
-      ? `I've opened ${result.actions[0].title} for you — take a look at the highlighted part.`
+      ? `I've opened ${result.actions[0].title} for you: take a look at the highlighted part.`
       : "Sorry, I couldn't put that together. Could you ask in another way?";
   }
   return result;

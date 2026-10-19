@@ -137,9 +137,9 @@ function ContextualPrompt({ pathname, onOpen, isOpen }: ContextualPromptProps) {
       const cs = caseStudies.find((c) => c.slug === pathname.split('/case-studies/')[1]);
       if (cs) return `Want the 20-second version of "${cs.title}"?`;
     }
-    if (pathname === '/case-studies') return 'Tell me your requirement — I’ll show you where Rahul has done it.';
+    if (pathname === '/case-studies') return 'Tell me your requirement and I’ll show you where Rahul has done it.';
     if (pathname === '/how-i-work') return 'Ask me how Rahul would handle your project.';
-    if (pathname === '/resume') return 'Hiring? Ask me why Rahul fits your team — or about any line here.';
+    if (pathname === '/resume') return 'Hiring? Ask me why Rahul fits your team, or about any line here.';
     if (pathname === '/work') return 'Want to explore how these projects were built?';
     if (pathname === '/about') return "Want to know what makes Rahul stand out?";
     if (pathname === '/contact') return 'Have questions before reaching out?';
@@ -250,7 +250,7 @@ export default function AIChatbot() {
       const greeting = getGreeting();
       const greetMsg: ChatMessage = {
         role: 'assistant',
-        content: `${greeting}! I'm Rahul's AI assistant. Ask me anything about his work — or tell me what you need built, and I'll show you right here on the site where he's done it.`,
+        content: `${greeting}! I'm Rahul's AI assistant. Ask me anything about his work, or tell me what you need built, and I'll show you right here on the site where he's done it.`,
         timestamp: Date.now(),
       };
       addMessage(greetMsg);
@@ -305,7 +305,7 @@ export default function AIChatbot() {
       addMessage(assistantMsg);
       setMessages((prev) => [...prev, assistantMsg]);
 
-      // On phones the chat covers the page — step aside so the highlight is visible.
+      // On phones the chat covers the page - step aside so the highlight is visible.
       if (isPhone && result.actions.length) {
         setPeek(result.actions[0]);
         setIsOpen(false);
