@@ -131,7 +131,7 @@ const ProjectDetail = () => {
 
       {/* Headline metrics */}
       {project.metrics && project.metrics.length > 0 && (
-        <section className="max-w-6xl mx-auto mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <section data-ai-section="metrics" className="max-w-6xl mx-auto mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
           {project.metrics.map((m, i) => (
             <motion.div
               key={m.label}
@@ -153,7 +153,7 @@ const ProjectDetail = () => {
         {/* Main story */}
         <div className="space-y-8">
           {project.longDescription && (
-            <div className="glass rounded-3xl p-6 sm:p-8 border border-border/60">
+            <div data-ai-section="overview" className="glass rounded-3xl p-6 sm:p-8 border border-border/60">
               <div className="text-[11px] font-mono uppercase tracking-[0.3em] text-primary mb-4">// overview</div>
               <div className="text-base text-foreground/85 leading-relaxed whitespace-pre-line">
                 {project.longDescription}
@@ -162,7 +162,7 @@ const ProjectDetail = () => {
           )}
 
           {project.highlights && project.highlights.length > 0 && (
-            <div className="glass rounded-3xl p-6 sm:p-8 border border-border/60">
+            <div data-ai-section="highlights" className="glass rounded-3xl p-6 sm:p-8 border border-border/60">
               <div className="text-[11px] font-mono uppercase tracking-[0.3em] text-primary mb-4 flex items-center gap-2">
                 <Sparkles className="h-3 w-3" /> highlights
               </div>
@@ -186,7 +186,7 @@ const ProjectDetail = () => {
 
           <div className="grid md:grid-cols-2 gap-4">
             {project.challenges && project.challenges.length > 0 && (
-              <div className="glass rounded-3xl p-6 border border-border/60">
+              <div data-ai-section="challenges" className="glass rounded-3xl p-6 border border-border/60">
                 <div className="text-[11px] font-mono uppercase tracking-[0.3em] text-yellow-500/80 mb-4 flex items-center gap-2">
                   <Lightbulb className="h-3 w-3" /> challenges
                 </div>
@@ -202,7 +202,7 @@ const ProjectDetail = () => {
             )}
 
             {project.outcomes && project.outcomes.length > 0 && (
-              <div className="glass rounded-3xl p-6 border border-border/60">
+              <div data-ai-section="outcomes" className="glass rounded-3xl p-6 border border-border/60">
                 <div className="text-[11px] font-mono uppercase tracking-[0.3em] text-emerald-500/80 mb-4 flex items-center gap-2">
                   <Target className="h-3 w-3" /> outcomes
                 </div>

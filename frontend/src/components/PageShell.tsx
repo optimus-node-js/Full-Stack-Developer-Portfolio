@@ -29,7 +29,7 @@ export default function PageShell({
       {/* Ambient bg */}
       <div className="absolute inset-0 dot-overlay pointer-events-none" />
       <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-primary/15 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-secondary/12 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="container mx-auto relative z-10">
         {(label || title || subtitle || eyebrow) && (
