@@ -253,6 +253,7 @@ const HomePage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.8 }}
+          data-ai-section="stats"
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto"
         >
           {[
@@ -283,7 +284,7 @@ const HomePage = () => {
         </motion.div>
 
         {/* Featured case study */}
-        <div className="mt-16 max-w-6xl mx-auto">
+        <div data-ai-section="featured" className="mt-16 max-w-6xl mx-auto">
           <FeaturedCaseStudy compact />
         </div>
 
@@ -293,6 +294,7 @@ const HomePage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7 }}
+          data-ai-section="capabilities"
           className="mt-20 max-w-6xl mx-auto"
         >
           <div className="flex flex-wrap items-end justify-between gap-3">
@@ -324,7 +326,7 @@ const HomePage = () => {
           </div>
         </motion.section>
 
-        <div className="mt-16 max-w-6xl mx-auto">
+        <div data-ai-section="hire" className="mt-16 max-w-6xl mx-auto">
           <HireCTA />
         </div>
 

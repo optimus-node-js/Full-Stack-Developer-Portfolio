@@ -12,7 +12,7 @@ const ContactPage = () => {
       title={<>Let's build something <span className="text-gradient-primary">together.</span></>}
       subtitle="Immediate joiner — happy to discuss senior roles, architecture problems or production-grade SaaS builds this week."
     >
-      <section className="max-w-5xl mx-auto mb-10 grid sm:grid-cols-3 gap-3">
+      <section data-ai-section="availability" className="max-w-5xl mx-auto mb-10 grid sm:grid-cols-3 gap-3">
         <div className="rounded-2xl border border-tertiary/30 bg-tertiary/10 p-4">
           <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-tertiary">
             <Zap className="h-3.5 w-3.5 fill-current" /> Availability
@@ -37,7 +37,9 @@ const ContactPage = () => {
           </Link>
         </div>
       </section>
-      <Contact />
+      <div data-ai-section="form">
+        <Contact />
+      </div>
     </PageShell>
   );
 };

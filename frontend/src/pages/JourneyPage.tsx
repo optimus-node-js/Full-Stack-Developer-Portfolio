@@ -14,7 +14,7 @@ const JourneyPage = () => {
       subtitle="Product engineering across full-stack, AI, security, and platform architecture — roles, milestones and credentials."
     >
       {/* Experience — Company Switcher */}
-      <section className="max-w-6xl mx-auto">
+      <section data-ai-section="experience" className="max-w-6xl mx-auto">
         <div className="mb-8 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.3em] text-primary">
           <span className="h-[2px] w-6 bg-primary rounded-full" />
           <span>experience</span>
@@ -23,12 +23,12 @@ const JourneyPage = () => {
       </section>
 
       {/* Education */}
-      <section className="max-w-6xl mx-auto mt-24">
+      <section data-ai-section="education" className="max-w-6xl mx-auto mt-24">
         <EducationCredentials />
       </section>
 
       {/* Involvement (reused) */}
-      <div className="mt-16">
+      <div data-ai-section="community" className="mt-16">
         <Involvement />
       </div>
 

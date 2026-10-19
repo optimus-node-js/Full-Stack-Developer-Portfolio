@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MessageSquare, X, Send, MoreVertical, RotateCcw, Trash2, Mail, Phone,
-  ExternalLink, Sparkles, ChevronDown,
+  ExternalLink, Sparkles, ChevronDown, MapPin, Download,
 } from 'lucide-react';
 import {
   getActiveSession, addMessage, startNewSession, clearAllData, getMessagesForApi,
@@ -13,112 +13,11 @@ import {
 import { db, type ContactSubmission } from '@/lib/instantdb';
 import { id as instantId } from '@instantdb/react';
 import { projectsData, experienceData } from '@/data/resume-data';
+import { caseStudies } from '@/data/case-studies';
+import { runAgent, summarize, type ChatAction } from '@/lib/chat-agent';
+import { highlightSection } from '@/lib/ai-highlight';
 
 const _gk = () => atob('Z3NrX3FPUzRpVUlBaE41VkR5NGhoaTBxV0dkeWIzRllha2Q0cUJCT3NHMVpKdnU4Z0JhakhJQUk=');
-const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-
-const SYSTEM_PROMPT = `You are Rahul Vishwakarma's portfolio AI assistant. You text like a real person, not like an AI writing a report. Use occasional natural expressions like "hmm", "yeah", "absolutely", "oh nice" to feel real.
-
-## Response Length — this matters a lot
-- Match the length of your reply to the question. A short or casual message ("hi", "what can u do", "cool") gets a SHORT reply — 1-2 sentences, sometimes even one short line. Do NOT dump a full feature list or a wall of text for a casual question.
-- Never open with a big paragraph summarizing everything you can do. If asked "what can you do", give a quick one-liner (e.g. "I can talk through Rahul's projects, experience, or connect you with him — what are you curious about?") and let the conversation unfold instead of front-loading everything.
-- Only go longer (3-5 sentences, or a short list) when the user actually asks for detail — e.g. "tell me more about the healthcare project" or "walk me through his experience."
-- No bullet-point dumps or headers in chat replies. If you need to list a couple things, write them inline as a sentence, not a formatted list.
-- Never pad a reply with restating the question or unnecessary setup. Get to the point like a person would in a chat.
-
-## About Rahul
-- **Title**: Senior Full Stack Developer
-- **Availability**: IMMEDIATE JOINER — can start right away, no notice period. Open to full-time, remote or hybrid senior roles. Mention this whenever hiring, availability, notice period or start date comes up.
-- **Location**: Ahmedabad, Gujarat, India
-- **Education**: B.Tech in Computer Science & Engineering from Bansal Institute of Research Technology and Science, Bhopal (7.91 CGPA, 2019-2023)
-- **Experience**: 3+ years of full stack engineering
-- **Contact**: karmarahul67@gmail.com | +91 9131114837
-- **LinkedIn**: https://linkedin.com/in/rahul-vishwakarma-101346192
-- **GitHub**: https://github.com/Rahul-gif-asus
-
-## Current Role
-Full Stack Developer at **Hind Social Network Pvt. Ltd.** (May 2026 – Present, Ahmedabad)
-- Owned and built the ENTIRE Services Module end-to-end in about 4 months; shipped to production on schedule on 30 September 2026. It's a full marketplace inside Hind Social: service providers create and sell services, customers discover and book them
-- Three service types: short-duration (slot-based), long-duration and delivery-based. Plus collections, categories, banners, service discovery, bookings, provider booking management and "My Bookings"
-- Layered security architecture: role-based and hierarchy-level access rules (admin / provider / customer) with ownership checks on every service and booking API, blocking unauthorized access
-- Built and optimised the module's APIs with caching, query/index tuning and pagination — production-grade and built to handle thousands of booking transactions
-- Fully mobile-responsive and Safari / iOS compatible
-- Independently designed and shipped a production-ready AI Agent PoC in a single day — real platform operations via WhatsApp using OpenAI GPT, tool calling, and Twilio
-- Blue Team security work — security assessments, vulnerability identification, OWASP-based recommendations, threat analysis
-- Notification engineering with Noti — workflow automation, trigger pipelines, notification orchestration
-- Built and configured Capacitor application using Next.js WebView, achieving Google Play Store approval
-
-## Previous Role
-Full Stack Developer at **Script Assist UK** (Nov 2024 – May 2026, Remote · United Kingdom)
-- Architected multi-tenant healthcare SaaS serving 20+ UK clinics/pharmacies and 40,000+ real patients
-- Strict cross-organization data isolation, ACL-based security, 99.9% uptime on GCP
-- Shipped Android & iOS patient apps via Capacitor serving 5,000+ patient app users — one codebase, three platforms
-- Zero critical data breaches. PostgreSQL migrations, critical cron workflows, RJSF form engine
-
-## Other Experience
-- Full Stack Developer at Student Diwan (May 2024 – Feb 2025) — multi-tenant school management SaaS
-- Freelance Backend Developer (Aug 2023 – Feb 2024) — Laravel, PHP, MySQL
-- Space Launch Vehicle Intern at Omspace Rocket & Exploration (Dec 2022 – Jan 2023) — rocket engine design
-
-## Key Projects
-1. **Hind Social Services Marketplace** (featured) — entire module built end-to-end in 4 months, shipped 30 Sep 2026; 3 service types, layered security, caching, Safari-compatible
-2. **Multi-Tenant Healthcare SaaS** — 40,000+ patients, 20+ clinics, strict tenant isolation, 99.9% uptime
-3. **AI Agent WhatsApp Integration** — Built in a single day, real platform operations via conversational AI
-4. **Patient Mobile Apps** — Android & iOS via Capacitor, achieved Google Play Store approval
-5. **School Management SaaS** — Multi-tenant, RBAC, attendance/fees/academics
-6. **SpaceX Launch Explorer** — React + TypeScript open source project
-7. **CrowdSource Platform** — MERN stack collaborative problem-solving
-8. **Dividend ROI Calculator** — Python + Angel One API for NSE dividend research
-9. **Platform Security Assessment** — Blue Team review at Hind Social, OWASP-mapped findings and security docs
-10. **Noti Notification Orchestration** — event-driven trigger pipelines and notification workflows at Hind Social
-11. **Dynamic Clinical Form Engine** — RJSF/JSON-schema form builder used by clinicians at Script Assist
-12. **Healthcare Cron Workflow Engine** — prescriptions, inventory allocation and appointment jobs on GCP at 99.9% uptime
-13. **Laravel Client Backends** — freelance REST APIs, JWT/session auth, MySQL
-14. **This Portfolio** — React + TypeScript site with an AI assistant, interactive terminal and Cmd+K search
-
-## Case Studies (point people to these pages on the site)
-- /case-studies — all 8 case studies, plus a "requirement → proof" map
-- /case-studies/services-marketplace-in-4-months — entire Hind Social services marketplace, 4 months, live 30 Sep 2026
-- /case-studies/multi-tenant-healthcare-saas — 20+ clinics, 40k+ patients, zero critical breaches
-- /case-studies/ai-agent-whatsapp-in-a-day — WhatsApp AI agent doing real operations, built in 1 day
-- /case-studies/one-codebase-three-platforms — web + Android + iOS, Play Store approval, 5,000+ patient app users
-- /case-studies/critical-cron-workflows — 99.9% uptime on prescriptions, inventory, appointments
-- /case-studies/blue-team-security-assessment — OWASP-mapped security review of a live platform
-- /case-studies/notification-orchestration — event-driven notification pipelines on Noti
-- /case-studies/multi-school-management-saas — multi-tenant school SaaS with RBAC
-- /how-i-work — engineering playbook: deadlines, security-first, production ownership, first-90-days plan
-
-## Tech Stack
-Languages: TypeScript, JavaScript, PHP, SQL, HTML5, CSS3
-Frontend: React.js, Next.js, Zustand, TailwindCSS, Redux, RJSF, Capacitor
-Backend: Node.js, Nest.js, Laravel, Express, REST APIs, JWT/OAuth
-AI: OpenAI API, AI Agents, Tool Calling, Prompt Engineering, Twilio, WhatsApp Business API
-Databases: PostgreSQL, MongoDB, Redis, MySQL, InstantDB
-Cloud & DevOps: Google Cloud Platform, Cron Workflows, DB Migrations, ACL/RBAC
-Security: Security Assessment, OWASP, Blue Team, Threat Analysis, Platform Hardening
-Architecture: System Design, Multi-Tenant SaaS, Booking & Marketplace Systems, Caching, Layered Security Architecture, Notification Systems, Workflow Automation
-
-## Certifications
-- Learn Ethical Hacking from Scratch (zSecurity/Udemy, 2023)
-- Geoprocessing Using Python (IIRS, 2023)
-- Data Mining & Business Analytics (Infosys/Springboard, 2023)
-
-## Community
-- Tech Lead at Commutiny (Database Management for 30+ NGOs)
-- Co-Founder of Express Yourself Community (mental health, pandemic era)
-- Bronze Medalist at Q-ki National Championship
-
-## Your Behavior
-- The chat interface already shows a static greeting when the user opens the chat. NEVER greet the user again or say "hello/hi/hey" when they send their first message. Instead, jump straight into a short, casual follow-up question. For example, if they say "Hi", respond with something short like "Hey! What brings you here — looking for a dev, curious about a project, or just poking around?"
-- When someone has a specific requirement, link the most relevant case study page above as proof
-- Pitch Rahul confidently when users ask about services or hiring — emphasize his production experience, fast delivery (AI Agent in 1 day, entire Services Module in 4 months on deadline), security mindset, and end-to-end ownership
-- When users ask "can Rahul do X?", connect it to his real experience and explain how
-- Proactively offer contact options: email (karmarahul67@gmail.com), WhatsApp (+91 9131114837), LinkedIn
-- If users want to hire or discuss work, enthusiastically encourage them and provide contact methods
-- Remember previous conversation context and reference it naturally ("as we talked about earlier...")
-- Ask engaging follow-up questions to keep the conversation going — show genuine curiosity about what the user needs
-- Stats: 3+ years full stack engineering, 8+ production systems shipped, 99.9% uptime, 0 critical data breaches`;
-
 function getGreeting(): string {
   const h = new Date().getHours();
   if (h < 12) return 'Good morning';
@@ -148,75 +47,54 @@ function getDeviceInfo() {
   return { device, os, browser, screenWidth: window.innerWidth, screenHeight: window.innerHeight };
 }
 
-function getPageContext(pathname: string): string | null {
-  if (pathname.startsWith('/project/')) {
-    const slug = pathname.split('/project/')[1];
-    const project = projectsData.find((p) => p.slug === slug);
-    if (project) return `User is viewing the "${project.title}" project page. This project: ${project.description}`;
-  }
-  if (pathname === '/journey') {
-    return 'User is on the Journey page viewing career experience and education timeline.';
-  }
-  if (pathname === '/work') {
-    return 'User is browsing all projects on the Work page.';
-  }
-  if (pathname === '/about') {
-    return 'User is on the About page learning about Rahul.';
-  }
-  return null;
-}
-
 const CONTACT_LINKS = [
   { icon: Mail, label: 'Email', href: 'mailto:karmarahul67@gmail.com', color: 'text-blue-400' },
   { icon: Phone, label: 'WhatsApp', href: 'https://wa.me/919131114837', color: 'text-green-400' },
   { icon: Phone, label: 'Call', href: 'tel:+919131114837', color: 'text-yellow-400' },
 ];
 
-async function sendChat(
-  messages: { role: 'user' | 'assistant'; content: string }[],
-  contextSummary?: string,
-): Promise<string> {
-  const systemMessages: { role: string; content: string }[] = [
-    { role: 'system', content: SYSTEM_PROMPT },
-  ];
-
-  if (contextSummary) {
-    systemMessages.push({
-      role: 'system',
-      content: `Previous conversation summary for context continuity:\n${contextSummary}`,
-    });
-  }
-
-  const res = await fetch(GROQ_API_URL, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${_gk()}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'openai/gpt-oss-120b',
-      messages: [...systemMessages, ...messages.slice(-20)],
-      temperature: 0.7,
-      max_tokens: 220,
-    }),
-  });
-
-  if (!res.ok) throw new Error('Groq API error');
-  const data = await res.json();
-  return data.choices?.[0]?.message?.content || "Sorry, I couldn't generate a response.";
+/** Renders **bold** spans; everything else stays plain text. */
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <p className="whitespace-pre-wrap">
+      {parts.map((part, i) =>
+        part.startsWith('**') && part.endsWith('**') ? (
+          <strong key={i} className="font-semibold text-foreground">{part.slice(2, -2)}</strong>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </p>
+  );
 }
 
-async function summarizeChat(
-  messages: { role: 'user' | 'assistant'; content: string }[],
-): Promise<string> {
-  const summaryMessages = [
-    ...messages.slice(0, -10),
-    {
-      role: 'user' as const,
-      content: 'Summarize our entire conversation so far in 3-4 sentences, covering the key topics discussed and any preferences or interests the user showed. This summary will be used to maintain conversation context.',
-    },
-  ];
-  return sendChat(summaryMessages);
+function ContactCard() {
+  return (
+    <div className="flex gap-2 flex-wrap">
+      {CONTACT_LINKS.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/30 border border-border/50 text-xs text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+        >
+          <link.icon className={`w-3 h-3 ${link.color}`} />
+          {link.label}
+          <ExternalLink className="w-2.5 h-2.5" />
+        </a>
+      ))}
+      <a
+        href="/resume.pdf"
+        download="Rahul_Vishwakarma_Resume.pdf"
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/30 border border-border/50 text-xs text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+      >
+        <Download className="w-3 h-3 text-primary" />
+        Resume
+      </a>
+    </div>
+  );
 }
 
 interface ContextualPromptProps {
@@ -256,6 +134,12 @@ function ContextualPrompt({ pathname, onOpen, isOpen }: ContextualPromptProps) {
       const latest = experienceData[0];
       return `Curious about Rahul's work at ${latest.company}?`;
     }
+    if (pathname.startsWith('/case-studies/')) {
+      const cs = caseStudies.find((c) => c.slug === pathname.split('/case-studies/')[1]);
+      if (cs) return `Want the 20-second version of "${cs.title}"?`;
+    }
+    if (pathname === '/case-studies') return 'Tell me your requirement — I’ll show you where Rahul has done it.';
+    if (pathname === '/how-i-work') return 'Ask me how Rahul would handle your project.';
     if (pathname === '/work') return 'Want to explore how these projects were built?';
     if (pathname === '/about') return "Want to know what makes Rahul stand out?";
     if (pathname === '/contact') return 'Have questions before reaching out?';
@@ -301,7 +185,9 @@ function ContextualPrompt({ pathname, onOpen, isOpen }: ContextualPromptProps) {
 }
 
 export default function AIChatbot() {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  const navigate = useNavigate();
+  const [peek, setPeek] = useState<ChatAction | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
@@ -359,11 +245,12 @@ export default function AIChatbot() {
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
+    setPeek(null);
     if (!hasGreeted) {
       const greeting = getGreeting();
       const greetMsg: ChatMessage = {
         role: 'assistant',
-        content: `${greeting}! I'm Rahul's AI assistant. I know everything about his work, skills, and experience. Ask me anything — or I can help you figure out if Rahul's the right fit for your project!`,
+        content: `${greeting}! I'm Rahul's AI assistant. Ask me anything about his work — or tell me what you need built, and I'll show you right here on the site where he's done it.`,
         timestamp: Date.now(),
       };
       addMessage(greetMsg);
@@ -392,17 +279,37 @@ export default function AIChatbot() {
 
     try {
       const apiMessages = getMessagesForApi();
-      const pageCtx = getPageContext(pathname);
-      if (pageCtx) {
-        apiMessages.push({ role: 'user', content: `[System context: ${pageCtx}]` });
-      }
-
       const contextSummary = getContextSummary();
-      const reply = await sendChat(apiMessages, contextSummary);
+      const isPhone = window.matchMedia('(max-width: 767px)').matches;
 
-      const assistantMsg: ChatMessage = { role: 'assistant', content: reply, timestamp: Date.now() };
+      const result = await runAgent(
+        apiMessages,
+        {
+          apiKey: _gk(),
+          pathname,
+          search,
+          navigate: (path) => navigate(path),
+          highlight: (section, label) => highlightSection(section, label),
+        },
+        contextSummary,
+      );
+      const reply = result.text;
+
+      const assistantMsg: ChatMessage = {
+        role: 'assistant',
+        content: reply,
+        timestamp: Date.now(),
+        ...(result.actions.length ? { actions: result.actions } : {}),
+        ...(result.showContact ? { showContact: true } : {}),
+      };
       addMessage(assistantMsg);
       setMessages((prev) => [...prev, assistantMsg]);
+
+      // On phones the chat covers the page — step aside so the highlight is visible.
+      if (isPhone && result.actions.length) {
+        setPeek(result.actions[0]);
+        setIsOpen(false);
+      }
 
       // Store chat in InstantDB
       try {
@@ -421,8 +328,8 @@ export default function AIChatbot() {
       // Summarize if context is getting long
       if (needsSummarization()) {
         try {
-          const summary = await summarizeChat(apiMessages);
-          saveSummary(summary);
+          const summary = await summarize(_gk(), apiMessages.slice(0, -10));
+          if (summary) saveSummary(summary);
         } catch {}
       }
     } catch {
@@ -438,6 +345,22 @@ export default function AIChatbot() {
       setTimeout(() => inputRef.current?.focus(), 0);
     }
   };
+
+  // Re-open a page the assistant showed earlier.
+  const showAction = (a: ChatAction) => {
+    navigate(a.path);
+    if (a.section) void highlightSection(a.section, a.label);
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      setPeek(a);
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!peek) return;
+    const t = setTimeout(() => setPeek(null), 9000);
+    return () => clearTimeout(t);
+  }, [peek]);
 
   const handleNewChat = () => {
     const session = startNewSession();
@@ -484,6 +407,28 @@ export default function AIChatbot() {
         )}
       </AnimatePresence>
 
+      {/* Phone: the assistant stepped aside to show a section */}
+      <AnimatePresence>
+        {peek && !isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            className="md:hidden fixed left-4 right-20 z-[91] bottom-[calc(max(env(safe-area-inset-bottom),12px)+78px)] flex items-center gap-2 pl-3 pr-1.5 py-1.5 rounded-full bg-card/95 backdrop-blur-xl border border-primary/30 shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
+            role="status"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-primary shrink-0" />
+            <span className="flex-1 min-w-0 text-xs truncate">{peek.label}</span>
+            <button
+              onClick={handleOpen}
+              className="shrink-0 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold active:scale-95"
+            >
+              Back to chat
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Chat Modal */}
       <AnimatePresence>
         {isOpen && (
@@ -492,7 +437,7 @@ export default function AIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed z-[92] bottom-0 right-0 md:bottom-6 md:right-6 w-full md:w-[400px] h-[100dvh] md:h-[600px] md:max-h-[80vh] md:rounded-2xl overflow-hidden bg-card/98 backdrop-blur-2xl border-0 md:border border-border/80 shadow-[0_25px_80px_rgba(0,0,0,0.5)] flex flex-col"
+            className="fixed z-[92] bottom-0 right-0 md:bottom-6 md:right-6 w-full md:w-[400px] h-[100dvh] md:h-[600px] md:max-h-[80vh] md:rounded-2xl overflow-hidden bg-card/95 backdrop-blur-2xl border-0 md:border border-border/80 shadow-[0_25px_80px_rgba(0,0,0,0.5)] flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-border/60 bg-background/50">
@@ -558,14 +503,31 @@ export default function AIChatbot() {
                   key={i}
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div
-                    className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'bg-primary text-primary-foreground rounded-br-md'
-                        : 'bg-muted/50 text-foreground border border-border/40 rounded-bl-md'
-                    }`}
-                  >
-                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                  <div className={`max-w-[85%] space-y-2 ${msg.role === 'user' ? '' : 'min-w-0'}`}>
+                    <div
+                      className={`px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                        msg.role === 'user'
+                          ? 'bg-primary text-primary-foreground rounded-br-md'
+                          : 'bg-muted/50 text-foreground border border-border/40 rounded-bl-md'
+                      }`}
+                    >
+                      {msg.role === 'assistant' ? <RichText text={msg.content} /> : <p className="whitespace-pre-wrap">{msg.content}</p>}
+                    </div>
+                    {msg.actions?.map((a) => (
+                      <button
+                        key={a.path + (a.section ?? '')}
+                        onClick={() => showAction(a)}
+                        className="w-full flex items-center gap-2 px-3 py-2 rounded-xl border border-primary/30 bg-primary/10 text-left text-xs hover:bg-primary/15 transition-colors"
+                        data-testid="chat-action"
+                      >
+                        <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <span className="min-w-0">
+                          <span className="block font-semibold text-foreground truncate">{a.label}</span>
+                          <span className="block text-muted-foreground truncate">{a.title}</span>
+                        </span>
+                      </button>
+                    ))}
+                    {msg.showContact && <ContactCard />}
                   </div>
                 </div>
               ))}
@@ -584,23 +546,8 @@ export default function AIChatbot() {
 
               {/* Contact quick links after assistant messages that mention contact */}
               {messages.length > 0 && messages[messages.length - 1]?.role === 'assistant' &&
-                /email|whatsapp|contact|reach|call/i.test(messages[messages.length - 1].content) && (
-                <div className="flex gap-2 flex-wrap">
-                  {CONTACT_LINKS.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/30 border border-border/50 text-xs text-muted-foreground hover:text-foreground hover:border-border transition-colors"
-                    >
-                      <link.icon className={`w-3 h-3 ${link.color}`} />
-                      {link.label}
-                      <ExternalLink className="w-2.5 h-2.5" />
-                    </a>
-                  ))}
-                </div>
-              )}
+                !messages[messages.length - 1].showContact &&
+                /email|whatsapp|contact|reach|call/i.test(messages[messages.length - 1].content) && <ContactCard />}
 
               <div ref={messagesEndRef} />
             </div>

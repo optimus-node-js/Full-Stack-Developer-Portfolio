@@ -5,6 +5,10 @@ export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: number;
+  /** Pages the assistant opened for this reply (shown as chips). */
+  actions?: { path: string; section?: string; label: string; title: string }[];
+  /** Assistant asked to show contact buttons. */
+  showContact?: boolean;
 }
 
 export interface ChatSession {

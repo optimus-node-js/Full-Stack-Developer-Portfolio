@@ -183,8 +183,8 @@ export const projectsData: Project[] = [
     slug: "hind-social-services-module",
     title: "Hind Social — Services Marketplace",
     subtitle: "A complete booking marketplace, built end-to-end in 4 months",
-    description: "Owned and built the entire Services Module of Hind Social — a full marketplace inside the platform where providers create and sell services and customers discover and book them. Three service types, collections, categories, banners, bookings and My Bookings, behind a layered security architecture. Shipped to production on schedule on 30 Sep 2026.",
-    longDescription: `The Services Module is a complete product inside Hind Social: service providers create and manage services, and customers browse, book and track them. I owned it end-to-end, from database schema and API design through the provider, customer and admin interfaces, and shipped it to production in about four months, on the committed deadline of 30 September 2026.\n\nThe catalogue supports three service types, each with its own booking rules: short-duration (slot-based), long-duration, and delivery-based services. Around them I built collections, categories, promotional banners, service detail and discovery pages, the booking flow, provider-side booking management, and a "My Bookings" area for customers.\n\nSecurity was designed in layers rather than added at the end: role-based permissions, hierarchy-level access rules (admin, provider, customer), ownership checks on every service and booking resource, and validation at each layer to block unauthorized access. On the performance side I added caching, tuned queries and indexes, and paginated heavy endpoints so the module can handle thousands of booking transactions without slowing down.\n\nThe whole module is fully mobile-responsive and tested for Safari and iOS, which matters for a consumer marketplace where much of the traffic comes from iPhones.`,
+    description: "Owned and built the entire Services Module of Hind Social — a full marketplace inside the platform where providers create and sell services and customers discover and book them. Three service types, collections, categories, bookings, vendor verification and admin earnings, behind three-tier ACL/RBAC. Shipped to production on schedule on 30 Sep 2026.",
+    longDescription: `The Services Module is a complete product inside Hind Social: service providers create and manage services, and customers browse, book and track them. I owned it end-to-end, from database schema and API design through the provider, customer and admin interfaces, and shipped it to production in about four months, on the committed deadline of 30 September 2026.\n\nThe catalogue supports three service types, each with its own booking rules: short-duration (slot-based), long-duration, and delivery-based services. Around them I built collections, categories, promotional banners, service detail and discovery pages, the booking flow, provider-side booking management, and a "My Bookings" area for customers.\n\nSecurity was designed in layers rather than added at the end: ACL/RBAC across three user tiers (admin, vendor, customer), hierarchy-level access rules for services, collections and categories, ownership checks on every resource, and strict server-side validation and input sanitization at each layer. On the admin side I built earnings management and a strict vendor verification workflow, so only verified vendors can publish services and accept bookings. On the performance side I added caching, tuned queries and indexes, and paginated heavy endpoints so the module can handle thousands of booking transactions without slowing down.\n\nThe whole module is fully mobile-responsive with full Safari/iOS (WebKit) compatibility, eliminating Safari-specific layout and date-handling breakages — essential for a consumer marketplace where much of the traffic comes from iPhones.`,
     image: "https://image.pollinations.ai/prompt/service%20booking%20marketplace%20app%20with%20categories%20collections%20banners%20and%20booking%20calendar%20dark%20theme%20modern%20UI?width=1200&height=750&seed=212&model=flux&nologo=true",
     technologies: [
       { name: "Next.js" },
@@ -211,9 +211,11 @@ export const projectsData: Project[] = [
       "Owned the entire module end-to-end: schema, APIs, provider, customer and admin UI",
       "Three service types: short-duration (slot-based), long-duration and delivery-based",
       "Collections, categories, banners, service discovery, bookings and My Bookings",
-      "Layered security: role and hierarchy-level access rules with ownership checks on every resource",
+      "Three-tier ACL/RBAC (admin, vendor, customer) with ownership checks on every resource",
+      "Admin earnings management and strict vendor verification — only verified vendors can sell",
+      "Advanced multi-step service creation with strict validation and input sanitization",
       "Caching, query and index tuning so the module scales to thousands of booking transactions",
-      "Fully mobile-responsive and Safari / iOS compatible"
+      "Full Safari / iOS (WebKit) compatibility — no Safari-specific UI breakages"
     ],
     challenges: [
       "Modelling three very different service types (slot-based, long-duration, delivery) in one booking engine without special-casing everywhere",
@@ -272,7 +274,7 @@ export const projectsData: Project[] = [
     slug: "ai-agent-whatsapp",
     title: "AI Agent — WhatsApp Integration",
     subtitle: "Conversational AI backend for platform operations",
-    description: "Independently designed and built a production-ready AI Agent PoC in a single day — enabling users to perform real platform operations through WhatsApp via intent detection, tool calling, and backend orchestration.",
+    description: "Independently designed and built a production-ready AI Agent PoC in under 24 hours — enabling users to perform real platform operations through WhatsApp via intent detection, tool calling, and backend orchestration.",
     longDescription: `Independently researched, designed and built a production-ready AI Agent Proof of Concept that enables users to communicate with Hind Social directly through WhatsApp.\n\nThe AI Agent automatically detects user intent, authenticates users, queries backend databases, executes tool calls, performs CRUD operations, registers users into events and libraries, books services, answers platform queries, and retrieves personalized information.\n\nBuilt with OpenAI GPT, tool calling, Twilio WhatsApp API, Node.js, Next.js, and REST APIs. The architecture was designed to support future integrations with WhatsApp, Instagram, and Facebook Messenger — acting as a conversational backend capable of executing real platform operations.\n\nThe complete Proof of Concept was designed and implemented independently within a single day.`,
     image: "https://image.pollinations.ai/prompt/AI%20chatbot%20WhatsApp%20interface%20with%20tool%20calling%20code%20visualization%20conversational%20AI%20agent%20dark%20futuristic%20theme?width=1200&height=750&seed=303&model=flux&nologo=true",
     technologies: [
@@ -384,7 +386,7 @@ export const projectsData: Project[] = [
     slug: "hind-social-security-assessment",
     title: "Platform Security Assessment",
     subtitle: "Blue Team review of a live social platform",
-    description: "Part of Hind Social's Blue Team initiative: assessed the platform for vulnerabilities, mapped findings to OWASP categories, analysed threats and wrote the remediation and security documentation the team works from.",
+    description: "Part of Hind Social's Blue Team initiative: identified 50+ vulnerabilities and hardening opportunities, mapped findings to OWASP categories, analysed threats and wrote the remediation and security documentation the team works from.",
     longDescription: `As part of Hind Social's Blue Team initiative I reviewed the live platform from a defender's point of view: authentication and session handling, authorization on APIs, input validation, data exposure and configuration.\n\nFindings were mapped to OWASP categories, ranked by impact and turned into concrete recommendations. I also wrote the security documentation the team now uses as a reference, and fed the same thinking straight into the Services Module, which was designed with layered access control from day one.`,
     image: "https://image.pollinations.ai/prompt/cybersecurity%20blue%20team%20dashboard%20vulnerability%20assessment%20shield%20network%20map%20dark%20theme?width=1200&height=750&seed=909&model=flux&nologo=true",
     technologies: [
@@ -400,7 +402,8 @@ export const projectsData: Project[] = [
     status: "Delivered",
     category: ["All", "Work", "Security"],
     highlights: [
-      "OWASP-mapped vulnerability findings with remediation steps",
+      "50+ vulnerabilities and hardening opportunities identified",
+      "OWASP-mapped findings with remediation steps",
       "Authorization review across platform APIs",
       "Threat analysis of user-facing and admin surfaces",
       "Security documentation adopted by the team"
@@ -415,14 +418,14 @@ export const projectsData: Project[] = [
     ]
   },
   {
-    slug: "noti-notification-orchestration",
-    title: "Noti — Notification Orchestration",
+    slug: "novu-notification-workflows",
+    title: "Novu — Notification Workflows",
     subtitle: "Event-driven notifications and workflow automation",
-    description: "Engineered notification workflows on Noti for Hind Social: event notifications, trigger pipelines and orchestration that deliver the right message to the right user when something happens on the platform.",
-    longDescription: `Built notification engineering on top of Noti for Hind Social. Platform events such as bookings, event registrations and activity updates feed trigger pipelines, which decide who should be notified, through which channel, and when.\n\nThe work covered notification workflows, event notifications, workflow automation and orchestration, so new notification types can be added without rewriting delivery logic.`,
+    description: "Engineered notification workflows on Novu, the open-source notification platform, for Hind Social: event notifications, trigger pipelines and orchestration that deliver the right message to the right user when something happens on the platform.",
+    longDescription: `Built notification engineering on top of Novu, an open-source notification platform, for Hind Social. Platform events such as bookings, event registrations and activity updates feed trigger pipelines, which decide who should be notified, through which channel, and when.\n\nThe work covered notification workflows, event notifications, workflow automation and orchestration, so new notification types can be added without rewriting delivery logic.`,
     image: "https://image.pollinations.ai/prompt/notification%20orchestration%20pipeline%20event%20triggers%20workflow%20automation%20diagram%20dark%20modern%20UI?width=1200&height=750&seed=919&model=flux&nologo=true",
     technologies: [
-      { name: "Noti" },
+      { name: "Novu" },
       { name: "Node.js" },
       { name: "TypeScript" },
       { name: "Event Pipelines" },
@@ -685,6 +688,10 @@ export const projectsData: Project[] = [
   }
 ];
 
+/** URL-safe id for an experience entry, e.g. "hind-social-network-pvt-ltd". */
+export const experienceSlug = (e: Experience) =>
+  e.company.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
 // Experience Data
 export const experienceData: Experience[] = [
   {
@@ -694,15 +701,15 @@ export const experienceData: Experience[] = [
     period: "May 2026 – Present",
     icon: "Briefcase",
     description: [
-      "Owned and built the entire Services Module end-to-end in 4 months — a full marketplace where providers create and sell services and customers book them. Shipped to production on schedule on 30 Sep 2026.",
-      "Designed three service types (short-duration slot-based, long-duration, delivery-based) plus collections, categories, banners, bookings and My Bookings across provider, customer and admin surfaces.",
-      "Engineered a layered security architecture: role and hierarchy-level access rules with ownership checks on every service and booking API, closing off unauthorized access.",
-      "Built and optimised the module's APIs with caching, query and index tuning and pagination, making it production-grade and ready for thousands of booking transactions.",
-      "Delivered a fully mobile-responsive UI, tested and fixed for Safari and iOS.",
-      "Independently designed and shipped a production-ready AI Agent PoC in a single day — real platform operations via WhatsApp using OpenAI GPT, tool calling and Twilio.",
-      "Contributed to the Blue Team initiative (OWASP-based assessments, threat analysis, security docs) and notification engineering on Noti; got the Capacitor app approved on Google Play."
+      "Owned and delivered the entire Services Module end-to-end in 4 months, live in production on 30 Sep 2026: categories, collections, service CRUD and booking/scheduling across short, long-duration and delivery-based services.",
+      "Architected ACL/RBAC permissions for three user tiers (admin, vendor, customer), enforcing role, hierarchy and ownership checks on every service, collection, category and booking API.",
+      "Built the admin panel's earnings management and a strict vendor verification workflow, so only verified vendors can publish services and accept bookings.",
+      "Engineered advanced multi-step service creation flows with strict server-side validation and input sanitization; added caching and query tuning to sustain thousands of booking transactions.",
+      "Delivered full Safari/iOS (WebKit) compatibility and mobile-responsive UI across the module, eliminating Safari-specific layout and date-handling breakages.",
+      "Built a WhatsApp AI Agent POC (OpenAI tool calling, Twilio, Node.js/Next.js) in under 24 hours, and achieved Google Play approval for the Capacitor app after prior attempts had stalled.",
+      "Identified 50+ vulnerabilities through the Blue Team security initiative and built event notification workflows on Novu."
     ],
-    stack: ["Next.js", "Node.js", "TypeScript", "PostgreSQL", "RBAC", "Caching", "OpenAI", "Twilio", "Capacitor"]
+    stack: ["Next.js", "Node.js", "TypeScript", "PostgreSQL", "ACL / RBAC", "REST APIs", "Caching", "OpenAI", "Twilio", "Novu", "Capacitor"]
   },
   {
     title: "Full Stack Developer",

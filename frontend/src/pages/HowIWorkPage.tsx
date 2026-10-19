@@ -85,7 +85,7 @@ const HowIWorkPage = () => (
     subtitle="The principles behind every case study — and what you can expect from day one."
   >
     {/* Availability strip */}
-    <section className="max-w-6xl mx-auto grid sm:grid-cols-3 gap-3">
+    <section data-ai-section="availability" className="max-w-6xl mx-auto grid sm:grid-cols-3 gap-3">
       {[
         { icon: Zap, label: 'Availability', value: availability.headline, sub: availability.detail, accent: 'text-tertiary' },
         { icon: Briefcase, label: 'Open to', value: availability.modes.join(' · '), sub: 'Senior full stack & product engineering roles', accent: 'text-primary' },
@@ -102,7 +102,7 @@ const HowIWorkPage = () => (
     </section>
 
     {/* Principles */}
-    <section className="max-w-6xl mx-auto mt-14">
+    <section data-ai-section="principles" className="max-w-6xl mx-auto mt-14">
       <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">Principles — each backed by a case study</div>
       <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {principles.map(({ icon: Icon, title, copy, proof }, i) => (
@@ -130,7 +130,7 @@ const HowIWorkPage = () => (
 
     {/* Production checklist + plan */}
     <section className="max-w-6xl mx-auto mt-14 grid lg:grid-cols-2 gap-4">
-      <div className="rounded-3xl border border-border/60 bg-card/60 p-6 sm:p-8">
+      <div data-ai-section="checklist" className="rounded-3xl border border-border/60 bg-card/60 p-6 sm:p-8">
         <div className="text-[11px] font-mono uppercase tracking-[0.3em] text-primary">// production.checklist</div>
         <h2 className="mt-2 font-heading font-bold text-xl sm:text-2xl">What “production-ready” means to me</h2>
         <ul className="mt-5 space-y-2.5">
@@ -142,7 +142,7 @@ const HowIWorkPage = () => (
           ))}
         </ul>
       </div>
-      <div className="rounded-3xl border border-border/60 bg-card/60 p-6 sm:p-8">
+      <div data-ai-section="first-90-days" className="rounded-3xl border border-border/60 bg-card/60 p-6 sm:p-8">
         <div className="text-[11px] font-mono uppercase tracking-[0.3em] text-primary">// first.90.days</div>
         <h2 className="mt-2 font-heading font-bold text-xl sm:text-2xl">What you get when I join</h2>
         <ol className="mt-5 relative border-l border-border/70 ml-2 space-y-5">
