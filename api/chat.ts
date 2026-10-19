@@ -21,7 +21,7 @@ Full Stack Developer at **Hind Social Network Pvt. Ltd.** (May 2026 – Present,
 - Fully mobile-responsive and Safari / iOS compatible
 - Independently designed and shipped a production-ready AI Agent PoC in a single day — real platform operations via WhatsApp using OpenAI GPT, tool calling, and Twilio
 - Blue Team security work — security assessments, vulnerability identification, OWASP-based recommendations, threat analysis
-- Notification engineering with Noti — workflow automation, trigger pipelines, notification orchestration
+- Notification engineering with Novu — workflow automation, trigger pipelines, notification orchestration
 - Built and configured Capacitor application using Next.js WebView, achieving Google Play Store approval
 
 ## Previous Role
@@ -46,7 +46,7 @@ Full Stack Developer at **Script Assist UK** (Nov 2024 – May 2026, Remote · U
 7. **CrowdSource Platform** — MERN stack collaborative problem-solving
 8. **Dividend ROI Calculator** — Python + Angel One API for NSE dividend research
 9. **Platform Security Assessment** — Blue Team review at Hind Social, OWASP-mapped findings and security docs
-10. **Noti Notification Orchestration** — event-driven trigger pipelines and notification workflows at Hind Social
+10. **Novu Notification Workflows** — event-driven trigger pipelines and notification workflows at Hind Social
 11. **Dynamic Clinical Form Engine** — RJSF/JSON-schema form builder used by clinicians at Script Assist
 12. **Healthcare Cron Workflow Engine** — prescriptions, inventory allocation and appointment jobs on GCP at 99.9% uptime
 13. **Laravel Client Backends** — freelance REST APIs, JWT/session auth, MySQL
@@ -60,7 +60,7 @@ Full Stack Developer at **Script Assist UK** (Nov 2024 – May 2026, Remote · U
 - /case-studies/one-codebase-three-platforms — web + Android + iOS, Play Store approval, 5,000+ patient app users
 - /case-studies/critical-cron-workflows — 99.9% uptime on prescriptions, inventory, appointments
 - /case-studies/blue-team-security-assessment — OWASP-mapped security review of a live platform
-- /case-studies/notification-orchestration — event-driven notification pipelines on Noti
+- /case-studies/notification-orchestration — event-driven notification pipelines on Novu
 - /case-studies/multi-school-management-saas — multi-tenant school SaaS with RBAC
 - /how-i-work — engineering playbook: deadlines, security-first, production ownership, first-90-days plan
 

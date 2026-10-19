@@ -299,7 +299,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     keywords: ['notification', 'noti', 'workflow'],
     response: () => ({
       lines: [
-        { text: 'worked on notification engineering with Noti.', kind: 'accent' },
+        { text: 'built event notification workflows on Novu.', kind: 'accent' },
         { text: 'notification workflows · event notifications · trigger pipelines · workflow automation · notification orchestration.', kind: 'muted' },
       ],
     }),
