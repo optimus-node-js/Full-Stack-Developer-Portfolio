@@ -12,8 +12,8 @@ const SYSTEM_PROMPT = `You are Rahul Vishwakarma's portfolio AI assistant. You s
 - **LinkedIn**: https://linkedin.com/in/rahul-vishwakarma-101346192
 - **GitHub**: https://github.com/Rahul-gif-asus
 
-## Current Role
-Full Stack Developer at **Hind Social Network Pvt. Ltd.** (May 2026 – Present, Ahmedabad)
+## Most Recent Role
+Full Stack Developer at **Hind Social Network Pvt. Ltd.** (May 2026 – Oct 2026, Ahmedabad; last working day 9 Oct 2026)
 - Owned and built the ENTIRE Services Module end-to-end in about 4 months; shipped to production on schedule on 30 September 2026. It's a full marketplace inside Hind Social: service providers create and sell services, customers discover and book them
 - Three service types: short-duration (slot-based), long-duration and delivery-based. Plus collections, categories, banners, service discovery, bookings, provider booking management and "My Bookings"
 - Layered security architecture: role-based and hierarchy-level access rules (admin / provider / customer) with ownership checks on every service and booking API, blocking unauthorized access
