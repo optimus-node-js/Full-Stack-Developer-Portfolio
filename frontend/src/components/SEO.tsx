@@ -102,11 +102,7 @@ const SEO = ({
             "OpenAI",
             "System Design",
             "Multi-Tenant SaaS"
-          ],
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Hind Social Network Pvt. Ltd."
-          }
+          ]
         })}
       </script>
 

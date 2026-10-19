@@ -698,7 +698,7 @@ export const experienceData: Experience[] = [
     title: "Full Stack Developer",
     company: "Hind Social Network Pvt. Ltd.",
     location: "Ahmedabad, India",
-    period: "May 2026 – Present",
+    period: "May 2026 – Oct 2026",
     icon: "Briefcase",
     description: [
       "Owned the Services Module end-to-end in 4 months (live 30 Sep 2026): categories, collections, service CRUD, booking/scheduling and multi-step service creation for 3 service types.",
