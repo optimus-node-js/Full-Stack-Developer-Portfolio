@@ -701,15 +701,11 @@ export const experienceData: Experience[] = [
     period: "May 2026 – Present",
     icon: "Briefcase",
     description: [
-      "Owned the Services Module end-to-end in 4 months (live 30 Sep 2026): categories, collections, service CRUD.",
-      "Built booking/scheduling for 3 service types and multi-step service creation flows.",
-      "Architected 3-tier ACL/RBAC (admin, vendor, customer) with ownership checks on all service, collection, category APIs.",
-      "Built admin earnings and strict vendor verification flows; only verified vendors can list services and take bookings.",
-      "Enforced server-side validation and input sanitization; added caching and query tuning for 1,000s of bookings.",
-      "Delivered full Safari/iOS (WebKit) compatibility and mobile-responsive UI with no Safari-specific breakages.",
-      "Solo-built a WhatsApp AI Agent POC for conversational booking (OpenAI tool-calling, Twilio, Node.js/Next.js) in under 24 hours.",
-      "Achieved Google Play approval for the Capacitor/Next.js-WebView app after prior attempts had stalled.",
-      "Identified 50+ vulnerabilities and hardening gaps via the Blue Team initiative; built event notification workflows on Novu."
+      "Owned the Services Module end-to-end in 4 months (live 30 Sep 2026): categories, collections, bookings, 3 service types.",
+      "Architected 3-tier ACL/RBAC (admin, vendor, customer) with ownership checks; built admin earnings and vendor verification.",
+      "Enforced server-side validation, caching and query tuning for 1,000s of bookings, with full Safari/iOS (WebKit) compatibility.",
+      "Built a WhatsApp AI Agent (OpenAI tool-calling, Twilio) in under 24 hours; secured Google Play approval for the Capacitor app.",
+      "Identified 50+ vulnerabilities via the Blue Team initiative; built event notification workflows on Novu."
     ],
     stack: ["Next.js", "Node.js", "TypeScript", "PostgreSQL", "ACL / RBAC", "REST APIs", "Caching", "OpenAI", "Twilio", "Novu", "Capacitor"]
   },
