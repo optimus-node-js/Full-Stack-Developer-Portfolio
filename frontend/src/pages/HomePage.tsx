@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Download, Mail, Github, Linkedin, ArrowUpRight, Sparkles, Briefcase, User, GraduationCap, Send, BookOpenText, Workflow, CheckCircle2 } from 'lucide-react';
+import { FileText, Mail, Github, Linkedin, ArrowUpRight, Sparkles, Briefcase, User, GraduationCap, Send, BookOpenText, Workflow, CheckCircle2 } from 'lucide-react';
 import { bioData, contactInfo } from '@/data/resume-data';
 import { motion } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
@@ -47,15 +47,6 @@ function useTypewriter(words: string[], typingMs = 80, pauseMs = 2000, deletingM
 
 const HomePage = () => {
   const typed = useTypewriter(ROLES);
-
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'Rahul_Vishwakarma_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   const socialLinks = [
     { icon: Mail, href: `mailto:${contactInfo.email}`, label: 'Email' },
@@ -105,7 +96,7 @@ const HomePage = () => {
               <span className="pulse-dot shrink-0 mr-1" />
               <span className="font-semibold text-tertiary truncate">Immediate joiner</span>
               <span className="text-muted-foreground">·</span>
-              <span className="font-medium text-foreground/90 truncate">Open to senior roles</span>
+              <span className="font-medium text-foreground/90 truncate">Available now</span>
               <span className="text-muted-foreground hidden sm:inline">·</span>
               <span className="text-muted-foreground hidden sm:inline">Remote / Hybrid</span>
             </motion.div>
@@ -181,14 +172,15 @@ const HomePage = () => {
                   <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Button
-                variant="outline"
-                onClick={handleDownloadResume}
-                className="h-12 px-7 rounded-full text-base border-border/70 bg-background/60 backdrop-blur hover:bg-muted/50"
-              >
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
-              </Button>
+              <Link to="/resume">
+                <Button
+                  variant="outline"
+                  className="h-12 px-7 rounded-full text-base border-border/70 bg-background/60 backdrop-blur hover:bg-muted/50 w-full sm:w-auto"
+                >
+                  <FileText className="mr-2 h-4 w-4" />
+                  View Resume
+                </Button>
+              </Link>
             </motion.div>
 
             <motion.div

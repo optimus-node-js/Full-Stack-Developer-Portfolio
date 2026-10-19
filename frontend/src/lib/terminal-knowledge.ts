@@ -182,7 +182,7 @@ const cmdSocials = (): Response => ({
 
 const cmdHire = (): Response => ({
   lines: [
-    { text: '✓ rahul is an immediate joiner — can start right away.', kind: 'success' },
+    { text: '✓ rahul is available now — immediate joiner, no notice period.', kind: 'success' },
     { text: '' },
     { text: '  » Senior Full Stack / Product Engineering roles' },
     { text: '  » AI Engineering · Platform Architecture · Security' },

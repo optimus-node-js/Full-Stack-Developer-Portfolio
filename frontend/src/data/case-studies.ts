@@ -482,7 +482,7 @@ export const capabilityMap: { need: string; proof: string; slug: string }[] = [
 export const availability = {
   immediateJoiner: true,
   headline: 'Immediate joiner',
-  detail: 'Available to start right away — no notice period to wait out.',
+  detail: 'Available now — no notice period. Last role ended Oct 2026.',
   modes: ['Full-time', 'Remote', 'Hybrid'],
   base: 'Ahmedabad, India (IST)',
   timezones: 'Experienced working with UK (GMT/BST) and Qatar (AST) teams',

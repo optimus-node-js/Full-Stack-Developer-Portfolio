@@ -159,7 +159,7 @@ const HowIWorkPage = () => (
     </section>
 
     <div className="max-w-6xl mx-auto mt-14">
-      <HireCTA title="Have a requirement? Let’s talk this week." copy="Immediate joiner. Send the brief and I’ll come back with how I’d approach it." />
+      <HireCTA title="Have a requirement? Let’s talk this week." copy="Available now — immediate joiner. Send the brief and I’ll come back with how I’d approach it." />
     </div>
   </PageShell>
 );
