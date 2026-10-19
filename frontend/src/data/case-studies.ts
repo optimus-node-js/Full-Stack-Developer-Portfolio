@@ -46,7 +46,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Shipping an entire services marketplace in 4 months',
     tagline: 'Hind Social · Services Module',
     company: 'Hind Social',
-    role: 'Module owner — schema, APIs, provider, customer & admin UI',
+    role: 'Module owner — schema, APIs, vendor, customer & admin UI',
     timeline: 'Jun – Sep 2026 · live 30 Sep 2026',
     domain: 'Marketplace · Bookings',
     readingTime: '7 min read',
@@ -78,8 +78,9 @@ export const caseStudies: CaseStudy[] = [
       { name: 'Polish & launch', window: 'Weeks 14–17', detail: 'Mobile-responsive pass on every screen, Safari and iOS fixes, admin tooling for banners and curation, then production release on 30 September.' },
     ],
     architecture: [
-      { layer: 'Experience', detail: 'Provider studio, customer discovery & booking, My Bookings, admin curation (banners, collections, categories). Fully responsive, Safari-tested.' },
-      { layer: 'Access control', detail: 'Role-based permissions + hierarchy-level rules (admin › provider › customer) + per-resource ownership checks on every request.' },
+      { layer: 'Experience', detail: 'Vendor studio with multi-step service creation, customer discovery & booking, My Bookings, admin curation. Fully responsive with full Safari/iOS (WebKit) compatibility.' },
+      { layer: 'Access control', detail: 'ACL/RBAC across three tiers (admin › vendor › customer) + per-resource ownership checks on every service, collection, category and booking request.' },
+      { layer: 'Vendor & admin ops', detail: 'Strict vendor verification workflow (only verified vendors can publish or accept bookings) and admin earnings management.' },
       { layer: 'Domain services', detail: 'Service catalogue, three booking strategies (slot, long-duration, delivery), collections, categories, banners and booking lifecycle.' },
       { layer: 'Performance', detail: 'Caching on hot reads, tuned queries and indexes, paginated listings so response times stay flat as data grows.' },
       { layer: 'Data', detail: 'Relational schema with a shared service core and type-specific booking data, designed for thousands of booking transactions.' },
@@ -91,7 +92,9 @@ export const caseStudies: CaseStudy[] = [
       { title: 'Safari as a first-class target', why: 'A large share of consumer traffic is iPhone Safari, where layout and date handling differ most.', tradeoff: 'Extra test passes per screen, but no "works on my Chrome" launch bugs.' },
     ],
     security: [
-      'Role-based access plus hierarchy-level rules so admins, providers and customers each see and change only what they are allowed to',
+      'ACL/RBAC across three user tiers so admins, vendors and customers each see and change only what they are allowed to — for services, collections and categories',
+      'Strict vendor verification: unverified vendors cannot publish services or accept bookings',
+      'Strict server-side validation and input sanitization on every create and update, including multi-step service creation',
       'Ownership verified server-side on every service and booking resource — IDs from the client are never trusted on their own',
       'Validation at each layer (request, domain, data) to block malformed or malicious input',
       'Admin-only surfaces (banners, curation) isolated behind their own permission checks',
@@ -106,7 +109,8 @@ export const caseStudies: CaseStudy[] = [
       'Entire Services Module live in production on 30 September 2026 — on the committed date, no scope cut',
       'Three service types running on one booking engine',
       'Production-grade module designed for thousands of booking transactions',
-      'Consistent experience across desktop, Android and iPhone Safari',
+      'Admin earnings management and verified-vendor flows live alongside bookings',
+      'Full Safari/iOS compatibility — no Safari-specific UI breakages across desktop, Android and iPhone'
     ],
     lessons: [
       'A fixed deadline is a scoping problem first and a coding problem second — slice vertically and keep something shippable every week.',
@@ -350,9 +354,9 @@ export const caseStudies: CaseStudy[] = [
     readingTime: '4 min read',
     projectSlug: 'hind-social-security-assessment',
     summary:
-      'Reviewed Hind Social from a defender’s point of view — auth, authorization, input handling, data exposure — mapped findings to OWASP, prioritised fixes and wrote the security documentation the team uses.',
+      'Identified 50+ vulnerabilities and hardening opportunities. Reviewed Hind Social from a defender’s point of view — auth, authorization, input handling, data exposure — mapped findings to OWASP, prioritised fixes and wrote the security documentation the team uses.',
     metrics: [
-      { value: 'OWASP', label: 'Mapped findings' },
+      { value: '50+', label: 'Vulnerabilities identified' },
       { value: 'Ranked', label: 'By real-world impact' },
       { value: 'Docs', label: 'Adopted by the team' },
       { value: '→', label: 'Fed into Services Module' },
@@ -376,22 +380,22 @@ export const caseStudies: CaseStudy[] = [
     ],
     security: ['OWASP-based assessment', 'Threat analysis of user and admin surfaces', 'Authorization review across APIs'],
     performance: [],
-    results: ['A clear, prioritised remediation backlog', 'Security docs adopted by the team', 'Layered access-control patterns reused in the Services Module'],
+    results: ['50+ vulnerabilities and hardening opportunities identified and prioritised', 'Security docs adopted by the team', 'Layered access-control patterns reused in the Services Module'],
     lessons: ['Most serious issues are authorization issues — which is why I design permissions first now.'],
     stack: ['OWASP', 'Threat Modeling', 'API Security', 'Node.js'],
   },
   {
     slug: 'notification-orchestration',
     title: 'Event-driven notifications that scale with the product',
-    tagline: 'Hind Social · Noti',
+    tagline: 'Hind Social · Novu',
     company: 'Hind Social',
     role: 'Notification engineering',
     timeline: '2026',
     domain: 'Workflow automation',
     readingTime: '3 min read',
-    projectSlug: 'noti-notification-orchestration',
+    projectSlug: 'novu-notification-workflows',
     summary:
-      'Built notification workflows on Noti: platform events feed trigger pipelines that decide who gets notified, how and when — so new notification types plug in without rewriting delivery.',
+      'Built notification workflows on Novu, an open-source notification platform: platform events feed trigger pipelines that decide who gets notified, how and when — so new notification types plug in without rewriting delivery.',
     metrics: [
       { value: 'Event', label: 'Driven pipelines' },
       { value: 'Reusable', label: 'Workflows' },
@@ -409,7 +413,7 @@ export const caseStudies: CaseStudy[] = [
     architecture: [
       { layer: 'Producers', detail: 'Features emit domain events (booking, registration, activity).' },
       { layer: 'Triggers', detail: 'Pipelines match events to audiences and templates.' },
-      { layer: 'Delivery', detail: 'Noti handles notification orchestration and delivery.' },
+      { layer: 'Delivery', detail: 'Novu handles notification orchestration and multi-channel delivery.' },
     ],
     decisions: [
       { title: 'Emit events, don’t send notifications', why: 'Features stay simple; notification logic lives in one place.', tradeoff: 'One more layer to understand — far fewer places to change.' },
@@ -418,7 +422,7 @@ export const caseStudies: CaseStudy[] = [
     performance: ['Asynchronous delivery keeps user requests fast'],
     results: ['New notification types plug into existing pipelines', 'Users hear about bookings and events at the right time'],
     lessons: ['Notifications are a product surface — design them, don’t bolt them on.'],
-    stack: ['Noti', 'Node.js', 'TypeScript', 'Event pipelines'],
+    stack: ['Novu', 'Node.js', 'TypeScript', 'Event pipelines'],
   },
   {
     slug: 'multi-school-management-saas',
@@ -465,13 +469,13 @@ export const caseStudies: CaseStudy[] = [
 
 /** Requirement → proof. Used to answer "can he do X?" at a glance. */
 export const capabilityMap: { need: string; proof: string; slug: string }[] = [
-  { need: 'Ship a large module on a hard deadline', proof: 'Entire services marketplace live in 4 months, on the date', slug: 'services-marketplace-in-4-months' },
+  { need: 'Ship a large module on a hard deadline', proof: 'Entire services marketplace in 4 months — 3-tier ACL, verified vendors, on the date', slug: 'services-marketplace-in-4-months' },
   { need: 'Multi-tenant SaaS with strict data isolation', proof: '20+ clinics, 40k+ patients, zero critical breaches', slug: 'multi-tenant-healthcare-saas' },
-  { need: 'AI agents & LLM integrations', proof: 'WhatsApp agent running real operations, built in 1 day', slug: 'ai-agent-whatsapp-in-a-day' },
+  { need: 'AI agents & LLM integrations', proof: 'WhatsApp agent running real operations, built in under 24 hours', slug: 'ai-agent-whatsapp-in-a-day' },
   { need: 'Web + Android + iOS from one team', proof: 'One codebase, three platforms, Play Store approval', slug: 'one-codebase-three-platforms' },
   { need: 'Keep critical production systems up', proof: '99.9% uptime on critical healthcare workflows', slug: 'critical-cron-workflows' },
-  { need: 'Security review & hardening', proof: 'OWASP-mapped Blue Team assessment of a live platform', slug: 'blue-team-security-assessment' },
-  { need: 'Event-driven workflows & notifications', proof: 'Trigger pipelines on Noti, decoupled from features', slug: 'notification-orchestration' },
+  { need: 'Security review & hardening', proof: '50+ vulnerabilities found in a live-platform Blue Team review', slug: 'blue-team-security-assessment' },
+  { need: 'Event-driven workflows & notifications', proof: 'Trigger pipelines on Novu, decoupled from features', slug: 'notification-orchestration' },
   { need: 'Role-based platforms for many organisations', proof: 'Multi-school SaaS with student / teacher / admin roles', slug: 'multi-school-management-saas' },
 ];
 

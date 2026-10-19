@@ -11,9 +11,9 @@ import {
   Smartphone,
   LayoutGrid,
   Tags,
-  Image as ImageIcon,
+  BadgeCheck,
+  Wallet,
   ClipboardList,
-  BookmarkCheck,
   Store,
   Rocket,
 } from 'lucide-react';
@@ -31,13 +31,13 @@ const serviceTypes = [
 const modules = [
   { icon: Store, label: 'Services' },
   { icon: ClipboardList, label: 'Bookings' },
-  { icon: BookmarkCheck, label: 'My Bookings' },
   { icon: LayoutGrid, label: 'Collections' },
   { icon: Tags, label: 'Categories' },
-  { icon: ImageIcon, label: 'Banners' },
+  { icon: BadgeCheck, label: 'Verified vendors' },
+  { icon: Wallet, label: 'Admin earnings' },
 ];
 
-const securityLayers = ['Role-based access', 'Hierarchy-level rules', 'Ownership checks', 'Input validation'];
+const securityLayers = ['3-tier ACL / RBAC', 'Ownership checks', 'Verified-vendor gate', 'Strict input validation'];
 
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 18 },
@@ -84,8 +84,8 @@ const FeaturedCaseStudy = ({ compact = false }: FeaturedCaseStudyProps) => {
               <span className="text-gradient-primary">built end-to-end in 4 months.</span>
             </h2>
             <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
-              Providers create and sell services, customers discover and book them. I owned the whole module — schema, APIs,
-              provider, customer and admin UI — and shipped it to production on the committed deadline.
+              Verified vendors create and sell services, customers discover and book them. I owned the whole module — schema, APIs,
+              vendor, customer and admin UI — and shipped it to production on the committed deadline.
             </p>
 
             {!compact && (
@@ -208,9 +208,9 @@ const FeaturedCaseStudy = ({ compact = false }: FeaturedCaseStudyProps) => {
               <Smartphone className="h-5 w-5" />
             </div>
             <div>
-              <div className="font-heading font-semibold">Mobile-first & Safari-ready</div>
+              <div className="font-heading font-semibold">Safari / iOS compatible</div>
               <p className="mt-1 text-sm text-muted-foreground">
-                Fully responsive on every screen, tested and fixed for Safari and iOS.
+                Full WebKit compatibility and mobile-responsive UI — no Safari-specific breakages.
               </p>
             </div>
           </SpotlightCard>
