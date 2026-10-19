@@ -138,8 +138,8 @@ const HomePage = () => {
               transition={{ delay: 0.55, duration: 0.8 }}
               className="mt-4 max-w-xl mx-auto lg:mx-0 text-[15px] sm:text-lg text-muted-foreground leading-relaxed"
             >
-              Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I ship scalable products end-to-end —
-              {' '}<span className="text-foreground">multi-tenant SaaS</span>, <span className="text-foreground">booking marketplaces</span>, <span className="text-foreground">AI agents</span> and <span className="text-foreground">secure APIs</span> — from database design to production.
+              Hi, I'm <span className="text-foreground font-semibold">Rahul</span>. I ship scalable products end-to-end:
+              {' '}<span className="text-foreground">multi-tenant SaaS</span>, <span className="text-foreground">booking marketplaces</span>, <span className="text-foreground">AI agents</span> and <span className="text-foreground">secure APIs</span>, from database design to production.
             </motion.p>
 
             <motion.div
@@ -211,7 +211,7 @@ const HomePage = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right — Interactive Terminal */}
+          {/* Right - Interactive Terminal */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
@@ -220,7 +220,7 @@ const HomePage = () => {
           >
             <InteractiveTerminal />
 
-            {/* Floating badges — hidden on very small screens to prevent overlap */}
+            {/* Floating badges - hidden on very small screens to prevent overlap */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}

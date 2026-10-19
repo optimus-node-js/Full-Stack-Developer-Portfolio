@@ -6,7 +6,7 @@ const highlights = [
   {
     icon: Bot,
     title: 'AI Agent Engineering',
-    copy: 'Designed and shipped a production-ready AI Agent PoC with OpenAI, tool calling, and WhatsApp integration — in a single day.'
+    copy: 'Designed and shipped a production-ready AI Agent PoC with OpenAI, tool calling, and WhatsApp integration in a single day.'
   },
   {
     icon: Gauge,
@@ -16,7 +16,7 @@ const highlights = [
   {
     icon: Layers,
     title: 'End-to-End Product Modules',
-    copy: 'Owned the entire Hind Social Services Module — 3 service types, bookings, collections, layered security and caching — shipped in 4 months, on deadline.'
+    copy: 'Owned the entire Hind Social Services Module (3 service types, bookings, collections, layered security, caching) and shipped it in 4 months, on deadline.'
   },
   {
     icon: Shield,
@@ -45,7 +45,7 @@ const About = () => {
             <span className="text-gradient-primary">end-to-end.</span>
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Building across full-stack, AI, security, and platform architecture — owning products from
+            Building across full-stack, AI, security, and platform architecture, owning products from
             database design to production deployment.
           </p>
         </div>

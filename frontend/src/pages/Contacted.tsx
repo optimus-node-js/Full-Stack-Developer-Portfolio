@@ -63,7 +63,7 @@ const ContactedPage = () => {
   };
 
   const formatDate = (ts: number) => {
-    if (!ts) return '—';
+    if (!ts) return '-';
     return new Date(ts).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',

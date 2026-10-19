@@ -22,7 +22,7 @@ const principles = [
   {
     icon: CalendarClock,
     title: 'Deadlines are a scoping problem',
-    copy: 'I break big modules into vertical slices that are shippable every week, flag risk early, and protect the date by cutting nice-to-haves — never security or correctness.',
+    copy: 'I break big modules into vertical slices that are shippable every week, flag risk early, and protect the date by cutting nice-to-haves, never security or correctness.',
     proof: { label: 'Services marketplace in 4 months', to: '/case-studies/services-marketplace-in-4-months' },
   },
   {
@@ -64,7 +64,7 @@ const checklist = [
   'Migrations safe to roll out with old code still running',
   'Background jobs safe to retry',
   'Hot queries indexed, lists paginated',
-  'Reads cached where safe — authorization never cached',
+  'Reads cached where safe, authorization never cached',
   'Tested on mobile and Safari, not just desktop Chrome',
   'Errors visible to the team before users report them',
   'Rollback path known before release',
@@ -82,7 +82,7 @@ const HowIWorkPage = () => (
     label="~/how-i-work"
     eyebrow="// engineering.playbook"
     title={<>How I take a requirement <span className="text-gradient-primary">to production.</span></>}
-    subtitle="The principles behind every case study — and what you can expect from day one."
+    subtitle="The principles behind every case study, and what you can expect from day one."
   >
     {/* Availability strip */}
     <section data-ai-section="availability" className="max-w-6xl mx-auto grid sm:grid-cols-3 gap-3">
@@ -103,7 +103,7 @@ const HowIWorkPage = () => (
 
     {/* Principles */}
     <section data-ai-section="principles" className="max-w-6xl mx-auto mt-14">
-      <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">Principles — each backed by a case study</div>
+      <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">Principles, each backed by a case study</div>
       <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {principles.map(({ icon: Icon, title, copy, proof }, i) => (
           <motion.div
@@ -159,7 +159,7 @@ const HowIWorkPage = () => (
     </section>
 
     <div className="max-w-6xl mx-auto mt-14">
-      <HireCTA title="Have a requirement? Let’s talk this week." copy="Available now — immediate joiner. Send the brief and I’ll come back with how I’d approach it." />
+      <HireCTA title="Have a requirement? Let’s talk this week." copy="Available now as an immediate joiner. Send the brief and I’ll come back with how I’d approach it." />
     </div>
   </PageShell>
 );

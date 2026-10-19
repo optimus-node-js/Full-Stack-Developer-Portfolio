@@ -112,9 +112,9 @@ const ProjectDetail = () => {
       <section className="max-w-6xl mx-auto mt-12 grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { icon: Calendar, label: 'Period', value: project.period },
-          { icon: Sparkles, label: 'Duration', value: project.duration || '—' },
+          { icon: Sparkles, label: 'Duration', value: project.duration || '-' },
           { icon: User, label: 'Role', value: project.role || 'Developer' },
-          { icon: CircleCheck, label: 'Status', value: project.status || '—' },
+          { icon: CircleCheck, label: 'Status', value: project.status || '-' },
         ].map((m, i) => {
           const Icon = m.icon;
           return (
