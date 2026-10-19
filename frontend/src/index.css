@@ -4,11 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Senior Developer Portfolio — Refined Design System */
+/* Senior Developer Portfolio - Refined Design System */
 
 @layer base {
   :root {
-    /* Dark theme (default) — deep slate, electric blue, violet */
+    /* Dark theme (default) - deep slate, electric blue, violet */
     --background: 222 47% 6%;        /* #0A0F1E */
     --ios-tint: 211 100% 58%;        /* iOS system blue (dark) */
     --foreground: 210 40% 98%;
@@ -243,7 +243,7 @@
     color: hsl(260, 25%, 18%);
   }
 
-  /* Dark mode terminal — keeps the deep, inky look */
+  /* Dark mode terminal - keeps the deep, inky look */
   .dark .terminal-frame {
     background: rgba(11, 13, 18, 0.98);
     border: 1px solid hsla(240, 20%, 30%, 0.5);
@@ -267,7 +267,7 @@
     color: rgba(255, 255, 255, 0.9);
   }
 
-  /* Glass morphism — refined */
+  /* Glass morphism - refined */
   .glass {
     background: var(--gradient-glass);
     backdrop-filter: blur(24px) saturate(150%);
@@ -303,7 +303,7 @@
     filter: blur(40px);
   }
 
-  /* Grid overlay — developer aesthetic */
+  /* Grid overlay - developer aesthetic */
   .grid-overlay {
     background-image:
       linear-gradient(hsla(var(--foreground), 0.04) 1px, transparent 1px),
@@ -345,7 +345,7 @@
     color: transparent;
   }
 
-  /* Buttons — premium feel */
+  /* Buttons - premium feel */
   .btn-primary-premium {
     @apply relative overflow-hidden inline-flex items-center justify-center gap-2 font-medium transition-all duration-300;
     background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));

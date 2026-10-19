@@ -24,7 +24,7 @@ const Involvement = () => {
             <span className="text-gradient-secondary">leadership.</span>
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">
-            Volunteering, co-founding and leading — because the best engineers care beyond the codebase.
+            Volunteering, co-founding and leading, because the best engineers care beyond the codebase.
           </p>
         </div>
 

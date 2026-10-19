@@ -181,10 +181,10 @@ export const skillsData: SkillCategory[] = [
 export const projectsData: Project[] = [
   {
     slug: "hind-social-services-module",
-    title: "Hind Social — Services Marketplace",
+    title: "Hind Social: Services Marketplace",
     subtitle: "A complete booking marketplace, built end-to-end in 4 months",
-    description: "Owned and built the entire Services Module of Hind Social — a full marketplace inside the platform where providers create and sell services and customers discover and book them. Three service types, collections, categories, bookings, vendor verification and admin earnings, behind three-tier ACL/RBAC. Shipped to production on schedule on 30 Sep 2026.",
-    longDescription: `The Services Module is a complete product inside Hind Social: service providers create and manage services, and customers browse, book and track them. I owned it end-to-end, from database schema and API design through the provider, customer and admin interfaces, and shipped it to production in about four months, on the committed deadline of 30 September 2026.\n\nThe catalogue supports three service types, each with its own booking rules: short-duration (slot-based), long-duration, and delivery-based services. Around them I built collections, categories, promotional banners, service detail and discovery pages, the booking flow, provider-side booking management, and a "My Bookings" area for customers.\n\nSecurity was designed in layers rather than added at the end: ACL/RBAC across three user tiers (admin, vendor, customer), hierarchy-level access rules for services, collections and categories, ownership checks on every resource, and strict server-side validation and input sanitization at each layer. On the admin side I built earnings management and a strict vendor verification workflow, so only verified vendors can publish services and accept bookings. On the performance side I added caching, tuned queries and indexes, and paginated heavy endpoints so the module can handle thousands of booking transactions without slowing down.\n\nThe whole module is fully mobile-responsive with full Safari/iOS (WebKit) compatibility, eliminating Safari-specific layout and date-handling breakages — essential for a consumer marketplace where much of the traffic comes from iPhones.`,
+    description: "Owned and built the entire Services Module of Hind Social: a full marketplace inside the platform where providers create and sell services and customers discover and book them. Three service types, collections, categories, bookings, vendor verification and admin earnings, behind three-tier ACL/RBAC. Shipped to production on schedule on 30 Sep 2026.",
+    longDescription: `The Services Module is a complete product inside Hind Social: service providers create and manage services, and customers browse, book and track them. I owned it end-to-end, from database schema and API design through the provider, customer and admin interfaces, and shipped it to production in about four months, on the committed deadline of 30 September 2026.\n\nThe catalogue supports three service types, each with its own booking rules: short-duration (slot-based), long-duration, and delivery-based services. Around them I built collections, categories, promotional banners, service detail and discovery pages, the booking flow, provider-side booking management, and a "My Bookings" area for customers.\n\nSecurity was designed in layers rather than added at the end: ACL/RBAC across three user tiers (admin, vendor, customer), hierarchy-level access rules for services, collections and categories, ownership checks on every resource, and strict server-side validation and input sanitization at each layer. On the admin side I built earnings management and a strict vendor verification workflow, so only verified vendors can publish services and accept bookings. On the performance side I added caching, tuned queries and indexes, and paginated heavy endpoints so the module can handle thousands of booking transactions without slowing down.\n\nThe whole module is fully mobile-responsive with full Safari/iOS (WebKit) compatibility, eliminating Safari-specific layout and date-handling breakages: essential for a consumer marketplace where much of the traffic comes from iPhones.`,
     image: "https://image.pollinations.ai/prompt/service%20booking%20marketplace%20app%20with%20categories%20collections%20banners%20and%20booking%20calendar%20dark%20theme%20modern%20UI?width=1200&height=750&seed=212&model=flux&nologo=true",
     technologies: [
       { name: "Next.js" },
@@ -212,10 +212,10 @@ export const projectsData: Project[] = [
       "Three service types: short-duration (slot-based), long-duration and delivery-based",
       "Collections, categories, banners, service discovery, bookings and My Bookings",
       "Three-tier ACL/RBAC (admin, vendor, customer) with ownership checks on every resource",
-      "Admin earnings management and strict vendor verification — only verified vendors can sell",
+      "Admin earnings management and strict vendor verification: only verified vendors can sell",
       "Advanced multi-step service creation with strict validation and input sanitization",
       "Caching, query and index tuning so the module scales to thousands of booking transactions",
-      "Full Safari / iOS (WebKit) compatibility — no Safari-specific UI breakages"
+      "Full Safari / iOS (WebKit) compatibility, no Safari-specific UI breakages"
     ],
     challenges: [
       "Modelling three very different service types (slot-based, long-duration, delivery) in one booking engine without special-casing everywhere",
@@ -234,8 +234,8 @@ export const projectsData: Project[] = [
     slug: "multi-tenant-healthcare-saas",
     title: "Multi-Tenant Healthcare SaaS",
     subtitle: "Production platform powering UK clinics & pharmacies",
-    description: "Architected and scaled a multi-tenant healthcare SaaS serving 20+ UK clinics and pharmacies with 40,000+ patients — strict cross-organization data isolation, ACL-based security, and 99.9% uptime on GCP.",
-    longDescription: `A production-grade multi-tenant healthcare platform currently serving 20+ UK clinics, pharmacies and 40,000+ real patients across live clinical environments.\n\nI own the end-to-end engineering: multi-tenant data architecture with strict cross-organization isolation, RBAC/ACL security, GCP deployments, PostgreSQL migrations, critical cron workflows (prescriptions, inventory, appointments), and a dynamic RJSF-based form builder used by clinicians.\n\nMy work directly reduced production incidents, improved query performance on hot paths, and kept 99.9% uptime while the platform scaled from tens of thousands of patient records to its current footprint — all without a single critical data breach.`,
+    description: "Architected and scaled a multi-tenant healthcare SaaS serving 20+ UK clinics and pharmacies with 40,000+ patients: strict cross-organization data isolation, ACL-based security, and 99.9% uptime on GCP.",
+    longDescription: `A production-grade multi-tenant healthcare platform currently serving 20+ UK clinics, pharmacies and 40,000+ real patients across live clinical environments.\n\nI own the end-to-end engineering: multi-tenant data architecture with strict cross-organization isolation, RBAC/ACL security, GCP deployments, PostgreSQL migrations, critical cron workflows (prescriptions, inventory, appointments), and a dynamic RJSF-based form builder used by clinicians.\n\nMy work directly reduced production incidents, improved query performance on hot paths, and kept 99.9% uptime while the platform scaled from tens of thousands of patient records to its current footprint, all without a single critical data breach.`,
     image: "https://image.pollinations.ai/prompt/modern%20healthcare%20dashboard%20with%20patient%20data%20charts%20multi-tenant%20architecture%20dark%20theme%20futuristic%20UI%20medical%20SaaS%20platform?width=1200&height=750&seed=101&model=flux&nologo=true",
     technologies: [
       { name: "TypeScript" },
@@ -272,10 +272,10 @@ export const projectsData: Project[] = [
   },
   {
     slug: "ai-agent-whatsapp",
-    title: "AI Agent — WhatsApp Integration",
+    title: "AI Agent: WhatsApp Integration",
     subtitle: "Conversational AI backend for platform operations",
-    description: "Independently designed and built a production-ready AI Agent PoC in under 24 hours — enabling users to perform real platform operations through WhatsApp via intent detection, tool calling, and backend orchestration.",
-    longDescription: `Independently researched, designed and built a production-ready AI Agent Proof of Concept that enables users to communicate with Hind Social directly through WhatsApp.\n\nThe AI Agent automatically detects user intent, authenticates users, queries backend databases, executes tool calls, performs CRUD operations, registers users into events and libraries, books services, answers platform queries, and retrieves personalized information.\n\nBuilt with OpenAI GPT, tool calling, Twilio WhatsApp API, Node.js, Next.js, and REST APIs. The architecture was designed to support future integrations with WhatsApp, Instagram, and Facebook Messenger — acting as a conversational backend capable of executing real platform operations.\n\nThe complete Proof of Concept was designed and implemented independently within a single day.`,
+    description: "Independently designed and built a production-ready AI Agent PoC in under 24 hours, enabling users to perform real platform operations through WhatsApp via intent detection, tool calling, and backend orchestration.",
+    longDescription: `Independently researched, designed and built a production-ready AI Agent Proof of Concept that enables users to communicate with Hind Social directly through WhatsApp.\n\nThe AI Agent automatically detects user intent, authenticates users, queries backend databases, executes tool calls, performs CRUD operations, registers users into events and libraries, books services, answers platform queries, and retrieves personalized information.\n\nBuilt with OpenAI GPT, tool calling, Twilio WhatsApp API, Node.js, Next.js, and REST APIs. The architecture was designed to support future integrations with WhatsApp, Instagram, and Facebook Messenger, acting as a conversational backend capable of executing real platform operations.\n\nThe complete Proof of Concept was designed and implemented independently within a single day.`,
     image: "https://image.pollinations.ai/prompt/AI%20chatbot%20WhatsApp%20interface%20with%20tool%20calling%20code%20visualization%20conversational%20AI%20agent%20dark%20futuristic%20theme?width=1200&height=750&seed=303&model=flux&nologo=true",
     technologies: [
       { name: "OpenAI GPT" },
@@ -313,8 +313,8 @@ export const projectsData: Project[] = [
     slug: "patient-mobile-apps",
     title: "Patient Mobile Apps (Android & iOS)",
     subtitle: "Native-feeling care experience from one shared codebase",
-    description: "Built and deployed cross-platform patient apps using Capacitor on a shared web-mobile architecture — delivering a seamless care experience and achieving Google Play Store approval.",
-    longDescription: `Designed and shipped Android + iOS patient applications on top of the healthcare SaaS. Using Capacitor, the apps share a single React/TypeScript codebase with the web platform — cutting duplicate work while delivering a native feel on both stores.\n\nI handled the full build pipeline — provisioning profiles, certificates, splash/app-icon generation, deep linking and OS-specific UX tuning — plus production release management on both stores.\n\nThe company had been trying to publish its Capacitor application for a long time. I successfully built and configured the application using Next.js WebView architecture and achieved Google Play Store approval — an important milestone for the team.`,
+    description: "Built and deployed cross-platform patient apps using Capacitor on a shared web-mobile architecture, delivering a seamless care experience and achieving Google Play Store approval.",
+    longDescription: `Designed and shipped Android + iOS patient applications on top of the healthcare SaaS. Using Capacitor, the apps share a single React/TypeScript codebase with the web platform, cutting duplicate work while delivering a native feel on both stores.\n\nI handled the full build pipeline (provisioning profiles, certificates, splash/app-icon generation, deep linking and OS-specific UX tuning) plus production release management on both stores.\n\nThe company had been trying to publish its Capacitor application for a long time. I successfully built and configured the application using Next.js WebView architecture and achieved Google Play Store approval, an important milestone for the team.`,
     image: "https://image.pollinations.ai/prompt/mobile%20health%20app%20on%20smartphone%20screens%20iOS%20Android%20patient%20care%20medical%20UI%20dark%20background%20cross-platform?width=1200&height=750&seed=404&model=flux&nologo=true",
     technologies: [
       { name: "Capacitor" },
@@ -329,7 +329,7 @@ export const projectsData: Project[] = [
     status: "In Production",
     category: ["All", "Work", "Mobile"],
     highlights: [
-      "Single codebase, two app stores — significant velocity multiplier",
+      "Single codebase, two app stores: significant velocity multiplier",
       "Achieved Google Play Store approval after prolonged team efforts",
       "Deep-linked patient journeys shared with the web platform",
       "Production rollout on iOS + Android with managed release pipelines"
@@ -351,8 +351,8 @@ export const projectsData: Project[] = [
     slug: "school-management-saas",
     title: "School Management SaaS",
     subtitle: "Scalable multi-tenant platform for educational institutions",
-    description: "Developed and deployed a scalable multi-tenant school management system serving multiple institutions — RBAC for students, teachers, and admins across attendance, fees, academics, and administrative workflows.",
-    longDescription: `A multi-tenant education SaaS used by multiple institutions to run day-to-day operations. I built the core backend architecture, authentication, RBAC, and the primary modules — attendance, fees, academics and administrative workflows.\n\nThe platform is designed around concurrency — multiple schools, thousands of students, teachers and admins interacting simultaneously without cross-school leakage.`,
+    description: "Developed and deployed a scalable multi-tenant school management system serving multiple institutions: RBAC for students, teachers, and admins across attendance, fees, academics, and administrative workflows.",
+    longDescription: `A multi-tenant education SaaS used by multiple institutions to run day-to-day operations. I built the core backend architecture, authentication, RBAC, and the primary modules: attendance, fees, academics and administrative workflows.\n\nThe platform is designed around concurrency: multiple schools, thousands of students, teachers and admins interacting simultaneously without cross-school leakage.`,
     image: "https://image.pollinations.ai/prompt/school%20management%20system%20dashboard%20attendance%20academics%20modules%20education%20platform%20dark%20theme%20modern%20UI?width=1200&height=750&seed=505&model=flux&nologo=true",
     technologies: [
       { name: "Node.js" },
@@ -419,7 +419,7 @@ export const projectsData: Project[] = [
   },
   {
     slug: "novu-notification-workflows",
-    title: "Novu — Notification Workflows",
+    title: "Novu: Notification Workflows",
     subtitle: "Event-driven notifications and workflow automation",
     description: "Engineered notification workflows on Novu, the open-source notification platform, for Hind Social: event notifications, trigger pipelines and orchestration that deliver the right message to the right user when something happens on the platform.",
     longDescription: `Built notification engineering on top of Novu, an open-source notification platform, for Hind Social. Platform events such as bookings, event registrations and activity updates feed trigger pipelines, which decide who should be notified, through which channel, and when.\n\nThe work covered notification workflows, event notifications, workflow automation and orchestration, so new notification types can be added without rewriting delivery logic.`,
@@ -551,7 +551,7 @@ export const projectsData: Project[] = [
   },
   {
     slug: "ai-portfolio",
-    title: "This Portfolio — AI-Powered",
+    title: "This Portfolio: AI-Powered",
     subtitle: "Multi-page portfolio with an AI assistant, terminal and Cmd+K search",
     description: "The site you're on: a React + TypeScript portfolio with an AI chat assistant that answers questions about my work, an interactive terminal, Cmd+K spotlight search, Framer Motion page transitions and light/dark themes.",
     longDescription: `I built this portfolio as a product, not a page. It's a multi-page React + TypeScript app with Framer Motion transitions, an interactive terminal with real commands, Cmd+K spotlight search across projects and pages, and an AI assistant that answers questions about my experience.\n\nThe assistant runs through a serverless function on Vercel with input limits and a constrained system prompt. Contact and newsletter flows use EmailJS and InstantDB, and the whole site is tuned for mobile and Safari.`,
@@ -589,7 +589,7 @@ export const projectsData: Project[] = [
     title: "SpaceX Launch Explorer",
     subtitle: "Rich interface for past & upcoming SpaceX missions",
     description: "A responsive React + TypeScript application surfacing detailed SpaceX launch data with smart filtering, mission drill-downs, and a performant, accessible UI.",
-    longDescription: `An open-source React + TypeScript app that consumes the SpaceX API and turns it into a pleasant browsing experience — filters by date, mission type, vehicle and status, plus detailed mission drill-downs.\n\nThe UI is built with Mantine + Zustand for state, focused on performance, clear typography and predictable interactions.`,
+    longDescription: `An open-source React + TypeScript app that consumes the SpaceX API and turns it into a pleasant browsing experience: filters by date, mission type, vehicle and status, plus detailed mission drill-downs.\n\nThe UI is built with Mantine + Zustand for state, focused on performance, clear typography and predictable interactions.`,
     image: "https://image.pollinations.ai/prompt/SpaceX%20rocket%20launch%20data%20explorer%20React%20app%20space%20missions%20dark%20tech%20theme%20futuristic%20dashboard?width=1200&height=750&seed=606&model=flux&nologo=true",
     technologies: [
       { name: "React.js" },
@@ -623,7 +623,7 @@ export const projectsData: Project[] = [
     slug: "crowdsource-platform",
     title: "CrowdSource Platform",
     subtitle: "Collaborative problem-solving for communities",
-    description: "A MERN-stack platform enabling users to post challenges, propose solutions, and engage in threaded discussions — with JWT authentication and a clean component architecture.",
+    description: "A MERN-stack platform enabling users to post challenges, propose solutions, and engage in threaded discussions, with JWT authentication and a clean component architecture.",
     longDescription: `A collaborative problem-solving app built on the MERN stack. Users can post challenges, submit structured solutions, and discuss in threaded conversations.\n\nSecurity is handled via JWT with server-side session validation, and the frontend uses a clean component architecture to keep the interface responsive as conversations grow.`,
     image: "https://image.pollinations.ai/prompt/collaborative%20problem-solving%20platform%20MERN%20stack%20threaded%20discussions%20community%20dark%20modern%20UI?width=1200&height=750&seed=707&model=flux&nologo=true",
     technologies: [
@@ -657,7 +657,7 @@ export const projectsData: Project[] = [
     slug: "dividend-roi-calculator",
     title: "Dividend ROI Calculator",
     subtitle: "NSE dividend research for Indian investors",
-    description: "A research tool for computing dividend earnings on NSE-listed stocks — integrates the Angel One API for real-time data and applies statistical analysis for ROI estimation.",
+    description: "A research tool for computing dividend earnings on NSE-listed stocks. It integrates the Angel One API for real-time data and applies statistical analysis for ROI estimation.",
     longDescription: `A personal-research tool for dividend investors in the Indian market. The backend pulls real-time NSE data via the Angel One API and applies statistical analysis to estimate dividend ROI, yield and historical performance.\n\nIt stores curated datasets in MongoDB, which dramatically reduces API chatter and gives fast, repeatable analysis for long-term investors.`,
     image: "https://image.pollinations.ai/prompt/stock%20market%20dividend%20calculator%20financial%20charts%20ROI%20metrics%20NSE%20Indian%20stocks%20dark%20fintech%20theme?width=1200&height=750&seed=808&model=flux&nologo=true",
     technologies: [
@@ -716,10 +716,10 @@ export const experienceData: Experience[] = [
     period: "Nov 2024 – May 2026",
     icon: "Stethoscope",
     description: [
-      "Architected and scaled a multi-tenant healthcare SaaS platform serving 20+ UK clinics, pharmacies, and 40,000+ real patients — with strict cross-organization data isolation.",
-      "Owned production reliability on Google Cloud — deployments, PostgreSQL migrations, ACL-based security and critical cron workflows (prescriptions, inventory allocation, appointments).",
-      "Shipped Android & iOS patient apps via Capacitor on a shared web-mobile architecture serving 5,000+ patient app users — one codebase, three platforms.",
-      "Drove production-issue triage and optimisation: hot-path query tuning, RJSF form-engine improvements and legacy refactors — maintaining 99.9% uptime with zero critical data breaches."
+      "Architected and scaled a multi-tenant healthcare SaaS platform serving 20+ UK clinics, pharmacies, and 40,000+ real patients, with strict cross-organization data isolation.",
+      "Owned production reliability on Google Cloud: deployments, PostgreSQL migrations, ACL-based security and critical cron workflows (prescriptions, inventory allocation, appointments).",
+      "Shipped Android & iOS patient apps via Capacitor on a shared web-mobile architecture serving 5,000+ patient app users, one codebase, three platforms.",
+      "Drove production-issue triage and optimisation: hot-path query tuning, RJSF form-engine improvements and legacy refactors, maintaining 99.9% uptime with zero critical data breaches."
     ],
     stack: ["TypeScript", "Node.js", "React", "PostgreSQL", "Zustand", "GCP", "Capacitor"]
   },
@@ -774,7 +774,7 @@ export const educationData: Education[] = [
     grade: "7.91 CGPA"
   },
   {
-    title: "Class 12 — Science",
+    title: "Class 12: Science",
     institution: "Seva Sadan Higher Secondary School",
     location: "Burhanpur, M.P.",
     year: "2019",
@@ -800,7 +800,7 @@ export const certificationData: Certification[] = [
     title: "Geoprocessing Using Python",
     issuer: "Indian Institute of Remote Sensing",
     year: "2023",
-    description: "Analysis of geo & spatial data — raster/vector processing with NumPy and Pandas."
+    description: "Analysis of geo & spatial data: raster/vector processing with NumPy and Pandas."
   },
   {
     title: "Data Mining & Business Analytics",
@@ -812,8 +812,8 @@ export const certificationData: Certification[] = [
 
 export const involvementData: Involvement[] = [
   {
-    title: "Tech Lead — Database Management",
-    organization: "Commutiny — The Youth Collective",
+    title: "Tech Lead: Database Management",
+    organization: "Commutiny, The Youth Collective",
     period: "Nov 2021 – Feb 2022",
     description: "Led database administration for a network of 30+ NGOs; streamlined data management and supported statistical analysis for social-impact projects.",
     icon: "fas fa-hands-helping"
@@ -827,7 +827,7 @@ export const involvementData: Involvement[] = [
   },
   {
     title: "Bronze Medalist",
-    organization: "Q-ki National Championship — Commutiny",
+    organization: "Q-ki National Championship, Commutiny",
     period: "Jun – Aug 2021",
     description: "Secured a Bronze Medal at the Q-ki National Championship focused on youth development and leadership.",
     icon: "fas fa-medal"
@@ -846,11 +846,11 @@ export const contactInfo: ContactInfo = {
 export const bioData = {
   name: "Rahul Vishwakarma",
   title: "Senior Full Stack Developer",
-  summary: "Senior Full Stack Developer shipping scalable products end-to-end — multi-tenant SaaS, booking marketplaces, AI agents and secure APIs — with TypeScript, Node.js, React, Next.js, PostgreSQL and GCP.",
+  summary: "Senior Full Stack Developer shipping scalable products end-to-end (multi-tenant SaaS, booking marketplaces, AI agents and secure APIs) with TypeScript, Node.js, React, Next.js, PostgreSQL and GCP.",
   profileImage: "/profile.jpeg",
   longBio: [
-    "I'm a Senior Full Stack Developer with a product engineer's mindset, and I thrive at the intersection of architecture, AI, security, and product thinking. I design and ship end-to-end platforms — backend architecture, database design, AI agents, mobile apps, cloud deployments, notification systems, and high-priority production systems.",
-    "At Hind Social I owned the entire Services Module — a full booking marketplace with three service types, collections, categories, banners and layered security — and shipped it to production in four months, on the 30 September 2026 deadline. I also designed a production-ready AI Agent that runs real platform operations over WhatsApp. Previously at Script Assist UK, I led engineering on a healthcare platform serving 20+ UK clinics with 40,000+ patients, maintaining 99.9% uptime and zero critical data breaches on GCP.",
+    "I'm a Senior Full Stack Developer with a product engineer's mindset, and I thrive at the intersection of architecture, AI, security, and product thinking. I design and ship end-to-end platforms: backend architecture, database design, AI agents, mobile apps, cloud deployments, notification systems, and high-priority production systems.",
+    "At Hind Social I owned the entire Services Module (a full booking marketplace with three service types, collections, categories, banners and layered security) and shipped it to production in four months, on the 30 September 2026 deadline. I also designed a production-ready AI Agent that runs real platform operations over WhatsApp. Previously at Script Assist UK, I led engineering on a healthcare platform serving 20+ UK clinics with 40,000+ patients, maintaining 99.9% uptime and zero critical data breaches on GCP.",
     "My work spans product engineering, AI integration, security assessment, notification orchestration, and mobile deployment. I'm deeply invested in building reliable distributed systems, intelligent automation, and products that quietly do a lot behind clean interfaces."
   ],
   stats: [

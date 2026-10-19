@@ -19,7 +19,7 @@ const ExperienceSwitcher = () => {
   const [active, setActive] = useState(() => indexFor(requested));
   const current = experienceData[active];
 
-  // Deep link (?exp=<company-slug>) — used by the AI assistant to open a specific role.
+  // Deep link (?exp=<company-slug>) - used by the AI assistant to open a specific role.
   useEffect(() => {
     if (requested) setActive(indexFor(requested));
   }, [requested]);

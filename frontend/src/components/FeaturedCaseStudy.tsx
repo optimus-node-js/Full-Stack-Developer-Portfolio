@@ -84,8 +84,8 @@ const FeaturedCaseStudy = ({ compact = false }: FeaturedCaseStudyProps) => {
               <span className="text-gradient-primary">built end-to-end in 4 months.</span>
             </h2>
             <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
-              Verified vendors create and sell services, customers discover and book them. I owned the whole module — schema, APIs,
-              vendor, customer and admin UI — and shipped it to production on the committed deadline.
+              Verified vendors create and sell services, customers discover and book them. I owned the whole module (schema, APIs,
+              vendor, customer and admin UI) and shipped it to production on the committed deadline.
             </p>
 
             {!compact && (
@@ -117,7 +117,7 @@ const FeaturedCaseStudy = ({ compact = false }: FeaturedCaseStudyProps) => {
             </div>
             <div className="mt-4 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">Live in production</div>
             <div className="mt-1 font-heading font-bold text-2xl">30 Sep 2026</div>
-            <p className="mt-1 text-sm text-muted-foreground">Delivered on the committed timeline — no scope cut.</p>
+            <p className="mt-1 text-sm text-muted-foreground">Delivered on the committed timeline, with no scope cut.</p>
           </SpotlightCard>
         </motion.div>
 
@@ -197,7 +197,7 @@ const FeaturedCaseStudy = ({ compact = false }: FeaturedCaseStudyProps) => {
             <div>
               <div className="font-heading font-semibold">Caching & performance</div>
               <p className="mt-1 text-sm text-muted-foreground">
-                Caching, query and index tuning and pagination — built to handle thousands of booking transactions.
+                Caching, query and index tuning and pagination, built to handle thousands of booking transactions.
               </p>
             </div>
           </SpotlightCard>
@@ -210,7 +210,7 @@ const FeaturedCaseStudy = ({ compact = false }: FeaturedCaseStudyProps) => {
             <div>
               <div className="font-heading font-semibold">Safari / iOS compatible</div>
               <p className="mt-1 text-sm text-muted-foreground">
-                Full WebKit compatibility and mobile-responsive UI — no Safari-specific breakages.
+                Full WebKit compatibility and mobile-responsive UI with no Safari-specific breakages.
               </p>
             </div>
           </SpotlightCard>

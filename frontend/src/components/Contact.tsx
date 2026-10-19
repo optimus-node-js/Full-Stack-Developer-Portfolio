@@ -59,7 +59,7 @@ const Contact = () => {
         console.error('Email notification failed:', err)
       );
 
-      toast({ title: 'Message sent!', description: "Thanks for reaching out — I'll reply within 24 hours." });
+      toast({ title: 'Message sent!', description: "Thanks for reaching out! I'll reply within 24 hours." });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
       console.error('Error submitting form:', err);
@@ -89,7 +89,7 @@ const Contact = () => {
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
             <div className="relative">
               <h3 className="font-heading font-bold text-2xl">Send me a message</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Tell me what you're building — I'll get back soon.</p>
+              <p className="mt-2 text-sm text-muted-foreground">Tell me what you're building and I'll get back soon.</p>
 
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
                 <div className="grid sm:grid-cols-2 gap-4">

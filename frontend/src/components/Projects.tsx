@@ -27,7 +27,7 @@ const Projects = () => {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="container mx-auto relative z-10">
-        {/* Filters — horizontally scrollable on mobile */}
+        {/* Filters - horizontally scrollable on mobile */}
         <div className="flex flex-nowrap sm:flex-wrap sm:justify-center gap-2 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           {FILTERS.map((f) => {
             const active = filter === f;
