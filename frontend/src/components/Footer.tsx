@@ -76,7 +76,7 @@ const Footer = () => {
                   </div>
                 </Link>
                 <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-xs">
-                  Full-stack, AI, security, and platform architecture — shipping scalable products end-to-end.
+                  Full-stack, AI, security, and platform architecture. Shipping scalable products end-to-end.
                 </p>
 
                 <div className="mt-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-tertiary/25 bg-tertiary/10 text-[11px] font-mono">

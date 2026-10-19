@@ -22,24 +22,24 @@ const cmdHelp = (): Response => ({
   lines: [
     { text: 'Available commands:', kind: 'accent' },
     { text: '' },
-    { text: `  ${pad('whoami')} — who I am` },
-    { text: `  ${pad('about')} — short bio` },
-    { text: `  ${pad('skills, stack')} — my tech stack` },
-    { text: `  ${pad('experience')} — work history` },
-    { text: `  ${pad('projects')} — selected projects` },
-    { text: `  ${pad('cases')} — production case studies` },
-    { text: `  ${pad('education')} — education & certs` },
-    { text: `  ${pad('contact')} — get in touch` },
-    { text: `  ${pad('resume')} — download resume` },
-    { text: `  ${pad('socials')} — github / linkedin / email` },
+    { text: `  ${pad('whoami')} - who I am` },
+    { text: `  ${pad('about')} - short bio` },
+    { text: `  ${pad('skills, stack')} - my tech stack` },
+    { text: `  ${pad('experience')} - work history` },
+    { text: `  ${pad('projects')} - selected projects` },
+    { text: `  ${pad('cases')} - production case studies` },
+    { text: `  ${pad('education')} - education & certs` },
+    { text: `  ${pad('contact')} - get in touch` },
+    { text: `  ${pad('resume')} - download resume` },
+    { text: `  ${pad('socials')} - github / linkedin / email` },
     { text: '' },
-    { text: `  ${pad('ls')} — list sections like a directory` },
-    { text: `  ${pad('cat <id>')} — details, e.g. cat experience.1` },
-    { text: `  ${pad('pwd, date')} — system info` },
-    { text: `  ${pad('history')} — command history` },
-    { text: `  ${pad('clear')} — clear the screen` },
+    { text: `  ${pad('ls')} - list sections like a directory` },
+    { text: `  ${pad('cat <id>')} - details, e.g. cat experience.1` },
+    { text: `  ${pad('pwd, date')} - system info` },
+    { text: `  ${pad('history')} - command history` },
+    { text: `  ${pad('clear')} - clear the screen` },
     { text: '' },
-    { text: "or ask me naturally — e.g. 'what's your stack?' / 'are you hiring-ready?'", kind: 'muted' },
+    { text: "or ask me naturally, e.g. 'what's your stack?' / 'are you hiring-ready?'", kind: 'muted' },
   ],
 });
 
@@ -76,7 +76,7 @@ const cmdExperience = (): Response => {
     lines.push({ text: `    ${e.period}`, kind: 'muted' });
   });
   lines.push({ text: '' });
-  lines.push({ text: "run 'cat experience.<n>' for details — e.g. cat experience.1", kind: 'muted' });
+  lines.push({ text: "run 'cat experience.<n>' for details, e.g. cat experience.1", kind: 'muted' });
   return { lines };
 };
 
@@ -128,7 +128,7 @@ const cmdEducation = (): Response => {
     { text: '# education', kind: 'accent' },
     { text: '' },
     ...educationData.map((e) => ({
-      text: `• ${e.title} — ${e.institution}, ${e.location} (${e.year}) · ${e.grade}`,
+      text: `• ${e.title} - ${e.institution}, ${e.location} (${e.year}) · ${e.grade}`,
     })),
   ];
   return { lines };
@@ -167,22 +167,22 @@ const cmdUname = (): Response => ({
 
 const cmdResume = (): Response => ({
   lines: [
-    { text: 'downloading resume — triggering /resume.pdf ...', kind: 'info' },
+    { text: 'downloading resume: /resume.pdf ...', kind: 'info' },
     { text: 'done.', kind: 'success' },
   ],
 });
 
 const cmdSocials = (): Response => ({
   lines: [
-    { text: 'github   — ' + contactInfo.github, kind: 'info' },
-    { text: 'linkedin — ' + contactInfo.linkedin, kind: 'info' },
-    { text: 'email    — mailto:' + contactInfo.email, kind: 'info' },
+    { text: 'github   - ' + contactInfo.github, kind: 'info' },
+    { text: 'linkedin - ' + contactInfo.linkedin, kind: 'info' },
+    { text: 'email    - mailto:' + contactInfo.email, kind: 'info' },
   ],
 });
 
 const cmdHire = (): Response => ({
   lines: [
-    { text: '✓ rahul is available now — immediate joiner, no notice period.', kind: 'success' },
+    { text: '✓ rahul is available now: immediate joiner, no notice period.', kind: 'success' },
     { text: '' },
     { text: '  » Senior Full Stack / Product Engineering roles' },
     { text: '  » AI Engineering · Platform Architecture · Security' },
@@ -204,9 +204,9 @@ const cmdCases = (): Response => ({
 
 const cmdJoke = (): Response => {
   const jokes = [
-    'Why did the dev go broke? — he used up all his cache.',
+    'Why did the dev go broke? He used up all his cache.',
     'There are 10 kinds of people: those who understand binary and those who don\'t.',
-    '!false — it\'s funny because it\'s true.',
+    '!false. It\'s funny because it\'s true.',
     'A SQL query walks into a bar, walks up to two tables and asks: "may I JOIN you?"',
     'I would tell you a UDP joke, but you might not get it.',
   ];
@@ -214,15 +214,15 @@ const cmdJoke = (): Response => {
 };
 
 const easterEggs: Record<string, Response> = {
-  'rm -rf /': { lines: [{ text: "rm: refusing to remove '/' — this portfolio is sacred", kind: 'error' }] },
-  'rm -rf /*': { lines: [{ text: "rm: refusing to remove '/' — this portfolio is sacred", kind: 'error' }] },
+  'rm -rf /': { lines: [{ text: "rm: refusing to remove '/', this portfolio is sacred", kind: 'error' }] },
+  'rm -rf /*': { lines: [{ text: "rm: refusing to remove '/', this portfolio is sacred", kind: 'error' }] },
   vim: { lines: [{ text: 'E404: we ship production, we do not edit here. try "help".', kind: 'error' }] },
-  nano: { lines: [{ text: 'nano: too comfy — try vim (j/k, also banned).', kind: 'error' }] },
+  nano: { lines: [{ text: 'nano: too comfy, try vim (j/k, also banned).', kind: 'error' }] },
   emacs: { lines: [{ text: 'emacs: operating system not found.', kind: 'error' }] },
-  exit: { lines: [{ text: "you can't escape the portfolio — try 'contact' instead.", kind: 'muted' }] },
+  exit: { lines: [{ text: "you can't escape the portfolio. try 'contact' instead.", kind: 'muted' }] },
   logout: { lines: [{ text: "rahul: session still active. try 'contact'.", kind: 'muted' }] },
   quit: { lines: [{ text: "quitting is not product-engineer energy. try 'contact'.", kind: 'muted' }] },
-  ':q': { lines: [{ text: 'E37: no write since last change (:q!) — still here.', kind: 'error' }] },
+  ':q': { lines: [{ text: 'E37: no write since last change (:q!), still here.', kind: 'error' }] },
   ':wq': { lines: [{ text: 'saved. but still here.', kind: 'muted' }] },
   matrix: { lines: [{ text: 'wake up, Neo... the stack has you.', kind: 'accent' }] },
   coffee: { lines: [{ text: 'coffee.service failed: resource "caffeine" depleted.', kind: 'error' }] },
@@ -309,7 +309,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     response: () => ({
       lines: [
         { text: 'shipped the entire Services Module at Hind Social in 4 months (live 30 Sep 2026), plus a 1-day AI Agent PoC.', kind: 'accent' },
-        { text: 'previously: the healthcare SaaS at Script Assist — 20+ UK clinics · 40k+ patients · 99.9% uptime.', kind: 'muted' },
+        { text: 'previously: the healthcare SaaS at Script Assist: 20+ UK clinics · 40k+ patients · 99.9% uptime.', kind: 'muted' },
       ],
     }),
   },
@@ -326,7 +326,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
     keywords: ['rate', 'salary', 'price', 'cost', 'how much', 'compensation', 'ctc'],
     response: () => ({
       lines: [
-        { text: 'depends on scope & engagement — happy to chat.', kind: 'accent' },
+        { text: 'depends on scope & engagement. happy to chat.', kind: 'accent' },
         { text: `drop a note at ${contactInfo.email}.`, kind: 'muted' },
       ],
     }),
@@ -382,7 +382,7 @@ const intents: { keywords: string[]; response: () => Response }[] = [
   },
   {
     keywords: ['bye', 'goodbye', 'see ya', 'see you', 'later'],
-    response: () => ({ lines: [{ text: "till next time — drop an email via 'contact'.", kind: 'muted' }] }),
+    response: () => ({ lines: [{ text: "till next time! drop an email via 'contact'.", kind: 'muted' }] }),
   },
   {
     keywords: ['joke', 'funny', 'laugh'],
@@ -412,7 +412,7 @@ export const welcomeResponse: Response = {
     { text: '│ domains: full-stack · AI · security · platform    │', kind: 'accent', instant: true },
     { text: '└────────────────────────────────────────────────┘', kind: 'accent', instant: true },
     { text: '' },
-    { text: "hi, I'm Rahul — a product engineer." },
+    { text: "hi, I'm Rahul, a full stack developer." },
     { text: "ask me anything, or type 'help' to see what I can do here.", kind: 'muted' },
   ],
 };
@@ -518,7 +518,7 @@ export function processCommand(rawInput: string): Response {
   return {
     lines: [
       { text: `command not found: ${input}`, kind: 'error' },
-      { text: "try 'help' or just ask naturally — e.g. \"what's your stack?\"", kind: 'muted' },
+      { text: "try 'help' or just ask naturally, e.g. \"what's your stack?\"", kind: 'muted' },
     ],
   };
 }

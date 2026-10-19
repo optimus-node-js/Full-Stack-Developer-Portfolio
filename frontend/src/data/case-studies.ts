@@ -46,7 +46,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Shipping an entire services marketplace in 4 months',
     tagline: 'Hind Social · Services Module',
     company: 'Hind Social',
-    role: 'Module owner — schema, APIs, vendor, customer & admin UI',
+    role: 'Module owner: schema, APIs, vendor, customer & admin UI',
     timeline: 'Jun – Sep 2026 · live 30 Sep 2026',
     domain: 'Marketplace · Bookings',
     readingTime: '7 min read',
@@ -62,7 +62,7 @@ export const caseStudies: CaseStudy[] = [
     context:
       'Hind Social is a community platform with groups, events, chat and a content library. The Services Module turns it into a marketplace: any approved provider can list a service, and any member can book it. It is effectively a product of its own, living inside the main platform and sharing its users, auth and design system.',
     problem:
-      'Build a production-grade marketplace — catalogue, discovery, booking, provider operations and admin control — that handles very different kinds of services, keeps every user inside their own permissions, stays fast as volume grows, and lands on a fixed date.',
+      'Build a production-grade marketplace (catalogue, discovery, booking, provider operations and admin control) that handles very different kinds of services, keeps every user inside their own permissions, stays fast as volume grows, and lands on a fixed date.',
     constraints: [
       'Fixed go-live date of 30 September 2026, with no room to slip',
       'Three service types with different booking rules: short (slot-based), long-duration and delivery-based',
@@ -92,10 +92,10 @@ export const caseStudies: CaseStudy[] = [
       { title: 'Safari as a first-class target', why: 'A large share of consumer traffic is iPhone Safari, where layout and date handling differ most.', tradeoff: 'Extra test passes per screen, but no "works on my Chrome" launch bugs.' },
     ],
     security: [
-      'ACL/RBAC across three user tiers so admins, vendors and customers each see and change only what they are allowed to — for services, collections and categories',
+      'ACL/RBAC across three user tiers so admins, vendors and customers each see and change only what they are allowed to: for services, collections and categories',
       'Strict vendor verification: unverified vendors cannot publish services or accept bookings',
       'Strict server-side validation and input sanitization on every create and update, including multi-step service creation',
-      'Ownership verified server-side on every service and booking resource — IDs from the client are never trusted on their own',
+      'Ownership verified server-side on every service and booking resource: IDs from the client are never trusted on their own',
       'Validation at each layer (request, domain, data) to block malformed or malicious input',
       'Admin-only surfaces (banners, curation) isolated behind their own permission checks',
     ],
@@ -106,14 +106,14 @@ export const caseStudies: CaseStudy[] = [
       'Lean payloads for mobile networks',
     ],
     results: [
-      'Entire Services Module live in production on 30 September 2026 — on the committed date, no scope cut',
+      'Entire Services Module live in production on 30 September 2026, on the committed date with no scope cut',
       'Three service types running on one booking engine',
       'Production-grade module designed for thousands of booking transactions',
       'Admin earnings management and verified-vendor flows live alongside bookings',
-      'Full Safari/iOS compatibility — no Safari-specific UI breakages across desktop, Android and iPhone'
+      'Full Safari/iOS compatibility, no Safari-specific UI breakages across desktop, Android and iPhone'
     ],
     lessons: [
-      'A fixed deadline is a scoping problem first and a coding problem second — slice vertically and keep something shippable every week.',
+      'A fixed deadline is a scoping problem first and a coding problem second: slice vertically and keep something shippable every week.',
       'Designing the permission model before the endpoints is what makes a big module safe to ship fast.',
     ],
     stack: ['Next.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'REST APIs', 'RBAC', 'Caching'],
@@ -123,7 +123,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Scaling a multi-tenant healthcare SaaS with zero data breaches',
     tagline: 'Script Assist UK · Healthcare platform',
     company: 'Script Assist UK',
-    role: 'Full Stack Developer — architecture, production, security',
+    role: 'Full Stack Developer: architecture, production, security',
     timeline: 'Nov 2024 – May 2026',
     domain: 'Healthcare · Multi-tenant SaaS',
     readingTime: '6 min read',
@@ -141,7 +141,7 @@ export const caseStudies: CaseStudy[] = [
     problem:
       'Grow the platform to more organisations and patients without risking cross-tenant data leaks, without downtime during migrations, and while stabilising a legacy codebase that was producing production issues.',
     constraints: [
-      'Patient data — any cross-organisation leak is a serious incident',
+      'Patient data: any cross-organisation leak is a serious incident',
       'Live clinical usage, so migrations and deploys must not interrupt work',
       'Legacy code with known fragile paths',
       'Small team owning everything from database to mobile apps',
@@ -160,7 +160,7 @@ export const caseStudies: CaseStudy[] = [
       { layer: 'Data & cloud', detail: 'PostgreSQL with tenant-scoped data, deployed and operated on Google Cloud Platform.' },
     ],
     decisions: [
-      { title: 'Tenant scope is not optional', why: 'Isolation enforced only in the UI or by convention eventually fails. It has to be part of every data access.', tradeoff: 'Every new query needs the scope — enforced by review and shared helpers.' },
+      { title: 'Tenant scope is not optional', why: 'Isolation enforced only in the UI or by convention eventually fails. It has to be part of every data access.', tradeoff: 'Every new query needs the scope, enforced by review and shared helpers.' },
       { title: 'Expand-then-contract migrations', why: 'Clinics work all day; a blocking migration is an outage.', tradeoff: 'Migrations take more steps, but deploys never stop the clinic.' },
       { title: 'Fix the noisiest issues first', why: 'A few fragile paths caused most incidents.', tradeoff: 'Some cleanup waited, but incident volume dropped fastest this way.' },
     ],
@@ -188,10 +188,10 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'ai-agent-whatsapp-in-a-day',
-    title: 'A production-ready AI agent on WhatsApp — in one day',
+    title: 'A production-ready AI agent on WhatsApp in one day',
     tagline: 'Hind Social · AI Agent PoC',
     company: 'Hind Social',
-    role: 'Sole engineer — research, design, build',
+    role: 'Sole engineer: research, design, build',
     timeline: '2026 · built in 1 day',
     domain: 'AI · Conversational agents',
     readingTime: '5 min read',
@@ -205,7 +205,7 @@ export const caseStudies: CaseStudy[] = [
       { value: 'Solo', label: 'Designed & built' },
     ],
     context:
-      'Many users live in WhatsApp. The question was whether they could use the platform without opening the app — not a chatbot answering FAQs, but an agent that actually performs actions.',
+      'Many users live in WhatsApp. The question was whether they could use the platform without opening the app, not a chatbot answering FAQs, but an agent that actually performs actions.',
     problem:
       'Prove, quickly and convincingly, that an LLM agent can safely execute real backend operations for authenticated users through a messaging channel.',
     constraints: [
@@ -216,18 +216,18 @@ export const caseStudies: CaseStudy[] = [
     phases: [
       { name: 'Design the tool surface', detail: 'Picked the operations worth exposing (lookups, event registration, service booking, library actions) and defined them as typed tools.' },
       { name: 'Wire the channel', detail: 'Connected Twilio’s WhatsApp API to a Node.js webhook that keeps per-user conversation context.' },
-      { name: 'Agent loop', detail: 'OpenAI model detects intent, calls tools, reads results and answers — with authentication resolved before any action runs.' },
+      { name: 'Agent loop', detail: 'OpenAI model detects intent, calls tools, reads results and answers, with authentication resolved before any action runs.' },
       { name: 'Demo on real flows', detail: 'Ran end-to-end scenarios against the real backend: register for an event, book a service, ask personal questions.' },
     ],
     architecture: [
       { layer: 'Channel', detail: 'WhatsApp via Twilio; adapter pattern so Instagram / Messenger can be added.' },
       { layer: 'Agent', detail: 'OpenAI GPT with tool calling: intent detection, multi-step tool use, natural replies.' },
-      { layer: 'Tools', detail: 'Typed functions wrapping platform APIs — CRUD, event registration, service booking, lookups.' },
+      { layer: 'Tools', detail: 'Typed functions wrapping platform APIs: CRUD, event registration, service booking, lookups.' },
       { layer: 'Auth', detail: 'User identity resolved from the channel and checked before any tool executes.' },
       { layer: 'Platform', detail: 'Existing Hind Social backend and database via REST APIs.' },
     ],
     decisions: [
-      { title: 'Tools, not free-form SQL', why: 'Letting a model act only through typed, permission-checked functions keeps it powerful but bounded.', tradeoff: 'Each new capability needs a tool definition — which is exactly the review point you want.' },
+      { title: 'Tools, not free-form SQL', why: 'Letting a model act only through typed, permission-checked functions keeps it powerful but bounded.', tradeoff: 'Each new capability needs a tool definition, which is exactly the review point you want.' },
       { title: 'Channel adapter from day one', why: 'The business wanted Instagram and Messenger next.', tradeoff: 'A thin abstraction layer in a one-day build; cheap insurance.' },
     ],
     security: [
@@ -251,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'one-codebase-three-platforms',
-    title: 'One codebase, three platforms — and a Play Store approval',
+    title: 'One codebase, three platforms: and a Play Store approval',
     tagline: 'Script Assist & Hind Social · Mobile',
     company: 'Script Assist UK · Hind Social',
     role: 'Mobile & web engineer',
@@ -260,7 +260,7 @@ export const caseStudies: CaseStudy[] = [
     readingTime: '4 min read',
     projectSlug: 'patient-mobile-apps',
     summary:
-      'Shipped Android and iOS patient apps from the same React/TypeScript codebase as the web platform, serving 5,000+ patient app users — and later got Hind Social’s long-stuck Capacitor app approved on Google Play.',
+      'Shipped Android and iOS patient apps from the same React/TypeScript codebase as the web platform, serving 5,000+ patient app users, and later got Hind Social’s long-stuck Capacitor app approved on Google Play.',
     metrics: [
       { value: '1', label: 'Shared codebase' },
       { value: '3', label: 'Platforms: web, Android, iOS' },
@@ -268,7 +268,7 @@ export const caseStudies: CaseStudy[] = [
       { value: '✓', label: 'Google Play approval' },
     ],
     context:
-      'Building separate native apps would have doubled the work for a small team. Capacitor lets a web codebase ship to both stores — if the native details are handled properly.',
+      'Building separate native apps would have doubled the work for a small team. Capacitor lets a web codebase ship to both stores, if the native details are handled properly.',
     problem:
       'Deliver native-feeling apps without a separate mobile team, and unblock a store submission that the team had been stuck on for a long time.',
     constraints: [
@@ -288,7 +288,7 @@ export const caseStudies: CaseStudy[] = [
       { layer: 'Delivery', detail: 'Signed Android & iOS builds with a repeatable release process.' },
     ],
     decisions: [
-      { title: 'Capacitor over a separate native app', why: 'One team, one codebase, features land everywhere at once.', tradeoff: 'Some native polish needs extra care — handled per platform where it mattered.' },
+      { title: 'Capacitor over a separate native app', why: 'One team, one codebase, features land everywhere at once.', tradeoff: 'Some native polish needs extra care, handled per platform where it mattered.' },
     ],
     security: ['Same auth and permission model as the web platform', 'Signed builds and managed credentials for both stores'],
     performance: ['Mobile-first flows and lean payloads', 'Tuned UX for older Android devices'],
@@ -311,7 +311,7 @@ export const caseStudies: CaseStudy[] = [
     readingTime: '4 min read',
     projectSlug: 'healthcare-cron-workflows',
     summary:
-      'Owned the scheduled jobs that clinics depend on — prescription processing, inventory allocation and appointments — plus deployments and PostgreSQL migrations on Google Cloud, keeping 99.9% uptime.',
+      'Owned the scheduled jobs that clinics depend on (prescription processing, inventory allocation and appointments) plus deployments and PostgreSQL migrations on Google Cloud, keeping 99.9% uptime.',
     metrics: [
       { value: '99.9%', label: 'Uptime' },
       { value: '3', label: 'Critical workflow families' },
@@ -354,7 +354,7 @@ export const caseStudies: CaseStudy[] = [
     readingTime: '4 min read',
     projectSlug: 'hind-social-security-assessment',
     summary:
-      'Identified 50+ vulnerabilities and hardening opportunities. Reviewed Hind Social from a defender’s point of view — auth, authorization, input handling, data exposure — mapped findings to OWASP, prioritised fixes and wrote the security documentation the team uses.',
+      'Identified 50+ vulnerabilities and hardening opportunities. Reviewed Hind Social from a defender’s point of view (auth, authorization, input handling, data exposure) mapped findings to OWASP, prioritised fixes and wrote the security documentation the team uses.',
     metrics: [
       { value: '50+', label: 'Vulnerabilities identified' },
       { value: 'Ranked', label: 'By real-world impact' },
@@ -381,7 +381,7 @@ export const caseStudies: CaseStudy[] = [
     security: ['OWASP-based assessment', 'Threat analysis of user and admin surfaces', 'Authorization review across APIs'],
     performance: [],
     results: ['50+ vulnerabilities and hardening opportunities identified and prioritised', 'Security docs adopted by the team', 'Layered access-control patterns reused in the Services Module'],
-    lessons: ['Most serious issues are authorization issues — which is why I design permissions first now.'],
+    lessons: ['Most serious issues are authorization issues, which is why I design permissions first now.'],
     stack: ['OWASP', 'Threat Modeling', 'API Security', 'Node.js'],
   },
   {
@@ -395,7 +395,7 @@ export const caseStudies: CaseStudy[] = [
     readingTime: '3 min read',
     projectSlug: 'novu-notification-workflows',
     summary:
-      'Built notification workflows on Novu, an open-source notification platform: platform events feed trigger pipelines that decide who gets notified, how and when — so new notification types plug in without rewriting delivery.',
+      'Built notification workflows on Novu, an open-source notification platform: platform events feed trigger pipelines that decide who gets notified, how and when, so new notification types plug in without rewriting delivery.',
     metrics: [
       { value: 'Event', label: 'Driven pipelines' },
       { value: 'Reusable', label: 'Workflows' },
@@ -416,12 +416,12 @@ export const caseStudies: CaseStudy[] = [
       { layer: 'Delivery', detail: 'Novu handles notification orchestration and multi-channel delivery.' },
     ],
     decisions: [
-      { title: 'Emit events, don’t send notifications', why: 'Features stay simple; notification logic lives in one place.', tradeoff: 'One more layer to understand — far fewer places to change.' },
+      { title: 'Emit events, don’t send notifications', why: 'Features stay simple; notification logic lives in one place.', tradeoff: 'One more layer to understand, but far fewer places to change.' },
     ],
     security: ['Notifications only reach users entitled to the underlying data'],
     performance: ['Asynchronous delivery keeps user requests fast'],
     results: ['New notification types plug into existing pipelines', 'Users hear about bookings and events at the right time'],
-    lessons: ['Notifications are a product surface — design them, don’t bolt them on.'],
+    lessons: ['Notifications are a product surface: design them, don’t bolt them on.'],
     stack: ['Novu', 'Node.js', 'TypeScript', 'Event pipelines'],
   },
   {
@@ -435,7 +435,7 @@ export const caseStudies: CaseStudy[] = [
     readingTime: '3 min read',
     projectSlug: 'school-management-saas',
     summary:
-      'Built a multi-tenant school management system used by multiple institutions — role-based access for students, teachers and admins, and modules for attendance, fees, academics and administration.',
+      'Built a multi-tenant school management system used by multiple institutions: role-based access for students, teachers and admins, and modules for attendance, fees, academics and administration.',
     metrics: [
       { value: 'Multi', label: 'Institutions on one backend' },
       { value: '3', label: 'Roles: student, teacher, admin' },
@@ -469,7 +469,7 @@ export const caseStudies: CaseStudy[] = [
 
 /** Requirement → proof. Used to answer "can he do X?" at a glance. */
 export const capabilityMap: { need: string; proof: string; slug: string }[] = [
-  { need: 'Ship a large module on a hard deadline', proof: 'Entire services marketplace in 4 months — 3-tier ACL, verified vendors, on the date', slug: 'services-marketplace-in-4-months' },
+  { need: 'Ship a large module on a hard deadline', proof: 'Entire services marketplace in 4 months with 3-tier ACL and verified vendors, on the date', slug: 'services-marketplace-in-4-months' },
   { need: 'Multi-tenant SaaS with strict data isolation', proof: '20+ clinics, 40k+ patients, zero critical breaches', slug: 'multi-tenant-healthcare-saas' },
   { need: 'AI agents & LLM integrations', proof: 'WhatsApp agent running real operations, built in under 24 hours', slug: 'ai-agent-whatsapp-in-a-day' },
   { need: 'Web + Android + iOS from one team', proof: 'One codebase, three platforms, Play Store approval', slug: 'one-codebase-three-platforms' },
@@ -482,7 +482,7 @@ export const capabilityMap: { need: string; proof: string; slug: string }[] = [
 export const availability = {
   immediateJoiner: true,
   headline: 'Immediate joiner',
-  detail: 'Available now — no notice period. Last role ended Oct 2026.',
+  detail: 'Available now, no notice period. Last role ended Oct 2026.',
   modes: ['Full-time', 'Remote', 'Hybrid'],
   base: 'Ahmedabad, India (IST)',
   timezones: 'Experienced working with UK (GMT/BST) and Qatar (AST) teams',

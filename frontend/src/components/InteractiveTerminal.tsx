@@ -207,7 +207,7 @@ export default function InteractiveTerminal({ className = '' }: { className?: st
           <span className="w-3 h-3 rounded-full bg-yellow-500/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]" />
           <span className="w-3 h-3 rounded-full bg-green-500/90 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]" />
         </div>
-        <span className="terminal-chrome-title text-[10px] sm:text-[11px] tracking-wide truncate max-w-[45%]">rahul@portfolio — zsh — 80×24</span>
+        <span className="terminal-chrome-title text-[10px] sm:text-[11px] tracking-wide truncate max-w-[45%]">rahul@portfolio: zsh 80×24</span>
         <span className="flex items-center gap-1.5 text-[10px] text-emerald-600 dark:text-emerald-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           online

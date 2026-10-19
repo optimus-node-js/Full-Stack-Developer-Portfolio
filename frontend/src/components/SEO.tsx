@@ -11,7 +11,7 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "Rahul Vishwakarma — Senior Full Stack Developer | SaaS, Marketplaces, AI & Security",
+  title = "Rahul Vishwakarma | Senior Full Stack Developer | SaaS, Marketplaces, AI & Security",
   description = "Senior Full Stack Developer and immediate joiner, specializing in full-stack development, AI engineering, security assessment, and platform architecture. Building scalable products with TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, and GCP.",
   keywords = "Senior Full Stack Developer, Product Engineer, Full Stack Developer, Booking Marketplace, AI Engineer, Security Engineer, TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, AI Agents, Tool Calling, System Design, Multi-Tenant SaaS, Platform Architecture, Capacitor, OWASP, Blue Team, Notification Systems, Workflow Automation, GCP",
   author = "Rahul Vishwakarma",
@@ -40,7 +40,7 @@ const SEO = ({
       <meta property="og:image" content={image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Rahul Vishwakarma — Senior Full Stack Developer" />
+      <meta property="og:site_name" content="Rahul Vishwakarma | Senior Full Stack Developer" />
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
@@ -111,7 +111,7 @@ const SEO = ({
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          "name": "Rahul Vishwakarma — Senior Full Stack Developer",
+          "name": "Rahul Vishwakarma | Senior Full Stack Developer",
           "url": url,
           "description": description,
           "author": {

@@ -20,8 +20,8 @@ interface HireCTAProps {
 
 /** End-of-page call to action that always surfaces availability. */
 const HireCTA = ({
-  title = 'Need this built — and shipped on time?',
-  copy = 'I take ownership from schema to production — available now, no notice period.',
+  title = 'Need this built and shipped on time?',
+  copy = 'I take ownership from schema to production. Available now, no notice period.',
 }: HireCTAProps) => (
   <motion.section
     initial={{ opacity: 0, y: 20 }}

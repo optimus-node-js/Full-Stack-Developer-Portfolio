@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const EducationCredentials = () => {
   return (
     <div className="space-y-14">
-      {/* Education — credential badge cards */}
+      {/* Education - credential badge cards */}
       <div>
         <div className="flex items-center gap-2 mb-6 text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">
           <GraduationCap className="h-4 w-4 text-primary" />
