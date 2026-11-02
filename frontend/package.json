@@ -12,6 +12,7 @@
     "start": "vite build && vite preview --host 0.0.0.0 --port 3000 --strictPort"
   },
   "dependencies": {
+    "@calcom/embed-react": "1.5.3",
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.10.0",
     "@instantdb/react": "^1.0.49",
