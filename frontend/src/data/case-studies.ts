@@ -251,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'one-codebase-three-platforms',
-    title: 'One codebase, three platforms: and a Play Store approval',
+    title: 'One codebase, three platforms and a Play Store approval',
     tagline: 'Script Assist & Hind Social · Mobile',
     company: 'Script Assist UK · Hind Social',
     role: 'Mobile & web engineer',
