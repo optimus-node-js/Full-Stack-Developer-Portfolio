@@ -54,6 +54,11 @@ const BookCall = () => {
         hideEventTypeDetails: false,
         layout: 'month_view',
         styles: { branding: { brandColor: '#6366f1' } },
+        // Match the site's surfaces instead of Cal.com's default greys.
+        cssVarsPerTheme: {
+          dark: { 'cal-bg': '#111827', 'cal-bg-muted': '#0d1424', 'cal-bg-emphasis': '#1e293b', 'cal-bg-subtle': '#1a2236', 'cal-border': '#1f2a3d', 'cal-border-subtle': '#1f2a3d', 'cal-border-booker': '#1f2a3d' },
+          light: { 'cal-bg': '#ffffff', 'cal-border-booker': '#e2e8f0' },
+        },
       });
     })();
   }, [selected, theme]);
