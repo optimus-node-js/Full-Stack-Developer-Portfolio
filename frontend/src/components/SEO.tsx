@@ -16,7 +16,7 @@ const SEO = ({
   keywords = "Senior Full Stack Developer, Product Engineer, Full Stack Developer, Booking Marketplace, AI Engineer, Security Engineer, TypeScript, Node.js, React, Next.js, PostgreSQL, OpenAI, AI Agents, Tool Calling, System Design, Multi-Tenant SaaS, Platform Architecture, Capacitor, OWASP, Blue Team, Notification Systems, Workflow Automation, GCP",
   author = "Rahul Vishwakarma",
   url = "https://rahul-vishwakarma-portfolio.vercel.app",
-  image = "https://rahul-vishwakarma-portfolio.vercel.app/profile.jpeg",
+  image = "https://rahul-vishwakarma-portfolio.vercel.app/og/home.jpg",
   type = "website"
 }: SEOProps) => {
   return (
