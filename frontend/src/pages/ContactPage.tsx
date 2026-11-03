@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Zap, Briefcase, Globe2 } from 'lucide-react';
 import PageShell from '@/components/PageShell';
 import Contact from '@/components/Contact';
+import BookCall from '@/components/BookCall';
 import { availability } from '@/data/case-studies';
 
 const ContactPage = () => {
@@ -37,6 +38,10 @@ const ContactPage = () => {
           </Link>
         </div>
       </section>
+      <BookCall />
+      <div className="max-w-5xl mx-auto mb-6 flex items-center gap-3 text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
+        <span className="h-px flex-1 bg-border/60" /> Prefer to write? <span className="h-px flex-1 bg-border/60" />
+      </div>
       <div data-ai-section="form">
         <Contact />
       </div>
