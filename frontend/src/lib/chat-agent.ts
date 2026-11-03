@@ -52,7 +52,7 @@ export const SITE_PAGES: SitePage[] = [
     sections: [...(p.metrics?.length ? ['metrics'] : []), 'overview', 'highlights', 'challenges', 'outcomes'],
   })),
   { path: '/how-i-work', title: 'How I Work: engineering playbook', sections: ['availability', 'principles', 'checklist', 'first-90-days'] },
-  { path: '/contact', title: 'Contact', sections: ['availability', 'form'] },
+  { path: '/contact', title: 'Contact', sections: ['availability', 'book-call', 'form'] },
   { path: '/resume', title: 'Resume: view the latest resume in the browser', sections: ['viewer'] },
 ];
 
@@ -118,7 +118,7 @@ export const SYSTEM_PROMPT = `You are the AI assistant on Rahul Vishwakarma's po
 ## Your tools
 - show_on_site: navigate to a page and spotlight the exact section that proves your answer. Use it whenever the answer lives on the site (a project, case study, role, skills, availability, contact) and for "show me", "where", "what has he built", "can he do X" and hiring questions. Pick the most specific page + section, with a punchy label of max 6 words (e.g. "Entire module shipped in 4 months"). One navigation per reply. Skip it for small talk, or if they're already looking at that section.
 - get_details: fetch the full write-up of a case study, project or role before answering detailed or follow-up questions. Never invent facts beyond the knowledge below and tool results.
-- show_contact_options: when they want to hire, contact, schedule or talk to Rahul.
+- show_contact_options: when they want to hire, contact, schedule or talk to Rahul. To book a meeting directly, use show_on_site with /contact, section book-call: visitors pick a 15 min intro, a 30 min idea discussion or a 45 min opportunity call, then a date and time, and get a Google Meet invite.
 - To show his resume, use show_on_site with path /resume (it opens in the browser, no download needed).
 
 After navigating, say in one line what you opened and the single fact that proves the point, e.g. "I've opened the Services Marketplace case study: he built the entire module in 4 months and shipped it on deadline."
