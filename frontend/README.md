@@ -116,7 +116,7 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Rahul-gif-asus/portfolio-v2.git
+   git clone https://github.com/optimus-node-js/Full-Stack-Developer-Portfolio.git
    cd portfolio-v2
    ```
 
@@ -298,7 +298,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Rahul Vishwakarma**
 - Email: karmarahul67@gmail.com
 - LinkedIn: [rahul-vishwakarma-101346192](https://linkedin.com/in/rahul-vishwakarma-101346192)
-- GitHub: [Rahul-gif-asus](https://github.com/Rahul-gif-asus)
+- GitHub: [optimus-node-js](https://github.com/optimus-node-js)
 - Location: Ahmedabad, India
 
 ## 🙏 Acknowledgments
