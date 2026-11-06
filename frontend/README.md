@@ -1,12 +1,12 @@
-# Rahul Vishwakarma - Portfolio V2 🚀
+# Rahul Vishwakarma - Portfolio V2
 
 A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a Full Stack Developer. Built with cutting-edge technologies and designed for optimal user experience.
 
-## 🌟 Live Demo
+## Live Demo
 
-[View Live Portfolio](https://rahul-vishwakarma-portfolio.vercel.app/) 🚀
+[View Live Portfolio](https://rahul-vishwakarma-portfolio.vercel.app/)
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Features](#-features)
 - [Technologies Used](#-technologies-used)
@@ -18,16 +18,16 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 - [Contributing](#-contributing)
 - [License](#-license)
 
-## ✨ Features
+## Features
 
-### 🎨 Modern Design
+### Modern Design
 - **Glass Morphism UI**: Beautiful glassmorphism effects with backdrop blur
 - **Responsive Design**: Optimized for all devices (mobile, tablet, desktop)
 - **Dark Theme**: Elegant dark theme with gradient accents
 - **Smooth Animations**: Framer Motion animations for enhanced UX
 - **Custom Scrollbar**: Styled scrollbar for better visual appeal
 
-### 📱 Sections
+### Sections
 - **Hero Section**: Eye-catching introduction with animated background
 - **About**: Personal story and professional background
 - **Projects**: Showcase of featured projects with detailed views
@@ -35,9 +35,9 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 - **Experience**: Professional experience and education
 - **Contact**: Interactive contact form with Firebase integration
 
-### 🔧 Advanced Functionality
+### Advanced Functionality
 - **Project Detail Pages**: Dedicated pages for each project with comprehensive information
-- **Contact System**: 
+- **Contact System**:
   - General contact form for general inquiries
   - Project-specific contact modal for project inquiries
   - Firebase Firestore integration for data storage
@@ -46,7 +46,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 - **Smooth Scrolling**: Ultra-smooth scrolling experience
 - **SEO Optimized**: Meta tags and structured data for better search visibility
 
-## 🛠 Technologies Used
+## Technologies Used
 
 ### Frontend
 - **React 18**: Modern React with hooks and functional components
@@ -71,7 +71,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 - **PostCSS**: CSS processing
 - **Git**: Version control
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -105,7 +105,7 @@ src/
     └── icons/           # Icon files
 ```
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Node.js (v18 or higher)
@@ -148,7 +148,7 @@ npm run preview      # Preview production build
 npm run lint         # Run ESLint
 ```
 
-## 🎯 Key Components
+## Key Components
 
 ### Hero Section
 - Animated background with floating tech icons
@@ -176,11 +176,11 @@ npm run lint         # Run ESLint
 - **General Contact Form**: For general inquiries
 - **Project Contact Modal**: For project-specific questions
 - **Firebase Integration**: Real-time data storage
-- **Admin Pages**: 
+- **Admin Pages**:
   - `/contacted` - View all general contact submissions
   - `/project/contacted` - View project-specific inquiries
 
-## 📞 Contact System
+## Contact System
 
 ### Features
 - **Dual Contact System**: Separate forms for general and project inquiries
@@ -213,7 +213,7 @@ interface ContactFormData {
 }
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 1. Connect your GitHub repository to Vercel
@@ -232,7 +232,7 @@ npm run build
 # Upload the 'dist' folder to your hosting provider
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Updating Content
 1. **Personal Information**: Edit `src/data/resume-data.ts`
@@ -251,7 +251,7 @@ npm run build
 2. Import and add to `src/pages/Index.tsx`
 3. Update navigation if needed
 
-## 📱 Responsive Design
+## Responsive Design
 
 The portfolio is fully responsive and optimized for:
 - **Mobile**: 320px - 768px
@@ -259,7 +259,7 @@ The portfolio is fully responsive and optimized for:
 - **Desktop**: 1024px+
 - **Large Screens**: 1440px+
 
-## 🔧 Performance Optimizations
+## Performance Optimizations
 
 - **Code Splitting**: Automatic code splitting with Vite
 - **Image Optimization**: Optimized images and lazy loading
@@ -267,21 +267,21 @@ The portfolio is fully responsive and optimized for:
 - **Caching**: Efficient caching strategies
 - **Smooth Scrolling**: Hardware-accelerated smooth scrolling
 
-## 🛡 Security Features
+## Security Features
 
 - **Input Validation**: Form validation and sanitization
 - **Firebase Security**: Firestore security rules
 - **XSS Protection**: React's built-in XSS protection
 - **HTTPS**: Secure connections for all external resources
 
-## 📊 Analytics & Tracking
+## Analytics & Tracking
 
 - **Firebase Analytics**: User behavior tracking
 - **Performance Monitoring**: Core Web Vitals tracking
 - **Error Tracking**: Error boundary implementation
 - **Contact Form Analytics**: Submission tracking
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -289,11 +289,11 @@ The portfolio is fully responsive and optimized for:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
+## Author
 
 **Rahul Vishwakarma**
 - Email: karmarahul67@gmail.com
@@ -301,7 +301,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub: [optimus-node-js](https://github.com/optimus-node-js)
 - Location: Ahmedabad, India
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **shadcn/ui** for the beautiful component library
 - **Tailwind CSS** for the utility-first CSS framework
@@ -310,7 +310,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Vite** for the fast build tool
 - **React** team for the amazing framework
 
-## 📈 Future Enhancements
+## Future Enhancements
 
 - [ ] Blog section integration
 - [ ] Multi-language support
@@ -323,6 +323,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-⭐ **Star this repository if you found it helpful!**
+ **Star this repository if you found it helpful!**
 
-*Built with ❤️ by Rahul Vishwakarma*
+*Built with by Rahul Vishwakarma*
